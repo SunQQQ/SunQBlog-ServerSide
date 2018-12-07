@@ -75,6 +75,16 @@ App.post('/ArticleRead/:accesstype', function (req, res) {
   });
 });
 
+// 热门文章
+App.post('/HotArticleRead/:accesstype', function (req, res) {
+  DealPara(req,res,function (Para) {
+    Monge.Mongo('runoob','ReadByOrder', [{},{CommentNum:-1},{Skip:0,Limit:6}], function (Result) {
+      var Json = {status: '0', data: Result};
+      res.json(Json);
+    });
+  });
+});
+
 App.post('/ArticleReadOne/:accesstype',function (Request,Response) {
   DealPara(Request,Response,function (Para) {
     var Key = {_id:ObjectId(Para._id)};
