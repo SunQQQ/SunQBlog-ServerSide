@@ -317,6 +317,32 @@ App.post('/MessageRead/:accesstype',function (Request,Response) {
     });
   });
 });
+App.post('/MessageLeaveDelete/:accesstype',function (Request,Response) {
+  DealPara(Request,Response,function (Para) {
+    var Object = {};
+    Object._id = ObjectId(Para._id);
+
+    Monge.Mongo('LeaveMessage','Delete', Object, function () {
+      var Json = {status: '0', data: '友链删除成功'};
+      Response.json(Json);
+    });
+  });
+});
+
+App.post('/MessageLeaveEdit/:accesstype',function (Request,Response) {
+  var WhereId = {},UpdateStr = {$set:{}};
+
+  DealPara(Request,Response,function (Para) {
+    WhereId._id = ObjectId(Para._id);
+    delete Para._id;
+    UpdateStr.$set = Para;
+    Monge.Mongo('LeaveMessage','Update', [WhereId, UpdateStr], function (Result) {
+      var Json = {status: '0'};
+      Json.data = 'Update Success';
+      Response.json(Json);
+    });
+  });
+});
 // 留言数量
 App.post('/getmessagenum',function (Request,Response) {
   Monge.Mongo('LeaveMessage','GetNum',{}, function (Result) {
