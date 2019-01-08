@@ -485,6 +485,21 @@ App.post('/HeartfeltDelete/:accesstype',function (Request,Response) {
   });
 });
 
+//获取访问者Ip
+App.post('/GetUserIp',function (Request,Response) {
+  var IpAdress = Request.headers['x-forwarded-for'] ||
+    Request.connection.remoteAddress ||
+    Request.socket.remoteAddress ||
+    Request.connection.socket.remoteAddress;
+  var Json = {
+    status: '0',
+    data: {
+      IpAdress:IpAdress
+    }
+  };
+  Response.json(Json);
+});
+
 var server = App.listen(8888, function () {
 
   var host = server.address().address
