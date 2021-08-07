@@ -2,7 +2,11 @@
 
 > 此项目为孙权的博客服务端代码，博客地址 http://www.sunq.xyz
 
-服务端语言使用Node.js，使用Express框架。由于刚接触Node，代码很不规范，后期将会优化
+服务端语言使用Node.js，使用Express框架。由于刚接触Node，代码很不规范，后期将会优化。
+
+对应的数据库信息可在Mongo.js中寻找。
+
+数据表存放在sunqBlogCollections文件里，你可以直接导入到自己的库里。
 
 ## Build Setup
 

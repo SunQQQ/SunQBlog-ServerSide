@@ -36,7 +36,7 @@ var GetPara = function (Request,Response,OperationResponse) {
   var Para = Request.body;
 
   if(JSON.stringify(Para) == '{}'){
-    OperationResponse();
+    OperationResponse()
   }else {
     OperationResponse(Para);
   }
@@ -62,6 +62,10 @@ var GetParaCheckToken = function (Request,Response,OperationResponse) {
     Response.json(Json);
   }
 }
+
+App.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 /*文章管理相关*/
 App.post('/ArticleRead/:accesstype', function (req, res) {
@@ -309,6 +313,7 @@ App.post('/MessageCreate/:accesstype',function (Request,Response) {
   });
 });
 App.post('/MessageRead/:accesstype',function (Request,Response) {
+  console.log('in message api');
   DealPara(Request,Response,function (Para) {
     var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip:0,Limit:1000};
     Monge.Mongo('LeaveMessage','ReadByOrder',[{},{MessageLeaveDate:-1},PagnationData], function (Result) {
@@ -500,11 +505,12 @@ App.post('/GetUserIp',function (Request,Response) {
   Response.json(Json);
 });
 
-var server = App.listen(8888, function () {
+var server = App.listen(8888,function () {
 
   var host = server.address().address
   var port = server.address().port
 
+  console.log(server.address());
   console.log("Node执行地址 http://%s:%s", host, port)
 
 });
