@@ -1,3 +1,7 @@
+/**
+ * author: sunquan
+ * 本文件实现孙权的博客的所有接口
+ */
 var express = require('express');
 
 var Token = require('./token');
@@ -36,7 +40,7 @@ var GetPara = function (Request,Response,OperationResponse) {
   var Para = Request.body;
 
   if(JSON.stringify(Para) == '{}'){
-    OperationResponse()
+    OperationResponse();
   }else {
     OperationResponse(Para);
   }
@@ -63,15 +67,11 @@ var GetParaCheckToken = function (Request,Response,OperationResponse) {
   }
 }
 
-App.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
 /*文章管理相关*/
 App.post('/ArticleRead/:accesstype', function (req, res) {
   DealPara(req,res,function (Para) {
     var Key = Para.ArticleTag ? {ArticleTag:Para.ArticleTag} : {},
-    PagnationData = Para.PagnationData ? Para.PagnationData : {SKip:0,Limit:10000};
+      PagnationData = Para.PagnationData ? Para.PagnationData : {SKip:0,Limit:10000};
     Monge.Mongo('runoob','ReadByOrder', [Key,{CreateDate:-1},PagnationData], function (Result) {
       var Json = {status: '0', data: Result};
       res.json(Json);
@@ -313,7 +313,6 @@ App.post('/MessageCreate/:accesstype',function (Request,Response) {
   });
 });
 App.post('/MessageRead/:accesstype',function (Request,Response) {
-  console.log('in message api');
   DealPara(Request,Response,function (Para) {
     var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip:0,Limit:1000};
     Monge.Mongo('LeaveMessage','ReadByOrder',[{},{MessageLeaveDate:-1},PagnationData], function (Result) {
@@ -505,12 +504,43 @@ App.post('/GetUserIp',function (Request,Response) {
   Response.json(Json);
 });
 
-var server = App.listen(8888,function () {
+// 评论列表
+App.post('/CommentRead/:accesstype',function (Request,Response) {
+  DealPara(Request,Response,function (Para) {
+    var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip:'',Limit:''};
+    Monge.Mongo('articlecomment','ReadByOrder',[{},{CreateDate:-1},PagnationData], function (Result) {
+      var Json = {status: '0', data: Result};
+      Response.json(Json);
+    });
+  });
+});
+
+//评论总数
+App.post('/getCommentNum',function (Request,Response) {
+  Monge.Mongo('articlecomment','GetNum',{}, function (Result) {
+    var Json = {status: '0', data: Result};
+    Response.json(Json);
+  });
+});
+
+// 删除评论
+App.post('/CommentDelete/:accesstype',function (Request,Response) {
+  DealPara(Request,Response,function (Para) {
+    var Object = {};
+    Object._id = ObjectId(Para._id);
+
+    Monge.Mongo('articlecomment','Delete', Object, function () {
+      var Json = {status: '0', data: '标签删除成功'};
+      Response.json(Json);
+    });
+  });
+});
+
+var server = App.listen(8888, function () {
 
   var host = server.address().address
   var port = server.address().port
 
-  console.log(server.address());
   console.log("Node执行地址 http://%s:%s", host, port)
 
 });
