@@ -523,9 +523,9 @@ App.post('/ArticleCommentNumUpdate/:accesstype', function (Request, Response) {
     Monge.Mongo('runoob', 'Read', WhereId, function (CurrentNum) {
       // 判断删除还是新增
       if (Para.type == 'add') {
-        UpdataStr.$set.CommentNum = CurrentNum[0].CommentNum + 1;
+        UpdataStr.$set.CommentNum = parseInt(CurrentNum[0].CommentNum) + 1;
       } else if (Para.type == 'delete') {
-        UpdataStr.$set.CommentNum = CurrentNum[0].CommentNum - 1;
+        UpdataStr.$set.CommentNum = parseInt(CurrentNum[0].CommentNum) - 1;
       }
       // 修改文章表里，对应id文章的评论数字段
       Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function () {
