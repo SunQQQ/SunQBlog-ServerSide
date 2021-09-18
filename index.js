@@ -324,10 +324,20 @@ App.post('/getmessagenum', function (Request, Response) {
 //友链相关
 App.post('/FriendUrlCreate/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
-        Monge.Mongo('FriendsUrl', 'Insert', Para, function () {
-            var Json = {status: '0', data: '插入成功'};
+        var adress = util.isXssString(Para.FriendUrlAdress),
+            descript = util.isXssString(Para.FriendUrlDescript),
+            iconUrl = util.isXssString(Para.FriendUrlIcoUrl),
+            nickName = util.isXssString(Para.FriendUrlNickName);
+
+        if(adress && descript && iconUrl && nickName){
+            Monge.Mongo('FriendsUrl', 'Insert', Para, function () {
+                var Json = {status: '0', data: '插入成功'};
+                Response.json(Json);
+            });
+        }else {
+            var Json = {status: '1', data: '入参有XSS风险，不予通过'};
             Response.json(Json);
-        });
+        }
     });
 });
 // 友链数量
@@ -517,7 +527,6 @@ App.post('/CommentDelete/:accesstype', function (Request, Response) {
 // 新增评论
 App.post('/ArticleCommentCreate/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
-        console.log(Para);
         var date = util.isXssString(Para.ArticleCommentDate),
             email = util.isXssString(Para.ArticleCommentEmail),
             nickName = util.isXssString(Para.ArticleCommentNickName),
