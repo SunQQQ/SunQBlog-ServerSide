@@ -19,10 +19,12 @@ function Util() {
     // 与上面逻辑基础上放开<>标签，但是不能存在onerror。留言表情用到<>
     this.isXssStringLeaveMessage = function (strings) {
         var script = strings.indexOf('script'),
+            all = strings.indexOf('*'),
             style = strings.indexOf('style'),
-            onerror = strings.indexOf('onerror');
+            onerror = strings.indexOf('onerror'),
+            tags = /<\/.*>/.test(strings);
 
-        if(script==-1 && style==-1 && onerror==-1){
+        if(script==-1 && all==-1 && style==-1 && onerror==-1 && !tags){
             return true;
         }else {
             return false;
