@@ -262,7 +262,7 @@ App.post('/UserReadOne', function (Request, Response) {
 // 留言页面相关
 App.post('/MessageCreate/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
-        var city = util.isArray(Para.LocationCityName),
+        var city = util.isXssString(Para.LocationCityName),
         date = util.isXssString(Para.MessageLeaveDate),
         user = util.isXssString(Para.MessageLeaveName),
         text = util.isXssStringLeaveMessage(Para.MessageText);
