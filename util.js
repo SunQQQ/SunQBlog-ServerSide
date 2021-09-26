@@ -9,6 +9,7 @@ function Util() {
         var script = strings.indexOf('script'),
             style = strings.indexOf('style'),
             tags = /<.*>/.test(strings);
+
         if(script==-1 && style==-1 && !tags){
             return true;
         }else {
@@ -20,11 +21,10 @@ function Util() {
     this.isXssStringLeaveMessage = function (strings) {
         var script = strings.indexOf('script'),
             all = strings.indexOf('*'),
-            style = strings.indexOf('style'),
             onerror = strings.indexOf('onerror'),
             tags = /<\/.*>/.test(strings);
 
-        if(script==-1 && all==-1 && style==-1 && onerror==-1 && !tags){
+        if(script==-1 && all==-1 && onerror==-1 && !tags){
             return true;
         }else {
             return false;
