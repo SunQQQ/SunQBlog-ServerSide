@@ -1,11 +1,11 @@
 /**
- * Created by OnlyMid on 2018/5/18.
+ * Created by sunquan on 2018/5/18.
  */
 var MongoClient = require("mongodb").MongoClient;
 var Url = "mongodb://localhost:27017/";
 
 /**
- *
+ * node直接操作mongodb
  * @param Collection 要操作的表名
  * @param Type 要操作的类型，比如增删改查直接操作库
  * @param data 如果是只有一个参数，则直接传递该参数；如果有两个参数，传递数组
