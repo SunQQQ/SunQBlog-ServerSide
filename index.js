@@ -496,7 +496,7 @@ App.post('/GetUserIp', function (Request, Response) {
 App.post('/CommentRead/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
         var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: '', Limit: ''};
-        Monge.Mongo('articlecomment', 'ReadByOrder', [{}, {CreateDate: -1}, PagnationData], function (Result) {
+        Monge.Mongo('articlecomment', 'ReadByOrder', [{}, {_id: -1}, PagnationData], function (Result) {
             var Json = {status: '0', data: Result};
             Response.json(Json);
         });
