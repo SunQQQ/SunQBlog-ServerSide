@@ -601,6 +601,26 @@ App.post('/getcommentnum', function (Request, Response) {
     });
 });
 
+// 创建访问记录
+App.post('/visitCreate/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function (Para) {
+        Monge.Mongo('VisitList', 'Insert', Para, function () {
+            var Json = {status: '0', data: '插入成功'};
+            Response.json(Json);
+        });
+    });
+});
+
+// 获取访问记录
+App.post('/visitRead/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function () {
+        Monge.Mongo('VisitList', 'ReadByOrder', [{}, {time: -1}], function (Result) {
+            var Json = {status: '0', data: Result};
+            Response.json(Json);
+        });
+    });
+});
+
 var server = App.listen(8888, function () {
 
     var host = server.address().address
