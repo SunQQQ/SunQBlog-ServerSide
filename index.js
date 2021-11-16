@@ -614,7 +614,7 @@ App.post('/visitCreate/:accesstype', function (Request, Response) {
 // 获取访问记录
 App.post('/visitRead/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function () {
-        Monge.Mongo('VisitList', 'ReadByOrder', [{}, {time: -1}], function (Result) {
+        Monge.Mongo('VisitList', 'ReadByOrder', [{}, {_id: -1}], function (Result) {
             var Json = {status: '0', data: Result};
             Response.json(Json);
         });
