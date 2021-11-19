@@ -621,6 +621,19 @@ App.post('/visitRead/:accesstype', function (Request, Response) {
     });
 });
 
+// 删除访问记录
+App.post('/visitDelete/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function (Para) {
+        var Object = {};
+        Object._id = ObjectId(Para._id);
+
+        Monge.Mongo('VisitList', 'Delete', Object, function () {
+            var Json = {status: '0', data: '访客记录删除成功'};
+            Response.json(Json);
+        });
+    });
+});
+
 var server = App.listen(8888, function () {
 
     var host = server.address().address
