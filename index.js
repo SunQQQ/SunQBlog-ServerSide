@@ -634,6 +634,41 @@ App.post('/visitDelete/:accesstype', function (Request, Response) {
     });
 });
 
+// 访问统计接口
+App.post('/visitCount/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function (para) {
+        let endTime = para.endTime, //20211124 从前端获取
+            dayNum = para.dayNum,//7 从前端获取
+            // 处理从前端获取的数据
+            endTimeObject = new Date(endTime), //
+            endTimeAddOneObject = new Date(endTimeObject.getTime() + 1*24*60*60*1000),
+            endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1) + '/' + endTimeAddOneObject.getDate(),
+            beginTimeObject = new Date(endTimeObject.getTime() - (dayNum-1)*24*60*60*1000), //开始时间由结束时间向前推得出
+            beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1) + '/' + beginTimeObject.getDate(),
+            //此变量为mongodb查询时使用
+            newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}, // mongodb语法要求结束时间需要加一天
+            // 拿到库里数据后，node遍历计算次数
+            dateArray = [], // 时间数组
+            dayObject; //临时使用的变量
+
+        for(let i=0;i<dayNum;i++){
+            dayObject = new Date(endTimeObject.getTime() - i*24*60*60*1000);
+            dateArray.push(dayObject.getFullYear() + '/' + (dayObject.getMonth()+1) + '/' + dayObject.getDate());
+        }
+
+        Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+            var Json = {
+                status: '0',
+                data: Result,
+                dateArray:dateArray,
+                beginTime:beginTime,
+                endTime:endTimeAddOne
+            };
+            Response.json(Json);
+        });
+    });
+});
+
 var server = App.listen(8888, function () {
 
     var host = server.address().address
