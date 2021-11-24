@@ -634,7 +634,9 @@ App.post('/visitDelete/:accesstype', function (Request, Response) {
     });
 });
 
-// 访问统计接口
+/** 访问统计接口
+ * 传入最后一天，及需要的天数。返回传入日期前每一天的访问量
+ */
 App.post('/visitCount/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (para) {
         let endTime = para.endTime, //20211124 从前端获取
@@ -657,12 +659,22 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
         }
 
         Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+            let dateCountList = [];
+            for(let i=0;i<dateArray.length;i++){
+                let object = new Object();
+                object.time = dateArray[i];
+                object.reading = 0;
+                for(let m=0;m<Result.length;m++){
+                    if(Result[m].time.split(' ')[0] == dateArray[i]){
+                        object.reading += 1;
+                    }
+                }
+                dateCountList.push(object);
+            }
+
             var Json = {
                 status: '0',
-                data: Result,
-                dateArray:dateArray,
-                beginTime:beginTime,
-                endTime:endTimeAddOne
+                data: dateCountList
             };
             Response.json(Json);
         });
