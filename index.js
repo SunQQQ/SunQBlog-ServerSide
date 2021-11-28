@@ -674,7 +674,10 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
 
             var Json = {
                 status: '0',
-                data: dateCountList
+                data: {
+                    dateCountList:dateCountList,
+                    dateList:Result
+                }
             };
             Response.json(Json);
         });
