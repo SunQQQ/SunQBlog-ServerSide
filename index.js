@@ -587,7 +587,7 @@ App.post('/ArticleCommentRead/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
         /*var Key = {ArticleId:ObjectId(Para.ArticleId)};*/
         var Key = {ArticleId: Para.ArticleId};
-        Monge.Mongo('articlecomment', 'ReadByOrder', [Key, {_id: 1}], function (Result) {
+        Monge.Mongo('articlecomment', 'ReadByOrder', [Key], function (Result) {
             var Json = {status: '0', data: Result};
             Response.json(Json);
         });
