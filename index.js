@@ -613,8 +613,10 @@ App.post('/visitCreate/:accesstype', function (Request, Response) {
 
 // 获取访问记录
 App.post('/visitRead/:accesstype', function (Request, Response) {
-    DealPara(Request, Response, function () {
-        Monge.Mongo('VisitList', 'ReadByOrder', [{}, {_id: -1}], function (Result) {
+    DealPara(Request, Response, function (Para) {
+        var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000};
+
+        Monge.Mongo('VisitList', 'ReadByOrder', [{},{_id: -1},PagnationData], function (Result) {
             var Json = {status: '0', data: Result};
             Response.json(Json);
         });
