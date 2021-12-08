@@ -133,6 +133,7 @@ App.post('/ArticleUpdate/:accesstype', function (Request, Response) {
         UpdataStr.$set.ArticleTag = Para.ArticleTag;
         UpdataStr.$set.ArticleCover = Para.ArticleCover;
         UpdataStr.$set.CommentNum = Para.CommentNum;
+        UpdataStr.$set.order = Para.order;
         Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function (Result) {
             var Json = {status: '0'};
             Json.data = 'Update Success';
