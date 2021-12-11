@@ -71,9 +71,10 @@ var GetParaCheckToken = function (Request, Response, OperationResponse) {
 /*文章管理相关*/
 App.post('/ArticleRead/:accesstype', function (req, res) {
     DealPara(req, res, function (Para) {
-        var Key = Para.ArticleTag ? {ArticleTag: Para.ArticleTag} : {},
-            PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000};
-        Monge.Mongo('runoob', 'ReadByOrder', [Key, {CreateDate: -1}, PagnationData], function (Result) {
+        var Key = Para.ArticleTag ? {ArticleTag: Para.ArticleTag} : {},  // 查询的依据，这里为文章分类
+            PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000},  // 分页数据
+            orderType = Para.orderType ? Para.orderType : {CreateDate: -1};
+        Monge.Mongo('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
             var Json = {status: '0', data: Result};
             res.json(Json);
         });
