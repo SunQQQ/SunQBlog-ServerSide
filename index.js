@@ -620,7 +620,13 @@ App.post('/visitRead/:accesstype', function (Request, Response) {
 
         Monge.Mongo('VisitList', 'ReadByOrder', [{},{_id: -1},PagnationData], function (Result) {
             Monge.Mongo('VisitList', 'GetNum', {}, function (totalNum) {
-                var Json = {status: '0', data: Result,totalNum:totalNum};
+                var Json = {
+                    status: '0',
+                    data: {
+                        list:Result,   // 当前分页下的数据
+                        totalNum:totalNum   // 所有数据
+                    }
+                };
                 Response.json(Json);
             });
         });
