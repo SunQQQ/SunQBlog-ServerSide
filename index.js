@@ -639,6 +639,8 @@ App.post('/visitDelete/:accesstype', function (Request, Response) {
 
 /** 访问统计接口
  * 传入最后一天，及需要的天数。返回传入日期前每一天的访问量
+ * 传入(‘2021/12/11’，3)
+ * 返回[{time:‘2021/12/09’,reading:5},{time:‘2021/12/10’,reading:2},{time:‘2021/12/11’,reading:15}]
  */
 App.post('/visitCount/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (para) {
@@ -647,20 +649,24 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
             // 处理从前端获取的数据
             endTimeObject = new Date(endTime), //
             endTimeAddOneObject = new Date(endTimeObject.getTime() + 1*24*60*60*1000),
-            endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1) + '/' + endTimeAddOneObject.getDate(),
+            endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1<10 ? '0'+(endTimeAddOneObject.getMonth()+1) : endTimeAddOneObject.getMonth()+1) + '/' + (endTimeAddOneObject.getDate()<10 ? '0'+endTimeAddOneObject.getDate() : endTimeAddOneObject.getDate()),
             beginTimeObject = new Date(endTimeObject.getTime() - (dayNum-1)*24*60*60*1000), //开始时间由结束时间向前推得出
-            beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1) + '/' + beginTimeObject.getDate(),
+            beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1<10 ? '0'+(beginTimeObject.getMonth()+1) : beginTimeObject.getMonth()+1) + '/' + (beginTimeObject.getDate()<10 ? '0'+beginTimeObject.getDate() : beginTimeObject.getDate()),
             //此变量为mongodb查询时使用
-            newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}, // mongodb语法要求结束时间需要加一天
+            newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}, // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
             // 拿到库里数据后，node遍历计算次数
-            dateArray = [], // 时间数组
-            dayObject; //临时使用的变量
+            dateArray = []; // 时间数组
 
+        // 生成数组[‘2021/12/09’,‘2021/12/10’,‘2021/12/11’]
         for(let i=0;i<dayNum;i++){
+            let dayObject,day,month;
             dayObject = new Date(endTimeObject.getTime() - i*24*60*60*1000);
-            dateArray.push(dayObject.getFullYear() + '/' + (dayObject.getMonth()+1) + '/' + dayObject.getDate());
+            day = dayObject.getDate()<10 ? '0'+dayObject.getDate() : dayObject.getDate();
+            month = dayObject.getMonth()+1 < 10 ? '0'+(dayObject.getMonth()+1) : dayObject.getMonth()+1;
+            dateArray.push(dayObject.getFullYear() + '/' + month + '/' + day);
         }
 
+        // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
         Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
             let dateCountList = [];
             for(let i=0;i<dateArray.length;i++){
