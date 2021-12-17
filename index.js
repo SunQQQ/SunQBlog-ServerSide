@@ -51,12 +51,26 @@ var GetPara = function (Request, Response, OperationResponse) {
 var GetParaCheckToken = function (Request, Response, OperationResponse) {
     var Para = Request.body;
 
-    if (Para.Token && Token.token.checkToken(Para.Token) == true) {
+    Monge.Mongo('Users', 'Read', {CnName: 'sunq'}, function (Result) {
+        if (resDecode.payload.data == Result[0]._id) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    if(Para.Token && Token.token.checkAdmin(Para.Token)){
+        console.log('ip匹配成功');
+    }else {
+        console.log('ip匹配失败');
+    }
+
+    if (Para.Token && Token.token.checkToken(Para.Token)) {
         OperationResponse(Para);
     } else if (Para.Token && Token.token.checkToken(Para.Token) == 'TimeOut') {
         var Json = {status: '1', data: {message: '令牌超时'}};
         Response.json(Json);
-    } else if (Para.Token && Token.token.checkToken(Para.Token) == false) {
+    } else if (Para.Token && !Token.token.checkToken(Para.Token)) {
         var Json = {status: '1', data: {message: '令牌有误'}};
         Response.json(Json);
     } else if (!Para.Token) {
@@ -244,8 +258,9 @@ App.post('/UserReadOne', function (Request, Response) {
     GetPara(Request, Response, function (Para) {
         var Key = {CnName: Para.CnName, UserType: Para.UserType};
         Monge.Mongo('Users', 'Read', Key, function (Result) {
+            // 账号密码通过后，将该用户的id放在token中
             if (Result[0] && Result[0].PassWord == Para.PassWord) {
-                var NewToken = Token.token.createToken({}, 60 * 60);
+                var NewToken = Token.token.createToken(Result[0]._id, 60 * 60);
                 var Json = {
                     status: '0',
                     data: {
