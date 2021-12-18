@@ -58,13 +58,10 @@ var token = {
         }
         return false;
     },
-    checkAdmin: function (token) {
-        var resDecode = this.decodeToken(token);
-
-        if (!resDecode) return false;
-
-        // 对比库里sunq账号的id 与 前端传入的token的id，如果一致有管理员权限
-
+    getId:function (token) {
+      var resDecode = this.decodeToken(token);
+      return resDecode.payload.data;
     }
+
 }
 exports.token = token;
