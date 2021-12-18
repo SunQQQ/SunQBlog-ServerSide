@@ -65,7 +65,7 @@ var GetParaCheckToken = function (Request, Response, OperationResponse) {
       var Json = {status: '1', data: {message: '无Token，请登录'}};
       Response.json(Json);
     } else if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) != Result[0]._id) {
-      var Json = {status: '1', data: {message: '权限不足，无法操作数据'}};
+      var Json = {status: '2', data: {message: '权限不足，无法操作数据'}};
       Response.json(Json);
     } else {
       var Json = {status: '1', data: {message: 'nothing'}};
