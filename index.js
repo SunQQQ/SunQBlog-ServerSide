@@ -79,7 +79,7 @@ App.post('/checkToken', function (Request, Response) {
     var Para = Request.body;
 
     if (Para.Token && Token.token.checkToken(Para.Token)) {
-        var Json = {status: '1', data: {message: 'token合法'}};
+        var Json = {status: '0', data: {message: 'token合法'}};
         Response.json(Json);
     } else if (Para.Token && Token.token.checkToken(Para.Token) == 'TimeOut') {
         var Json = {status: '1', data: {message: '令牌超时'}};
@@ -89,9 +89,6 @@ App.post('/checkToken', function (Request, Response) {
         Response.json(Json);
     } else if (!Para.Token) {
         var Json = {status: '1', data: {message: '无Token，请登录'}};
-        Response.json(Json);
-    } else if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) != Result[0]._id) {
-        var Json = {status: '2', data: {message: '权限不足，无法操作数据'}};
         Response.json(Json);
     } else {
         var Json = {status: '1', data: {message: 'nothing'}};
