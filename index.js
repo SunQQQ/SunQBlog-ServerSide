@@ -3,6 +3,7 @@
  * 本文件实现孙权的博客的所有接口
  */
 var express = require('express');
+var os = require('os');
 
 var Token = require('./token');
 var Monge = require('./Mongo');
@@ -27,51 +28,51 @@ App.use(BodyParse.urlencoded({extended: true}));
 如果不需要验证就用foreend，如果需要验证就用backend
 */
 var DealPara = function (Request, Response, OperationResponse) {
-  if (Request.params.accesstype == 'foreend') {
-    // 前端有时也要传递过来参数
-    GetPara(Request, Response, OperationResponse);
-  } else if (Request.params.accesstype == 'backend') {
-    // 后端肯定要接收参数，token是肯定要接收的
-    GetParaCheckToken(Request, Response, OperationResponse);
-  }
+    if (Request.params.accesstype == 'foreend') {
+        // 前端有时也要传递过来参数
+        GetPara(Request, Response, OperationResponse);
+    } else if (Request.params.accesstype == 'backend') {
+        // 后端肯定要接收参数，token是肯定要接收的
+        GetParaCheckToken(Request, Response, OperationResponse);
+    }
 }
 
 // 获取传递的参数
 var GetPara = function (Request, Response, OperationResponse) {
-  var Para = Request.body;
+    var Para = Request.body;
 
-  if (JSON.stringify(Para) == '{}') {
-    OperationResponse();
-  } else {
-    OperationResponse(Para);
-  }
+    if (JSON.stringify(Para) == '{}') {
+        OperationResponse();
+    } else {
+        OperationResponse(Para);
+    }
 }
 
 // 获取传递的参数、并验证token。在增删改查接口中使用，还要求必须是管理员账户
 var GetParaCheckToken = function (Request, Response, OperationResponse) {
-  var Para = Request.body;
+    var Para = Request.body;
 
-  Monge.Mongo('Users', 'Read', {CnName: 'sunq'}, function (Result) {
-    // token通过，并且token中的id等于sunq账号的id，才能操作
-      if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) == Result[0]._id) {
-          OperationResponse(Para);
-      } else if (Para.Token && Token.token.checkToken(Para.Token) == 'TimeOut') {
-          var Json = {status: '1', data: {message: '令牌超时'}};
-          Response.json(Json);
-      } else if (Para.Token && !Token.token.checkToken(Para.Token)) {
-          var Json = {status: '1', data: {message: '令牌有误'}};
-          Response.json(Json);
-      } else if (!Para.Token) {
-          var Json = {status: '1', data: {message: '无Token，请登录'}};
-          Response.json(Json);
-      } else if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) != Result[0]._id) {
-          var Json = {status: '2', data: {message: '权限不足，无法操作数据'}};
-          Response.json(Json);
-      } else {
-          var Json = {status: '1', data: {message: 'nothing'}};
-          Response.json(Json);
-      }
-  });
+    Monge.Mongo('Users', 'Read', {CnName: 'sunq'}, function (Result) {
+        // token通过，并且token中的id等于sunq账号的id，才能操作
+        if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) == Result[0]._id) {
+            OperationResponse(Para);
+        } else if (Para.Token && Token.token.checkToken(Para.Token) == 'TimeOut') {
+            var Json = {status: '1', data: {message: '令牌超时'}};
+            Response.json(Json);
+        } else if (Para.Token && !Token.token.checkToken(Para.Token)) {
+            var Json = {status: '1', data: {message: '令牌有误'}};
+            Response.json(Json);
+        } else if (!Para.Token) {
+            var Json = {status: '1', data: {message: '无Token，请登录'}};
+            Response.json(Json);
+        } else if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) != Result[0]._id) {
+            var Json = {status: '2', data: {message: '权限不足，无法操作数据'}};
+            Response.json(Json);
+        } else {
+            var Json = {status: '1', data: {message: 'nothing'}};
+            Response.json(Json);
+        }
+    });
 }
 
 // 检查token 管理后台，初始化时验证是否合法，不要求必须是管理员
@@ -99,77 +100,77 @@ App.post('/checkToken', function (Request, Response) {
 
 /*文章管理相关*/
 App.post('/ArticleRead/:accesstype', function (req, res) {
-  DealPara(req, res, function (Para) {
-    var Key = Para.ArticleTag ? {ArticleTag: Para.ArticleTag} : {},  // 查询的依据，这里为文章分类
-      PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000},  // 分页数据
-      orderType = Para.orderType ? Para.orderType : {CreateDate: -1};
-    Monge.Mongo('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
-      var Json = {status: '0', data: Result};
-      res.json(Json);
+    DealPara(req, res, function (Para) {
+        var Key = Para.ArticleTag ? {ArticleTag: Para.ArticleTag} : {},  // 查询的依据，这里为文章分类
+            PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000},  // 分页数据
+            orderType = Para.orderType ? Para.orderType : {CreateDate: -1};
+        Monge.Mongo('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
+            var Json = {status: '0', data: Result};
+            res.json(Json);
+        });
     });
-  });
 });
 
 // 热门文章
 App.post('/HotArticleRead/:accesstype', function (req, res) {
-  DealPara(req, res, function (Para) {
-    Monge.Mongo('runoob', 'ReadByOrder', [{}, {CommentNum: -1}, {Skip: 0, Limit: 6}], function (Result) {
-      var Json = {status: '0', data: Result};
-      res.json(Json);
+    DealPara(req, res, function (Para) {
+        Monge.Mongo('runoob', 'ReadByOrder', [{}, {CommentNum: -1}, {Skip: 0, Limit: 6}], function (Result) {
+            var Json = {status: '0', data: Result};
+            res.json(Json);
+        });
     });
-  });
 });
 
 App.post('/ArticleReadOne/:accesstype', function (Request, Response) {
-  DealPara(Request, Response, function (Para) {
-    var Key = {_id: ObjectId(Para._id)};
-    Monge.Mongo('runoob', 'Read', Key, function (Result) {
-      var Json = {status: '0'};
-      Json.data = Result;
-      Response.json(Json);
+    DealPara(Request, Response, function (Para) {
+        var Key = {_id: ObjectId(Para._id)};
+        Monge.Mongo('runoob', 'Read', Key, function (Result) {
+            var Json = {status: '0'};
+            Json.data = Result;
+            Response.json(Json);
+        });
     });
-  });
 });
 
 App.post('/AddArticle/:accesstype', function (Request, Response) {
-  DealPara(Request, Response, function (Para) {
-    Para.CommentNum = 0
-    Monge.Mongo('runoob', 'Insert', Para, function () {
-      var Json = {status: '0', data: '插入成功'};
-      Response.json(Json);
+    DealPara(Request, Response, function (Para) {
+        Para.CommentNum = 0
+        Monge.Mongo('runoob', 'Insert', Para, function () {
+            var Json = {status: '0', data: '插入成功'};
+            Response.json(Json);
+        });
     });
-  });
 });
 
 App.post('/ArticleDelete/:accesstype', function (Request, Response) {
-  DealPara(Request, Response, function (Para) {
-    var IdObject = {_id: ObjectId(Para._id)};
-    Monge.Mongo('runoob', 'Delete', IdObject, function () {
-      var Json = {status: '0', data: '接口删除成功'};
-      Response.json(Json);
+    DealPara(Request, Response, function (Para) {
+        var IdObject = {_id: ObjectId(Para._id)};
+        Monge.Mongo('runoob', 'Delete', IdObject, function () {
+            var Json = {status: '0', data: '接口删除成功'};
+            Response.json(Json);
+        });
     });
-  });
 });
 
 App.post('/ArticleUpdate/:accesstype', function (Request, Response) {
-  var WhereId = {}, UpdataStr = {$set: {}};
+    var WhereId = {}, UpdataStr = {$set: {}};
 
-  DealPara(Request, Response, function (Para) {
-    WhereId._id = ObjectId(Para._id);
-    UpdataStr.$set.Title = Para.Title;
-    UpdataStr.$set.Content = Para.Content;
-    UpdataStr.$set.Summary = Para.Summary;
-    UpdataStr.$set.CreateDate = Para.CreateDate;
-    UpdataStr.$set.ArticleTag = Para.ArticleTag;
-    UpdataStr.$set.ArticleCover = Para.ArticleCover;
-    UpdataStr.$set.CommentNum = Para.CommentNum;
-    UpdataStr.$set.order = Para.order;
-    Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function (Result) {
-      var Json = {status: '0'};
-      Json.data = 'Update Success';
-      Response.json(Json);
+    DealPara(Request, Response, function (Para) {
+        WhereId._id = ObjectId(Para._id);
+        UpdataStr.$set.Title = Para.Title;
+        UpdataStr.$set.Content = Para.Content;
+        UpdataStr.$set.Summary = Para.Summary;
+        UpdataStr.$set.CreateDate = Para.CreateDate;
+        UpdataStr.$set.ArticleTag = Para.ArticleTag;
+        UpdataStr.$set.ArticleCover = Para.ArticleCover;
+        UpdataStr.$set.CommentNum = Para.CommentNum;
+        UpdataStr.$set.order = Para.order;
+        Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function (Result) {
+            var Json = {status: '0'};
+            Json.data = 'Update Success';
+            Response.json(Json);
+        });
     });
-  });
 });
 
 // 文章数量
@@ -295,9 +296,9 @@ App.post('/UserReadOne', function (Request, Response) {
 App.post('/MessageCreate/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
         var city = util.isXssString(Para.LocationCityName),
-        date = util.isXssString(Para.MessageLeaveDate),
-        user = util.isXssString(Para.MessageLeaveName),
-        text = util.isXssStringLeaveMessage(Para.MessageText);
+            date = util.isXssString(Para.MessageLeaveDate),
+            user = util.isXssString(Para.MessageLeaveName),
+            text = util.isXssStringLeaveMessage(Para.MessageText);
 
         if(city && date && user && text){
             Monge.Mongo('LeaveMessage', 'Insert', Para, function () {
@@ -509,21 +510,6 @@ App.post('/HeartfeltDelete/:accesstype', function (Request, Response) {
     });
 });
 
-//获取访问者Ip
-App.post('/GetUserIp', function (Request, Response) {
-    var IpAdress = Request.headers['x-forwarded-for'] ||
-        Request.connection.remoteAddress ||
-        Request.socket.remoteAddress ||
-        Request.connection.socket.remoteAddress;
-    var Json = {
-        status: '0',
-        data: {
-            IpAdress: IpAdress
-        }
-    };
-    Response.json(Json);
-});
-
 // 所有评论列表
 App.post('/CommentRead/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
@@ -730,6 +716,29 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
             Response.json(Json);
         });
     });
+});
+
+//获取访问者Ip
+App.post('/GetUserIp', function (Request, Response) {
+    var IpAdress = Request.connection.remoteAddress ||
+        Request.socket.remoteAddress ||
+        Request.connection.socket.remoteAddress ||
+        Request.headers['x-wq-realip'] ||
+        Request.headers['x-forwarded-for'];
+
+    var ip2 = Request.headers['x-real-ip'] ? Request.headers['x-real-ip'] : Request.ip.replace(/::ffff:/, '');
+
+    var networkInterfaces=os.networkInterfaces();
+
+    var Json = {
+        status: '0',
+        data: {
+            IpAdress: IpAdress,
+            testIp:Request.ip,
+            ip2:networkInterfaces
+        }
+    };
+    Response.json(Json);
 });
 
 var server = App.listen(8888, function () {
