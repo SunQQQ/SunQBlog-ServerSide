@@ -635,6 +635,13 @@ App.post('/visitRead/:accesstype', function (Request, Response) {
         var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000};
 
         Monge.Mongo('VisitList', 'ReadByOrder', [{},{_id: -1},PagnationData], function (Result) {
+            Result.forEach(function (item){
+               if(item.clientIp){
+                   let array = item.clientIp.split('.');
+                   item.clientIp = array[0] + '.' + array[1] + '.' + array[2] + '.***';
+               }
+            });
+
             Monge.Mongo('VisitList', 'GetNum', {}, function (totalNum) {
                 var Json = {
                     status: '0',
