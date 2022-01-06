@@ -718,29 +718,6 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
     });
 });
 
-//获取访问者Ip
-App.post('/GetUserIp', function (Request, Response) {
-    var IpAdress = Request.connection.remoteAddress ||
-        Request.socket.remoteAddress ||
-        Request.connection.socket.remoteAddress ||
-        Request.headers['x-wq-realip'] ||
-        Request.headers['x-forwarded-for'];
-
-    var ip2 = Request.headers['x-real-ip'] ? Request.headers['x-real-ip'] : Request.ip.replace(/::ffff:/, '');
-
-    var networkInterfaces=os.networkInterfaces();
-
-    var Json = {
-        status: '0',
-        data: {
-            IpAdress: IpAdress,
-            testIp:Request.ip,
-            ip2:networkInterfaces
-        }
-    };
-    Response.json(Json);
-});
-
 var server = App.listen(8888, function () {
 
     var host = server.address().address
