@@ -689,7 +689,7 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
             // 拿到库里数据后，node遍历计算次数
             dateArray = []; // 时间数组
 
-        // 生成数组[‘2021/12/09’,‘2021/12/10’,‘2021/12/11’]
+        // 生成数组[‘2021/12/09’,‘2021/12/10’,‘2021/12/11’,...]
         for(let i=0;i<dayNum;i++){
             let dayObject,day,month;
             dayObject = new Date(endTimeObject.getTime() - i*24*60*60*1000);
@@ -700,24 +700,29 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
 
         // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
         Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
-            let dateCountList = [];
+            let dateCountList = []; // 符合该时间数组中所有时间的所有记录
             for(let i=0;i<dateArray.length;i++){
-                let object = new Object();
+                let ipArray = [], // 符合当前时间的ip
+                    object = new Object();
+
                 object.time = dateArray[i];
                 object.reading = 0;
                 for(let m=0;m<Result.length;m++){
                     if(Result[m].time.split(' ')[0] == dateArray[i]){
                         object.reading += 1;
+                        ipArray.push(Result[m].clientIp);
                     }
                 }
+                object.ipNum = util.dedupe(ipArray).length;
+
                 dateCountList.push(object);
             }
 
             var Json = {
                 status: '0',
                 data: {
-                    dateCountList:dateCountList,
-                    dateList:Result
+                    dateCountList:dateCountList, // 数据结果类似=> [{time: "2022/01/08", reading: 25},{time: "2022/01/09", reading: 30}],供折线图使用
+                    dateList:Result // 数据结果为库里记录直接返回，供地图使用
                 }
             };
             Response.json(Json);

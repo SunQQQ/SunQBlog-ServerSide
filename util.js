@@ -34,6 +34,12 @@ function Util() {
     // 判断是否是数组
     this.isArray = function (arr){
         return Object.prototype.toString.call(arr) === '[object Array]';
-    }
+    };
+
+
+    // 数组去重
+    this.dedupe = function(array){
+        return Array.from(new Set(array));
+    };
 };
 module.exports = Util;
