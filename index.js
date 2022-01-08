@@ -684,6 +684,7 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
             endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1<10 ? '0'+(endTimeAddOneObject.getMonth()+1) : endTimeAddOneObject.getMonth()+1) + '/' + (endTimeAddOneObject.getDate()<10 ? '0'+endTimeAddOneObject.getDate() : endTimeAddOneObject.getDate()),
             beginTimeObject = new Date(endTimeObject.getTime() - (dayNum-1)*24*60*60*1000), //开始时间由结束时间向前推得出
             beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1<10 ? '0'+(beginTimeObject.getMonth()+1) : beginTimeObject.getMonth()+1) + '/' + (beginTimeObject.getDate()<10 ? '0'+beginTimeObject.getDate() : beginTimeObject.getDate()),
+
             //此变量为mongodb查询时使用
             newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}, // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
             // 拿到库里数据后，node遍历计算次数
@@ -701,6 +702,8 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
         // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
         Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
             let dateCountList = []; // 符合该时间数组中所有时间的所有记录
+            // 加入选中时间周期为30天，该时间周期下的日志一共是1460行。
+            // 则统计每天的浏览量（即本接口），需要执行的遍历次数为30*1460=43800次
             for(let i=0;i<dateArray.length;i++){
                 let ipArray = [], // 符合当前时间的ip
                     object = new Object();
@@ -710,7 +713,7 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
                 for(let m=0;m<Result.length;m++){
                     if(Result[m].time.split(' ')[0] == dateArray[i]){
                         object.reading += 1;
-                        ipArray.push(Result[m].clientIp);
+                        if(Result[m].clientIp) ipArray.push(Result[m].clientIp);
                     }
                 }
                 object.ipNum = util.dedupe(ipArray).length;
@@ -722,6 +725,59 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
                 status: '0',
                 data: {
                     dateCountList:dateCountList, // 数据结果类似=> [{time: "2022/01/08", reading: 25},{time: "2022/01/09", reading: 30}],供折线图使用
+                    dateList:Result // 数据结果为库里记录直接返回，供地图使用
+                }
+            };
+            Response.json(Json);
+        });
+    });
+});
+
+// 汇总每个ip的操作行为
+App.post('/getUserAction/:accesstype',function (Request, Response){
+    DealPara(Request, Response, function (para) {
+        let endTime = para.endTime, // 2021/12/11 从前端获取
+            dayNum = para.dayNum,//7 从前端获取
+            dayArray = util.getDateArray(endTime,dayNum), // 前推指定天数，类似[‘2021/12/09’,‘2021/12/10’,‘2021/12/11’]
+            nextDay = util.getOneDate(endTime,1),  // 输出 2021/12/12
+            nodePara = {'time':{$gt:dayArray[0],$lt:nextDay}},
+
+            ipArray = [], // ip数组 [ip1,ip2,ip3]
+            userAction = {}; // { ip1:{action:[]}, ip2:{action:[]}}
+        // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
+        Monge.Mongo('VisitList', 'Read', nodePara, function (Result) {
+            Result.forEach(function (item){
+                let currentIp = item.clientIp;
+                if(item.clientIp && ipArray.indexOf(currentIp)==-1){
+                    ipArray.push(currentIp);
+                }
+            });
+
+            // 生成userAction     { ip1:{action:[]}, ip2:{action:[]}}
+            ipArray.forEach(function (item){
+                userAction[item] = {action:[]};
+            });
+
+            Result.forEach(function (item,i){
+               let currentIp = item.clientIp, // 当前数据可能没有ip字段
+                   actionarray = currentIp ? userAction[currentIp].action : '', // 当前ip下的行为数组
+                   actionText = item.operateType ? item.operateType + ':' + item.operateContent : ''; // 当条日志下的操作字段
+
+               if(actionarray && actionText && actionarray.indexOf(actionText)==-1){
+                    actionarray.push(actionText);
+               }
+
+               if(currentIp){
+                   userAction[currentIp].location = item.location ? item.location : '';
+                   userAction[currentIp].browser = item.browser ? item.browser : '';
+                   userAction[currentIp].time = item.time ? item.time : '';
+               }
+            });
+
+            var Json = {
+                status: '0',
+                data: {
+                    userAction:userAction,
                     dateList:Result // 数据结果为库里记录直接返回，供地图使用
                 }
             };
