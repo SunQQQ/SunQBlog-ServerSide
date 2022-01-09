@@ -752,7 +752,7 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
                     ipArray.push(currentIp);
                 }
             });
-
+            ipArray.reverse(); // 最新的日期放在前面
             // 生成userAction     { ip1:{action:[]}, ip2:{action:[]}}
             ipArray.forEach(function (item){
                 userAction[item] = {action:[]};
