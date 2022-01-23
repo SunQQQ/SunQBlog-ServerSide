@@ -551,7 +551,7 @@ App.post('/ArticleCommentCreate/:accesstype', function (Request, Response) {
             text = util.isXssStringLeaveMessage(Para.ArticleCommentText),
             url = util.isXssString(Para.ArticleCommentUrl),
             id = util.isXssString(Para.ArticleId),
-            cityName = util.isArray(Para.LocationCityName);
+            cityName = util.isXssString(Para.LocationCityName);
 
         if(date && email && nickName && text && url && id && cityName){
             Monge.Mongo('articlecomment', 'Insert', Para, function () {

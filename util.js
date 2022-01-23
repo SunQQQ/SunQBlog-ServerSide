@@ -6,6 +6,7 @@ function Util() {
 
     // 判断字符串是否包含script、style、<>等标签
     this.isXssString = function (strings) {
+        // 如果入参为空，直接通过校验
         var script = strings.indexOf('script'),
             style = strings.indexOf('style'),
             tags = /<.*>/.test(strings);
