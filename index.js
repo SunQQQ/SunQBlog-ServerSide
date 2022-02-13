@@ -753,17 +753,18 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
                 }
             });
             ipArray.reverse(); // 最新的日期放在前面
-            // 生成userAction     { ip1:{action:[]}, ip2:{action:[]}}
+            // 生成userAction，是最终返回的数据     { ip1:{action:[]}, ip2:{action:[]}}
             ipArray.forEach(function (item){
                 userAction[item] = {action:[]};
             });
 
+            // 遍历查询的数据，每一条都操作一遍。每一条都跟userAction比对，如果没有插入一次
             Result.forEach(function (item,i){
                let currentIp = item.clientIp, // 当前数据可能没有ip字段
                    actionarray = currentIp ? userAction[currentIp].action : '', // 当前ip下的行为数组
                    actionText = item.operateType ? item.operateType + ':' + item.operateContent : ''; // 当条日志下的操作字段
 
-               if(actionarray && actionText && actionarray.indexOf(actionText)==-1){
+               if(actionarray && actionText && actionarray.indexOf(actionText)==-1){ // 数组会过滤重复的操作，相同操作只会push一次
                     actionarray.push(actionText);
                }
 
