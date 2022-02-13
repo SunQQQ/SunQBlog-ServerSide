@@ -108,6 +108,7 @@ App.post('/ArticleRead/:accesstype', function (req, res) {
             var Json = {status: '0', data: Result};
             res.json(Json);
         });
+
     });
 });
 
@@ -123,11 +124,18 @@ App.post('/HotArticleRead/:accesstype', function (req, res) {
 
 App.post('/ArticleReadOne/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
-        var Key = {_id: ObjectId(Para._id)};
+        var Key = {_id: ObjectId(Para._id)},
+            UpdataStr = {$set: {}};
+
         Monge.Mongo('runoob', 'Read', Key, function (Result) {
+            // 查出文章详情后，返回前端
             var Json = {status: '0'};
             Json.data = Result;
             Response.json(Json);
+
+            // 给当前文章的阅读量+1
+            UpdataStr.$set.articleReadNum = Result[0].articleReadNum ? Result[0].articleReadNum+1 : 1;
+            Monge.Mongo('runoob', 'Update', [Key, UpdataStr], function (Result) {});
         });
     });
 });
