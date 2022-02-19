@@ -780,6 +780,7 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
                    userAction[currentIp].location = item.location ? item.location : '';
                    userAction[currentIp].browser = item.browser ? item.browser : '';
                    userAction[currentIp].time = item.time ? item.time : '';
+                   if(item.fromUrl) userAction[currentIp].fromUrl = item.fromUrl;
                }
             });
 
