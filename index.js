@@ -209,7 +209,7 @@ App.post('/UploadImg', function (Request, Response) {
 
             var MyJson = {
                 errno: 0,
-                data: ['http://www.sunq.xyz:8888/' + files.Content.name]
+                data: ['http://39.104.22.73:8888/' + files.Content.name]
             };
             Response.json(MyJson);
         });
