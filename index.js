@@ -709,7 +709,8 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
 
         // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
         Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
-            let dateCountList = []; // 符合该时间数组中所有时间的所有记录
+            let dateCountList = [], // 符合该时间数组中所有时间的所有记录
+                cityList = []; // 城市数组，供前端地图使用
             // 加入选中时间周期为30天，该时间周期下的日志一共是1460行。
             // 则统计每天的浏览量（即本接口），需要执行的遍历次数为30*1460=43800次
             for(let i=0;i<dateArray.length;i++){
@@ -718,12 +719,18 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
 
                 object.time = dateArray[i];
                 object.reading = 0;
-                for(let m=0;m<Result.length;m++){
-                    if(Result[m].time.split(' ')[0] == dateArray[i]){
+
+                Result.forEach(function(item){
+                    if(item.time.split(' ')[0] == dateArray[i]){
                         object.reading += 1;
-                        if(Result[m].clientIp) ipArray.push(Result[m].clientIp);
+                        if(item.clientIp) ipArray.push(item.clientIp);
                     }
-                }
+                    // 过滤掉重复的和名称是[]的城市，生成当前查询条件下的城市数组
+                    if(cityList.indexOf(item.location) == -1 && typeof(item.location)=="string"){
+                        cityList.push(item.location);
+                    }
+                });
+
                 object.ipNum = util.dedupe(ipArray).length;
 
                 dateCountList.push(object);
@@ -733,7 +740,7 @@ App.post('/visitCount/:accesstype', function (Request, Response) {
                 status: '0',
                 data: {
                     dateCountList:dateCountList, // 数据结果类似=> [{time: "2022/01/08", reading: 25},{time: "2022/01/09", reading: 30}],供折线图使用
-                    dateList:Result // 数据结果为库里记录直接返回，供地图使用
+                    cityList:cityList, // 数据结果为库里记录直接返回，供地图使用
                 }
             };
             Response.json(Json);
@@ -780,6 +787,7 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
                    userAction[currentIp].location = item.location ? item.location : '';
                    userAction[currentIp].browser = item.browser ? item.browser : '';
                    userAction[currentIp].time = item.time ? item.time : '';
+                   if(item.fromUrl) userAction[currentIp].fromUrl = item.fromUrl;
                }
             });
 
@@ -787,7 +795,7 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
                 status: '0',
                 data: {
                     userAction:userAction,
-                    dateList:Result // 数据结果为库里记录直接返回，供地图使用
+                    dateListTotal:Result.length // 数据结果为库里记录直接返回，供地图使用
                 }
             };
             Response.json(Json);
