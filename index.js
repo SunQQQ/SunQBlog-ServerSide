@@ -574,6 +574,25 @@ App.post('/ArticleCommentCreate/:accesstype', function (Request, Response) {
 });
 
 /**
+ * 本接口用于修改文章评论文本
+ * 前端需要传入文章的id
+ */
+ App.post('/ArticleCommentUpdate/:accesstype', function (Request, Response) {
+    var WhereId = {}, UpdateStr = {$set: {}};
+
+    DealPara(Request, Response, function (Para) {
+        WhereId._id = ObjectId(Para._id);
+        delete Para._id;
+        UpdateStr.$set = Para;
+        Monge.Mongo('articlecomment', 'Update', [WhereId, UpdateStr], function (Result) {
+            var Json = {status: '0'};
+            Json.data = 'Update Success';
+            Response.json(Json);
+        });
+    });
+});
+
+/**
  * 本接口用于修改文章评论数
  * 前端需要传入文章的id,操作类型字段type（add新增/delete删除）
  * 先去文章表里查对应文章的评论数
@@ -637,12 +656,16 @@ App.post('/visitCreate/:accesstype', function (Request, Response) {
     });
 });
 
-// 获取访问记录
+/**
+ * 获取访问记录，管理后台首页使用
+ * 直接根据分页数据查询 
+ */
 App.post('/visitRead/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (Para) {
         var PagnationData = Para.PagnationData ? Para.PagnationData : {SKip: 0, Limit: 10000};
 
         Monge.Mongo('VisitList', 'ReadByOrder', [{},{_id: -1},PagnationData], function (Result) {
+            // 保护用户的IP地址，打上马赛克
             Result.forEach(function (item){
                if(item.clientIp){
                    let array = item.clientIp.split('.');
@@ -802,6 +825,45 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
         });
     });
 });
+
+/**
+ * 根据时间返回用户轨迹，用于分析用户轨迹种类占比
+ */
+ App.post('/visitReadByDay/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function (para) {
+        let endTime = para.endTime, //20211124 从前端获取
+            dayNum = para.dayNum,//7 从前端获取
+            // 处理从前端获取的数据
+            endTimeObject = new Date(endTime), //
+            endTimeAddOneObject = new Date(endTimeObject.getTime() + 1*24*60*60*1000),
+            endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1<10 ? '0'+(endTimeAddOneObject.getMonth()+1) : endTimeAddOneObject.getMonth()+1) + '/' + (endTimeAddOneObject.getDate()<10 ? '0'+endTimeAddOneObject.getDate() : endTimeAddOneObject.getDate()),
+            beginTimeObject = new Date(endTimeObject.getTime() - (dayNum-1)*24*60*60*1000), //开始时间由结束时间向前推得出
+            beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1<10 ? '0'+(beginTimeObject.getMonth()+1) : beginTimeObject.getMonth()+1) + '/' + (beginTimeObject.getDate()<10 ? '0'+beginTimeObject.getDate() : beginTimeObject.getDate()),
+
+            //此变量为mongodb查询时使用
+            newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}; // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
+            
+            Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+                let array = [];
+                Result.forEach(function (item){
+                    if(item.clientIp){
+                        let array = item.clientIp.split('.');
+                        item.clientIp = array[0] + '.' + array[1] + '.' + array[2] + '.***';
+                    }
+                    array.push(item.operateType);
+                 });
+
+                var Json = {
+                    status: '0',
+                    data: {
+                        list:array,   // 当前分页下的数据
+                    }
+                };
+                Response.json(Json);
+            });    
+    });
+});
+
 
 var server = App.listen(8888, function () {
 
