@@ -827,7 +827,7 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
 });
 
 /**
- * 根据时间返回用户轨迹，用于分析用户轨迹种类占比
+ * 根据时间返回用户操作类型，用于分析用户操作占比
  */
  App.post('/visitReadByDay/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (para) {
@@ -846,10 +846,6 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
             Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
                 let array = [];
                 Result.forEach(function (item){
-                    if(item.clientIp){
-                        let array = item.clientIp.split('.');
-                        item.clientIp = array[0] + '.' + array[1] + '.' + array[2] + '.***';
-                    }
                     array.push(item.operateType);
                  });
 
@@ -864,6 +860,42 @@ App.post('/getUserAction/:accesstype',function (Request, Response){
     });
 });
 
+/**
+ * 根据时间返回点击菜单的数据，用于分析菜单访问占比
+ */
+App.post('/menuClickByDay/:accesstype', function (Request, Response) {
+    DealPara(Request, Response, function (para) {
+        let endTime = para.endTime, //20211124 从前端获取
+            dayNum = para.dayNum,//7 从前端获取
+            // 处理从前端获取的数据
+            endTimeObject = new Date(endTime), //
+            endTimeAddOneObject = new Date(endTimeObject.getTime() + 1*24*60*60*1000),
+            endTimeAddOne = endTimeAddOneObject.getFullYear() + '/' + (endTimeAddOneObject.getMonth()+1<10 ? '0'+(endTimeAddOneObject.getMonth()+1) : endTimeAddOneObject.getMonth()+1) + '/' + (endTimeAddOneObject.getDate()<10 ? '0'+endTimeAddOneObject.getDate() : endTimeAddOneObject.getDate()),
+            beginTimeObject = new Date(endTimeObject.getTime() - (dayNum-1)*24*60*60*1000), //开始时间由结束时间向前推得出
+            beginTime = beginTimeObject.getFullYear() + '/' + (beginTimeObject.getMonth()+1<10 ? '0'+(beginTimeObject.getMonth()+1) : beginTimeObject.getMonth()+1) + '/' + (beginTimeObject.getDate()<10 ? '0'+beginTimeObject.getDate() : beginTimeObject.getDate()),
+
+            //此变量为mongodb查询时使用
+            newPara = {'time':{$gt:beginTime,$lt:endTimeAddOne}}; // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
+            
+            Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+                let array = [],
+                allMenuOperate = ['博文','留言','时间轴','试验田','关于','访问统计','管理后台'];
+                Result.forEach(function (item){
+                    if(allMenuOperate.indexOf(item.operateContent) > -1){
+                        array.push(item.operateContent);
+                    }
+                 });
+
+                var Json = {
+                    status: '0',
+                    data: {
+                        list:array,   // 当前分页下的数据
+                    }
+                };
+                Response.json(Json);
+            });    
+    });
+});
 
 var server = App.listen(8888, function () {
 
