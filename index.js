@@ -904,6 +904,9 @@ App.post('/menuClickByDay/:accesstype', function (Request, Response) {
  * 根据时间返回新老用户的数据，用于分析新老用户占比
  * 
  * 定义查询日期往前推8个月的数据为老用戶
+ * 1.先查出查询这段时间所有IP，一天天的查再拼接起来；
+ * 2.再查出这段时间前8个月所有访问过的ip
+ * 3.最终匹配出1中，有多少ip是老访客
  */
 App.post('/regularUserByDay/:accesstype', function (Request, Response) {
     DealPara(Request, Response, function (para) {
@@ -918,7 +921,7 @@ App.post('/regularUserByDay/:accesstype', function (Request, Response) {
 
             //此变量为mongodb查询时使用
             newPara = { 'time': { $gt: beginTime, $lt: endTimeAddOne } },
-            // 查询时间段往前推8个月。比如
+            // 查询时间段往前推8个月。比如第一行是查询时间端14天，第二行是这个时间端往前推8个月
             // { '$gt': '2022/08/21', '$lt': '2022/09/04' } 注意mongodb最后一天不算，只查到0903
             // { '$gt': '2021/12/24', '$lt': '2022/08/21' }
             dayBefore8MonthObject = new Date(beginTimeObject.getTime() - 240*24*60*60*1000);
@@ -932,22 +935,40 @@ App.post('/regularUserByDay/:accesstype', function (Request, Response) {
 
         let selectedIp = [],
             before8MonthIp = [],
-            regularUserNum = 0;    
+            dateArray = [],
+            regularUserNum = 0;   
+
+        // 生成数组[‘2021/12/09’,‘2021/12/10’,‘2021/12/11’,...]
+        for (let i = 0; i < dayNum; i++) {
+            let dayObject, day, month;
+            dayObject = new Date(endTimeObject.getTime() - i * 24 * 60 * 60 * 1000);
+            day = dayObject.getDate() < 10 ? '0' + dayObject.getDate() : dayObject.getDate();
+            month = dayObject.getMonth() + 1 < 10 ? '0' + (dayObject.getMonth() + 1) : dayObject.getMonth() + 1;
+            dateArray.push(dayObject.getFullYear() + '/' + month + '/' + day);
+        }
 
         console.log(newPara);
         console.log(before8Month);
+        console.log(dateArray);
 
         MongoClient.connect(Url, function (err, db) {
             var DB = db.db("test");
             DB.collection('VisitList').find(newPara,backField).toArray(function (err, res) {
                 if(err) throw err;
-                db.close();
-                
-                // 获取查询周期内所有的ip，滤重过
-                res.forEach((item)=>{
-                    if(item.clientIp) selectedIp.push(item.clientIp);
+        
+                dateArray.forEach((day)=>{
+                    let dayIp = []; //当天所有的ip
+                    // 获取当天下所有ip，滤重
+                    res.forEach((item)=>{
+                        if(day==item.time.split(' ')[0] && item.clientIp) dayIp.push(item.clientIp);
+                    });
+                    dayIp = util.dedupe(dayIp); // 数组滤重
+
+                    // 把每天的ip拼接起来，就是一段时间所有的IP。这些IP允许有重复，因为今天访问了，昨天也访问了，都算这段时间的访客
+                    selectedIp = selectedIp.concat(dayIp);
                 });
-                selectedIp = util.dedupe(selectedIp); // 数组滤重
+                
+                
 
                 DB.collection('VisitList').find(before8Month,backField).toArray(function (err, result) {
                     if(err) throw err;
@@ -969,10 +990,9 @@ App.post('/regularUserByDay/:accesstype', function (Request, Response) {
                         status: '0',
                         data: {
                             regularUser: regularUserNum,
-                            newUser: selectedIp - regularUserNum
+                            newUser: selectedIp.length - regularUserNum
                         }
                     };
-                    console.log(regularUser,newUser);
                     Response.json(Json);
                 });
             });
