@@ -19,11 +19,10 @@ var util = new Util();
 // 数据库相关
 var MongoClient = require("mongodb").MongoClient;
 var Url = "mongodb://localhost:27017/";
-
+let nodemailer = require('nodemailer'); // 发邮件组件
 App.use(cors());
 App.use(BodyParse.json());
 App.use(BodyParse.urlencoded({ extended: true }));
-
 /*
 根据路由参数判断是前端、后端接口
 如果是前端接口，接收参数，执行操作数据库的方法
@@ -315,6 +314,32 @@ App.post('/MessageCreate/:accesstype', function (Request, Response) {
             Monge.Mongo('LeaveMessage', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
+
+                let transporter = nodemailer.createTransport({
+                    'host': 'smtp.qq.com',    // 主机
+                    'secureConnection': true,    // 使用 SSL
+                    'service': 'qq',
+                    'port': 465,    // SMTP 端口
+                    'auth': {
+                      'user': '1585437938@qq.com',    // 账号
+                      'pass': 'xeczefvioweyihde' // 授权码
+                    }
+                });
+                let mailContent = {
+                    from: '1585437938@qq.com', // 发件人地址
+                    to: '1585437938@qq.com', // 收件人地址
+                    subject: '博客留言内容', // 主题
+                    html: `${Para.MessageLeaveName} : ${Para.MessageText}` // html body
+                  };
+                  
+                  // 发送邮件
+                transporter.sendMail(mailContent, (err, info) => {
+                    if (err) {
+                      console.log('发邮件出错了', err);
+                    } else {
+                      console.log('邮件发送成功');
+                    }
+                });
             });
         } else {
             var Json = { status: '1', data: '有xss风险，不予通过' };
