@@ -593,6 +593,32 @@ App.post('/ArticleCommentCreate/:accesstype', function (Request, Response) {
             Monge.Mongo('articlecomment', 'Insert', Para, function () {
                 var Json = { status: '0', data: '添加评论成功' };
                 Response.json(Json);
+
+                let transporter = nodemailer.createTransport({
+                    'host': 'smtp.qq.com',    // 主机
+                    'secureConnection': true,    // 使用 SSL
+                    'service': 'qq',
+                    'port': 465,    // SMTP 端口
+                    'auth': {
+                      'user': '1585437938@qq.com',    // 账号
+                      'pass': 'xeczefvioweyihde' // 授权码
+                    }
+                });
+                let mailContent = {
+                    from: '1585437938@qq.com', // 发件人地址
+                    to: '1585437938@qq.com', // 收件人地址
+                    subject: `${Para.ArticleCommentNickName} 评论博客文章`, // 主题
+                    html: `${Para.ArticleName} : ${Para.ArticleCommentText}` // html body
+                  };
+                  
+                  // 发送邮件
+                transporter.sendMail(mailContent, (err, info) => {
+                    if (err) {
+                      console.log('发邮件出错了', err);
+                    } else {
+                      console.log('邮件发送成功');
+                    }
+                });
             });
         } else {
             var Json = { status: '1', data: '有xss风险，不予通过' };
