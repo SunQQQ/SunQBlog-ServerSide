@@ -895,7 +895,8 @@ App.post('/getUserAction/:accesstype', function (Request, Response) {
                 status: '0',
                 data: {
                     userAction: userAction,
-                    dateListTotal: Result.length // 数据结果为库里记录直接返回，供地图使用
+                    dateListTotal: Result.length, // 数据结果为库里记录直接返回，供地图使用
+                    yourIp: para.clientIp
                 }
             };
             Response.json(Json);
