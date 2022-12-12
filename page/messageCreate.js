@@ -2,7 +2,9 @@ let option;
 
 let pageApi = function () {
     let App = option,
-        DealPara = require("./commonFunction"),
+        ObjectId = require('mongodb').ObjectId,
+        dealObj = require("./commonFunction"),
+        DealPara = dealObj.DealPara,
         Monge = require('../Mongo'),
         Util = require('../util'),
         util = new Util(),

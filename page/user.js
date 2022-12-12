@@ -2,9 +2,11 @@ let option;
 
 let pageApi = function () {
     let App = option,
-        DealPara = require("./commonFunction"),
+        dealObj = require("./commonFunction"),
         Monge = require('../Mongo'),
-        Token = require('../token');
+        Token = require('../token'),
+        GetParaCheckToken = dealObj.GetParaCheckToken,
+        GetPara = dealObj.GetPara;
 
 
     /*用户管理相关*/

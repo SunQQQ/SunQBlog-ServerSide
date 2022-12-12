@@ -1,3 +1,5 @@
+let Monge = require("../Mongo");
+
 /*
  根据路由参数判断是前端、后端接口
  如果是前端接口，接收参数，执行操作数据库的方法
@@ -53,4 +55,4 @@ var GetParaCheckToken = function (Request, Response, OperationResponse) {
     });
 }
 
-module.exports = DealPara;
+module.exports = {DealPara:DealPara,GetPara:GetPara,GetParaCheckToken:GetParaCheckToken};
