@@ -5,12 +5,12 @@ let pageApi = function () {
     dealObj = require("./commonFunction"),
     DealPara = dealObj.DealPara,
 
-    Monge = require('../Mongo'),
-    Token = require('../token'),
+    Monge = require('../Public/module/Mongo'),
+    Token = require('../Public/module/token'),
     ObjectId = require('mongodb').ObjectId,
     Path = require("path"),
     Formidable = require("formidable"),
-    Util = require('../util'),
+    Util = require('../Public/module/util'),
     util = new Util();
 
 

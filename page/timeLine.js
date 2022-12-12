@@ -5,7 +5,7 @@ let pageApi = function () {
         dealObj = require("./commonFunction"),
         DealPara = dealObj.DealPara,
         ObjectId = require('mongodb').ObjectId,
-        Monge = require('../Mongo');
+        Monge = require('../Public/module/Mongo');
 
     // 新增时间轴
     App.post('/TimeLineCreate/:accesstype', function (Request, Response) {

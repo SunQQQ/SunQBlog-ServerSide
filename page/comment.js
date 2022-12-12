@@ -5,8 +5,8 @@ let pageApi = function () {
         dealObj = require("./commonFunction"),
         DealPara = dealObj.DealPara,
         ObjectId = require('mongodb').ObjectId,
-        Monge = require('../Mongo'),
-        Util = require('../util'),
+        Monge = require('../Public/module/Mongo'),
+        Util = require('../Public/module/util'),
         util = new Util(),
         nodemailer = require('nodemailer'); // 发邮件组件
 

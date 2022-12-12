@@ -5,7 +5,7 @@ let pageApi = function () {
         dealObj = require("./commonFunction"),
         DealPara = dealObj.DealPara,
         ObjectId = require('mongodb').ObjectId,
-        Monge = require('../Mongo');
+        Monge = require('../Public/module/Mongo');
         
     // 获取心声
     App.post('/HeartfeltRead/:accesstype', function (Request, Response) {

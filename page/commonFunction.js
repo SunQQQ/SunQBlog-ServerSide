@@ -1,4 +1,4 @@
-let Monge = require("../Mongo");
+let Monge = require("../Public/module/Mongo");
 
 /*
  根据路由参数判断是前端、后端接口
@@ -30,7 +30,7 @@ var GetPara = function (Request, Response, OperationResponse) {
 // 获取传递的参数、并验证token。在增删改查接口中使用，还要求必须是管理员账户
 var GetParaCheckToken = function (Request, Response, OperationResponse) {
     var Para = Request.body;
-    var Token = require('../token');
+    var Token = require('../Public/module/token');
 
     Monge.Mongo('Users', 'Read', { CnName: 'sunq' }, function (Result) {
         // token通过，并且token中的id等于sunq账号的id，才能操作
