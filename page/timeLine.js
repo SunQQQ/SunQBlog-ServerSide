@@ -10,7 +10,7 @@ let pageApi = function () {
     // 新增时间轴
     App.post('/TimeLineCreate/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
-            Monge.Mongo('TimeLine', 'Insert', Para, function () {
+            Monge('TimeLine', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
             });
@@ -19,7 +19,7 @@ let pageApi = function () {
     // 获取时间轴
     App.post('/TimeLineRead/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
-            Monge.Mongo('TimeLine', 'ReadByOrder', [{}, { CreateDate: -1 }], function (Result) {
+            Monge('TimeLine', 'ReadByOrder', [{}, { CreateDate: -1 }], function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -31,7 +31,7 @@ let pageApi = function () {
             var Object = {};
             Object._id = ObjectId(Para._id);
 
-            Monge.Mongo('TimeLine', 'Delete', Object, function () {
+            Monge('TimeLine', 'Delete', Object, function () {
                 var Json = { status: '0', data: '时间轴删除成功' };
                 Response.json(Json);
             });

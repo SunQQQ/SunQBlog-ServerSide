@@ -15,7 +15,7 @@ let pageApi = function () {
     App.post('/CommentRead/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             var PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: '', Limit: '' };
-            Monge.Mongo('articlecomment', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
+            Monge('articlecomment', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -24,7 +24,7 @@ let pageApi = function () {
 
     //评论总数
     App.post('/getCommentNum', function (Request, Response) {
-        Monge.Mongo('articlecomment', 'GetNum', {}, function (Result) {
+        Monge('articlecomment', 'GetNum', {}, function (Result) {
             var Json = { status: '0', data: Result };
             Response.json(Json);
         });
@@ -36,7 +36,7 @@ let pageApi = function () {
             var Object = {};
             Object._id = ObjectId(Para._id);
 
-            Monge.Mongo('articlecomment', 'Delete', Object, function () {
+            Monge('articlecomment', 'Delete', Object, function () {
                 var Json = { status: '0', data: '标签删除成功' };
                 Response.json(Json);
             });
@@ -55,7 +55,7 @@ let pageApi = function () {
                 cityName = util.isXssString(Para.LocationCityName);
 
             if (date && email && nickName && text && url && id && cityName) {
-                Monge.Mongo('articlecomment', 'Insert', Para, function () {
+                Monge('articlecomment', 'Insert', Para, function () {
                     var Json = { status: '0', data: '添加评论成功' };
                     Response.json(Json);
 
@@ -103,7 +103,7 @@ let pageApi = function () {
             WhereId._id = ObjectId(Para._id);
             delete Para._id;
             UpdateStr.$set = Para;
-            Monge.Mongo('articlecomment', 'Update', [WhereId, UpdateStr], function (Result) {
+            Monge('articlecomment', 'Update', [WhereId, UpdateStr], function (Result) {
                 var Json = { status: '0' };
                 Json.data = 'Update Success';
                 Response.json(Json);
@@ -129,7 +129,7 @@ let pageApi = function () {
         DealPara(Request, Response, function (Para) {
             WhereId._id = ObjectId(Para._id);
             // 获取当前文章Id的当前评论数
-            Monge.Mongo('runoob', 'Read', WhereId, function (CurrentNum) {
+            Monge('runoob', 'Read', WhereId, function (CurrentNum) {
                 // 判断删除还是新增
                 if (Para.type == 'add') {
                     UpdataStr.$set.CommentNum = parseInt(CurrentNum[0].CommentNum) + 1;
@@ -137,7 +137,7 @@ let pageApi = function () {
                     UpdataStr.$set.CommentNum = parseInt(CurrentNum[0].CommentNum) - 1;
                 }
                 // 修改文章表里，对应id文章的评论数字段
-                Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function () {
+                Monge('runoob', 'Update', [WhereId, UpdataStr], function () {
                     var Json = { status: '0' };
                     Json.data = 'ArticleCommentNum Update Success';
                     Response.json(Json);
@@ -151,7 +151,7 @@ let pageApi = function () {
         DealPara(Request, Response, function (Para) {
             /*var Key = {ArticleId:ObjectId(Para.ArticleId)};*/
             var Key = { ArticleId: Para.ArticleId };
-            Monge.Mongo('articlecomment', 'ReadByOrder', [Key], function (Result) {
+            Monge('articlecomment', 'ReadByOrder', [Key], function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -159,7 +159,7 @@ let pageApi = function () {
     });
     // 评论个数
     App.post('/getcommentnum', function (Request, Response) {
-        Monge.Mongo('articlecomment', 'GetNum', {}, function (Result) {
+        Monge('articlecomment', 'GetNum', {}, function (Result) {
             var Json = { status: '0', data: Result };
             Response.json(Json);
         });

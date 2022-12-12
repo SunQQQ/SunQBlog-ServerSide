@@ -19,7 +19,7 @@ let pageApi = function () {
                 text = util.isXssStringLeaveMessage(Para.MessageText);
 
             if (city && date && user && text) {
-                Monge.Mongo('LeaveMessage', 'Insert', Para, function () {
+                Monge('LeaveMessage', 'Insert', Para, function () {
                     var Json = { status: '0', data: '插入成功' };
                     Response.json(Json);
 
@@ -58,7 +58,7 @@ let pageApi = function () {
     App.post('/MessageRead/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             var PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: 0, Limit: 1000 };
-            Monge.Mongo('LeaveMessage', 'ReadByOrder', [{}, { MessageLeaveDate: -1 }, PagnationData], function (Result) {
+            Monge('LeaveMessage', 'ReadByOrder', [{}, { MessageLeaveDate: -1 }, PagnationData], function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -69,7 +69,7 @@ let pageApi = function () {
             var Object = {};
             Object._id = ObjectId(Para._id);
 
-            Monge.Mongo('LeaveMessage', 'Delete', Object, function () {
+            Monge('LeaveMessage', 'Delete', Object, function () {
                 var Json = { status: '0', data: '友链删除成功' };
                 Response.json(Json);
             });
@@ -83,7 +83,7 @@ let pageApi = function () {
             WhereId._id = ObjectId(Para._id);
             delete Para._id;
             UpdateStr.$set = Para;
-            Monge.Mongo('LeaveMessage', 'Update', [WhereId, UpdateStr], function (Result) {
+            Monge('LeaveMessage', 'Update', [WhereId, UpdateStr], function (Result) {
                 var Json = { status: '0' };
                 Json.data = 'Update Success';
                 Response.json(Json);
@@ -92,7 +92,7 @@ let pageApi = function () {
     });
     // 留言数量
     App.post('/getmessagenum', function (Request, Response) {
-        Monge.Mongo('LeaveMessage', 'GetNum', {}, function (Result) {
+        Monge('LeaveMessage', 'GetNum', {}, function (Result) {
             var Json = { status: '0', data: Result };
             Response.json(Json);
         });

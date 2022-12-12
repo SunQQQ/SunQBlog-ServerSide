@@ -42,7 +42,7 @@ let pageApi = function () {
             var Key = Para.ArticleTag ? { ArticleTag: Para.ArticleTag } : {},  // 查询的依据，这里为文章分类
                 PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: 0, Limit: 10000 },  // 分页数据
                 orderType = Para.orderType ? Para.orderType : { CreateDate: -1 };
-            Monge.Mongo('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
+            Monge('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
                 var Json = { status: '0', data: Result };
                 res.json(Json);
             });
@@ -53,7 +53,7 @@ let pageApi = function () {
     // 热门文章
     App.post('/HotArticleRead/:accesstype', function (req, res) {
         DealPara(req, res, function (Para) {
-            Monge.Mongo('runoob', 'ReadByOrder', [{}, { CommentNum: -1 }, { Skip: 0, Limit: 6 }], function (Result) {
+            Monge('runoob', 'ReadByOrder', [{}, { CommentNum: -1 }, { Skip: 0, Limit: 6 }], function (Result) {
                 var Json = { status: '0', data: Result };
                 res.json(Json);
             });
@@ -65,7 +65,7 @@ let pageApi = function () {
             var Key = { _id: ObjectId(Para._id) },
                 UpdataStr = { $set: {} };
 
-            Monge.Mongo('runoob', 'Read', Key, function (Result) {
+            Monge('runoob', 'Read', Key, function (Result) {
                 // 查出文章详情后，返回前端
                 var Json = { status: '0' };
                 Json.data = Result;
@@ -73,7 +73,7 @@ let pageApi = function () {
 
                 // 给当前文章的阅读量+1
                 UpdataStr.$set.articleReadNum = Result[0].articleReadNum ? Result[0].articleReadNum + 1 : 1;
-                Monge.Mongo('runoob', 'Update', [Key, UpdataStr], function (Result) { });
+                Monge('runoob', 'Update', [Key, UpdataStr], function (Result) { });
             });
         });
     });
@@ -81,7 +81,7 @@ let pageApi = function () {
     App.post('/AddArticle/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             Para.CommentNum = 0
-            Monge.Mongo('runoob', 'Insert', Para, function () {
+            Monge('runoob', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
             });
@@ -91,7 +91,7 @@ let pageApi = function () {
     App.post('/ArticleDelete/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             var IdObject = { _id: ObjectId(Para._id) };
-            Monge.Mongo('runoob', 'Delete', IdObject, function () {
+            Monge('runoob', 'Delete', IdObject, function () {
                 var Json = { status: '0', data: '接口删除成功' };
                 Response.json(Json);
             });
@@ -111,7 +111,7 @@ let pageApi = function () {
             UpdataStr.$set.ArticleCover = Para.ArticleCover;
             UpdataStr.$set.CommentNum = Para.CommentNum;
             UpdataStr.$set.order = Para.order;
-            Monge.Mongo('runoob', 'Update', [WhereId, UpdataStr], function (Result) {
+            Monge('runoob', 'Update', [WhereId, UpdataStr], function (Result) {
                 var Json = { status: '0' };
                 Json.data = 'Update Success';
                 Response.json(Json);
@@ -123,7 +123,7 @@ let pageApi = function () {
     App.post('/getarticlenum/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             var Key = Para ? (Para.ArticleTag ? { ArticleTag: Para.ArticleTag } : {}) : {};
-            Monge.Mongo('runoob', 'GetNum', Key, function (Result) {
+            Monge('runoob', 'GetNum', Key, function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -157,7 +157,7 @@ let pageApi = function () {
     /*标签管理相关*/
     App.post('/TagCreate/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
-            Monge.Mongo('Tags', 'Insert', Para, function () {
+            Monge('Tags', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
             });
@@ -166,7 +166,7 @@ let pageApi = function () {
 
     App.post('/TagRead/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
-            Monge.Mongo('Tags', 'Read', {}, function (Result) {
+            Monge('Tags', 'Read', {}, function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -177,7 +177,7 @@ let pageApi = function () {
         DealPara(Request, Response, function (Para) {
             var Object = {};
             Object._id = ObjectId(Para._id);
-            Monge.Mongo('Tags', 'Delete', Object, function () {
+            Monge('Tags', 'Delete', Object, function () {
                 var Json = { status: '0', data: '标签删除成功' };
                 Response.json(Json);
             });
@@ -189,7 +189,7 @@ let pageApi = function () {
             var WhereId = {}, UpdataStr = { $set: {} };
             if (!Para.TagId) {
                 delete Para.TagId;
-                Monge.Mongo('Tags', 'Insert', Para, function () {
+                Monge('Tags', 'Insert', Para, function () {
                     var Json = { status: '0', data: '插入成功' };
                     Response.json(Json);
                 });
@@ -197,7 +197,7 @@ let pageApi = function () {
                 WhereId._id = ObjectId(Para.TagId);
                 UpdataStr.$set.TagName = Para.TagName;
                 UpdataStr.$set.TagNo = Para.TagNo;
-                Monge.Mongo('Tags', 'Update', [WhereId, UpdataStr], function (Result) {
+                Monge('Tags', 'Update', [WhereId, UpdataStr], function (Result) {
                     var Json = { status: '0' };
                     Json.data = 'Update Success';
                     Response.json(Json);
@@ -215,7 +215,7 @@ let pageApi = function () {
                 nickName = util.isXssString(Para.FriendUrlNickName);
 
             if (adress && descript && iconUrl && nickName) {
-                Monge.Mongo('FriendsUrl', 'Insert', Para, function () {
+                Monge('FriendsUrl', 'Insert', Para, function () {
                     var Json = { status: '0', data: '插入成功' };
                     Response.json(Json);
                 });
@@ -227,7 +227,7 @@ let pageApi = function () {
     });
     // 友链数量
     App.post('/getfriendurlnum', function (Request, Response) {
-        Monge.Mongo('FriendsUrl', 'GetNum', {}, function (Result) {
+        Monge('FriendsUrl', 'GetNum', {}, function (Result) {
             var Json = { status: '0', data: Result };
             Response.json(Json);
         });
@@ -235,7 +235,7 @@ let pageApi = function () {
     App.post('/FriendUrlRead/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
             var PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: '', Limit: '' };
-            Monge.Mongo('FriendsUrl', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
+            Monge('FriendsUrl', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
                 var Json = { status: '0', data: Result };
                 Response.json(Json);
             });
@@ -248,7 +248,7 @@ let pageApi = function () {
             if (!Para._id) {
                 delete Para._id;
 
-                Monge.Mongo('FriendsUrl', 'Insert', Para, function () {
+                Monge('FriendsUrl', 'Insert', Para, function () {
                     var Json = { status: '0', data: '插入成功' };
                     Response.json(Json);
                 });
@@ -256,7 +256,7 @@ let pageApi = function () {
                 WhereId._id = ObjectId(Para._id);
                 delete Para._id;
                 UpdateStr.$set = Para;
-                Monge.Mongo('FriendsUrl', 'Update', [WhereId, UpdateStr], function (Result) {
+                Monge('FriendsUrl', 'Update', [WhereId, UpdateStr], function (Result) {
                     var Json = { status: '0' };
                     Json.data = 'Update Success';
                     Response.json(Json);
@@ -270,7 +270,7 @@ let pageApi = function () {
             var Object = {};
             Object._id = ObjectId(Para._id);
 
-            Monge.Mongo('FriendsUrl', 'Delete', Object, function () {
+            Monge('FriendsUrl', 'Delete', Object, function () {
                 var Json = { status: '0', data: '友链删除成功' };
                 Response.json(Json);
             });

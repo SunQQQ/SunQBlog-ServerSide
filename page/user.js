@@ -12,7 +12,7 @@ let pageApi = function () {
     /*用户管理相关*/
     App.post('/UserCreate', function (Request, Response) {
         GetParaCheckToken(Request, Response, function (Para) {
-            Monge.Mongo('Users', 'Insert', Para, function () {
+            Monge('Users', 'Insert', Para, function () {
                 var Json = { status: '0', data: '用户新建成功' };
                 Response.json(Json);
             });
@@ -22,7 +22,7 @@ let pageApi = function () {
     App.post('/UserReadOne', function (Request, Response) {
         GetPara(Request, Response, function (Para) {
             var Key = { CnName: Para.CnName, UserType: Para.UserType };
-            Monge.Mongo('Users', 'Read', Key, function (Result) {
+            Monge('Users', 'Read', Key, function (Result) {
                 // 账号密码通过后，将该用户的id放在token中
                 if (Result[0] && Result[0].PassWord == Para.PassWord) {
                     var NewToken = Token.token.createToken(Result[0]._id, 60 * 60);

@@ -4,7 +4,7 @@ let pageApi = function () {
     let App = option,
         dealObj = require("./commonFunction"),
         DealPara = dealObj.DealPara,
-        Monge = require('../Mongo'),
+        Monge = require('../Public/module/Mongo'),
         Util = require('../util'),
         util = new Util(),
         MongoClient = require("mongodb").MongoClient, // 数据库相关
@@ -13,7 +13,7 @@ let pageApi = function () {
     // 创建访问记录
     App.post('/visitCreate/:accesstype', function (Request, Response) {
         DealPara(Request, Response, function (Para) {
-            Monge.Mongo('VisitList', 'Insert', Para, function () {
+            Monge('VisitList', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
             });
@@ -28,7 +28,7 @@ let pageApi = function () {
         DealPara(Request, Response, function (Para) {
             var PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: 0, Limit: 10000 };
 
-            Monge.Mongo('VisitList', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
+            Monge('VisitList', 'ReadByOrder', [{}, { _id: -1 }, PagnationData], function (Result) {
                 // 保护用户的IP地址，打上马赛克
                 Result.forEach(function (item) {
                     if (item.clientIp) {
@@ -37,7 +37,7 @@ let pageApi = function () {
                     }
                 });
 
-                Monge.Mongo('VisitList', 'GetNum', {}, function (totalNum) {
+                Monge('VisitList', 'GetNum', {}, function (totalNum) {
                     var Json = {
                         status: '0',
                         data: {
@@ -57,7 +57,7 @@ let pageApi = function () {
             var Object = {};
             Object._id = ObjectId(Para._id);
 
-            Monge.Mongo('VisitList', 'Delete', Object, function () {
+            Monge('VisitList', 'Delete', Object, function () {
                 var Json = { status: '0', data: '访客记录删除成功' };
                 Response.json(Json);
             });
@@ -99,7 +99,7 @@ let pageApi = function () {
             }
 
             // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
-            Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+            Monge('VisitList', 'Read', newPara, function (Result) {
                 let dateCountList = [], // 符合该时间数组中所有时间的所有记录
                     cityList = []; // 城市数组，供前端地图使用
                 // 加入选中时间周期为30天，该时间周期下的日志一共是1460行。
@@ -168,7 +168,7 @@ let pageApi = function () {
             }
 
             // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
-            Monge.Mongo('LeaveMessage', 'Read', newPara, function (Result) {
+            Monge('LeaveMessage', 'Read', newPara, function (Result) {
                 let dateCountList = [], // 符合该时间数组中所有时间的所有记录
                     cityList = []; // 城市数组，供前端地图使用
 
@@ -196,7 +196,7 @@ let pageApi = function () {
                 ipArray = [], // ip数组 [ip1,ip2,ip3]
                 userAction = {}; // { ip1:{action:[]}, ip2:{action:[]}}
             // 查出上面时间数组范围内所有的记录，然后遍历时间数组的每一天，跟记录对比，得出每一天的访问量
-            Monge.Mongo('VisitList', 'Read', nodePara, function (Result) {
+            Monge('VisitList', 'Read', nodePara, function (Result) {
                 Result.forEach(function (item) {
                     let currentIp = item.clientIp;
                     if (item.clientIp && ipArray.indexOf(currentIp) == -1) {
@@ -257,7 +257,7 @@ let pageApi = function () {
                 //此变量为mongodb查询时使用
                 newPara = { 'time': { $gt: beginTime, $lt: endTimeAddOne } }; // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
 
-            Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+            Monge('VisitList', 'Read', newPara, function (Result) {
                 let array = [];
                 Result.forEach(function (item) {
                     array.push(item.operateType);
@@ -291,7 +291,7 @@ let pageApi = function () {
                 //此变量为mongodb查询时使用
                 newPara = { 'time': { $gt: beginTime, $lt: endTimeAddOne } }; // mongodb语法要求结束时间需要加一天, { time: { '$gt': '2021/12/11', '$lt': '2021/12/12' } }
 
-            Monge.Mongo('VisitList', 'Read', newPara, function (Result) {
+            Monge('VisitList', 'Read', newPara, function (Result) {
                 let array = [],
                     allMenuOperate = ['博文', '留言', '时间轴', '试验田', '关于', '访问统计', '管理后台'];
                 Result.forEach(function (item) {

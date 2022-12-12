@@ -66,4 +66,4 @@ function Mongo(Collection,Type, data, CallBack) {
   });
 }
 
-exports.Mongo = Mongo;
+module.exports = Mongo;

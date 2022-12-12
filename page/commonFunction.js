@@ -32,7 +32,7 @@ var GetParaCheckToken = function (Request, Response, OperationResponse) {
     var Para = Request.body;
     var Token = require('../Public/module/token');
 
-    Monge.Mongo('Users', 'Read', { CnName: 'sunq' }, function (Result) {
+    Monge('Users', 'Read', { CnName: 'sunq' }, function (Result) {
         // token通过，并且token中的id等于sunq账号的id，才能操作
         if (Para.Token && Token.token.checkToken(Para.Token) && Token.token.getId(Para.Token) == Result[0]._id) {
             OperationResponse(Para);
