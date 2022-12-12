@@ -3,8 +3,8 @@ let option;
 let pageApi = function () {
     let App = option,
         dealObj = require("./commonFunction"),
-        Monge = require('../Mongo'),
-        Token = require('../token'),
+        Monge = require('../Public/module/Mongo'),
+        Token = require('../Public/module/token'),
         GetParaCheckToken = dealObj.GetParaCheckToken,
         GetPara = dealObj.GetPara;
 
@@ -25,7 +25,7 @@ let pageApi = function () {
             Monge('Users', 'Read', Key, function (Result) {
                 // 账号密码通过后，将该用户的id放在token中
                 if (Result[0] && Result[0].PassWord == Para.PassWord) {
-                    var NewToken = Token.token.createToken(Result[0]._id, 60 * 60);
+                    var NewToken = Token.createToken(Result[0]._id, 60 * 60);
                     var Json = {
                         status: '0',
                         data: {

@@ -18,13 +18,13 @@ let pageApi = function () {
     App.post('/checkToken', function (Request, Response) {
         var Para = Request.body;
 
-        if (Para.Token && Token.token.checkToken(Para.Token)) {
+        if (Para.Token && Token.checkToken(Para.Token)) {
             var Json = { status: '0', data: { message: 'token合法' } };
             Response.json(Json);
-        } else if (Para.Token && Token.token.checkToken(Para.Token) == 'TimeOut') {
+        } else if (Para.Token && Token.checkToken(Para.Token) == 'TimeOut') {
             var Json = { status: '1', data: { message: '令牌超时' } };
             Response.json(Json);
-        } else if (Para.Token && !Token.token.checkToken(Para.Token)) {
+        } else if (Para.Token && !Token.checkToken(Para.Token)) {
             var Json = { status: '1', data: { message: '令牌有误' } };
             Response.json(Json);
         } else if (!Para.Token) {
