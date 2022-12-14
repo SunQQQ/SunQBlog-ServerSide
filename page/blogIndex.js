@@ -4,7 +4,8 @@ let pageApi = function () {
     let App = option,
     dealObj = require("./commonFunction"),
     DealPara = dealObj.DealPara,
-
+    
+    FS = require('fs'),
     Monge = require('../Public/module/Mongo'),
     Token = require('../Public/module/token'),
     ObjectId = require('mongodb').ObjectId,
@@ -134,7 +135,7 @@ let pageApi = function () {
     App.post('/UploadImg', function (Request, Response) {
         var From = new Formidable.IncomingForm();
         //设置保存 文件路径
-        var TargetFile = Path.join(__dirname, './Public/');
+        var TargetFile = Path.join(__dirname, '../Public/');
         From.uploadDir = TargetFile;
 
         From.parse(Request, function (err, fields, files) {

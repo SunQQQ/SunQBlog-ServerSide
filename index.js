@@ -3,8 +3,6 @@
  * 本文件实现孙权的博客的所有接口
  */
 let express = require('express');
-let os = require('os');
-let FS = require('fs');
 let App = express();
 let cors = require('cors');
 let BodyParse = require('body-parser');
