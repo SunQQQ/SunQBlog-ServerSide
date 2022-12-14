@@ -14,7 +14,7 @@ var Url = "mongodb://localhost:27017/";
  */
 
 function Mongo(Collection,Type, data, CallBack) {
-  MongoClient.connect(Url, function (err, db) {
+  MongoClient.connect(Url, {useUnifiedTopology: true},function (err, db) {
     var DB = db.db("test");
     if (Type == 'Insert') {
       DB.collection(Collection).insertOne(data, function (err, res) {

@@ -17,6 +17,10 @@ let timeLine = require("./page/timeLine.js")(App);
 let user = require("./page/user.js")(App);
 let visitCount = require("./page/visitCount.js")(App);
 
+App.use(cors());
+App.use(BodyParse.json());
+App.use(BodyParse.urlencoded({ extended: true }));
+
 blogIndex();
 comment();
 heartFelt();
@@ -25,11 +29,7 @@ timeLine();
 user();
 visitCount();
 
-App.use(cors());
-App.use(BodyParse.json());
-App.use(BodyParse.urlencoded({ extended: true }));
-
-let server = App.listen(8088, function () {
+let server = App.listen(8888, function () {
     let host = server.address().address
     let port = server.address().port
 
