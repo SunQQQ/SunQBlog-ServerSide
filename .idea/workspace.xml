@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f1a71a2c-5d5b-4a25-b1b4-ae4850a10620" name="Default" comment="优化留言xss,放开style关键词的管控">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/util.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="553" column="63" lean-forward="true" selection-start-line="553" selection-start-column="63" selection-end-line="553" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>app</find>
+      <find>imgFile</find>
+      <find>__dirname</find>
+      <find>editor</find>
+      <find>ImgName</find>
+      <find>Monge.Mongo(</find>
+      <find>&quot;runoob&quot;</find>
+      <find>data</find>
+      <find>200</find>
+      <find>GetPara</find>
+      <find>post</find>
+      <find>endtype</find>
+      <find>DealPara</find>
+      <find>ip</find>
+      <find>img</find>
+      <find>public</find>
+      <find>PagnationData</find>
+      <find>CommentNum</find>
+      <find>util</find>
+      <find>ReadByOrder</find>
+      <find>GetParaCheckToken</find>
+      <find>skip</find>
+      <find>accesstype</find>
+      <find>ArticleCommentCreate</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Express</replace>
+      <replace>File</replace>
+      <replace>ImgName</replace>
+      <replace>Content</replace>
+      <replace>Monge.Mongo('runoob',</replace>
+      <replace>Collection</replace>
+      <replace>0</replace>
+      <replace>get</replace>
+      <replace>endtype</replace>
+      <replace>accesstype</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Router.js" />
+        <option value="$PROJECT_DIR$/RouterHandle.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Mongo.js" />
+        <option value="&lt;1b43068d-512a-419c-aa63-4ce588bb6997&gt;/var/ftp/test/sunquan/SunQBlog-ServerSide/index.js" />
+        <option value="$PROJECT_DIR$/token.js" />
+        <option value="$PROJECT_DIR$/util.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1440" />
+    <option name="y" value="25" />
+    <option name="width" value="2499" />
+    <option name="height" value="1415" />
+  </component>
+  <component name="ProjectId" id="1ykcXYkJKTQNtFPmz0KN5CYP7vQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SunQBlog-ServerSide" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SunQBlog-ServerSide" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\webspace\MyBlogBackEnd\Public" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\webspace\MyBlogBackEnd" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f1a71a2c-5d5b-4a25-b1b4-ae4850a10620" name="Default" comment="" />
+      <created>1534906303677</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534906303677</updated>
+      <workItem from="1534906312530" duration="4988000" />
+      <workItem from="1534936731308" duration="3376000" />
+      <workItem from="1535530388000" duration="14524000" />
+      <workItem from="1535680180323" duration="283000" />
+      <workItem from="1535680972752" duration="3621000" />
+      <workItem from="1537320426556" duration="1995000" />
+      <workItem from="1537336397354" duration="3445000" />
+      <workItem from="1537411377468" duration="3430000" />
+      <workItem from="1537433377443" duration="9717000" />
+      <workItem from="1537606800570" duration="2156000" />
+      <workItem from="1537767088248" duration="2369000" />
+      <workItem from="1537874217239" duration="3725000" />
+      <workItem from="1537950243417" duration="10810000" />
+      <workItem from="1538029745337" duration="1638000" />
+      <workItem from="1538096950657" duration="10723000" />
+      <workItem from="1538200102690" duration="202000" />
+      <workItem from="1538212443541" duration="601000" />
+      <workItem from="1538227282904" duration="6646000" />
+      <workItem from="1538293232189" duration="484000" />
+      <workItem from="1538298920348" duration="27756000" />
+      <workItem from="1539142215804" duration="7572000" />
+      <workItem from="1539167332378" duration="938000" />
+      <workItem from="1545808466315" duration="120000" />
+      <workItem from="1545809295940" duration="1000" />
+      <workItem from="1545832441847" duration="682000" />
+      <workItem from="1545976856256" duration="619000" />
+      <workItem from="1545990491167" duration="60000" />
+      <workItem from="1546852249702" duration="671000" />
+      <workItem from="1546860228929" duration="794000" />
+      <workItem from="1546861437308" duration="299000" />
+      <workItem from="1546912578232" duration="198000" />
+      <workItem from="1546924709291" duration="88000" />
+      <workItem from="1547032389949" duration="595000" />
+      <workItem from="1547096888146" duration="2000" />
+      <workItem from="1547456159202" duration="6000" />
+      <workItem from="1547780113852" duration="992000" />
+      <workItem from="1548032803737" duration="1088000" />
+      <workItem from="1548142403699" duration="1733000" />
+      <workItem from="1548664636516" duration="711000" />
+      <workItem from="1549765006772" duration="523000" />
+      <workItem from="1620292015765" duration="296000" />
+      <workItem from="1620374992568" duration="2136000" />
+      <workItem from="1628351203131" duration="4938000" />
+      <workItem from="1628405936620" duration="1229000" />
+      <workItem from="1628411949825" duration="2479000" />
+      <workItem from="1628415470372" duration="1820000" />
+      <workItem from="1628424296038" duration="14000" />
+      <workItem from="1628426377366" duration="2890000" />
+      <workItem from="1628442307856" duration="679000" />
+      <workItem from="1628444058884" duration="26000" />
+      <workItem from="1628664485200" duration="269000" />
+      <workItem from="1628736847825" duration="5625000" />
+      <workItem from="1632537634161" duration="1303000" />
+      <workItem from="1632799068999" duration="40000" />
+      <workItem from="1632800281144" duration="2518000" />
+      <workItem from="1632811606637" duration="501000" />
+      <workItem from="1632830138412" duration="57000" />
+      <workItem from="1638066174589" duration="4257000" />
+      <workItem from="1638074374479" duration="610000" />
+      <workItem from="1638104601084" duration="21000" />
+      <workItem from="1638104632259" duration="48000" />
+      <workItem from="1638706708276" duration="2549000" />
+      <workItem from="1639801255331" duration="3021000" />
+      <workItem from="1639804368743" duration="7833000" />
+      <workItem from="1639929516578" duration="27000" />
+      <workItem from="1640509778271" duration="253000" />
+      <workItem from="1641183419989" duration="4933000" />
+      <workItem from="1641732654524" duration="1754000" />
+      <workItem from="1642907247110" duration="2215000" />
+      <workItem from="1642910852087" duration="2411000" />
+    </task>
+    <task id="LOCAL-00001" summary="新增获取访问者Ip 接口，以及自动上传服务器的webstorm配置文件">
+      <created>1546912761255</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1546912761255</updated>
+    </task>
+    <task id="LOCAL-00002" summary="新增获取访问者Ip 接口，以及自动上传服务器的webstorm配置文件">
+      <created>1548664712469</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1548664712470</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1.上传数据表2.修改README">
+      <created>1628352363978</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1628352363978</updated>
+    </task>
+    <task id="LOCAL-00004" summary="添加评论总数、列表、删除三个接口">
+      <created>1628402287202</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1628402287202</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1.添加评论管理相关接口，比如新增评论，删除评论；2.优化修改文章评论数接口；">
+      <created>1628441029681</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628441029681</updated>
+    </task>
+    <task id="LOCAL-00006" summary="优化修改文章评论数接口；">
+      <created>1628443004766</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628443004766</updated>
+    </task>
+    <task id="LOCAL-00007" summary="新增删除时间轴接口">
+      <created>1628757551081</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628757551081</updated>
+    </task>
+    <task id="LOCAL-00008" summary="优化留言xss,放开style关键词的管控">
+      <created>1632648490228</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1632648490228</updated>
+    </task>
+    <task id="LOCAL-00009" summary="扩展时间段数据统计接口，添加数据列表字段">
+      <created>1638072279362</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1638072279362</updated>
+    </task>
+    <task id="LOCAL-00010" summary="访客列表设置翻页参数">
+      <created>1638710086711</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1638710086711</updated>
+    </task>
+    <task id="LOCAL-00011" summary="开发token验证账号权限功能">
+      <created>1639804054116</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1639804054116</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修改token鉴权失败返回状态码">
+      <created>1639840354466</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1639840354466</updated>
+    </task>
+    <task id="LOCAL-00013" summary="修改用户日志排序逻辑">
+      <created>1641737552479</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1641737552480</updated>
+    </task>
+    <task id="LOCAL-00014" summary="优化留言xss,放开style关键词的管控">
+      <created>1641737881898</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1641737881898</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="183817000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1440" y="25" width="2499" height="1415" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11192511" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992636" weight="0.3298153" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4992636" weight="0.32805628" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.6076516" visible="true" weight="0.38192862" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.39234838" side_tool="true" visible="true" weight="0.38192862" />
+      <window_info anchor="bottom" id="File Transfer" order="11" sideWeight="0.4961335" weight="0.3257403" />
+      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" visible="true" weight="0.2995523" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="新增获取访问者Ip 接口，以及自动上传服务器的webstorm配置文件" />
+    <MESSAGE value="1.上传数据表2.修改README" />
+    <MESSAGE value="添加评论总数、列表、删除三个接口" />
+    <MESSAGE value="1.添加评论管理相关接口，比如新增评论，删除评论；2.优化修改文章评论数接口；" />
+    <MESSAGE value="优化修改文章评论数接口；" />
+    <MESSAGE value="新增删除时间轴接口" />
+    <MESSAGE value="扩展时间段数据统计接口，添加数据列表字段" />
+    <MESSAGE value="访客列表设置翻页参数" />
+    <MESSAGE value="开发token验证账号权限功能" />
+    <MESSAGE value="修改token鉴权失败返回状态码" />
+    <MESSAGE value="修改用户日志排序逻辑" />
+    <MESSAGE value="优化留言xss,放开style关键词的管控" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化留言xss,放开style关键词的管控" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Router.js" />
+    <entry file="file://$PROJECT_DIR$/RouterHandle.js" />
+    <entry file="file://$PROJECT_DIR$/280726410666297882.jpg" />
+    <entry file="file://$PROJECT_DIR$/Public/280726410666297882.jpg" />
+    <entry file="file://$PROJECT_DIR$/Public/IndexBac.jpg" />
+    <entry file="file://$PROJECT_DIR$/Public/mylife.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/html5+css3.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/EditTag.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/CreateArticle.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/436519136120130221.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/1539931781(1).jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json" />
+    <entry file="file://$PROJECT_DIR$/Public/跨域头图.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/下载.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/1539843250(1).jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/u=1027801245,1570110167&amp;fm=26&amp;gp=0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="120">
+            <caret line="8" column="43" lean-forward="true" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mongo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="52" column="43" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="553" column="63" lean-forward="true" selection-start-line="553" selection-start-column="63" selection-end-line="553" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
