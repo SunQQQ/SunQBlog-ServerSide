@@ -1,3 +1,4 @@
+# 因如下两个文件中的留言/评论接口，涉及邮箱账号密码，故不通过git管理
 page/comment.js
 page/messageCreate.js
 .vscode/sftp.json
