@@ -14,6 +14,7 @@ let messageCreate = require("./page/messageCreate.js")(App);
 let timeLine = require("./page/timeLine.js")(App);
 let user = require("./page/user.js")(App);
 let visitCount = require("./page/visitCount.js")(App);
+let student = require("./page/student.js")(App);
 
 App.use(cors());
 App.use(BodyParse.json());
@@ -26,6 +27,7 @@ messageCreate();
 timeLine();
 user();
 visitCount();
+student();
 
 let server = App.listen(8888, function () {
     let host = server.address().address
