@@ -9,10 +9,16 @@ let pageApi = function () {
         util = new Util(),
         MongoClient = require("mongodb").MongoClient, // 数据库相关
         Url = "mongodb://localhost:27017/";
-        
+
     // 创建访问记录
     App.post('/visitCreate/:accesstype', function (Request, Response) {
+        let clientIp = Request.headers['x-forwarded-for'] ||
+            Request.connection.remoteAddress ||
+            Request.socket.remoteAddress ||
+            Request.connection.socket.remoteAddress;
+
         DealPara(Request, Response, function (Para) {
+            Para.clientIp = clientIp.replace('::ffff:', '');
             Monge('VisitList', 'Insert', Para, function () {
                 var Json = { status: '0', data: '插入成功' };
                 Response.json(Json);
@@ -409,7 +415,8 @@ let pageApi = function () {
                 });
             });
         });
-})}
+    })
+}
 
 module.exports = function (app) {
     option = app;
