@@ -64,7 +64,7 @@ function Mongo(Collection, Type, data, CallBack) {
       }
     } else if (Type == 'twoLeavlList') {
       // 查询二级评论数据
-      db.collection(Collection).aggregate([
+      DB.collection(Collection).aggregate([
         {
           $sort: {
             _id: -1
