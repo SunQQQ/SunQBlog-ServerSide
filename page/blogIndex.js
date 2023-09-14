@@ -2,17 +2,17 @@ let option;
 
 let pageApi = function () {
     let App = option,
-    dealObj = require("./commonFunction"),
-    DealPara = dealObj.DealPara,
-    
-    FS = require('fs'),
-    Monge = require('../Public/module/Mongo'),
-    Token = require('../Public/module/token'),
-    ObjectId = require('mongodb').ObjectId,
-    Path = require("path"),
-    Formidable = require("formidable"),
-    Util = require('../Public/module/util'),
-    util = new Util();
+        dealObj = require("./commonFunction"),
+        DealPara = dealObj.DealPara,
+
+        FS = require('fs'),
+        Monge = require('../Public/module/Mongo'),
+        Token = require('../Public/module/token'),
+        ObjectId = require('mongodb').ObjectId,
+        Path = require("path"),
+        Formidable = require("formidable"),
+        Util = require('../Public/module/util'),
+        util = new Util();
 
 
     // 检查token 管理后台，初始化时验证是否合法，不要求必须是管理员
@@ -43,6 +43,12 @@ let pageApi = function () {
             var Key = Para.ArticleTag ? { ArticleTag: Para.ArticleTag } : {},  // 查询的依据，这里为文章分类
                 PagnationData = Para.PagnationData ? Para.PagnationData : { SKip: 0, Limit: 10000 },  // 分页数据
                 orderType = Para.orderType ? Para.orderType : { CreateDate: -1 };
+
+            // 根据站内查询关键词查询    
+            if (Para.searchKeyWord) {
+                Key.searchKeyWord = Para.searchKeyWord;
+            }
+
             Monge('runoob', 'ReadByOrder', [Key, orderType, PagnationData], function (Result) {
                 var Json = { status: '0', data: Result };
                 res.json(Json);
@@ -279,7 +285,7 @@ let pageApi = function () {
     });
 }
 
-module.exports = function(app){
+module.exports = function (app) {
     option = app;
     return pageApi;
 }

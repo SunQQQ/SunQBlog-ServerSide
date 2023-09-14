@@ -50,11 +50,36 @@ function Mongo(Collection, Type, data, CallBack) {
       // 获取排序后的列表
     } else if (Type == 'ReadByOrder') {
       if (data[2]) {
-        DB.collection(Collection).find(data[0]).sort(data[1]).skip(data[2].Skip).limit(data[2].Limit).toArray(function (err, res) {
-          if (err) throw err;
-          db.close();
-          CallBack(res);
-        });
+        // 站内模糊查询
+        if (data[0].searchKeyWord) {
+          // 创建索引
+          DB.collection(Collection).createIndex({ Title: "text", Summary: "text" }, (err, result) => {
+            if (err) throw err;
+            DB.collection(Collection).
+              find({
+                $and: [
+                  data[0].ArticleTag ? { ArticleTag: data[0].ArticleTag } : {},
+                  {
+                    $or: [
+                      { Title: { $regex: data[0].searchKeyWord, $options: 'i' } },
+                      { Summary: { $regex: data[0].searchKeyWord, $options: 'i' } }
+                    ]
+                  }
+                ]
+              }).sort(data[1]).skip(data[2].Skip).limit(data[2].Limit).toArray(function (err, res) {
+                if (err) throw err;
+                db.close();
+                CallBack(res);
+              });
+          });
+        } else {
+          DB.collection(Collection).find(data[0]).sort(data[1]).skip(data[2].Skip).limit(data[2].Limit).toArray(function (err, res) {
+            if (err) throw err;
+            db.close();
+            CallBack(res);
+          });
+        }
+
       } else {
         DB.collection(Collection).find(data[0]).sort(data[1]).toArray(function (err, res) {
           if (err) throw err;
