@@ -87,7 +87,7 @@ function Mongo(Collection, Type, data, CallBack) {
         });
       }
     } else if (Type == 'twoLeavlList') {
-      // 查询二级评论数据
+      // 查询二级留言数据
       DB.collection(Collection).aggregate([
         {
           $sort: {
@@ -112,6 +112,35 @@ function Mongo(Collection, Type, data, CallBack) {
         }, // 跳过(page-1)*page_size条文档数
         {
           $limit: data.Limit// 限制返回的文档数为page_size
+        }
+      ]).toArray(function (err, res) {
+        if (err) throw err;
+        db.close();
+        CallBack(res);
+      });
+    }else if (Type == 'twoLevelCommentList') {
+      // 查询二级评论数据
+      DB.collection(Collection).aggregate([
+        {
+          $match: data[0]
+        },
+        {
+          $sort: {
+            _id: -1
+          }
+        },
+        {
+          $lookup: { // 将评论文档与其父级文档关联
+            from: Collection,
+            localField: "_id",
+            foreignField: "parentArticleId",
+            as: "son"
+          }
+        },
+        {
+          $match: { // 筛选出只有父级文档的评论文档，排除顶级评论档
+            parentArticleId: { $in: ["", null] }
+          }
         }
       ]).toArray(function (err, res) {
         if (err) throw err;
