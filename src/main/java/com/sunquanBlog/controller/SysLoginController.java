@@ -16,17 +16,6 @@ public class SysLoginController {
     @Autowired
     private SysLoginService sysLoginService;
 
-//    @GetMapping("/login")
-//    public List<user> login() {
-//        try {
-//            List<user> indices = sysLoginService.checkLogin();
-//            return indices;
-//        } catch (Exception e) {
-//            e.printStackTrace(); // 打印错误信息
-//            throw e; // 或者返回自定义错误消息
-//        }
-//    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ApiResponse login(@RequestBody Map<String, String> loginRequest) {
         try {
@@ -34,11 +23,31 @@ public class SysLoginController {
             String password = loginRequest.get("password");
             HashMap loginStatus = sysLoginService.checkLogin(username, password);
             String status = (String) loginStatus.get("status");
+            String message = (String) loginStatus.get("version");
 
             if(status == "success"){
                 return ApiResponse.success("login success");
             }else {
-                return ApiResponse.error(500,"false");
+                return ApiResponse.error(500,message);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // 打印错误信息
+            throw e; // 或者返回自定义错误消息
+        }
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ApiResponse register(@RequestBody Map<String, String> loginRequest) {
+        try {
+            String username = loginRequest.get("username");
+            String password = loginRequest.get("password");
+
+            int insertNum = sysLoginService.register(username,password);
+
+            if(insertNum > 0){
+                return ApiResponse.success("regist success");
+            }else {
+                return ApiResponse.error(500,"regist failure");
             }
         } catch (Exception e) {
             e.printStackTrace(); // 打印错误信息

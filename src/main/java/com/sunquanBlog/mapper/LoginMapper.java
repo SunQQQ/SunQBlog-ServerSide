@@ -9,4 +9,6 @@ public interface LoginMapper {
     List<user> selectAll();
 
     List<user> getPassword(String username);
+
+    int register(String username,String password);
 }

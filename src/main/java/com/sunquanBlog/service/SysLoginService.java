@@ -9,4 +9,7 @@ import java.util.List;
 @Service
 public interface SysLoginService {
     public HashMap checkLogin(String username, String password);
+
+
+    public int register(String username, String password);
 }

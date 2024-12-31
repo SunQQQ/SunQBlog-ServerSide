@@ -19,5 +19,10 @@
     from user
     where name = #{username}
 </select>
+
+<insert id="register">
+    INSERT INTO user (name,password,email,created_at,role) VALUES (#{username},#{password},"",now(),"user");
+</insert>
+
 </mapper>
 

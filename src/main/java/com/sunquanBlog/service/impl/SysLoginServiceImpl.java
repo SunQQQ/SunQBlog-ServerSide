@@ -39,4 +39,11 @@ public class SysLoginServiceImpl implements SysLoginService {
 
         return result;
     }
+
+    public int register(String username, String password){
+
+        int insertNum = loginMapper.register(username,password);
+
+        return insertNum;
+    }
 }
