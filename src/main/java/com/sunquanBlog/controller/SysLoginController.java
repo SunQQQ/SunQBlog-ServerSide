@@ -54,6 +54,7 @@ public class SysLoginController {
 
             boolean haveAccount = sysLoginService.haveAccount(username);
 
+            // 账号不存在才能创建
             if(haveAccount){
                 return ApiResponse.error(500,"账号已存在，请修改账号");
             }else {

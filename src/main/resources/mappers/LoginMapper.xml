@@ -9,7 +9,8 @@
     <result column="name" property="name"/>
     <result column="password" property="password"/>
     <result column="email" property="email"/>
-<!--    <result column="created_at" property="created_at"/>-->
+    <result column="createdAt" property="createdAt"/>
+    <result column="role" property="role"/>
 </resultMap>
 
 <select id="selectAll" resultMap="indexResultMap">
@@ -23,7 +24,10 @@
 </select>
 
 <insert id="register">
-    INSERT INTO user (name,password,email,created_at,role) VALUES (#{username},#{password},"",now(),"user");
+    INSERT INTO user
+        (name,password,email,created_at,role)
+    VALUES
+        (#{username},#{password},"",now(),"user");
 </insert>
 
 </mapper>
