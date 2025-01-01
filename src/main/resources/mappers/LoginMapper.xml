@@ -4,31 +4,37 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sunquanBlog.mapper.LoginMapper">
-<resultMap id="indexResultMap" type="com.sunquanBlog.model.user">
-    <id column="id" property="id"/>
-    <result column="name" property="name"/>
-    <result column="password" property="password"/>
-    <result column="email" property="email"/>
-    <result column="createdAt" property="createdAt"/>
-    <result column="role" property="role"/>
-</resultMap>
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.user">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="createdAt" property="createdAt"/>
+        <result column="role" property="role"/>
+    </resultMap>
 
-<select id="selectAll" resultMap="indexResultMap">
-    SELECT * FROM user
-</select>
+    <select id="selectAll" resultMap="indexResultMap">
+        SELECT *
+        FROM user
+    </select>
 
-<select id="getPassword" resultMap="indexResultMap">
-    select *
-    from user
-    where name = #{username}
-</select>
+    <select id="getPassword" resultMap="indexResultMap">
+        select *
+        from user
+        where name = #{username}
+    </select>
 
-<insert id="register">
-    INSERT INTO user
-        (name,password,email,created_at,role)
-    VALUES
-        (#{username},#{password},"",now(),"user");
-</insert>
+    <insert id="register">
+        INSERT INTO user
+            (name, password, email, created_at, role)
+        VALUES (#{username}, #{password}, "", now(), "user");
+    </insert>
 
+    <!-- 添加根据账号名称删除数据的 SQL 语句 -->
+    <delete id="deleteByUsername">
+        DELETE
+        FROM user
+        WHERE name = #{username}
+    </delete>
 </mapper>
 

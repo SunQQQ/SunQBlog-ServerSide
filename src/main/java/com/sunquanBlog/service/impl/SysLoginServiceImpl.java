@@ -56,4 +56,10 @@ public class SysLoginServiceImpl implements SysLoginService {
 
         return insertNum;
     }
+
+    @Override
+    public int deleteByUsername(String username) {
+        int deleteNum = loginMapper.deleteByUsername(username);
+        return deleteNum;
+    }
 }

@@ -13,4 +13,6 @@ public interface SysLoginService {
     public boolean haveAccount(String username);
 
     public int register(String username, String password);
+
+    public int deleteByUsername(String username);
 }

@@ -53,7 +53,6 @@ public class SysLoginController {
             String password = loginRequest.get("password");
 
             boolean haveAccount = sysLoginService.haveAccount(username);
-
             // 账号不存在才能创建
             if(haveAccount){
                 return ApiResponse.error(500,"账号已存在，请修改账号");
@@ -71,5 +70,20 @@ public class SysLoginController {
         }
     }
 
+    @RequestMapping(value = "/deleteByUser",method = RequestMethod.POST)
+    public ApiResponse deleteByUser(@RequestBody Map<String ,String> deleteRequest){
+        try {
+            String username = deleteRequest.get("username");
+            int deleteNum = sysLoginService.deleteByUsername(username);
 
+            if(deleteNum == 1){
+                return ApiResponse.success("删除成功");
+            }else {
+                return ApiResponse.error(500,"删除失败");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }
