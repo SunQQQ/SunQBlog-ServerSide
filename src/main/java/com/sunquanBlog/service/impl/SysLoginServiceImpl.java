@@ -40,6 +40,16 @@ public class SysLoginServiceImpl implements SysLoginService {
         return result;
     }
 
+    public boolean haveAccount(String username){
+        List<user> list = loginMapper.getPassword(username);
+
+        if(list.size() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public int register(String username, String password){
 
         int insertNum = loginMapper.register(username,password);

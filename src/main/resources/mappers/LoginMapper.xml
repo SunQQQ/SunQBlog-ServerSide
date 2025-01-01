@@ -9,7 +9,9 @@
     <result column="name" property="name"/>
     <result column="password" property="password"/>
     <result column="email" property="email"/>
+<!--    <result column="created_at" property="created_at"/>-->
 </resultMap>
+
 <select id="selectAll" resultMap="indexResultMap">
     SELECT * FROM user
 </select>

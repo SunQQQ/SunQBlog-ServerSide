@@ -10,6 +10,7 @@ import java.util.List;
 public interface SysLoginService {
     public HashMap checkLogin(String username, String password);
 
+    public boolean haveAccount(String username);
 
     public int register(String username, String password);
 }

@@ -16,6 +16,11 @@ public class SysLoginController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    /**
+     * 登录接口
+     * @param loginRequest
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ApiResponse login(@RequestBody Map<String, String> loginRequest) {
         try {
@@ -36,22 +41,34 @@ public class SysLoginController {
         }
     }
 
+    /**
+     * 注册接口
+     * @param loginRequest
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ApiResponse register(@RequestBody Map<String, String> loginRequest) {
         try {
             String username = loginRequest.get("username");
             String password = loginRequest.get("password");
 
-            int insertNum = sysLoginService.register(username,password);
+            boolean haveAccount = sysLoginService.haveAccount(username);
 
-            if(insertNum > 0){
-                return ApiResponse.success("regist success");
+            if(haveAccount){
+                return ApiResponse.error(500,"账号已存在，请修改账号");
             }else {
-                return ApiResponse.error(500,"regist failure");
+                int insertNum = sysLoginService.register(username,password);
+                if(insertNum > 0){
+                    return ApiResponse.success("注册成功");
+                }else {
+                    return ApiResponse.error(500,"注册失败请联系博主");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace(); // 打印错误信息
             throw e; // 或者返回自定义错误消息
         }
     }
+
+
 }
