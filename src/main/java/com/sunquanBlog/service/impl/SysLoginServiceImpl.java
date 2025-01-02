@@ -60,4 +60,9 @@ public class SysLoginServiceImpl implements SysLoginService {
             return ApiResponse.error(500, "删除失败");
         }
     }
+
+    @Override
+    public ApiResponse getAllUser(String role) {
+        return ApiResponse.success(loginMapper.getAllUser(role));
+    }
 }

@@ -13,9 +13,11 @@
         <result column="role" property="role"/>
     </resultMap>
 
-    <select id="selectAll" resultMap="indexResultMap">
+    <select id="getAllUser" resultMap="indexResultMap">
         SELECT *
         FROM user
+        where
+            role = #{role}
     </select>
 
     <select id="getPassword" resultMap="indexResultMap">

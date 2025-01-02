@@ -53,4 +53,16 @@ public class SysLoginController {
 
         return sysLoginService.deleteByUsername(username);
     }
+
+    /**
+     * 所有账号的列表
+     * @param role
+     * @return
+     */
+    @PostMapping("/userList")
+    public ApiResponse userList(@RequestBody Map<String,String> roleReq){
+        String role = roleReq.get("role");
+
+        return sysLoginService.getAllUser(role);
+    }
 }
