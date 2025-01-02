@@ -62,7 +62,7 @@ public class SysLoginServiceImpl implements SysLoginService {
     }
 
     @Override
-    public ApiResponse getAllUser(String role) {
-        return ApiResponse.success(loginMapper.getAllUser(role));
+    public ApiResponse getAllUser(String role,String username) {
+        return ApiResponse.success(loginMapper.getAllUser(role,username));
     }
 }

@@ -56,13 +56,14 @@ public class SysLoginController {
 
     /**
      * 所有账号的列表
-     * @param role
+     * @param roleReq
      * @return
      */
     @PostMapping("/userList")
     public ApiResponse userList(@RequestBody Map<String,String> roleReq){
         String role = roleReq.get("role");
+        String username = roleReq.get("username");
 
-        return sysLoginService.getAllUser(role);
+        return sysLoginService.getAllUser(role,username);
     }
 }
