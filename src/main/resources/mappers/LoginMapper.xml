@@ -9,7 +9,7 @@
         <result column="name" property="name"/>
         <result column="password" property="password"/>
         <result column="email" property="email"/>
-        <result column="createdAt" property="createdAt"/>
+        <result column="created_at" property="createdAt"/>
         <result column="role" property="role"/>
     </resultMap>
 
@@ -32,7 +32,7 @@
     <insert id="register">
         INSERT INTO user
             (name, password, email, created_at, role)
-        VALUES (#{username}, #{password}, "", now(), "user");
+        VALUES (#{username}, #{password}, #{email}, now(), #{role});
     </insert>
 
     <!-- 添加根据账号名称删除数据的 SQL 语句 -->

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="开发用户列表接口">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="完成用户列表得权限隔离">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" afterDir="false" />
@@ -108,7 +108,7 @@
       <workItem from="1735634594641" duration="6215000" />
       <workItem from="1735725088917" duration="10319000" />
       <workItem from="1735802629856" duration="11180000" />
-      <workItem from="1735822792143" duration="1018000" />
+      <workItem from="1735822792143" duration="3208000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -159,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1735810503198</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="完成用户列表得权限隔离">
+      <created>1735823903353</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1735823903353</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +191,8 @@
     <MESSAGE value="开发删除用户接口" />
     <MESSAGE value="优化代码接口，改造登录接口" />
     <MESSAGE value="开发用户列表接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="开发用户列表接口" />
+    <MESSAGE value="完成用户列表得权限隔离" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成用户列表得权限隔离" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

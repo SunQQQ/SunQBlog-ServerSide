@@ -10,7 +10,7 @@ public interface LoginMapper {
 
     List<user> getPassword(String username);
 
-    int register(String username,String password);
+    int register(String username,String password,String email,String role);
 
     int deleteByUsername(String username);
 }

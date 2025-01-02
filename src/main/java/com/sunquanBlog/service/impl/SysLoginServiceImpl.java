@@ -33,7 +33,7 @@ public class SysLoginServiceImpl implements SysLoginService {
         }
     }
 
-    public ApiResponse<String> register(String username, String password){
+    public ApiResponse<String> register(String username, String password,String email,String role){
         // 检查账号是否重复
         List<user> list = loginMapper.getPassword(username);
         boolean haveAccount = list.size() > 0;
@@ -41,7 +41,7 @@ public class SysLoginServiceImpl implements SysLoginService {
         if (haveAccount) {
             return ApiResponse.error(500, "账号已存在，请修改账号");
         } else {
-            int insertNum = loginMapper.register(username, password);
+            int insertNum = loginMapper.register(username, password,email,role);
             if (insertNum > 0) {
                 return ApiResponse.success("注册成功");
             } else {

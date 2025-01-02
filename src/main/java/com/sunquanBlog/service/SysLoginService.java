@@ -11,7 +11,7 @@ import java.util.List;
 public interface SysLoginService {
     public ApiResponse<user> checkLogin(String username, String password);
 
-    public ApiResponse<String> register(String username, String password);
+    public ApiResponse<String> register(String username, String password,String email,String role);
 
     public ApiResponse deleteByUsername(String username);
 

@@ -38,8 +38,10 @@ public class SysLoginController {
     public ApiResponse register(@RequestBody Map<String, String> loginRequest) {
         String username = loginRequest.get("username");
         String password = loginRequest.get("password");
+        String email = loginRequest.get("email");
+        String role = loginRequest.get("role");
 
-        return sysLoginService.register(username, password);
+        return sysLoginService.register(username, password,email,role);
     }
 
     /**
