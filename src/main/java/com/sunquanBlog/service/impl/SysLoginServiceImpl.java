@@ -1,5 +1,6 @@
 package com.sunquanBlog.service.impl;
 
+import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.user;
 import com.sunquanBlog.service.SysLoginService;
@@ -16,50 +17,47 @@ public class SysLoginServiceImpl implements SysLoginService {
 
     @Autowired
     private LoginMapper loginMapper;
-    public HashMap checkLogin(String username, String password){
-        HashMap result = new HashMap<String,String>();
-
+    public ApiResponse<user> checkLogin(String username, String password){
         List<user> list = loginMapper.getPassword(username);
         String tablePassword;
         if(list.size() == 1){
             tablePassword = list.get(0).getPassword();
-            System.out.println(tablePassword);
 
             if(tablePassword.equals(password)){
-                result.put("status","success");
+                return ApiResponse.success(list.get(0));
             }else{
-                result.put("status","failure");
-                result.put("version","password error");
+                return ApiResponse.error(500,"密码错误");
             }
         }else {
-            result.put("status","failure");
-            result.put("version","username error");
+            return ApiResponse.error(500,"账号不存在");
         }
-
-
-        return result;
     }
 
-    public boolean haveAccount(String username){
+    public ApiResponse<String> register(String username, String password){
+        // 检查账号是否重复
         List<user> list = loginMapper.getPassword(username);
+        boolean haveAccount = list.size() > 0;
 
-        if(list.size() > 0){
-            return true;
-        }else {
-            return false;
+        if (haveAccount) {
+            return ApiResponse.error(500, "账号已存在，请修改账号");
+        } else {
+            int insertNum = loginMapper.register(username, password);
+            if (insertNum > 0) {
+                return ApiResponse.success("注册成功");
+            } else {
+                return ApiResponse.error(500, "注册失败请联系博主");
+            }
         }
-    }
-
-    public int register(String username, String password){
-
-        int insertNum = loginMapper.register(username,password);
-
-        return insertNum;
     }
 
     @Override
-    public int deleteByUsername(String username) {
+    public ApiResponse deleteByUsername(String username) {
         int deleteNum = loginMapper.deleteByUsername(username);
-        return deleteNum;
+
+        if (deleteNum == 1) {
+            return ApiResponse.success("删除成功");
+        } else {
+            return ApiResponse.error(500, "删除失败");
+        }
     }
 }

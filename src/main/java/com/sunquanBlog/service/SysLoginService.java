@@ -1,5 +1,6 @@
 package com.sunquanBlog.service;
 
+import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.model.user;
 import org.springframework.stereotype.Service;
 
@@ -8,11 +9,9 @@ import java.util.List;
 
 @Service
 public interface SysLoginService {
-    public HashMap checkLogin(String username, String password);
+    public ApiResponse<user> checkLogin(String username, String password);
 
-    public boolean haveAccount(String username);
+    public ApiResponse<String> register(String username, String password);
 
-    public int register(String username, String password);
-
-    public int deleteByUsername(String username);
+    public ApiResponse deleteByUsername(String username);
 }
