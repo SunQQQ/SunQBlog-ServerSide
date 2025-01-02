@@ -18,7 +18,6 @@ public class SysLoginController {
 
     /**
      * 登录接口
-     *
      * @param loginRequest
      * @return
      */
@@ -32,7 +31,6 @@ public class SysLoginController {
 
     /**
      * 注册接口
-     *
      * @param loginRequest
      * @return
      */
@@ -44,9 +42,15 @@ public class SysLoginController {
         return sysLoginService.register(username, password);
     }
 
+    /**
+     * 删除账号接口
+     * @param deleteRequest
+     * @return
+     */
     @PostMapping("/deleteByUser")
     public ApiResponse deleteByUser(@RequestBody Map<String, String> deleteRequest) {
         String username = deleteRequest.get("username");
+
         return sysLoginService.deleteByUsername(username);
     }
 }
