@@ -1,14 +1,14 @@
 package com.sunquanBlog.mapper;
 
-import com.sunquanBlog.model.user;
+import com.sunquanBlog.model.User;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
 public interface LoginMapper {
-    List<user> getAllUser(String role,String username);
+    List<User> getAllUser(String role, String username);
 
-    List<user> getPassword(String username);
+    List<User> getPassword(String username);
 
     int register(String username,String password,String email,String role);
 

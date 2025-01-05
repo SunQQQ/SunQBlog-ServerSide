@@ -2,7 +2,7 @@ package com.sunquanBlog.model;
 
 import java.time.LocalDateTime;
 
-public class user {
+public class User {
     private Long id;
     private String name;
     private String password;

@@ -1,15 +1,15 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.common.util.JwtUtil;
+import com.sunquanBlog.common.util.UserAuthResponse;
 import com.sunquanBlog.mapper.LoginMapper;
-import com.sunquanBlog.model.user;
+import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -17,14 +17,17 @@ public class SysLoginServiceImpl implements SysLoginService {
 
     @Autowired
     private LoginMapper loginMapper;
-    public ApiResponse<user> checkLogin(String username, String password){
-        List<user> list = loginMapper.getPassword(username);
+    public ApiResponse<UserAuthResponse> checkLogin(String username, String password){
+        List<User> list = loginMapper.getPassword(username);
         String tablePassword;
         if(list.size() == 1){
             tablePassword = list.get(0).getPassword();
-
+            JwtUtil jwtUtil = new JwtUtil();
             if(tablePassword.equals(password)){
-                return ApiResponse.success(list.get(0));
+                User userInfo = list.get(0);
+                String token = jwtUtil.generateToken(userInfo);
+                UserAuthResponse userAuthResponse = new UserAuthResponse(token, userInfo);
+                return ApiResponse.success(userAuthResponse);
             }else{
                 return ApiResponse.error(500,"密码错误");
             }
@@ -35,7 +38,7 @@ public class SysLoginServiceImpl implements SysLoginService {
 
     public ApiResponse<String> register(String username, String password,String email,String role){
         // 检查账号是否重复
-        List<user> list = loginMapper.getPassword(username);
+        List<User> list = loginMapper.getPassword(username);
         boolean haveAccount = list.size() > 0;
 
         if (haveAccount) {

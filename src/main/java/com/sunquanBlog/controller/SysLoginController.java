@@ -1,14 +1,13 @@
 package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
-import com.sunquanBlog.model.user;
+import com.sunquanBlog.common.util.UserAuthResponse;
+import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,7 +21,7 @@ public class SysLoginController {
      * @return
      */
     @PostMapping("/login")
-    public ApiResponse<user> login(@RequestBody Map<String, String> loginRequest) {
+    public ApiResponse<UserAuthResponse> login(@RequestBody Map<String, String> loginRequest) {
         String username = loginRequest.get("username");
         String password = loginRequest.get("password");
 
