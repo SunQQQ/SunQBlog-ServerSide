@@ -11,6 +11,9 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 import java.util.Date;
 
+/**
+ * 处理token的公共方法
+ */
 public class JwtUtil {
     private static final String SECRET_KEY = "your_secret_key";
 
@@ -27,21 +30,9 @@ public class JwtUtil {
 
     // 验证 Token
     public static Claims validateToken(String token) throws Exception {
-        try {
-            return Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (ExpiredJwtException e) {
-            throw new Exception("Token 已过期", e);
-        } catch (UnsupportedJwtException e) {
-            throw new Exception("Token 格式不支持", e);
-        } catch (MalformedJwtException e) {
-            throw new Exception("Token 无效", e);
-        } catch (SignatureException e) {
-            throw new Exception("Token 签名无效", e);
-        } catch (IllegalArgumentException e) {
-            throw new Exception("Token 参数无效", e);
-        }
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
