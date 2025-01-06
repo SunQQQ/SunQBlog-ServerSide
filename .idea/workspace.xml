@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="完成鉴权逻辑">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="启动心声管理">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/DemoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/DemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/UserAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/UserAuthResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2qWya4mbdDerjwnhSmZqvTuXeuO" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -83,10 +80,23 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />
-      <module name="SunQBlog-ServerSide" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunquanBlog.DemoApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-23 (2)" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunquanBlog.SunqBlogApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
