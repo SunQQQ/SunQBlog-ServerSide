@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="添加登录的token生成逻辑">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/config/JwtInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/config/WebConfig.java" afterDir="false" />
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="完成鉴权逻辑">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/DemoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/UserAuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/common/util/UserAuthResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,8 @@
       <workItem from="1735802629856" duration="11180000" />
       <workItem from="1735822792143" duration="4110000" />
       <workItem from="1735899412634" duration="16000" />
-      <workItem from="1736046461778" duration="16678000" />
+      <workItem from="1736046461778" duration="16976000" />
+      <workItem from="1736128297264" duration="4596000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -184,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736073642288</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="完成鉴权逻辑">
+      <created>1736089377586</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736089377586</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +220,8 @@
     <MESSAGE value="完成用户列表得权限隔离" />
     <MESSAGE value="优化注册接口" />
     <MESSAGE value="添加登录的token生成逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加登录的token生成逻辑" />
+    <MESSAGE value="完成鉴权逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成鉴权逻辑" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -224,11 +233,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sunquanBlog/config/JwtInterceptor.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -3,7 +3,7 @@ package com.sunquanBlog.common.util;
 import com.sunquanBlog.model.User;
 
 /**
- * 处理用户鉴权相关
+ * 处理用户鉴权，将用户和鉴权信息放在一个对象中
  */
 public class UserAuthResponse {
     private String token;
