@@ -1,11 +1,15 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.mapper.HeartFeltMapper;
 import com.sunquanBlog.service.HeartFeltService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HeartFeltServiceImpl implements HeartFeltService {
+    @Autowired
+    private HeartFeltMapper heartFeltMapper;
     @Override
     public ApiResponse editHeartFelt(String username, String password) {
         return null;
@@ -22,7 +26,8 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     }
 
     @Override
-    public ApiResponse getHeartFelt(String role, String username) {
-        return null;
+    public ApiResponse getHeartFeltList() {
+
+        return ApiResponse.success(heartFeltMapper.getAllHeartFelt());
     }
 }

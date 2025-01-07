@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.HeartFeltMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.HeartFelt">
+        <id column="id" property="id"/>
+        <id column="content" property="content"/>
+        <id column="writer" property="writer"/>
+        <id column="creater" property="creater"/>
+        <id column="create_time" property="create_time"/>
+    </resultMap>
+
+    <select id="getAllHeartFelt" resultMap="indexResultMap">
+        select *
+        from heart_felt
+    </select>
+</mapper>
+

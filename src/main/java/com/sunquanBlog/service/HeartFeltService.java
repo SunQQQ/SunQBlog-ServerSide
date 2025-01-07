@@ -12,5 +12,5 @@ public interface HeartFeltService {
 
     public ApiResponse deleteHeartFelt(String username);
 
-    public ApiResponse getHeartFelt(String role,String username);
+    public ApiResponse getHeartFeltList();
 }
