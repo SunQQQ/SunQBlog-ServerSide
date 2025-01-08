@@ -12,4 +12,6 @@ public interface HeartFeltMapper {
     int createHeartFelt(String content,String writer,String creater);
 
     int deleteHeart(int id);
+
+    int updateHeartFelt(int id,String content,String writer,String creater);
 }

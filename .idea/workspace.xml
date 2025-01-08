@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="开发心声管理新增接口">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="开发心声管理删除接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
@@ -134,6 +135,7 @@
       <workItem from="1736156686655" duration="795000" />
       <workItem from="1736231149056" duration="9140000" />
       <workItem from="1736305163100" duration="4859000" />
+      <workItem from="1736344524335" duration="1990000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>

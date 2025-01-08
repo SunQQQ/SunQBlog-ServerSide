@@ -29,5 +29,14 @@
         from heart_felt
         where id = #{id}
     </delete>
+
+    <update id="updateHeartFelt">
+        update heart_felt
+        set content = #{content},
+            writer = #{writer},
+            creater = #{creater},
+            create_time = now()
+        where id = #{id}
+    </update>
 </mapper>
 

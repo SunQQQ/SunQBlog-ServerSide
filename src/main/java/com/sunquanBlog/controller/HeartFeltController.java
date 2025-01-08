@@ -1,6 +1,7 @@
 package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.model.HeartFelt;
 import com.sunquanBlog.service.HeartFeltService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,16 @@ public class HeartFeltController {
     public ApiResponse deleteHeartFelt(@RequestBody Map<String,Integer> requestBody){
 
         return heartFeltService.deleteHeartFelt(requestBody.get("id"));
+    }
+
+    @PostMapping("/editHeartfelt")
+    public ApiResponse editHeartfelt(@RequestBody HeartFelt requestBody){
+        int id = requestBody.getId();
+        String content = requestBody.getContent();
+        String writer = requestBody.getWriter();
+        String creater = requestBody.getCreater();
+
+        return ApiResponse.success(heartFeltService.editHeartFelt(id,content,writer,creater));
     }
 }
 

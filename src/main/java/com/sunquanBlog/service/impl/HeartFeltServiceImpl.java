@@ -11,8 +11,13 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     @Autowired
     private HeartFeltMapper heartFeltMapper;
     @Override
-    public ApiResponse editHeartFelt(String username, String password) {
-        return null;
+    public ApiResponse editHeartFelt(Integer id,String content,String writer,String creater) {
+        int updateNum = heartFeltMapper.updateHeartFelt(id,content,writer,creater);
+        if(updateNum == 1){
+            return ApiResponse.success("更新成功");
+        }else {
+            return ApiResponse.error(500,"更新失败");
+        }
     }
 
     @Override
