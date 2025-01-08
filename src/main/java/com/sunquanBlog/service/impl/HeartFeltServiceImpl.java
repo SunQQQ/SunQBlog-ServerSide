@@ -16,8 +16,13 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     }
 
     @Override
-    public ApiResponse createHeartFelt(String username, String password, String email, String role) {
-        return null;
+    public ApiResponse createHeartFelt(String content,String writer,String creater) {
+        int createNum = heartFeltMapper.createHeartFelt(content,writer,creater);
+        if(createNum == 1){
+            return ApiResponse.success("创建成功");
+        }else {
+            return ApiResponse.error(400,"创建失败，请留言");
+        }
     }
 
     @Override

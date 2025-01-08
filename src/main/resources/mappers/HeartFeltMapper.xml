@@ -6,15 +6,22 @@
 <mapper namespace="com.sunquanBlog.mapper.HeartFeltMapper">
     <resultMap id="indexResultMap" type="com.sunquanBlog.model.HeartFelt">
         <id column="id" property="id"/>
-        <id column="content" property="content"/>
-        <id column="writer" property="writer"/>
-        <id column="creater" property="creater"/>
-        <id column="create_time" property="create_time"/>
+        <result column="content" property="content"/>
+        <result column="writer" property="writer"/>
+        <result column="creater" property="creater"/>
+        <result column="create_time" property="create_time"/>
     </resultMap>
 
     <select id="getAllHeartFelt" resultMap="indexResultMap">
         select *
         from heart_felt
     </select>
+
+    <insert id="createHeartFelt">
+        insert into heart_felt
+            (content,writer,creater,create_time)
+        values
+            (#{content},#{writer},#{creater},now())
+    </insert>
 </mapper>
 

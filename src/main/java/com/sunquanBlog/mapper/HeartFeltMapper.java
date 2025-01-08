@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface HeartFeltMapper {
     List<HeartFelt> getAllHeartFelt();
+
+    int createHeartFelt(String content,String writer,String creater);
 }
