@@ -21,13 +21,17 @@ public class HeartFeltServiceImpl implements HeartFeltService {
         if(createNum == 1){
             return ApiResponse.success("创建成功");
         }else {
-            return ApiResponse.error(400,"创建失败，请留言");
+            return ApiResponse.error(500,"创建失败，请留言");
         }
     }
 
     @Override
-    public ApiResponse deleteHeartFelt(String username) {
-        return null;
+    public ApiResponse deleteHeartFelt(int id) {
+        if(heartFeltMapper.deleteHeart(id) == 1){
+            return ApiResponse.success("删除成功");
+        }else {
+            return ApiResponse.error(500,"删除失败");
+        }
     }
 
     @Override

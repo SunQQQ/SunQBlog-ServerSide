@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="完成心声管理新增接口">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="开发心声管理新增接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
@@ -134,7 +133,7 @@
       <workItem from="1736128297264" duration="4596000" />
       <workItem from="1736156686655" duration="795000" />
       <workItem from="1736231149056" duration="9140000" />
-      <workItem from="1736305163100" duration="4086000" />
+      <workItem from="1736305163100" duration="4859000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -227,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736254162065</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="开发心声管理新增接口">
+      <created>1736319022251</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1736319022251</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +264,7 @@
     <MESSAGE value="完成鉴权逻辑" />
     <MESSAGE value="恢复2.0主应用" />
     <MESSAGE value="完成心声管理新增接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成心声管理新增接口" />
+    <MESSAGE value="开发心声管理新增接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="开发心声管理新增接口" />
   </component>
 </project>

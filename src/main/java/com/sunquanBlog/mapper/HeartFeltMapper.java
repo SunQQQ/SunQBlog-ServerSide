@@ -10,4 +10,6 @@ public interface HeartFeltMapper {
     List<HeartFelt> getAllHeartFelt();
 
     int createHeartFelt(String content,String writer,String creater);
+
+    int deleteHeart(int id);
 }

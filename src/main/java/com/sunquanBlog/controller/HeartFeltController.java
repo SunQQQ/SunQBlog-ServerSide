@@ -29,6 +29,12 @@ public class HeartFeltController {
         
         return heartFeltService.createHeartFelt(content,writer,creater);
     }
+
+    @PostMapping("/deleteHeartFelt")
+    public ApiResponse deleteHeartFelt(@RequestBody Map<String,Integer> requestBody){
+
+        return heartFeltService.deleteHeartFelt(requestBody.get("id"));
+    }
 }
 
 

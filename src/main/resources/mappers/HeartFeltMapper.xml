@@ -23,5 +23,11 @@
         values
             (#{content},#{writer},#{creater},now())
     </insert>
+
+    <delete id="deleteHeart">
+        delete
+        from heart_felt
+        where id = #{id}
+    </delete>
 </mapper>
 

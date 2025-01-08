@@ -10,7 +10,7 @@ public interface HeartFeltService {
 
     public ApiResponse createHeartFelt(String content,String writer,String creater);
 
-    public ApiResponse deleteHeartFelt(String username);
+    public ApiResponse deleteHeartFelt(int id);
 
     public ApiResponse getHeartFeltList();
 }
