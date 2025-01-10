@@ -24,9 +24,12 @@ public class HeartFeltController {
     private SysLoginService sysLoginService;
 
     @PostMapping("/heartfeltList")
-    public ApiResponse heartfeltList(){
+    public ApiResponse heartfeltList(HttpServletRequest request){
+        // 从token获取用户Id
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
 
-        return heartFeltService.getHeartFeltList();
+        return heartFeltService.getHeartFeltList(userId);
     }
 
     @PostMapping("/createHeartfelt")

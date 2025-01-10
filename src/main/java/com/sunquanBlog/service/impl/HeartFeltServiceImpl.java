@@ -2,9 +2,13 @@ package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.HeartFeltMapper;
+import com.sunquanBlog.model.HeartFelt;
 import com.sunquanBlog.service.HeartFeltService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class HeartFeltServiceImpl implements HeartFeltService {
@@ -40,8 +44,8 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     }
 
     @Override
-    public ApiResponse getHeartFeltList() {
-
-        return ApiResponse.success(heartFeltMapper.getAllHeartFelt());
+    public ApiResponse getHeartFeltList(Integer id) {
+        List<HeartFelt> heartFeltList = heartFeltMapper.getAllHeartFelt(id);
+        return ApiResponse.success(heartFeltList);
     }
 }

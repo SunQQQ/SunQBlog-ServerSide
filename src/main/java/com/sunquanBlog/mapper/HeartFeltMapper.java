@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface HeartFeltMapper {
-    List<HeartFelt> getAllHeartFelt();
+    List<HeartFelt> getAllHeartFelt(Integer id);
 
     int createHeartFelt(String content,String writer,Integer creater);
 

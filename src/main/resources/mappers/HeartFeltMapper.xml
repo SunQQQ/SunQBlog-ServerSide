@@ -15,6 +15,7 @@
     <select id="getAllHeartFelt" resultMap="indexResultMap">
         select *
         from heart_felt
+        where creater_id = #{id}
     </select>
 
     <insert id="createHeartFelt">
