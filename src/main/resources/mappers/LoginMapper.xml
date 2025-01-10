@@ -41,5 +41,11 @@
         FROM user
         WHERE name = #{username}
     </delete>
+
+    <select id="getUserById" resultMap="indexResultMap">
+        select *
+        from user
+        where id = #{id}
+    </select>
 </mapper>
 

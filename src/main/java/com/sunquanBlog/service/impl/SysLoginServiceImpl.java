@@ -68,4 +68,9 @@ public class SysLoginServiceImpl implements SysLoginService {
     public ApiResponse getAllUser(String role,String username) {
         return ApiResponse.success(loginMapper.getAllUser(role,username));
     }
+
+    @Override
+    public User getUserById(Integer id) {
+        return loginMapper.getUserById(id);
+    }
 }

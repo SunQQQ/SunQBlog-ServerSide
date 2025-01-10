@@ -14,4 +14,6 @@ public interface SysLoginService {
     public ApiResponse deleteByUsername(String username);
 
     public ApiResponse getAllUser(String role,String username);
+
+    public User getUserById(Integer id);
 }

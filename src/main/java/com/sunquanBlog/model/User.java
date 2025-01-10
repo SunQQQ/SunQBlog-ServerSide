@@ -3,7 +3,7 @@ package com.sunquanBlog.model;
 import java.time.LocalDateTime;
 
 public class User {
-    private Long id;
+    private Integer id;
     private String name;
     private String password;
     private String email;
@@ -12,11 +12,11 @@ public class User {
     private String role;
 
     // 生成 setter 和 getter
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

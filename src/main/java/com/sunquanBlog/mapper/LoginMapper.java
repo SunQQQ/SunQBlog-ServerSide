@@ -13,4 +13,6 @@ public interface LoginMapper {
     int register(String username,String password,String email,String role);
 
     int deleteByUsername(String username);
+
+    User getUserById(Integer id);
 }
