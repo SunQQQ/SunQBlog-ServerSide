@@ -34,13 +34,11 @@ public class HeartFeltController {
         // 从token获取用户Id
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
-        // 从库里获取用户姓名，前端无需传入
-        User userInfo = sysLoginService.getUserById(userId);
 
         String content = requestBody.get("content");
         String writer = requestBody.get("writer");
         
-        return heartFeltService.createHeartFelt(content,writer,userInfo.getName());
+        return heartFeltService.createHeartFelt(content,writer,userId);
     }
 
     @PostMapping("/deleteHeartFelt")

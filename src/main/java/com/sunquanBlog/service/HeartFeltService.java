@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public interface HeartFeltService {
     public ApiResponse editHeartFelt(Integer id,String content,String writer,String creater);
 
-    public ApiResponse createHeartFelt(String content,String writer,String creater);
+    public ApiResponse createHeartFelt(String content,String writer,Integer creater);
 
     public ApiResponse deleteHeartFelt(int id);
 

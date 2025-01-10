@@ -9,7 +9,7 @@ import java.util.List;
 public interface HeartFeltMapper {
     List<HeartFelt> getAllHeartFelt();
 
-    int createHeartFelt(String content,String writer,String creater);
+    int createHeartFelt(String content,String writer,Integer creater);
 
     int deleteHeart(int id);
 

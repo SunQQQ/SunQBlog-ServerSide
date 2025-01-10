@@ -8,7 +8,7 @@
         <id column="id" property="id"/>
         <result column="content" property="content"/>
         <result column="writer" property="writer"/>
-        <result column="creater" property="creater"/>
+        <result column="creater_id" property="creater_id"/>
         <result column="create_time" property="create_time"/>
     </resultMap>
 
@@ -19,7 +19,7 @@
 
     <insert id="createHeartFelt">
         insert into heart_felt
-            (content,writer,creater,create_time)
+            (content,writer,creater_id,create_time)
         values
             (#{content},#{writer},#{creater},now())
     </insert>
@@ -34,7 +34,7 @@
         update heart_felt
         set content = #{content},
             writer = #{writer},
-            creater = #{creater},
+            creater_id = #{creater},
             create_time = now()
         where id = #{id}
     </update>

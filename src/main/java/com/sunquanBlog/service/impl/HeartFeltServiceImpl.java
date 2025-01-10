@@ -21,7 +21,7 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     }
 
     @Override
-    public ApiResponse createHeartFelt(String content,String writer,String creater) {
+    public ApiResponse createHeartFelt(String content,String writer,Integer creater) {
         int createNum = heartFeltMapper.createHeartFelt(content,writer,creater);
         if(createNum == 1){
             return ApiResponse.success("创建成功");
