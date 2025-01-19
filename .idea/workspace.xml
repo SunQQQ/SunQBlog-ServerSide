@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="优化读取心声列表接口，根据用户id数据隔离">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +137,7 @@
       <workItem from="1736471589711" duration="14571000" />
       <workItem from="1737010699068" duration="58000" />
       <workItem from="1737297518677" duration="4334000" />
-      <workItem from="1737302740627" duration="3218000" />
+      <workItem from="1737302740627" duration="4221000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -268,7 +265,21 @@
       <option name="project" value="LOCAL" />
       <updated>1736496708479</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可">
+      <created>1737306258615</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1737306258615</updated>
+    </task>
+    <task id="LOCAL-00020" summary="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可">
+      <created>1737306380470</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1737306380470</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +314,8 @@
     <MESSAGE value="优化创建心声接口，前端不再传入用户信息，直接从token获取并查询" />
     <MESSAGE value="优化创建心声接口，创建人改为存登录用户的用户id" />
     <MESSAGE value="优化读取心声列表接口，根据用户id数据隔离" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化读取心声列表接口，根据用户id数据隔离" />
+    <MESSAGE value="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

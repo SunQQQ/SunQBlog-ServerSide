@@ -71,6 +71,8 @@ public class SysLoginServiceImpl implements SysLoginService {
     public ApiResponse getAllUser(Integer userId) {
         User user = getUserById(userId);
 
+        // 无需从body中获取任何信息，直接根据token的id查到该用户的角色
+        // 非管理员只返回自己数据，管理员返回所有用户
         if(user.getRole().equals("master")){
             return ApiResponse.success(loginMapper.getAllUser());
         }else{
