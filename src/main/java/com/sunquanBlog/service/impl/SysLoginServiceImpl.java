@@ -7,10 +7,13 @@ import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SysLoginServiceImpl implements SysLoginService {
@@ -65,8 +68,16 @@ public class SysLoginServiceImpl implements SysLoginService {
     }
 
     @Override
-    public ApiResponse getAllUser(String role,String username) {
-        return ApiResponse.success(loginMapper.getAllUser(role,username));
+    public ApiResponse getAllUser(Integer userId) {
+        User user = getUserById(userId);
+
+        if(user.getRole().equals("master")){
+            return ApiResponse.success(loginMapper.getAllUser());
+        }else{
+            List<User> userList = new ArrayList<>();
+            userList.add(user);
+            return ApiResponse.success(userList);
+        }
     }
 
     @Override

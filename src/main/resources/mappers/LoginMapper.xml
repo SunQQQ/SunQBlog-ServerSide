@@ -16,11 +16,6 @@
     <select id="getAllUser" resultMap="indexResultMap">
         SELECT *
         FROM user
-        <if test="role == 'user'">
-            where
-              role = #{role}
-              and name = #{username}
-        </if>
     </select>
 
     <select id="getPassword" resultMap="indexResultMap">

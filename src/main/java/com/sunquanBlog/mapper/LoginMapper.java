@@ -6,7 +6,7 @@ import java.util.List;
 
 @Mapper
 public interface LoginMapper {
-    List<User> getAllUser(String role, String username);
+    List<User> getAllUser();
 
     List<User> getPassword(String username);
 

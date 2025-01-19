@@ -5,9 +5,11 @@ import com.sunquanBlog.common.util.UserAuthResponse;
 import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
@@ -61,10 +63,13 @@ public class SysLoginController {
      * @return
      */
     @PostMapping("/userList")
-    public ApiResponse userList(@RequestBody Map<String,String> roleReq){
-        String role = roleReq.get("role");
-        String username = roleReq.get("username");
+    public ApiResponse<String> userList(HttpServletRequest request){
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
 
-        return sysLoginService.getAllUser(role,username);
+
+
+        return sysLoginService.getAllUser(userId);
+//        return new ApiResponse<>();
     }
 }
