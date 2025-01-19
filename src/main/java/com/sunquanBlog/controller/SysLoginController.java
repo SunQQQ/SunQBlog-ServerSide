@@ -67,9 +67,6 @@ public class SysLoginController {
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-
-
         return sysLoginService.getAllUser(userId);
-//        return new ApiResponse<>();
     }
 }
