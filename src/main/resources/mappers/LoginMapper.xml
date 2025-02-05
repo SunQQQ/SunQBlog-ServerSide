@@ -26,8 +26,8 @@
 
     <insert id="register">
         INSERT INTO user
-            (name, password, email, created_at, role)
-        VALUES (#{username}, #{password}, #{email}, now(), #{role});
+            (name, password, email, created_at, role,modify_time)
+        VALUES (#{username}, #{password}, #{email}, now(), #{role},now());
     </insert>
 
     <!-- 添加根据账号名称删除数据的 SQL 语句 -->
@@ -42,5 +42,16 @@
         from user
         where id = #{id}
     </select>
+
+    <update id="updateUser">
+        update
+            user
+        set name = #{params.username},
+            password = #{params.password},
+            email = #{params.email},
+            role = #{params.role},
+            modify_time = now()
+        where id = #{params.id}
+    </update>
 </mapper>
 

@@ -86,4 +86,15 @@ public class SysLoginServiceImpl implements SysLoginService {
     public User getUserById(Integer id) {
         return loginMapper.getUserById(id);
     }
+
+    @Override
+    public ApiResponse updateUser(Map<String,Object> map){
+        int updateNum = loginMapper.updateUser(map);
+
+        if (updateNum == 1) {
+            return ApiResponse.success("修改成功");
+        } else {
+            return ApiResponse.error(500, "修改失败");
+        }
+    }
 }

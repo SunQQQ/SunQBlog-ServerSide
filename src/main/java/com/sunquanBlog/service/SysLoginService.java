@@ -5,6 +5,8 @@ import com.sunquanBlog.common.util.UserAuthResponse;
 import com.sunquanBlog.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public interface SysLoginService {
     public ApiResponse<UserAuthResponse> checkLogin(String username, String password);
@@ -16,4 +18,6 @@ public interface SysLoginService {
     public ApiResponse getAllUser(Integer userId);
 
     public User getUserById(Integer id);
+
+    public ApiResponse<String> updateUser(Map<String,Object> map);
 }

@@ -7,7 +7,10 @@
     <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +140,8 @@
       <workItem from="1736471589711" duration="14571000" />
       <workItem from="1737010699068" duration="58000" />
       <workItem from="1737297518677" duration="4334000" />
-      <workItem from="1737302740627" duration="4221000" />
+      <workItem from="1737302740627" duration="6533000" />
+      <workItem from="1737352517739" duration="2575000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -279,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1737306380470</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可">
+      <created>1737307205759</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1737307205759</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,19 +327,5 @@
     <MESSAGE value="优化读取心声列表接口，根据用户id数据隔离" />
     <MESSAGE value="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可" />
     <option name="LAST_COMMIT_MESSAGE" value="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java</url>
-          <line>16</line>
-          <properties class="com.sunquanBlog.mapper.LoginMapper" method="getUserById">
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

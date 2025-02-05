@@ -17,6 +17,8 @@ public class SysLoginController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    @Autowired
+    private HttpServletRequest commonRequest;
     /**
      * 登录接口
      * @param loginRequest
@@ -68,5 +70,14 @@ public class SysLoginController {
         Integer userId = claims.get("id", Integer.class);
 
         return sysLoginService.getAllUser(userId);
+    }
+
+    @PostMapping("/updateUser")
+    public ApiResponse<String> updateUser(@RequestBody Map<String, Object> req){
+        Claims claims = (Claims) commonRequest.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+        req.put("id",userId);
+
+        return sysLoginService.updateUser(req);
     }
 }
