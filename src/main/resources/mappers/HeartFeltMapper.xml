@@ -15,7 +15,11 @@
     <select id="getAllHeartFelt" resultMap="indexResultMap">
         select *
         from heart_felt
-        where creater_id = #{id}
+        <where>
+            <if test="role != 'master'">
+                creater_id = #{id}
+            </if>
+        </where>
     </select>
 
     <insert id="createHeartFelt">

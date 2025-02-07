@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="开发修改用户">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LoginMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/LoginMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/HeartFeltMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/HeartFeltMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +140,9 @@
       <workItem from="1737297518677" duration="4334000" />
       <workItem from="1737302740627" duration="6533000" />
       <workItem from="1737352517739" duration="2575000" />
-      <workItem from="1738748778885" duration="366000" />
+      <workItem from="1738748778885" duration="1133000" />
+      <workItem from="1738814161705" duration="3146000" />
+      <workItem from="1738894394772" duration="1747000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -298,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1738749066246</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="开发修改用户">
+      <created>1738749577457</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1738749577457</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
