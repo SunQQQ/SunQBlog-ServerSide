@@ -8,13 +8,25 @@
         <id column="id" property="id"/>
         <result column="content" property="content"/>
         <result column="writer" property="writer"/>
-        <result column="creater_id" property="creater_id"/>
+        <result column="create_name" property="create_name"/>
         <result column="create_time" property="create_time"/>
     </resultMap>
 
     <select id="getAllHeartFelt" resultMap="indexResultMap">
-        select *
-        from heart_felt
+        select
+            heart.content,
+            heart.create_time,
+            <if test="role == 'master'">
+                user.name create_name,
+            </if>
+            <if test="role != 'master'">
+                "" create_name,
+            </if>
+            heart.writer
+        from
+            heart_felt heart
+        left join user user
+            on user.id = heart.creater_id
         <where>
             <if test="role != 'master'">
                 creater_id = #{id}

@@ -7,7 +7,7 @@ public class HeartFelt {
     private Integer id;
     private String content;
     private String writer;
-    private String creater_id;
+    private String create_name;
     private LocalDateTime create_time;
 
     public Integer getId() {
@@ -35,11 +35,11 @@ public class HeartFelt {
     }
 
     public String getCreater() {
-        return creater_id;
+        return create_name;
     }
 
-    public void setCreater(String creater_id) {
-        this.creater_id = creater_id;
+    public void setCreater(String create_name) {
+        this.create_name = create_name;
     }
 
     public LocalDateTime getCreate_time() {
