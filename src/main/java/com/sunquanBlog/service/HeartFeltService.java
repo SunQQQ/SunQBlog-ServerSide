@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface HeartFeltService {
-    public ApiResponse editHeartFelt(Integer id,String content,String writer,String creater);
+    public ApiResponse editHeartFelt(Integer id,String content,String writer);
 
     public ApiResponse createHeartFelt(String content,String writer,Integer creater);
 

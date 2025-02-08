@@ -19,8 +19,8 @@ public class HeartFeltServiceImpl implements HeartFeltService {
     @Autowired
     private LoginMapper loginMapper;
     @Override
-    public ApiResponse editHeartFelt(Integer id,String content,String writer,String creater) {
-        int updateNum = heartFeltMapper.updateHeartFelt(id,content,writer,creater);
+    public ApiResponse editHeartFelt(Integer id,String content,String writer) {
+        int updateNum = heartFeltMapper.updateHeartFelt(id,content,writer);
         if(updateNum == 1){
             return ApiResponse.success("更新成功");
         }else {

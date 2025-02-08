@@ -55,9 +55,8 @@ public class HeartFeltController {
         int id = requestBody.getId();
         String content = requestBody.getContent();
         String writer = requestBody.getWriter();
-        String creater = requestBody.getCreater();
 
-        return ApiResponse.success(heartFeltService.editHeartFelt(id,content,writer,creater));
+        return ApiResponse.success(heartFeltService.editHeartFelt(id,content,writer));
     }
 }
 

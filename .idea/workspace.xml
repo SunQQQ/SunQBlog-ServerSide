@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="心声管理调整为管理员可以看到所有，普通用户只能看到自己的数据">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="心声管理管理员正常返回创建人呢，普通用户创建人字段返回空">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/HeartFelt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/HeartFelt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/HeartFeltController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/HeartFeltMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/HeartFeltService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/HeartFeltServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/HeartFeltMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/HeartFeltMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +147,7 @@
       <workItem from="1738894394772" duration="1747000" />
       <workItem from="1738924411170" duration="4814000" />
       <workItem from="1738930600665" duration="343000" />
-      <workItem from="1738977785625" duration="3244000" />
+      <workItem from="1738977785625" duration="4491000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -314,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1738924615062</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="心声管理管理员正常返回创建人呢，普通用户创建人字段返回空">
+      <created>1738981889105</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1738981889105</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,6 +362,7 @@
     <MESSAGE value="优化用户列表接口，无需额外接收参数，直接从token获取id来查询即可" />
     <MESSAGE value="开发修改用户" />
     <MESSAGE value="心声管理调整为管理员可以看到所有，普通用户只能看到自己的数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="心声管理调整为管理员可以看到所有，普通用户只能看到自己的数据" />
+    <MESSAGE value="心声管理管理员正常返回创建人呢，普通用户创建人字段返回空" />
+    <option name="LAST_COMMIT_MESSAGE" value="心声管理管理员正常返回创建人呢，普通用户创建人字段返回空" />
   </component>
 </project>

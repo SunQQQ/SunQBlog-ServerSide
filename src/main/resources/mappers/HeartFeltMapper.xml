@@ -14,6 +14,7 @@
 
     <select id="getAllHeartFelt" resultMap="indexResultMap">
         select
+            heart.id,
             heart.content,
             heart.create_time,
             <if test="role == 'master'">
@@ -51,7 +52,6 @@
         update heart_felt
         set content = #{content},
             writer = #{writer},
-            creater_id = #{creater},
             create_time = now()
         where id = #{id}
     </update>

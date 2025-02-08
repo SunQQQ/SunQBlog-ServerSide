@@ -13,5 +13,5 @@ public interface HeartFeltMapper {
 
     int deleteHeart(int id);
 
-    int updateHeartFelt(int id,String content,String writer,String creater);
+    int updateHeartFelt(int id,String content,String writer);
 }
