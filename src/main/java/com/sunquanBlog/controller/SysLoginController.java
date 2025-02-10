@@ -39,12 +39,15 @@ public class SysLoginController {
      */
     @PostMapping("/register")
     public ApiResponse register(@RequestBody Map<String, String> loginRequest) {
+        Claims claims = (Claims) commonRequest.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+
         String username = loginRequest.get("username");
         String password = loginRequest.get("password");
         String email = loginRequest.get("email");
         String role = loginRequest.get("role");
 
-        return sysLoginService.register(username, password,email,role);
+        return sysLoginService.register(userId,username, password,email,role);
     }
 
     /**

@@ -39,7 +39,15 @@ public class SysLoginServiceImpl implements SysLoginService {
         }
     }
 
-    public ApiResponse<String> register(String username, String password,String email,String role){
+    /**
+     * 此接口供管理员使用，需要验证token及role
+     * @param username
+     * @param password
+     * @param email
+     * @param role
+     * @return
+     */
+    public ApiResponse<String> register(Integer userId,String username, String password,String email,String role){
         // 检查账号是否重复
         List<User> list = loginMapper.getPassword(username);
         boolean haveAccount = list.size() > 0;
@@ -47,6 +55,12 @@ public class SysLoginServiceImpl implements SysLoginService {
         if (haveAccount) {
             return ApiResponse.error(500, "账号已存在，请修改账号");
         } else {
+            // 非管理员token禁止注册
+            String myRole = loginMapper.getUserById(userId).getRole();
+            if(!myRole.equals("master")){
+                return ApiResponse.error(500, "暂无权限，注册失败");
+            }
+
             int insertNum = loginMapper.register(username, password,email,role);
             if (insertNum > 0) {
                 return ApiResponse.success("注册成功");
