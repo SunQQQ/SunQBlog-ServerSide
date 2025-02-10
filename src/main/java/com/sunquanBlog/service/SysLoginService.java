@@ -19,5 +19,5 @@ public interface SysLoginService {
 
     public User getUserById(Integer id);
 
-    public ApiResponse<String> updateUser(Map<String,Object> map);
+    public ApiResponse<String> updateUser(Map<String,Object> map,Integer accountId);
 }

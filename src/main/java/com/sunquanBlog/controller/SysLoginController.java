@@ -77,10 +77,10 @@ public class SysLoginController {
 
     @PostMapping("/updateUser")
     public ApiResponse<String> updateUser(@RequestBody Map<String, Object> req){
+        // 当前登录账号的id
         Claims claims = (Claims) commonRequest.getAttribute("claims");
-        Integer userId = claims.get("id", Integer.class);
-        req.put("id",userId);
+        Integer accountId = claims.get("id", Integer.class);
 
-        return sysLoginService.updateUser(req);
+        return sysLoginService.updateUser(req,accountId);
     }
 }

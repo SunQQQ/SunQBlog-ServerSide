@@ -104,7 +104,17 @@ public class SysLoginServiceImpl implements SysLoginService {
     }
 
     @Override
-    public ApiResponse updateUser(Map<String,Object> map){
+    public ApiResponse updateUser(Map<String,Object> map,Integer accoutId){
+        // 该条数据的id
+        Integer id = (Integer) map.get("id");
+
+        // 登录id跟修改数据的id不同时，需为管理员
+        if(id != accoutId){
+            if(!getUserById(accoutId).getRole().equals("master")){
+                return ApiResponse.error(500, "无权限进行此操作");
+            }
+        }
+
         int updateNum = loginMapper.updateUser(map);
 
         if (updateNum == 1) {

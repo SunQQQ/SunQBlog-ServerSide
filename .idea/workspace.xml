@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="创建账号接口添加对token和角色的验证，提高安全性">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="细化登录接口的异常提示">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -145,7 +146,7 @@
       <workItem from="1738924411170" duration="4814000" />
       <workItem from="1738930600665" duration="343000" />
       <workItem from="1738977785625" duration="14051000" />
-      <workItem from="1739149638121" duration="5586000" />
+      <workItem from="1739149638121" duration="7323000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -336,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739158438848</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="细化登录接口的异常提示">
+      <created>1739167781944</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1739167781944</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,15 +385,16 @@
     <MESSAGE value="心声管理管理员正常返回创建人呢，普通用户创建人字段返回空" />
     <MESSAGE value="心声管理更新接口，创建人不能修改" />
     <MESSAGE value="创建账号接口添加对token和角色的验证，提高安全性" />
-    <option name="LAST_COMMIT_MESSAGE" value="创建账号接口添加对token和角色的验证，提高安全性" />
+    <MESSAGE value="细化登录接口的异常提示" />
+    <option name="LAST_COMMIT_MESSAGE" value="细化登录接口的异常提示" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="4" />
+          <line>117</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
