@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.LeaveMessageMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.LeaveMessage">
+        <id column="id" property="id"/>
+        <result column="leaveName" property="leave_name"/>
+        <result column="leaveId" property="leave_id"/>
+        <result column="messageContent" property="message_content"/>
+        <result column="city" property="city"/>
+        <result column="avatar" property="avatar"/>
+        <result column="create_time" property="create_time"/>
+        <result column="modelTime" property="model_time"/>
+        <result column="parentId" property="parent_id"/>
+    </resultMap>
+
+    <select id="getAllLeaveMessage" resultMap="indexResultMap">
+        select
+            *
+        from
+            leave_message ml
+        left join user user
+            on user.id = ml.leave_id
+        <where>
+            <if test="role != 'master'">
+                leave_id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="createLeaveMessage">
+        insert into heart_felt
+            (leaveName,messageContent,creater_id,create_time)
+        values
+            (#{leaveName},#{messageContent},#{creater},now())
+    </insert>
+
+    <delete id="deleteHeart">
+        delete
+        from heart_felt
+        where id = #{id}
+    </delete>
+
+    <update id="updateLeaveMessage">
+        update heart_felt
+        set leaveName = #{leaveName},
+            messageContent = #{messageContent},
+            create_time = now()
+        where id = #{id}
+    </update>
+</mapper>
+

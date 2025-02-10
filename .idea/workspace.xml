@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="细化登录接口的异常提示">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="修复管理员修改普通用户信息时，修改错乱">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/LeaveMessageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LeaveMessageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/LeaveMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/LeaveMessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/LeaveMessageImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/LeaveMessage.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/SysLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/SysLoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +59,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/孙权/code/SunQBlog-ServerSide/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/孙权/code/SunQBlog-ServerSide/src/main/resources/mappers&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
@@ -71,10 +74,15 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\孙权\code\SunQBlog-ServerSide\src\main\resources\mappers" />
       <recent name="D:\孙权\code\SunQBlog-ServerSide\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sunquanBlog.model" />
+      <recent name="com.sunquanBlog.service.impl" />
+      <recent name="com.sunquanBlog.mapper" />
       <recent name="com.sunquanBlog.service" />
+      <recent name="com.sunquanBlog.controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -146,7 +154,8 @@
       <workItem from="1738924411170" duration="4814000" />
       <workItem from="1738930600665" duration="343000" />
       <workItem from="1738977785625" duration="14051000" />
-      <workItem from="1739149638121" duration="7323000" />
+      <workItem from="1739149638121" duration="16160000" />
+      <workItem from="1739194055306" duration="2791000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -344,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739167781944</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="修复管理员修改普通用户信息时，修改错乱">
+      <created>1739169243678</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1739169243678</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,17 +402,7 @@
     <MESSAGE value="心声管理更新接口，创建人不能修改" />
     <MESSAGE value="创建账号接口添加对token和角色的验证，提高安全性" />
     <MESSAGE value="细化登录接口的异常提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="细化登录接口的异常提示" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/SysLoginServiceImpl.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="修复管理员修改普通用户信息时，修改错乱" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复管理员修改普通用户信息时，修改错乱" />
   </component>
 </project>
