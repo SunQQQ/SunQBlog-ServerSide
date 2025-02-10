@@ -34,6 +34,8 @@ public class SysLoginServiceImpl implements SysLoginService {
             }else{
                 return ApiResponse.error(500,"密码错误");
             }
+        }else if((list.size() > 1)){
+            return ApiResponse.error(500,"此账号存在重复情况");
         }else {
             return ApiResponse.error(500,"账号不存在");
         }
