@@ -9,10 +9,10 @@ public class LeaveMessage {
     private Integer leaveId;
     private String messageContent;
     private String city;
-    private String avatar;
+    private String avator;
     private LocalDateTime createTime;
     private LocalDateTime modelTime;
-    private LocalDateTime parentId;
+    private Integer parentId;
 
     public LeaveMessage() {
     }
@@ -50,12 +50,12 @@ public class LeaveMessage {
         this.city = city;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getavator() {
+        return avator;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setavator(String avator) {
+        this.avator = avator;
     }
 
     public LocalDateTime getCreateTime() {
@@ -74,11 +74,11 @@ public class LeaveMessage {
         this.modelTime = modelTime;
     }
 
-    public LocalDateTime getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(LocalDateTime parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 

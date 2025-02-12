@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LeaveMessageImpl implements LeaveMessageService {
@@ -27,15 +28,15 @@ public class LeaveMessageImpl implements LeaveMessageService {
 //        }
 //    }
 //
-//    @Override
-//    public ApiResponse createHeartFelt(String content,String writer,Integer creater) {
-//        int createNum = leaveMessageMapper.createHeartFelt(content,writer,creater);
-//        if(createNum == 1){
-//            return ApiResponse.success("创建成功");
-//        }else {
-//            return ApiResponse.error(500,"创建失败，请留言");
-//        }
-//    }
+    @Override
+    public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId) {
+        int createNum = leaveMessageMapper.createLeaveMessage(map,accountId);
+        if(createNum == 1){
+            return ApiResponse.success("创建成功");
+        }else {
+            return ApiResponse.error(500,"创建失败，请留言");
+        }
+    }
 //
 //    @Override
 //    public ApiResponse deleteHeartFelt(int id) {

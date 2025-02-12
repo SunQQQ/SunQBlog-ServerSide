@@ -10,7 +10,7 @@
         <result column="leave_id" property="leaveId"/>
         <result column="message_content" property="messageContent"/>
         <result column="city" property="city"/>
-        <result column="avatar" property="avatar"/>
+        <result column="avator" property="avator"/>
         <result column="create_time" property="createTime"/>
         <result column="model_time" property="modelTime"/>
         <result column="parent_id" property="parentId"/>
@@ -31,10 +31,17 @@
     </select>
 
     <insert id="createLeaveMessage">
-        insert into heart_felt
-            (leaveName,messageContent,creater_id,create_time)
+        insert into leave_message
+            (leave_id,message_content,city,avator,create_time,model_time,parent_id,leave_name)
         values
-            (#{leaveName},#{messageContent},#{creater},now())
+            (#{curId},
+             #{params.messageContent},
+             #{params.city},
+             #{params.avator},
+             now(),
+             now(),
+             #{params.parentId},
+             #{params.leaveName})
     </insert>
 
     <delete id="deleteHeart">

@@ -29,17 +29,17 @@ public class LeaveMessageController {
         return leaveMessageService.getAllLeaveMessage(userId);
     }
 
-//    @PostMapping("/createHeartfelt")
-//    public ApiResponse createHeartfelt(@RequestBody Map<String,String> requestBody,HttpServletRequest request){
-//        // 从token获取用户Id
-//        Claims claims = (Claims) request.getAttribute("claims");
-//        Integer userId = claims.get("id", Integer.class);
-//
+    @PostMapping("/createLeaveMessage")
+    public ApiResponse createLeaveMessage(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
+        // 从token获取用户Id
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+
 //        String content = requestBody.get("content");
 //        String writer = requestBody.get("writer");
-//
-//        return leaveMessageService.createHeartFelt(content,writer,userId);
-//    }
+
+        return leaveMessageService.createLeaveMessage(requestBody,userId);
+    }
 
 //    @PostMapping("/deleteHeartFelt")
 //    public ApiResponse deleteHeartFelt(@RequestBody Map<String,Integer> requestBody){
