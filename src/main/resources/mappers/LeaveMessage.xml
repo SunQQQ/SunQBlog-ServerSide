@@ -6,14 +6,14 @@
 <mapper namespace="com.sunquanBlog.mapper.LeaveMessageMapper">
     <resultMap id="indexResultMap" type="com.sunquanBlog.model.LeaveMessage">
         <id column="id" property="id"/>
-        <result column="leaveName" property="leave_name"/>
-        <result column="leaveId" property="leave_id"/>
-        <result column="messageContent" property="message_content"/>
+        <result column="leave_name" property="leaveName"/>
+        <result column="leave_id" property="leaveId"/>
+        <result column="message_content" property="messageContent"/>
         <result column="city" property="city"/>
         <result column="avatar" property="avatar"/>
-        <result column="create_time" property="create_time"/>
-        <result column="modelTime" property="model_time"/>
-        <result column="parentId" property="parent_id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="model_time" property="modelTime"/>
+        <result column="parent_id" property="parentId"/>
     </resultMap>
 
     <select id="getAllLeaveMessage" resultMap="indexResultMap">

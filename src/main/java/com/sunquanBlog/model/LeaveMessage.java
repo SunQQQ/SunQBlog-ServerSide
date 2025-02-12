@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 
 public class LeaveMessage {
     private Integer id;
-    private String leave_name;
-    private Integer leave_id;
-    private String message_content;
+    private String leaveName;
+    private Integer leaveId;
+    private String messageContent;
     private String city;
     private String avatar;
-    private LocalDateTime create_time;
-    private LocalDateTime model_time;
-    private LocalDateTime parent_id;
+    private LocalDateTime createTime;
+    private LocalDateTime modelTime;
+    private LocalDateTime parentId;
 
     public LeaveMessage() {
     }
@@ -26,20 +26,20 @@ public class LeaveMessage {
     }
 
 
-    public String getLeave_person() {
-        return leave_name;
+    public String getLeaveName() {
+        return leaveName;
     }
 
-    public void setLeave_person(String leave_name) {
-        this.leave_name = leave_name;
+    public void setLeaveName(String leaveName) {
+        this.leaveName = leaveName;
     }
 
-    public String getMessage_content() {
-        return message_content;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setMessage_content(String message_content) {
-        this.message_content = message_content;
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public String getCity() {
@@ -58,36 +58,36 @@ public class LeaveMessage {
         this.avatar = avatar;
     }
 
-    public LocalDateTime getCreate_time() {
-        return create_time;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(LocalDateTime create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 
-    public LocalDateTime getModel_time() {
-        return model_time;
+    public LocalDateTime getModelTime() {
+        return modelTime;
     }
 
-    public void setModel_time(LocalDateTime model_time) {
-        this.model_time = model_time;
+    public void setModelTime(LocalDateTime modelTime) {
+        this.modelTime = modelTime;
     }
 
-    public LocalDateTime getParent_id() {
-        return parent_id;
+    public LocalDateTime getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(LocalDateTime parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(LocalDateTime parentId) {
+        this.parentId = parentId;
     }
 
-    public Integer getLeave_id() {
-        return leave_id;
+    public Integer getLeaveId() {
+        return leaveId;
     }
 
-    public void setLeave_id(Integer leave_id) {
-        this.leave_id = leave_id;
+    public void setLeaveId(Integer leaveId) {
+        this.leaveId = leaveId;
     }
 }
 

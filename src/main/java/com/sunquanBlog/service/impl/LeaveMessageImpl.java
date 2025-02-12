@@ -3,7 +3,7 @@ package com.sunquanBlog.service.impl;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LeaveMessageMapper;
 import com.sunquanBlog.mapper.LoginMapper;
-import com.sunquanBlog.model.HeartFelt;
+import com.sunquanBlog.model.LeaveMessage;
 import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class LeaveMessageImpl implements LeaveMessageService {
     @Override
     public ApiResponse getAllLeaveMessage(Integer id) {
         User user = loginMapper.getUserById(id);
-        List<HeartFelt> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole());
+        List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole());
         return ApiResponse.success(heartFeltList);
     }
 }
