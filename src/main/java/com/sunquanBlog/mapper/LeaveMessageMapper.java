@@ -11,8 +11,8 @@ public interface LeaveMessageMapper {
     List<LeaveMessage> getAllLeaveMessage(Integer id, String role);
 
     int createLeaveMessage(Map<String,Object> params, Integer curId);
-//
-//    int deleteHeart(int id);
-//
+
+    int deleteLeaveMessage(int id);
+
 //    int updateHeartFelt(int id,String content,String writer);
 }

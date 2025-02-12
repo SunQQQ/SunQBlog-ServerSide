@@ -37,15 +37,15 @@ public class LeaveMessageImpl implements LeaveMessageService {
             return ApiResponse.error(500,"创建失败，请留言");
         }
     }
-//
-//    @Override
-//    public ApiResponse deleteHeartFelt(int id) {
-//        if(leaveMessageMapper.deleteHeart(id) == 1){
-//            return ApiResponse.success("删除成功");
-//        }else {
-//            return ApiResponse.error(500,"删除失败");
-//        }
-//    }
+
+    @Override
+    public ApiResponse deleteLeaveMessage(int id) {
+        if(leaveMessageMapper.deleteLeaveMessage(id) == 1){
+            return ApiResponse.success("删除成功");
+        }else {
+            return ApiResponse.error(500,"删除失败");
+        }
+    }
 
     @Override
     public ApiResponse getAllLeaveMessage(Integer id) {

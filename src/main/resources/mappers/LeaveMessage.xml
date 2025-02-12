@@ -44,9 +44,9 @@
              #{params.leaveName})
     </insert>
 
-    <delete id="deleteHeart">
+    <delete id="deleteLeaveMessage">
         delete
-        from heart_felt
+        from leave_message
         where id = #{id}
     </delete>
 

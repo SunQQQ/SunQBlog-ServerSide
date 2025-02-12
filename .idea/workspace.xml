@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="留言列表接口开发">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="留言列表新增接口开发">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/LeaveMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/LeaveMessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LeaveMessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LeaveMessageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/LeaveMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/LeaveMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/LeaveMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/LeaveMessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/LeaveMessageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/LeaveMessageImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/LeaveMessage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/LeaveMessage.xml" afterDir="false" />
@@ -155,7 +154,7 @@
       <workItem from="1739194055306" duration="4916000" />
       <workItem from="1739261117544" duration="1534000" />
       <workItem from="1739275266324" duration="3643000" />
-      <workItem from="1739322126938" duration="7709000" />
+      <workItem from="1739322126938" duration="11218000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -374,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739323925250</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="留言列表新增接口开发">
+      <created>1739338305536</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1739338305536</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +400,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="开发注册账号接口" />
     <MESSAGE value="优化新增用户接口" />
     <MESSAGE value="开发删除用户接口" />
     <MESSAGE value="优化代码接口，改造登录接口" />
@@ -419,6 +424,7 @@
     <MESSAGE value="修复管理员修改普通用户信息时，修改错乱" />
     <MESSAGE value="留言管理页面基础版本" />
     <MESSAGE value="留言列表接口开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="留言列表接口开发" />
+    <MESSAGE value="留言列表新增接口开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="留言列表新增接口开发" />
   </component>
 </project>

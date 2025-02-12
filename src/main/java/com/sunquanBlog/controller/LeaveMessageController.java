@@ -41,11 +41,11 @@ public class LeaveMessageController {
         return leaveMessageService.createLeaveMessage(requestBody,userId);
     }
 
-//    @PostMapping("/deleteHeartFelt")
-//    public ApiResponse deleteHeartFelt(@RequestBody Map<String,Integer> requestBody){
-//
-//        return leaveMessageService.deleteHeartFelt(requestBody.get("id"));
-//    }
+    @PostMapping("/deleteLeaveMessage")
+    public ApiResponse deleteHeartFelt(@RequestBody Map<String,Integer> requestBody){
+
+        return leaveMessageService.deleteLeaveMessage(requestBody.get("id"));
+    }
 
 //    @PostMapping("/editHeartfelt")
 //    public ApiResponse editHeartfelt(@RequestBody HeartFelt requestBody){
