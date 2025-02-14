@@ -2,6 +2,7 @@ package com.sunquanBlog.mapper;
 
 import com.sunquanBlog.model.LeaveMessage;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -14,5 +15,7 @@ public interface LeaveMessageMapper {
 
     int deleteLeaveMessage(int id);
 
-//    int updateHeartFelt(int id,String content,String writer);
+    int updateLeaveMessage(@Param("params") Map<String,Object> params);
+
+    int updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName);
 }

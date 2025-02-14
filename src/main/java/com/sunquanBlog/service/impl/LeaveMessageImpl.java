@@ -9,6 +9,7 @@ import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,16 +19,26 @@ public class LeaveMessageImpl implements LeaveMessageService {
     private LeaveMessageMapper leaveMessageMapper;
     @Autowired
     private LoginMapper loginMapper;
-//    @Override
-//    public ApiResponse editHeartFelt(Integer id,String content,String writer) {
-//        int updateNum = leaveMessageMapper.updateHeartFelt(id,content,writer);
-//        if(updateNum == 1){
-//            return ApiResponse.success("更新成功");
-//        }else {
-//            return ApiResponse.error(500,"更新失败");
-//        }
-//    }
-//
+    @Override
+    public ApiResponse updateLeaveMessage(Map<String,Object> map) {
+        int updateNum = leaveMessageMapper.updateLeaveMessage(map);
+        if(updateNum == 1){
+            return ApiResponse.success("更新成功");
+        }else {
+            return ApiResponse.error(500,"更新失败");
+        }
+    }
+
+    @Override
+    public ApiResponse updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName) {
+        int updateNum = leaveMessageMapper.updateLeaveMessage(id,messageContent,city,avator,parentId,leaveName);
+        if(updateNum == 1){
+            return ApiResponse.success("更新成功");
+        }else {
+            return ApiResponse.error(500,"更新失败");
+        }
+    }
+
     @Override
     public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId) {
         int createNum = leaveMessageMapper.createLeaveMessage(map,accountId);

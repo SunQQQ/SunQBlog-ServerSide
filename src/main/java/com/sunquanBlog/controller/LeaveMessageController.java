@@ -47,14 +47,17 @@ public class LeaveMessageController {
         return leaveMessageService.deleteLeaveMessage(requestBody.get("id"));
     }
 
-//    @PostMapping("/editHeartfelt")
-//    public ApiResponse editHeartfelt(@RequestBody HeartFelt requestBody){
-//        int id = requestBody.getId();
-//        String content = requestBody.getContent();
-//        String writer = requestBody.getWriter();
-//
-//        return ApiResponse.success(leaveMessageService.editHeartFelt(id,content,writer));
-//    }
+    @PostMapping("/updateLeaveMessage")
+    public ApiResponse updateLeaveMessage(@RequestBody Map<String,Object> requestBody){
+        Integer id = (Integer) requestBody.get("id");
+        String messageContent = (String) requestBody.get("messageContent");
+        String city = (String) requestBody.get("city");
+        String avator = (String) requestBody.get("avator");
+        Integer parentId = (Integer) requestBody.get("parentId");
+        String leaveName = (String) requestBody.get("leaveName");
+
+        return leaveMessageService.updateLeaveMessage(id,messageContent,city,avator,parentId,leaveName);
+    }
 }
 
 

@@ -51,11 +51,17 @@
     </delete>
 
     <update id="updateLeaveMessage">
-        update heart_felt
-        set leaveName = #{leaveName},
-            messageContent = #{messageContent},
-            create_time = now()
-        where id = #{id}
+        update
+            leave_message
+        set
+            message_content = #{messageContent},
+            city = #{city},
+            avator = #{avator},
+            model_time = now(),
+            parent_id = #{parentId},
+            leave_name = #{leaveName}
+        where
+            id = #{id}
     </update>
 </mapper>
 

@@ -7,7 +7,9 @@ import java.util.Map;
 
 @Service
 public interface LeaveMessageService {
-//    public ApiResponse editHeartFelt(Integer id,String content,String writer);
+    public ApiResponse updateLeaveMessage(Map<String,Object> map);
+
+    public ApiResponse updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName);
 
     public ApiResponse createLeaveMessage(Map<String,Object> map,Integer accountId);
 
