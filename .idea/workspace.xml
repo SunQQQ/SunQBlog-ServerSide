@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="留言列表删除接口开发">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="修改留言接口开发">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/BlogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/model/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/BlogMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/LeaveMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/LeaveMessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LeaveMessageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/LeaveMessageMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/LeaveMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/LeaveMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/LeaveMessageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/LeaveMessageImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/LeaveMessage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/LeaveMessage.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +21,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="spring-beans.schema" />
-        <option value="Class" />
         <option value="Interface" />
         <option value="Mybatis Mapper" />
+        <option value="spring-beans.schema" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,6 +64,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -78,11 +78,14 @@
       <recent name="D:\孙权\code\SunQBlog-ServerSide\src\main\resources\mappers" />
       <recent name="D:\孙权\code\SunQBlog-ServerSide\src\main\resources" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.sunquanBlog.service" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sunquanBlog.service" />
       <recent name="com.sunquanBlog.model" />
       <recent name="com.sunquanBlog.service.impl" />
       <recent name="com.sunquanBlog.mapper" />
-      <recent name="com.sunquanBlog.service" />
       <recent name="com.sunquanBlog.controller" />
     </key>
   </component>
@@ -157,7 +160,10 @@
       <workItem from="1739261117544" duration="1534000" />
       <workItem from="1739275266324" duration="3643000" />
       <workItem from="1739322126938" duration="18740000" />
-      <workItem from="1739452358971" duration="9012000" />
+      <workItem from="1739452358971" duration="14582000" />
+      <workItem from="1739544021263" duration="1842000" />
+      <workItem from="1739546003444" duration="587000" />
+      <workItem from="1739546610049" duration="285000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -390,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739346552221</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="修改留言接口开发">
+      <created>1739522243121</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1739522243121</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +423,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="开发删除用户接口" />
     <MESSAGE value="优化代码接口，改造登录接口" />
     <MESSAGE value="开发用户列表接口" />
     <MESSAGE value="完成用户列表得权限隔离" />
@@ -435,6 +447,7 @@
     <MESSAGE value="留言列表接口开发" />
     <MESSAGE value="留言列表新增接口开发" />
     <MESSAGE value="留言列表删除接口开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="留言列表删除接口开发" />
+    <MESSAGE value="修改留言接口开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改留言接口开发" />
   </component>
 </project>
