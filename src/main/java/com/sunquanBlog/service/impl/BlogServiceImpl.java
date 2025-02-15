@@ -25,6 +25,16 @@ public class BlogServiceImpl implements BlogService {
 
         return ApiResponse.success(list);
     }
+
+    public ApiResponse getBlogDetail(Integer blogId){
+        Blog blog = blogMapper.getBlogDetail(blogId);
+
+        if(blog != null){
+            return ApiResponse.success(blog);
+        }else{
+            return ApiResponse.error(500,"查询失败");
+        }
+    }
     @Override
     public ApiResponse insertBlog(Map<String, Object> params){
         Integer result = blogMapper.insertBlog(params);

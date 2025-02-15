@@ -24,6 +24,12 @@ public class BlogController {
 
         return blogService.getBlogList(userId);
     }
+    @PostMapping("/getBlogDetail")
+    public ApiResponse getBlogDetail(@RequestBody Map<String,Object> requestBody){
+        Integer blogId = (Integer) requestBody.get("id");
+
+        return blogService.getBlogDetail(blogId);
+    }
 
     @PostMapping("/createBlog")
     public ApiResponse createBlog(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){

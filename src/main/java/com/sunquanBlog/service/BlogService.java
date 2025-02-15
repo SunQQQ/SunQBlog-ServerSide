@@ -10,6 +10,8 @@ import java.util.Objects;
 public interface BlogService {
     public ApiResponse getBlogList(Integer userId);
 
+    public ApiResponse getBlogDetail(Integer blogId);
+
     public ApiResponse insertBlog(Map<String, Object> params);
 
     public ApiResponse deleteBlog(Integer id);

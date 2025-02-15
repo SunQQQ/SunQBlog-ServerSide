@@ -10,6 +10,8 @@ import java.util.Map;
 public interface BlogMapper {
     List<Blog> getBlogList(Integer userId,String role);
 
+    Blog getBlogDetail(Integer blogId);
+
     Integer insertBlog(Map<String,Object> params);
 
     Integer deleteBlog(Integer id);

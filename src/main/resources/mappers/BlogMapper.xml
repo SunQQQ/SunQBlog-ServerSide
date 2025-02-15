@@ -21,6 +21,7 @@
 
     <select id="getBlogList" resultMap="indexResultMap">
         select
+            blog.id id,
             title,summary,create_time,article_tag,
             article_cover, comment_num,page_view_num,
             user.name create_name
@@ -48,4 +49,19 @@
         where
             id = #{id}
     </delete>
+
+    <select id="getBlogDetail" resultMap="indexResultMap">
+        select
+            blog.id,
+            blog.content,
+            title,summary,create_time,article_tag,
+            article_cover, comment_num,page_view_num,
+            user.name create_name
+        from
+            blog blog
+        left join  user user
+            on blog.create_id = user.id
+        where
+            blog.id = #{blogId}
+    </select>
 </mapper>
