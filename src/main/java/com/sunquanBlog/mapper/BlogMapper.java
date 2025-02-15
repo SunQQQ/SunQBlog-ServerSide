@@ -15,4 +15,6 @@ public interface BlogMapper {
     Integer insertBlog(Map<String,Object> params);
 
     Integer deleteBlog(Integer id);
+
+    Integer updateBlog(Map<String,Object> params);
 }

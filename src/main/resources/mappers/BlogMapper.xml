@@ -64,4 +64,16 @@
         where
             blog.id = #{blogId}
     </select>
+
+    <update id="updateBlog">
+        update blog
+        set
+            title = #{title},
+            summary = #{summary},
+            content = #{content},
+            article_tag = #{articleTag},
+            article_cover = #{articleCover}
+        where
+            id = #{id}
+    </update>
 </mapper>

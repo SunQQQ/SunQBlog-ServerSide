@@ -55,4 +55,15 @@ public class BlogServiceImpl implements BlogService {
             return ApiResponse.error(500,"删除失败");
         }
     }
+
+    @Override
+    public ApiResponse updateBlog(Map<String, Object> params){
+        Integer result = blogMapper.updateBlog(params);
+
+        if(result > 0){
+            return ApiResponse.success("更新成功");
+        }else{
+            return ApiResponse.error(500,"更新失败");
+        }
+    }
 }

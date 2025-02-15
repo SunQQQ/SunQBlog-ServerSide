@@ -47,4 +47,9 @@ public class BlogController {
 
         return blogService.deleteBlog(blogId);
     }
+
+    @PostMapping("/updateBlog")
+    public ApiResponse updateBlog(@RequestBody Map<String,Object> requestBody){
+        return blogService.updateBlog(requestBody);
+    }
 }

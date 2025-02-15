@@ -15,4 +15,6 @@ public interface BlogService {
     public ApiResponse insertBlog(Map<String, Object> params);
 
     public ApiResponse deleteBlog(Integer id);
+
+    public ApiResponse updateBlog(Map<String, Object> params);
 }
