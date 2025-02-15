@@ -23,4 +23,11 @@
         from
             blog
     </select>
+
+    <insert id="insertBlog">
+        insert into blog
+            (title, summary, content, create_time, article_tag, article_cover, comment_num, page_view_num)
+        values
+            (#{title}, #{summary}, #{content}, now(), #{articleTag}, #{articleCover}, #{commentNum}, #{pageViewNum})
+    </insert>
 </mapper>
