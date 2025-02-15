@@ -11,4 +11,6 @@ public interface BlogMapper {
     List<Blog> getBlogList(Integer id,String role);
 
     Integer insertBlog(Map<String,Object> params);
+
+    Integer deleteBlog(Integer id);
 }

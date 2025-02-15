@@ -34,4 +34,11 @@ public class BlogController {
 
         return blogService.insertBlog(requestBody);
     }
+
+    @PostMapping("/deleteBlog")
+    public ApiResponse deleteBlog(@RequestBody Map<String,Object> requestBody){
+        Integer blogId = (Integer) requestBody.get("id");
+
+        return blogService.deleteBlog(blogId);
+    }
 }

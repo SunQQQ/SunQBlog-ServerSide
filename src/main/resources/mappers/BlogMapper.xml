@@ -19,9 +19,15 @@
 
     <select id="getBlogList" resultMap="indexResultMap">
         select
-            *
+            title,summary,create_time,article_tag,
+            article_cover, comment_num,page_view_num,id
         from
             blog
+        <where>
+            <if test="role != 'master'">
+                id = #{id}
+            </if>
+        </where>
     </select>
 
     <insert id="insertBlog">
@@ -30,4 +36,11 @@
         values
             (#{title}, #{summary}, #{content}, now(), #{articleTag}, #{articleCover}, 0, 0)
     </insert>
+
+    <delete id="deleteBlog">
+        delete
+        from blog
+        where
+            id = #{id}
+    </delete>
 </mapper>
