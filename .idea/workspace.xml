@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="文章模块整体架构搭建">
+    <list default="true" id="26dfba5c-78bb-4b57-b1a7-8ac07257de03" name="Changes" comment="初步完成新增文章接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/BlogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/mapper/BlogMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sunquanBlog/service/impl/BlogServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/BlogMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +159,7 @@
       <workItem from="1739544021263" duration="1842000" />
       <workItem from="1739546003444" duration="587000" />
       <workItem from="1739546610049" duration="285000" />
-      <workItem from="1739577643037" duration="3237000" />
+      <workItem from="1739577643037" duration="4603000" />
     </task>
     <task id="LOCAL-00001" summary="开发注册账号接口">
       <created>1735641017896</created>
@@ -410,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1739577843252</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="初步完成新增文章接口">
+      <created>1739583586187</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1739583586187</updated>
+    </task>
+    <task id="LOCAL-00037" summary="初步完成新增文章接口">
+      <created>1739583858507</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1739583858507</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +440,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="开发用户列表接口" />
     <MESSAGE value="完成用户列表得权限隔离" />
     <MESSAGE value="优化注册接口" />
     <MESSAGE value="添加登录的token生成逻辑" />
@@ -455,6 +464,7 @@
     <MESSAGE value="留言列表删除接口开发" />
     <MESSAGE value="修改留言接口开发" />
     <MESSAGE value="文章模块整体架构搭建" />
-    <option name="LAST_COMMIT_MESSAGE" value="文章模块整体架构搭建" />
+    <MESSAGE value="初步完成新增文章接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="初步完成新增文章接口" />
   </component>
 </project>
