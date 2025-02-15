@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface BlogMapper {
-    List<Blog> getBlogList(Integer id,String role);
+    List<Blog> getBlogList(Integer userId,String role);
 
     Integer insertBlog(Map<String,Object> params);
 

@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Service
 public interface BlogService {
-    public ApiResponse getBlogList(Integer id);
+    public ApiResponse getBlogList(Integer userId);
 
     public ApiResponse insertBlog(Map<String, Object> params);
 

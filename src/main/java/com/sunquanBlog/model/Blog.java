@@ -12,7 +12,8 @@ public class Blog {
     private String articleCover;
     private Integer commentNum;
     private String pageViewNum;
-
+    private Integer createId;
+    private String createName;
     public Blog() {
     }
 
@@ -87,5 +88,21 @@ public class Blog {
 
     public void setPageViewNum(String pageViewNum) {
         this.pageViewNum = pageViewNum;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName;
     }
 }

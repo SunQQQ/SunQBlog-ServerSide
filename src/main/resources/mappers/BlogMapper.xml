@@ -15,26 +15,31 @@
         <result column="article_cover" property="articleCover"/>
         <result column="comment_num" property="commentNum"/>
         <result column="page_view_num" property="pageViewNum"/>
+        <result column="create_id" property="createId"/>
+        <result column="create_name" property="createName"/>
     </resultMap>
 
     <select id="getBlogList" resultMap="indexResultMap">
         select
             title,summary,create_time,article_tag,
-            article_cover, comment_num,page_view_num,id
+            article_cover, comment_num,page_view_num,
+            user.name create_name
         from
-            blog
+            blog blog
+        left join  user
+            on blog.create_id = user.id
         <where>
             <if test="role != 'master'">
-                id = #{id}
+                create_id = #{userId}
             </if>
         </where>
     </select>
 
     <insert id="insertBlog">
         insert into blog
-            (title, summary, content, create_time, article_tag, article_cover, comment_num, page_view_num)
+            (title, summary, content, create_time, article_tag, article_cover, comment_num, page_view_num, create_id)
         values
-            (#{title}, #{summary}, #{content}, now(), #{articleTag}, #{articleCover}, 0, 0)
+            (#{title}, #{summary}, #{content}, now(), #{articleTag}, #{articleCover}, 0, 0,#{userId})
     </insert>
 
     <delete id="deleteBlog">

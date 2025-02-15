@@ -18,10 +18,10 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private LoginMapper loginMapper;
     @Override
-    public ApiResponse getBlogList(Integer id){
-        String role = loginMapper.getUserById(id).getRole();
+    public ApiResponse getBlogList(Integer userId){
+        String role = loginMapper.getUserById(userId).getRole();
 
-        List<Blog> list = blogMapper.getBlogList(id,role);
+        List<Blog> list = blogMapper.getBlogList(userId,role);
 
         return ApiResponse.success(list);
     }
