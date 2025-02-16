@@ -13,4 +13,6 @@ public interface HeartFeltService {
     public ApiResponse deleteHeartFelt(int id);
 
     public ApiResponse getHeartFeltList(Integer id);
+
+    public ApiResponse getHeartFeltList();
 }

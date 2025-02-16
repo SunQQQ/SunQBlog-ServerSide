@@ -32,6 +32,12 @@ public class HeartFeltController {
         return heartFeltService.getHeartFeltList(userId);
     }
 
+    // 用户端心声列表，无需登录
+    @PostMapping("/userHeartList")
+    public ApiResponse heartfeltList(){
+        return heartFeltService.getHeartFeltList();
+    }
+
     @PostMapping("/createHeartfelt")
     public ApiResponse createHeartfelt(@RequestBody Map<String,String> requestBody,HttpServletRequest request){
         // 从token获取用户Id

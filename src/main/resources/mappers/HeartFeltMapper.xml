@@ -35,6 +35,19 @@
         </where>
     </select>
 
+    <select id="getUserHeart" resultMap="indexResultMap">
+        select
+            heart.id,
+            heart.content,
+            heart.create_time,
+            user.name create_name,
+            heart.writer
+        from
+            heart_felt heart
+        left join user user
+            on user.id = heart.creater_id
+    </select>
+
     <insert id="createHeartFelt">
         insert into heart_felt
             (content,writer,creater_id,create_time)

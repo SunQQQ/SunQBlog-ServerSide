@@ -53,4 +53,10 @@ public class HeartFeltServiceImpl implements HeartFeltService {
         List<HeartFelt> heartFeltList = heartFeltMapper.getAllHeartFelt(id,user.getRole());
         return ApiResponse.success(heartFeltList);
     }
+
+    @Override
+    public ApiResponse getHeartFeltList() {
+        List<HeartFelt> heartFeltList = heartFeltMapper.getUserHeart();
+        return ApiResponse.success(heartFeltList);
+    }
 }
