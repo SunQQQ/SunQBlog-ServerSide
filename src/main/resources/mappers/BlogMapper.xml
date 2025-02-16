@@ -55,6 +55,11 @@
             on blog.create_id = user.id
         left join dictionary dictionary
             on blog.article_tag = dictionary.id
+        <where>
+            <if test="tagId != 0">
+                article_tag = #{tagId}
+            </if>
+        </where>
     </select>
 
     <insert id="insertBlog">
