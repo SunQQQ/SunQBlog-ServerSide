@@ -24,6 +24,13 @@ public class BlogController {
 
         return blogService.getBlogList(userId);
     }
+
+    // 给用户端使用，无需登录
+    @PostMapping("/getUserBlogList")
+    public ApiResponse getUserBlogList(@RequestBody Map<String,Object> requestBody){
+        return blogService.getBlogList();
+    }
+
     @PostMapping("/getBlogDetail")
     public ApiResponse getBlogDetail(@RequestBody Map<String,Object> requestBody){
         Integer blogId = (Integer) requestBody.get("id");

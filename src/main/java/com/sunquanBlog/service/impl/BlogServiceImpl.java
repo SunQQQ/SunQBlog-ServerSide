@@ -26,6 +26,13 @@ public class BlogServiceImpl implements BlogService {
         return ApiResponse.success(list);
     }
 
+    @Override
+    public ApiResponse getBlogList(){
+        List<Blog> list = blogMapper.getUserBlogList();
+
+        return ApiResponse.success(list);
+    }
+
     public ApiResponse getBlogDetail(Integer blogId){
         Blog blog = blogMapper.getBlogDetail(blogId);
 
@@ -35,6 +42,7 @@ public class BlogServiceImpl implements BlogService {
             return ApiResponse.error(500,"查询失败");
         }
     }
+
     @Override
     public ApiResponse insertBlog(Map<String, Object> params){
         Integer result = blogMapper.insertBlog(params);
