@@ -25,7 +25,7 @@
             on d1.parent_id = d2.id
         <where>
             <if test="parentId != null">
-                parent_id = #{parentId}
+                d1.parent_id = #{parentId}
             </if>
         </where>
     </select>
