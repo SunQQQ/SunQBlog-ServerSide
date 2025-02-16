@@ -8,6 +8,8 @@ public class Dictionary {
     private Integer parentId;
     private LocalDateTime createTime;
 
+    private String parentName;
+
     public Dictionary() {
     }
 
@@ -43,4 +45,11 @@ public class Dictionary {
         this.createTime = createTime;
     }
 
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
 }

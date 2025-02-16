@@ -10,14 +10,23 @@
         <result column="name" property="name"/>
         <result column="parent_id" property="parentId"/>
         <result column="create_time" property="createTime"/>
+        <result column="parent_name" property="parentName"/>
     </resultMap>
 
     <select id="getDictionaryList" resultMap="indexResultMap">
         select
-            id, name, parent_id, create_time
+            d1.id,
+            d1.name name,
+            d2.name parent_name,
+            d1.create_time
         from
-            dictionary
-        where
-            parent_id = #{parentId}
+            dictionary d1
+        left join dictionary d2
+            on d1.parent_id = d2.id
+        <where>
+            <if test="parentId != null">
+                parent_id = #{parentId}
+            </if>
+        </where>
     </select>
 </mapper>
