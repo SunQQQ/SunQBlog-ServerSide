@@ -14,6 +14,8 @@ public class Blog {
     private String pageViewNum;
     private Integer createId;
     private String createName;
+
+    private String articleTagName;
     public Blog() {
     }
 
@@ -104,5 +106,13 @@ public class Blog {
 
     public void setCreateName(String createName) {
         this.createName = createName;
+    }
+
+    public String getArticleTagName() {
+        return articleTagName;
+    }
+
+    public void setArticleTagName(String ArticleTagName) {
+        this.articleTagName = ArticleTagName;
     }
 }

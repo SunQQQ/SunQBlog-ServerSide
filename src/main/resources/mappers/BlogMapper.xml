@@ -17,18 +17,23 @@
         <result column="page_view_num" property="pageViewNum"/>
         <result column="create_id" property="createId"/>
         <result column="create_name" property="createName"/>
+        <result column="article_tag_name" property="articleTagName"/>
     </resultMap>
 
     <select id="getBlogList" resultMap="indexResultMap">
         select
             blog.id id,
-            title,summary,create_time,article_tag,
+            title,summary,
+            blog.create_time create_time,
             article_cover, comment_num,page_view_num,
-            user.name create_name
+            user.name create_name,
+            dictionary.name article_tag_name
         from
             blog blog
-        left join  user
+        left join  user user
             on blog.create_id = user.id
+        left join dictionary dictionary
+            on blog.article_tag = dictionary.id
         <where>
             <if test="role != 'master'">
                 create_id = #{userId}
