@@ -30,6 +30,15 @@
         </where>
     </select>
 
+    <select id="getuserSideMsg" resultMap="indexResultMap">
+        select
+            *
+        from
+            leave_message ml
+        left join user user
+            on user.id = ml.leave_id
+    </select>
+
     <insert id="createLeaveMessage">
         insert into leave_message
             (leave_id,message_content,city,avator,create_time,model_time,parent_id,leave_name)

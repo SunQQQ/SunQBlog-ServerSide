@@ -11,6 +11,8 @@ import java.util.Map;
 public interface LeaveMessageMapper {
     List<LeaveMessage> getAllLeaveMessage(Integer id, String role);
 
+    List<LeaveMessage> getuserSideMsg();
+
     int createLeaveMessage(Map<String,Object> params, Integer curId);
 
     int deleteLeaveMessage(int id);

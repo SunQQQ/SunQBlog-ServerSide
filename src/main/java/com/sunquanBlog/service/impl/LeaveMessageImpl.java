@@ -64,4 +64,10 @@ public class LeaveMessageImpl implements LeaveMessageService {
         List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole());
         return ApiResponse.success(heartFeltList);
     }
+
+    @Override
+    public ApiResponse getAllLeaveMessage() {
+        List<LeaveMessage> heartFeltList = leaveMessageMapper.getuserSideMsg();
+        return ApiResponse.success(heartFeltList);
+    }
 }

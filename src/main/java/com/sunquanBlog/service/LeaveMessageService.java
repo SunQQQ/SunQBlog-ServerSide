@@ -16,4 +16,6 @@ public interface LeaveMessageService {
     public ApiResponse deleteLeaveMessage(int id);
 
     public ApiResponse getAllLeaveMessage(Integer id);
+
+    public ApiResponse getAllLeaveMessage();
 }

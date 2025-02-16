@@ -21,12 +21,18 @@ public class LeaveMessageController {
     private SysLoginService sysLoginService;
 
     @PostMapping("/leaveMessageList")
-    public ApiResponse heartfeltList(HttpServletRequest request){
+    public ApiResponse leaveMessageList(HttpServletRequest request){
         // 从token获取用户Id
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
         return leaveMessageService.getAllLeaveMessage(userId);
+    }
+
+    // 用户端留言列表
+    @PostMapping("/userLeaveMsgList")
+    public ApiResponse userLeaveMsgList(HttpServletRequest request){
+        return leaveMessageService.getAllLeaveMessage();
     }
 
     @PostMapping("/createLeaveMessage")
