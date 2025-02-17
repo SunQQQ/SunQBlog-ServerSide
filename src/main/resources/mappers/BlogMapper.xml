@@ -63,6 +63,18 @@
         limit #{start}, #{size}
     </select>
 
+    <select id="getBlogNum" resultType="java.lang.Integer">
+        select
+            count(*) total
+        from
+            blog blog
+        <where>
+            <if test="tagId != 0">
+                article_tag = #{tagId}
+            </if>
+        </where>
+    </select>
+
     <insert id="insertBlog">
         insert into blog
             (title, summary, content, create_time, article_tag, article_cover, comment_num, page_view_num, create_id)

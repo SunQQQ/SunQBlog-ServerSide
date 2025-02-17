@@ -29,8 +29,13 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public ApiResponse getUserBlogList(Integer tagId,Integer start,Integer size){
         List<Blog> list = blogMapper.getUserBlogList(tagId,start,size);
+        Integer total = blogMapper.getBlogNum(tagId);
 
-        return ApiResponse.success(list);
+        Map<String,Object> result = new java.util.HashMap<>();
+        result.put("list",list);
+        result.put("total",total);
+
+        return ApiResponse.success(result);
     }
 
     public ApiResponse getBlogDetail(Integer blogId){

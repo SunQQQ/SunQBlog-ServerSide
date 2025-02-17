@@ -12,6 +12,8 @@ public interface BlogMapper {
 
     List<Blog> getUserBlogList(Integer tagId,Integer start,Integer size);
 
+    Integer getBlogNum(Integer tagId);
+
     Blog getBlogDetail(Integer blogId);
 
     Integer insertBlog(Map<String,Object> params);
