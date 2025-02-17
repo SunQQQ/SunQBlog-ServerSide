@@ -10,7 +10,7 @@ import java.util.Objects;
 public interface BlogService {
     public ApiResponse getBlogList(Integer userId);
 
-    public ApiResponse getUserBlogList(Integer tagId);
+    public ApiResponse getUserBlogList(Integer tagId,Integer start,Integer size);
 
     public ApiResponse getBlogDetail(Integer blogId);
 

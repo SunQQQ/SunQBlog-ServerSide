@@ -10,7 +10,7 @@ import java.util.Map;
 public interface BlogMapper {
     List<Blog> getBlogList(Integer userId,String role);
 
-    List<Blog> getUserBlogList(Integer tagId);
+    List<Blog> getUserBlogList(Integer tagId,Integer start,Integer size);
 
     Blog getBlogDetail(Integer blogId);
 

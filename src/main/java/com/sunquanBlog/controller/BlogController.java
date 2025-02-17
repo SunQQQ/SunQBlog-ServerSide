@@ -29,8 +29,10 @@ public class BlogController {
     @PostMapping("/getUserBlogList")
     public ApiResponse getUserBlogList(@RequestBody Map<String,Object> requestBody){
         Integer tagId = (Integer) requestBody.get("tag");
+        Integer start = (Integer) requestBody.get("start");
+        Integer size = (Integer) requestBody.get("size");
 
-        return blogService.getUserBlogList(tagId);
+        return blogService.getUserBlogList(tagId,start,size);
     }
 
     @PostMapping("/getBlogDetail")

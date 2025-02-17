@@ -60,6 +60,7 @@
                 article_tag = #{tagId}
             </if>
         </where>
+        limit #{start}, #{size}
     </select>
 
     <insert id="insertBlog">

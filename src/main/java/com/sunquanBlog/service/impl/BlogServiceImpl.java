@@ -27,8 +27,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public ApiResponse getUserBlogList(Integer tagId){
-        List<Blog> list = blogMapper.getUserBlogList(tagId);
+    public ApiResponse getUserBlogList(Integer tagId,Integer start,Integer size){
+        List<Blog> list = blogMapper.getUserBlogList(tagId,start,size);
 
         return ApiResponse.success(list);
     }
