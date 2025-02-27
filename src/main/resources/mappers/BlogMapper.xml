@@ -38,7 +38,11 @@
             <if test="role != 'master'">
                 create_id = #{userId}
             </if>
+            <if test="tagId != 0">
+                article_tag = #{tagId}
+            </if>
         </where>
+        limit #{start}, #{size}
     </select>
 
     <select id="getUserBlogList" resultMap="indexResultMap">

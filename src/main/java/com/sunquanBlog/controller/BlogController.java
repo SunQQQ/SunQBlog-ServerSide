@@ -17,12 +17,16 @@ public class BlogController {
     private BlogService blogService;
 
     @PostMapping("/getBlogList")
-    public ApiResponse getBlogList(HttpServletRequest request){
+    public ApiResponse getBlogList(HttpServletRequest request,@RequestBody Map<String,Object> requestBody){
         // 从token获取用户Id
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-        return blogService.getBlogList(userId);
+        Integer tagId = (Integer) requestBody.get("tag");
+        Integer start = (Integer) requestBody.get("start");
+        Integer size = (Integer) requestBody.get("size");
+
+        return blogService.getBlogList(userId,tagId,start,size);
     }
 
     // 给用户端使用，无需登录

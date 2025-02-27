@@ -18,12 +18,17 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private LoginMapper loginMapper;
     @Override
-    public ApiResponse getBlogList(Integer userId){
+    public ApiResponse getBlogList(Integer userId,Integer tagId,Integer start,Integer size){
         String role = loginMapper.getUserById(userId).getRole();
 
-        List<Blog> list = blogMapper.getBlogList(userId,role);
+        List<Blog> list = blogMapper.getBlogList(userId,role,tagId,start,size);
+        Integer total = blogMapper.getBlogNum(0);
 
-        return ApiResponse.success(list);
+        Map<String,Object> result = new java.util.HashMap<>();
+        result.put("list",list);
+        result.put("total",total);
+
+        return ApiResponse.success(result);
     }
 
     @Override
