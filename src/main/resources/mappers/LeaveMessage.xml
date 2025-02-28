@@ -67,7 +67,7 @@
              now(),
              now(),
              #{params.parentId},
-             #{params.leaveName})
+             #{userName})
     </insert>
 
     <delete id="deleteLeaveMessage">

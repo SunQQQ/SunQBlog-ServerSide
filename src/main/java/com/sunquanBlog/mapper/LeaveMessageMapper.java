@@ -17,7 +17,7 @@ public interface LeaveMessageMapper {
     // 获取二级留言数据
     List<LeaveMessage> getuserSideLevel2(List<Integer> parentIds);
 
-    int createLeaveMessage(Map<String,Object> params, Integer curId);
+    int createLeaveMessage(Map<String,Object> params, Integer curId,String userName);
 
     int deleteLeaveMessage(int id);
 

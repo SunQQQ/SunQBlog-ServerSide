@@ -42,7 +42,9 @@ public class LeaveMessageImpl implements LeaveMessageService {
 
     @Override
     public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId) {
-        int createNum = leaveMessageMapper.createLeaveMessage(map,accountId);
+        // 留言时需为已登录状态，故无需再填入留言人信息，直接从token中id获取name即可
+        String userName = loginMapper.getUserById(accountId).getName();
+        int createNum = leaveMessageMapper.createLeaveMessage(map,accountId,userName);
         if(createNum == 1){
             return ApiResponse.success("创建成功");
         }else {
