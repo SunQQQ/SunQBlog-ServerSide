@@ -9,6 +9,7 @@ import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,9 +66,36 @@ public class LeaveMessageImpl implements LeaveMessageService {
         return ApiResponse.success(heartFeltList);
     }
 
+    // 此方法用于用户端留言列表
     @Override
-    public ApiResponse getAllLeaveMessage() {
-        List<LeaveMessage> heartFeltList = leaveMessageMapper.getuserSideMsg();
-        return ApiResponse.success(heartFeltList);
+    public ApiResponse getAllLeaveMessage(Integer start,Integer size) {
+        // 先查分页范围内的一级数据
+        List<LeaveMessage> level1List = leaveMessageMapper.getuserSideLevel1(start,size);
+
+        // 取出一级数据的id
+        List<Integer> parentIdArray = new ArrayList<>();
+        for (int i = 0; i < level1List.size(); i++) {
+            LeaveMessage level1Item = level1List.get(i);
+            Integer id = level1Item.getId(); // 获取 id
+            parentIdArray.add(id);
+        }
+
+        // 再查以上一级数据的二级数据
+        List<LeaveMessage> level2List = leaveMessageMapper.getuserSideLevel2(parentIdArray);
+
+        // 组装如上两级数据
+        for (int i = 0; i < level1List.size(); i++) {
+            LeaveMessage level1Item = level1List.get(i);
+            List<LeaveMessage> childList = new ArrayList<>();
+            for (int j = 0; j < level2List.size(); j++) {
+                LeaveMessage child = level2List.get(j);
+                if (level1Item.getId().equals(child.getParentId())) {
+                    childList.add(child);
+                }
+            }
+            level1Item.setChild(childList);
+        }
+
+        return ApiResponse.success(level1List);
     }
 }

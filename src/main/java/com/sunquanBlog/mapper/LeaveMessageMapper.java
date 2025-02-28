@@ -4,6 +4,7 @@ import com.sunquanBlog.model.LeaveMessage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,10 @@ import java.util.Map;
 public interface LeaveMessageMapper {
     List<LeaveMessage> getAllLeaveMessage(Integer id, String role);
 
-    List<LeaveMessage> getuserSideMsg();
+    List<LeaveMessage> getuserSideLevel1(Integer start,Integer size);
+
+    // 获取二级留言数据
+    List<LeaveMessage> getuserSideLevel2(List<Integer> parentIds);
 
     int createLeaveMessage(Map<String,Object> params, Integer curId);
 

@@ -30,13 +30,30 @@
         </where>
     </select>
 
-    <select id="getuserSideMsg" resultMap="indexResultMap">
+    <select id="getuserSideLevel1" resultMap="indexResultMap">
         select
             *
         from
             leave_message ml
         left join user user
             on user.id = ml.leave_id
+        where
+            parent_id is null
+        limit #{start},#{size}
+    </select>
+
+    <select id="getuserSideLevel2" resultMap="indexResultMap">
+        select
+            *
+        from
+            leave_message ml
+                left join user user
+        on user.id = ml.leave_id
+        where
+            parent_id in
+        <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
+            #{parentId}
+        </foreach>
     </select>
 
     <insert id="createLeaveMessage">

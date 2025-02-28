@@ -1,6 +1,7 @@
 package com.sunquanBlog.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class LeaveMessage {
@@ -13,6 +14,7 @@ public class LeaveMessage {
     private LocalDateTime createTime;
     private LocalDateTime modelTime;
     private Integer parentId;
+    private List<LeaveMessage> child;
 
     public LeaveMessage() {
     }
@@ -88,6 +90,14 @@ public class LeaveMessage {
 
     public void setLeaveId(Integer leaveId) {
         this.leaveId = leaveId;
+    }
+
+    public List<LeaveMessage> getChild() {
+        return child;
+    }
+
+    public void setChild(List<LeaveMessage> child) {
+        this.child = child;
     }
 }
 

@@ -20,6 +20,7 @@ public class LeaveMessageController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    // 留言列表 用于管理员端
     @PostMapping("/leaveMessageList")
     public ApiResponse leaveMessageList(HttpServletRequest request){
         // 从token获取用户Id
@@ -31,8 +32,11 @@ public class LeaveMessageController {
 
     // 用户端留言列表
     @PostMapping("/userLeaveMsgList")
-    public ApiResponse userLeaveMsgList(HttpServletRequest request){
-        return leaveMessageService.getAllLeaveMessage();
+    public ApiResponse userLeaveMsgList(@RequestBody Map<String,Object> requestBody){
+        Integer start = (Integer)requestBody.get("start");
+        Integer size = (Integer)requestBody.get("size");
+
+        return leaveMessageService.getAllLeaveMessage(start,size);
     }
 
     @PostMapping("/createLeaveMessage")
@@ -40,9 +44,6 @@ public class LeaveMessageController {
         // 从token获取用户Id
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
-
-//        String content = requestBody.get("content");
-//        String writer = requestBody.get("writer");
 
         return leaveMessageService.createLeaveMessage(requestBody,userId);
     }

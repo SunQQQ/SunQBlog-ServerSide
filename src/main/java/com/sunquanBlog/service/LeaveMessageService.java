@@ -15,7 +15,9 @@ public interface LeaveMessageService {
 
     public ApiResponse deleteLeaveMessage(int id);
 
+    // 此方法用于留言列表 管理员端
     public ApiResponse getAllLeaveMessage(Integer id);
 
-    public ApiResponse getAllLeaveMessage();
+    // 此方法用于留言列表 用户端
+    public ApiResponse getAllLeaveMessage(Integer start,Integer size);
 }
