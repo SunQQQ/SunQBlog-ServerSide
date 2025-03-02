@@ -58,12 +58,11 @@
 
     <insert id="createLeaveMessage">
         insert into leave_message
-            (leave_id,message_content,city,avator,create_time,model_time,parent_id,leave_name)
+            (leave_id,message_content,city,create_time,model_time,parent_id,leave_name)
         values
             (#{curId},
              #{params.messageContent},
              #{params.city},
-             #{params.avator},
              now(),
              now(),
              #{params.parentId},
