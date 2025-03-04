@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.UserNameMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.UserName">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="isUsed" property="isUsed"/>
+    </resultMap>
+
+    <select id="getOneName" resultMap="indexResultMap">
+        select
+            *
+        from
+            user_name
+        where
+            isUsed = 0
+        order by
+            rand()
+        limit 1
+    </select>
+</mapper>
