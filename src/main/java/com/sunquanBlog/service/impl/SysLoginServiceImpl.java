@@ -46,10 +46,9 @@ public class SysLoginServiceImpl implements SysLoginService {
      * @param username
      * @param password
      * @param email
-     * @param role
      * @return
      */
-    public ApiResponse<String> register(Integer userId,String username, String password,String email,String role){
+    public ApiResponse<UserAuthResponse> regist(String username, String password,String email){
         // 检查账号是否重复
         List<User> list = loginMapper.getPassword(username);
         boolean haveAccount = list.size() > 0;
@@ -57,15 +56,18 @@ public class SysLoginServiceImpl implements SysLoginService {
         if (haveAccount) {
             return ApiResponse.error(500, "账号已存在，请修改账号");
         } else {
-            // 非管理员token禁止注册
-            String myRole = loginMapper.getUserById(userId).getRole();
-            if(!myRole.equals("master")){
-                return ApiResponse.error(500, "暂无权限，注册失败");
-            }
-
-            int insertNum = loginMapper.register(username, password,email,role);
+            int insertNum = loginMapper.regist(username, password,email);
             if (insertNum > 0) {
-                return ApiResponse.success("注册成功");
+//                return ApiResponse.success("注册成功");
+                List<User> listNow = loginMapper.getPassword(username);
+                User userInfo = listNow.get(0);
+
+                JwtUtil jwtUtil = new JwtUtil();
+                String token = jwtUtil.generateToken(userInfo);
+
+                UserAuthResponse userAuthResponse = new UserAuthResponse(token, userInfo);
+
+                return ApiResponse.success(userAuthResponse);
             } else {
                 return ApiResponse.error(500, "注册失败请联系博主");
             }

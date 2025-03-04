@@ -11,7 +11,7 @@ import java.util.Map;
 public interface SysLoginService {
     public ApiResponse<UserAuthResponse> checkLogin(String username, String password);
 
-    public ApiResponse<String> register(Integer userId,String username, String password,String email,String role);
+    public ApiResponse<UserAuthResponse> regist(String username, String password,String email);
 
     public ApiResponse deleteByUsername(String username);
 

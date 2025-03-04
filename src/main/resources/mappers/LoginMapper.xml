@@ -24,10 +24,10 @@
         where name = #{username}
     </select>
 
-    <insert id="register">
+    <insert id="regist">
         INSERT INTO user
-            (name, password, email, created_at, role,modify_time)
-        VALUES (#{username}, #{password}, #{email}, now(), #{role},now());
+            (name, password, email, created_at, role,modify_time,avator)
+        VALUES (#{username}, #{password}, #{email}, now(), 'user',now(),FLOOR(RAND() * 5));
     </insert>
 
     <!-- 添加根据账号名称删除数据的 SQL 语句 -->
