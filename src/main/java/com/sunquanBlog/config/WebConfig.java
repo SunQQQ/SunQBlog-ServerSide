@@ -1,8 +1,10 @@
 package com.sunquanBlog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -17,6 +19,16 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")  // 拦截所有请求
                 .excludePathPatterns("/login","/getDictionaryList","/getUserBlogList",
                 "/getBlogDetail","/userLeaveMsgList","/userHeartList","/getUserName",
-                "/regist");  // 排除登录和注册接口
+                "/regist","/UploadImg");  // 排除登录和注册接口
+    }
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 将 /uploads/** 映射到文件存储路径
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:" + uploadDir + "/");
     }
 }
