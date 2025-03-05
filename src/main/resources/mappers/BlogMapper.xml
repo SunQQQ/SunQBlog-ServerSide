@@ -119,4 +119,12 @@
         where
             id = #{id}
     </update>
+
+    <update id="addBlogViewNum">
+        update blog
+        set
+            page_view_num = page_view_num + 1
+        where
+            id = #{id}
+    </update>
 </mapper>

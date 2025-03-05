@@ -21,4 +21,6 @@ public interface BlogMapper {
     Integer deleteBlog(Integer id);
 
     Integer updateBlog(Map<String,Object> params);
+
+    Integer addBlogViewNum(Integer id);
 }

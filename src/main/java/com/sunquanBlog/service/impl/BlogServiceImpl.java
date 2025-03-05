@@ -47,6 +47,7 @@ public class BlogServiceImpl implements BlogService {
         Blog blog = blogMapper.getBlogDetail(blogId);
 
         if(blog != null){
+            blogMapper.addBlogViewNum(blogId);
             return ApiResponse.success(blog);
         }else{
             return ApiResponse.error(500,"查询失败");
