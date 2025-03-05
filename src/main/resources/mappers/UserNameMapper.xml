@@ -22,4 +22,13 @@
             rand()
         limit 1
     </select>
+
+    <update id="markNameAsUsed" parameterType="com.sunquanBlog.model.UserName">
+        update
+            user_name
+        set
+            isUsed = 1
+        where
+            id = #{id}
+    </update>
 </mapper>

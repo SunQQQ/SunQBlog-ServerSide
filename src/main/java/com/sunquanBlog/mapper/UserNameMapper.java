@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserNameMapper {
     UserName getOneName();
+
+    Integer markNameAsUsed(Integer id);
 }

@@ -15,4 +15,9 @@ public class UserNameServiceImpl implements UserNameService {
     public ApiResponse getUserName() {
         return ApiResponse.success(userNameMapper.getOneName());
     }
+
+    @Override
+    public ApiResponse markNameAsUsed(Integer id) {
+        return ApiResponse.success(userNameMapper.markNameAsUsed(id));
+    }
 }
