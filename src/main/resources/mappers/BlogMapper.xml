@@ -25,7 +25,7 @@
             blog.id id,
             title,summary,
             blog.create_time create_time,
-            article_cover, comment_num,page_view_num,
+            article_cover, page_view_num,
             user.name create_name,
             dictionary.name article_tag_name
         from
@@ -50,20 +50,24 @@
             blog.id id,
             title,summary,
             blog.create_time create_time,
-            article_cover, comment_num,page_view_num,
+            article_cover, page_view_num,
             user.name create_name,
-            dictionary.name article_tag_name
+            dictionary.name article_tag_name,
+            count(comment.id) comment_num
         from
             blog blog
         left join  user user
             on blog.create_id = user.id
         left join dictionary dictionary
             on blog.article_tag = dictionary.id
+        left join comment comment
+            on blog.id = comment.article_id
         <where>
             <if test="tagId != 0">
                 article_tag = #{tagId}
             </if>
         </where>
+        group by blog.id
         limit #{start}, #{size}
     </select>
 
@@ -81,7 +85,7 @@
 
     <insert id="insertBlog">
         insert into blog
-            (title, summary, content, create_time, article_tag, article_cover, comment_num, page_view_num, create_id)
+            (title, summary, content, create_time, article_tag, article_cover, page_view_num, create_id)
         values
             (#{title}, #{summary}, #{content}, now(), #{articleTag}, #{articleCover}, 0, 0,#{userId})
     </insert>
@@ -98,7 +102,7 @@
             blog.id,
             blog.content,
             title,summary,create_time,article_tag,
-            article_cover, comment_num,page_view_num,
+            article_cover, page_view_num,
             user.name create_name
         from
             blog blog
