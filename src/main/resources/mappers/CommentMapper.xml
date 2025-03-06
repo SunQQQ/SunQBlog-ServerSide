@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.CommentMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.Comment">
+        <id column="id" property="id"/>
+        <result column="article_id" property="articleId"/>
+        <result column="creater_id" property="createrId"/>
+        <result column="creater_name" property="createrName"/>
+        <result column="comment_content" property="commentContent"/>
+        <result column="comment_parent_id" property="commentParentId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="getCommentList" resultMap="indexResultMap">
+        select
+            b.name as creater_name,
+            a.comment_content,
+            a.create_time
+        from
+            comment a
+        left join user b
+            on a.creater_id = b.id
+        left join blog c
+            on a.article_id = c.id
+        where
+            a.article_id = #{articleId}
+    </select>
+</mapper>
