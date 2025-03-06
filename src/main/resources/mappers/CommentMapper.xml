@@ -13,11 +13,13 @@
         <result column="comment_content" property="commentContent"/>
         <result column="comment_parent_id" property="commentParentId"/>
         <result column="create_time" property="createTime"/>
+        <result column="creater_avator" property="createrAvator"></result>
     </resultMap>
 
     <select id="getCommentList" resultMap="indexResultMap">
         select
             b.name as creater_name,
+            b.avator as creater_avator,
             a.comment_content,
             a.create_time
         from

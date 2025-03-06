@@ -11,6 +11,8 @@ public class Comment {
     private Integer commentParentId;
     private LocalDateTime createTime;
 
+    private Integer createrAvator;
+
     public Comment() {
     }
 
@@ -68,5 +70,13 @@ public class Comment {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getCreaterAvator() {
+        return createrAvator;
+    }
+
+    public void setCreaterAvator(Integer createrAvator) {
+        this.createrAvator = createrAvator;
     }
 }
