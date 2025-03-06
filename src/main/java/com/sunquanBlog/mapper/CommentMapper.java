@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
     List <Comment> getCommentList(Integer articleId);
+
+    Integer addComment(Integer createrId, Integer articleId, String commentContent, Integer commentParentId,String city);
 }

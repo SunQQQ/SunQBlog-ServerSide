@@ -14,10 +14,12 @@
         <result column="comment_parent_id" property="commentParentId"/>
         <result column="create_time" property="createTime"/>
         <result column="creater_avator" property="createrAvator"></result>
+        <result column="city" property="city"></result>
     </resultMap>
 
     <select id="getCommentList" resultMap="indexResultMap">
         select
+            a.id,
             b.name as creater_name,
             b.avator as creater_avator,
             a.comment_content,
@@ -31,4 +33,11 @@
         where
             a.article_id = #{articleId}
     </select>
+
+    <insert id="addComment">
+        insert into comment
+            (article_id, creater_id, comment_content, comment_parent_id, create_time, city)
+        values
+            (#{articleId}, #{createrId}, #{commentContent}, #{commentParentId}, now(), #{city})
+    </insert>
 </mapper>

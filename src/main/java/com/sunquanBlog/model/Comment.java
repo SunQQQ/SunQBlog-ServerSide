@@ -13,6 +13,8 @@ public class Comment {
 
     private Integer createrAvator;
 
+    private String city;
+
     public Comment() {
     }
 
@@ -78,5 +80,13 @@ public class Comment {
 
     public void setCreaterAvator(Integer createrAvator) {
         this.createrAvator = createrAvator;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

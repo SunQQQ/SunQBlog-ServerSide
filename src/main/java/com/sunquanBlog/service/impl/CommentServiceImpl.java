@@ -17,4 +17,13 @@ public class CommentServiceImpl implements CommentService {
 
         return ApiResponse.success(comment);
     }
+
+    public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId,String city) {
+        Integer num = commentMapper.addComment(userId, articleId, commentContent, comParentId,city);
+        if(num == 1){
+            return ApiResponse.success("评论成功");
+        }else {
+            return ApiResponse.error(500,"评论失败");
+        }
+    }
 }
