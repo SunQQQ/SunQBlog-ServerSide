@@ -42,6 +42,7 @@
                 article_tag = #{tagId}
             </if>
         </where>
+        order by create_time desc
         limit #{start}, #{size}
     </select>
 
@@ -67,7 +68,9 @@
                 article_tag = #{tagId}
             </if>
         </where>
-        group by blog.id
+        group by
+            blog.id
+        order by create_time desc
         limit #{start}, #{size}
     </select>
 
