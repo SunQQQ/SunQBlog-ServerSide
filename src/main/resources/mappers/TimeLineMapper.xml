@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.TimeLineMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.TimeLine">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="content_date" property="contentDate"/>
+    </resultMap>
+
+    <select id="getAllTimeLine" resultMap="indexResultMap">
+        select
+            *
+        from
+            time_line time
+    </select>
+</mapper>
+
+

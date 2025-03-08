@@ -19,7 +19,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")  // 拦截所有请求
                 .excludePathPatterns("/login","/getDictionaryList","/getUserBlogList",
                 "/getBlogDetail","/userLeaveMsgList","/userHeartList","/getUserName",
-                "/regist","/UploadImg","/uploads/**","/getCommentList");  // 排除登录和注册接口
+                "/regist","/UploadImg","/uploads/**","/getCommentList",
+                        "/getTimeLineList");  // 排除登录和注册接口
     }
 
     @Value("${file.upload-dir}")
