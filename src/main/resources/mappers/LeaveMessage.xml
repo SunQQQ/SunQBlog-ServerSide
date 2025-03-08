@@ -28,6 +28,8 @@
                 leave_id = #{id}
             </if>
         </where>
+        order by
+            create_time desc
     </select>
 
     <select id="getuserSideLevel1" resultMap="indexResultMap">
@@ -39,6 +41,8 @@
             on user.id = ml.leave_id
         where
             parent_id is null
+        order by
+            create_time desc
         limit #{start},#{size}
     </select>
 
@@ -54,6 +58,8 @@
         <foreach collection="parentIds" item="parentId" open="(" separator="," close=")">
             #{parentId}
         </foreach>
+        order by
+            create_time desc
     </select>
 
     <insert id="createLeaveMessage">

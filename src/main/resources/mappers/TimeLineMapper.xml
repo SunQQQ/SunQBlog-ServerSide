@@ -16,6 +16,8 @@
             *
         from
             time_line time
+        order by
+            time.content_date desc
     </select>
 </mapper>
 
