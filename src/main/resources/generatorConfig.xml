@@ -5,16 +5,10 @@
 <generatorConfiguration>
     <context id="mysql" targetRuntime="MyBatis3">
         <!-- 数据库连接配置 -->
-<!--        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"-->
-<!--                        connectionURL="${spring.datasource.url}"-->
-<!--                        userId="${spring.datasource.username}"-->
-<!--                        password="${spring.datasource.password}">-->
-<!--        </jdbcConnection>-->
-
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://39.107.193.226:3306/happycoding?useSSL=false&amp;serverTimezone=UTC"
-                        userId="root"
-                        password="Sq155381..">
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
         </jdbcConnection>
 
         <!-- 生成 Java 模型类的配置 -->
