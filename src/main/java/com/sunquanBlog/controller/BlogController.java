@@ -102,6 +102,8 @@ public class BlogController {
             // 保存文件
             Files.copy(file.getInputStream(), filePath);
 
+            System.out.println("Absolute file path: " + filePath.toAbsolutePath());
+
             // 返回文件的访问 URL
             String fileUrl = "/uploads/" + fileName; // 假设文件可以通过 /uploads 路径访问
             return ApiResponse.success(fileUrl);
