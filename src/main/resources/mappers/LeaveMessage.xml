@@ -94,5 +94,12 @@
         where
             id = #{id}
     </update>
+
+    <select id="getLmCount" resultType="int">
+        select
+            count(*)
+        from
+            leave_message
+    </select>
 </mapper>
 

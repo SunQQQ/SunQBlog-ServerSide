@@ -65,6 +65,11 @@ public class LeaveMessageController {
 
         return leaveMessageService.updateLeaveMessage(id,messageContent,city,avator,parentId,leaveName);
     }
+
+    @PostMapping("/getLmCount")
+    public ApiResponse getLMCount(){
+        return leaveMessageService.getLmCount();
+    }
 }
 
 

@@ -24,4 +24,6 @@ public interface LeaveMessageMapper {
     int updateLeaveMessage(@Param("params") Map<String,Object> params);
 
     int updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName);
+
+    int getLmCount();
 }

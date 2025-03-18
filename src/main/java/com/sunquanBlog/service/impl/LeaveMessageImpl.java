@@ -100,4 +100,10 @@ public class LeaveMessageImpl implements LeaveMessageService {
 
         return ApiResponse.success(level1List);
     }
+
+    @Override
+    public ApiResponse getLmCount() {
+        int count = leaveMessageMapper.getLmCount();
+        return ApiResponse.success(count);
+    }
 }

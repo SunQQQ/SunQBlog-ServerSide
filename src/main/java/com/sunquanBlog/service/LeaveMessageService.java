@@ -20,4 +20,6 @@ public interface LeaveMessageService {
 
     // 此方法用于留言列表 用户端
     public ApiResponse getAllLeaveMessage(Integer start,Integer size);
+
+    public ApiResponse getLmCount();
 }
