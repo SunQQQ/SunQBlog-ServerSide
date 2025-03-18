@@ -33,4 +33,9 @@ public class CommentController {
 
         return commentService.addComment(userId,articleId,commentContent,comParentId,city);
     }
+
+    @PostMapping("/getCommentCount")
+    public ApiResponse getCommentCount(){
+        return commentService.getCommentCount();
+    }
 }

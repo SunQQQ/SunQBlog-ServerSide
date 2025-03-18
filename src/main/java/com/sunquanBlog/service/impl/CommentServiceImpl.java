@@ -26,4 +26,9 @@ public class CommentServiceImpl implements CommentService {
             return ApiResponse.error(500,"评论失败");
         }
     }
+
+    public ApiResponse getCommentCount() {
+        Integer count = commentMapper.getCommentCount();
+        return ApiResponse.success(count);
+    }
 }

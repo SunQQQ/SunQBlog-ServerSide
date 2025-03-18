@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/login","/getDictionaryList","/getUserBlogList",
                 "/getBlogDetail","/userLeaveMsgList","/userHeartList","/getUserName",
                 "/regist","/UploadImg","/uploads/**","/getCommentList",
-                        "/getTimeLineList");  // 排除登录和注册接口
+                        "/getTimeLineList","/getCommentCount");  // 排除登录和注册接口
     }
 
     @Value("${file.upload-dir}")

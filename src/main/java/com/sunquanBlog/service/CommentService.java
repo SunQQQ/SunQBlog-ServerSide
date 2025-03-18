@@ -11,4 +11,6 @@ public interface CommentService {
     public ApiResponse getCommentList(Integer articleId);
 
     public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId,String city);
+
+    public ApiResponse getCommentCount();
 }

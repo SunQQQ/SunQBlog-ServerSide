@@ -40,4 +40,11 @@
         values
             (#{articleId}, #{createrId}, #{commentContent}, #{commentParentId}, now(), #{city})
     </insert>
+
+    <select id="getCommentCount" resultType="int">
+        select
+            count(1)
+        from
+            comment
+    </select>
 </mapper>
