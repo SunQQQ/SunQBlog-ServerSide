@@ -59,7 +59,7 @@
             #{parentId}
         </foreach>
         order by
-            create_time desc
+            create_time asc
     </select>
 
     <insert id="createLeaveMessage">
