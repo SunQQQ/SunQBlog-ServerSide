@@ -10,6 +10,7 @@ public class LeaveMessage {
     private Integer leaveId;
     private String messageContent;
     private String city;
+    private String avator;
     private LocalDateTime createTime;
     private LocalDateTime modelTime;
     private Integer parentId;
@@ -49,6 +50,14 @@ public class LeaveMessage {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getavator() {
+        return avator;
+    }
+
+    public void setavator(String avator) {
+        this.avator = avator;
     }
 
     public LocalDateTime getCreateTime() {
