@@ -10,7 +10,6 @@
         <result column="leave_id" property="leaveId"/>
         <result column="message_content" property="messageContent"/>
         <result column="city" property="city"/>
-        <result column="avator" property="avator"/>
         <result column="create_time" property="createTime"/>
         <result column="model_time" property="modelTime"/>
         <result column="parent_id" property="parentId"/>
@@ -87,7 +86,6 @@
         set
             message_content = #{messageContent},
             city = #{city},
-            avator = #{avator},
             model_time = now(),
             parent_id = #{parentId},
             leave_name = #{leaveName}
