@@ -79,4 +79,9 @@ public class SysLoginController {
 
         return sysLoginService.updateUser(req,accountId);
     }
+
+    @PostMapping("/getUserData")
+    public ApiResponse<Map> getUserData(){
+        return sysLoginService.getUserData();
+    }
 }

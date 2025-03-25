@@ -53,5 +53,16 @@
             modify_time = now()
         where id = #{params.id}
     </update>
+
+    <select id="getTotalUser" resultType="java.lang.Integer">
+        select count(1)
+        from user
+    </select>
+
+    <select id="getTodayUser" resultType="java.lang.Integer">
+        select count(1)
+        from user
+        where created_at >= curdate()
+    </select>
 </mapper>
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -124,5 +125,13 @@ public class SysLoginServiceImpl implements SysLoginService {
         } else {
             return ApiResponse.error(500, "修改失败");
         }
+    }
+
+    @Override
+    public ApiResponse<Map> getUserData(){
+        Map<String, Integer> map = new HashMap<>();
+        map.put("totalUser", loginMapper.getTotalUser());
+        map.put("todayUser", loginMapper.getTodayUser());
+        return ApiResponse.success(map);
     }
 }
