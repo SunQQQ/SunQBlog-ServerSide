@@ -3,6 +3,7 @@ package com.sunquanBlog.service.impl;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.common.util.JwtUtil;
 import com.sunquanBlog.common.util.UserAuthResponse;
+import com.sunquanBlog.mapper.BlogMapper;
 import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
@@ -21,6 +22,8 @@ public class SysLoginServiceImpl implements SysLoginService {
 
     @Autowired
     private LoginMapper loginMapper;
+    @Autowired
+    private BlogMapper blogMapper;
     public ApiResponse<UserAuthResponse> checkLogin(String username, String password){
         List<User> list = loginMapper.getPassword(username);
         String tablePassword;
@@ -132,6 +135,9 @@ public class SysLoginServiceImpl implements SysLoginService {
         Map<String, Integer> map = new HashMap<>();
         map.put("totalUser", loginMapper.getTotalUser());
         map.put("todayUser", loginMapper.getTodayUser());
+
+        map.put("totalArticle", blogMapper.getTotalArticle());
+        map.put("todayArticle", blogMapper.getTodayArticle());
         return ApiResponse.success(map);
     }
 }
