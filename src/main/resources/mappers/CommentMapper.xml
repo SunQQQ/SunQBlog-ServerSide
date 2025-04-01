@@ -47,4 +47,19 @@
         from
             comment
     </select>
+
+    <select id="getTotalComment" resultType="integer">
+        select
+            count(1)
+        from
+            comment
+    </select>
+    <select id="getTodayComment" resultType="integer">
+        select
+            count(1)
+        from
+            comment
+        where
+            create_time >= curdate()
+    </select>
 </mapper>

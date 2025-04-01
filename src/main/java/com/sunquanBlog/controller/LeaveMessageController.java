@@ -3,6 +3,7 @@ package com.sunquanBlog.controller;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.model.HeartFelt;
 import com.sunquanBlog.service.LeaveMessageService;
+import com.sunquanBlog.service.LogService;
 import com.sunquanBlog.service.SysLoginService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class LeaveMessageController {
     private LeaveMessageService leaveMessageService;
     @Autowired
     private SysLoginService sysLoginService;
+    @Autowired
+    private LogService logService;
 
     // 留言列表 用于管理员端
     @PostMapping("/leaveMessageList")
@@ -32,9 +35,17 @@ public class LeaveMessageController {
 
     // 用户端留言列表
     @PostMapping("/userLeaveMsgList")
-    public ApiResponse userLeaveMsgList(@RequestBody Map<String,Object> requestBody){
+    public ApiResponse userLeaveMsgList(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
         Integer start = (Integer)requestBody.get("start");
         Integer size = (Integer)requestBody.get("size");
+
+        // 记录日志
+        Integer curPage = (start / size) + 1;
+        if(curPage == 1) {
+            logService.createLog(request,"用户端", "留言页", "打开", "留言页","");
+        }else {
+            logService.createLog(request,"用户端", "留言页", "下拉" , "留言页", "到第" + curPage + "页");
+        }
 
         return leaveMessageService.getAllLeaveMessage(start,size);
     }

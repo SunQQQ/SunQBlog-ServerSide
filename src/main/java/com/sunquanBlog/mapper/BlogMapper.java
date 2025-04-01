@@ -23,4 +23,8 @@ public interface BlogMapper {
     Integer updateBlog(Map<String,Object> params);
 
     Integer addBlogViewNum(Integer id);
+
+    Integer getTodayArticle();
+
+    Integer getTotalArticle();
 }

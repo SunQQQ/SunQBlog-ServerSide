@@ -5,9 +5,11 @@ import com.sunquanBlog.mapper.BlogMapper;
 import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.Blog;
 import com.sunquanBlog.service.BlogService;
+import com.sunquanBlog.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,8 @@ public class BlogServiceImpl implements BlogService {
     private BlogMapper blogMapper;
     @Autowired
     private LoginMapper loginMapper;
+    @Autowired
+    private LogService logService;
     @Override
     public ApiResponse getBlogList(Integer userId,Integer tagId,Integer start,Integer size){
         String role = loginMapper.getUserById(userId).getRole();
@@ -43,8 +47,10 @@ public class BlogServiceImpl implements BlogService {
         return ApiResponse.success(result);
     }
 
-    public ApiResponse getBlogDetail(Integer blogId){
+    public ApiResponse getBlogDetail(Integer blogId, HttpServletRequest request){
         Blog blog = blogMapper.getBlogDetail(blogId);
+
+        logService.createLog(request,"用户端", "文章详情页", "阅读", "文章",":"+blog.getTitle());
 
         if(blog != null){
             blogMapper.addBlogViewNum(blogId);

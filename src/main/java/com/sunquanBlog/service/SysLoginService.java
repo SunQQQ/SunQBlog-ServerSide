@@ -20,4 +20,6 @@ public interface SysLoginService {
     public User getUserById(Integer id);
 
     public ApiResponse<String> updateUser(Map<String,Object> map,Integer accountId);
+
+    public ApiResponse<Map> getUserData();
 }

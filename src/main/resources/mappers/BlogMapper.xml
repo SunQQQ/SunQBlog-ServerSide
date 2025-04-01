@@ -134,4 +134,20 @@
         where
             id = #{id}
     </update>
+
+    <select id="getTodayArticle" resultType="Integer">
+        select
+            count(*)
+        from
+            blog
+        where
+            create_time >= curdate()
+    </select>
+
+    <select id="getTotalArticle" resultType="Integer">
+        select
+            count(*)
+        from
+            blog
+    </select>
 </mapper>

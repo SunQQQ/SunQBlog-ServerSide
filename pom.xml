@@ -72,6 +72,18 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.26</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.ip2location</groupId>
+			<artifactId>ip2location-java</artifactId>
+			<version>8.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.12.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -131,7 +143,20 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<filtering>true</filtering>  <!-- 启用资源过滤 -->
+				<filtering>false</filtering>
+				<!-- 仅包含IP2Location数据库文件 -->
+				<includes>
+					<include>**/ip2location/*.BIN</include>
+					<include>**/ip2location/*.bin</include>
+				</includes>
+			</resource>
+			<!-- 单独处理其他资源 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/ip2location/*</exclude>
+				</excludes>
 			</resource>
 		</resources>
 	</build>

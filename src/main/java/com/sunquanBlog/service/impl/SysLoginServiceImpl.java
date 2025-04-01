@@ -3,6 +3,9 @@ package com.sunquanBlog.service.impl;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.common.util.JwtUtil;
 import com.sunquanBlog.common.util.UserAuthResponse;
+import com.sunquanBlog.mapper.BlogMapper;
+import com.sunquanBlog.mapper.CommentMapper;
+import com.sunquanBlog.mapper.LeaveMessageMapper;
 import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.SysLoginService;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +24,12 @@ public class SysLoginServiceImpl implements SysLoginService {
 
     @Autowired
     private LoginMapper loginMapper;
+    @Autowired
+    private BlogMapper blogMapper;
+    @Autowired
+    private CommentMapper commentMapper;
+    @Autowired
+    private LeaveMessageMapper leaveMessageMapper;
     public ApiResponse<UserAuthResponse> checkLogin(String username, String password){
         List<User> list = loginMapper.getPassword(username);
         String tablePassword;
@@ -124,5 +134,23 @@ public class SysLoginServiceImpl implements SysLoginService {
         } else {
             return ApiResponse.error(500, "修改失败");
         }
+    }
+
+    @Override
+    public ApiResponse<Map> getUserData(){
+        Map<String, Integer> map = new HashMap<>();
+        // 用户注册
+        map.put("totalUser", loginMapper.getTotalUser());
+        map.put("todayUser", loginMapper.getTodayUser());
+        // 文章
+        map.put("totalArticle", blogMapper.getTotalArticle());
+        map.put("todayArticle", blogMapper.getTodayArticle());
+        // 评论
+        map.put("totalComment", commentMapper.getTotalComment());
+        map.put("todayComment", commentMapper.getTodayComment());
+        // 留言
+        map.put("totalLeaveMess", leaveMessageMapper.getTotalLeaveMess());
+        map.put("todayLeaveMess", leaveMessageMapper.getTodayLeaveMess());
+        return ApiResponse.success(map);
     }
 }

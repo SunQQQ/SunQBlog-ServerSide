@@ -2,6 +2,7 @@ package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.service.BlogService;
+import com.sunquanBlog.service.LogService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,9 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private LogService logService;
+
     @PostMapping("/getBlogList")
     public ApiResponse getBlogList(HttpServletRequest request,@RequestBody Map<String,Object> requestBody){
         // 从token获取用户Id
@@ -45,19 +49,27 @@ public class BlogController {
 
     // 给用户端使用，无需登录
     @PostMapping("/getUserBlogList")
-    public ApiResponse getUserBlogList(@RequestBody Map<String,Object> requestBody){
+    public ApiResponse getUserBlogList(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
         Integer tagId = (Integer) requestBody.get("tag");
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
+
+        // 记录日志
+        Integer curPage = (start / size) + 1;
+        if(curPage == 1) {
+            logService.createLog(request, "用户端","首页", "打开", "首页","");
+        }else {
+            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
+        }
 
         return blogService.getUserBlogList(tagId,start,size);
     }
 
     @PostMapping("/getBlogDetail")
-    public ApiResponse getBlogDetail(@RequestBody Map<String,Object> requestBody){
+    public ApiResponse getBlogDetail(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
         Integer blogId = (Integer) requestBody.get("id");
 
-        return blogService.getBlogDetail(blogId);
+        return blogService.getBlogDetail(blogId,request);
     }
 
     @PostMapping("/createBlog")

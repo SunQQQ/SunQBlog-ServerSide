@@ -100,5 +100,21 @@
         from
             leave_message
     </select>
+
+    <select id="getTotalLeaveMess" resultType="integer">
+        select
+            count(*)
+        from
+            leave_message
+    </select>
+
+    <select id="getTodayLeaveMess" resultType="integer">
+        select
+            count(*)
+        from
+            leave_message
+        where
+            create_time >= curdate()
+    </select>
 </mapper>
 

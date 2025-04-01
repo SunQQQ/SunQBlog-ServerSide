@@ -12,4 +12,8 @@ public interface CommentMapper {
     Integer addComment(Integer createrId, Integer articleId, String commentContent, Integer commentParentId,String city);
 
     Integer getCommentCount();
+
+    Integer getTodayComment();
+
+    Integer getTotalComment();
 }

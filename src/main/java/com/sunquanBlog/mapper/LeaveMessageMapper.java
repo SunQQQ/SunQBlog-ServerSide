@@ -26,4 +26,8 @@ public interface LeaveMessageMapper {
     int updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName);
 
     int getLmCount();
+
+    Integer getTotalLeaveMess();
+
+    Integer getTodayLeaveMess();
 }

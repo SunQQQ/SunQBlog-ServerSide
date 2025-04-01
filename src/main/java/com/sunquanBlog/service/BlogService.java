@@ -3,6 +3,7 @@ package com.sunquanBlog.service;
 import com.sunquanBlog.common.util.ApiResponse;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public interface BlogService {
 
     public ApiResponse getUserBlogList(Integer tagId,Integer start,Integer size);
 
-    public ApiResponse getBlogDetail(Integer blogId);
+    public ApiResponse getBlogDetail(Integer blogId, HttpServletRequest request);
 
     public ApiResponse insertBlog(Map<String, Object> params);
 

@@ -18,4 +18,8 @@ public interface LoginMapper {
     User getUserById(Integer id);
 
     int updateUser(@Param("params") Map<String,Object> params);
+
+    Integer getTotalUser();
+
+    Integer getTodayUser();
 }
