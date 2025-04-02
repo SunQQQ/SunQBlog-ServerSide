@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.LogMapper">
+    <resultMap id="Log" type="com.sunquanBlog.model.Log">
+        <id column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="page" property="page"/>
+        <result column="ip_city" property="ipCity"/>
+        <result column="create_time" property="createTime"/>
+        <result column="browser" property="browser"/>
+        <result column="action" property="action"/>
+        <result column="action_object" property="actionObject"/>
+        <result column="action_desc" property="actionDesc"/>
+        <result column="platform_type" property="platformType"/>
+    </resultMap>
+
+    <insert id="insertLog" parameterType="com.sunquanBlog.model.Log">
+        insert into log
+            (ip, platform_type,page, ip_city, create_time, browser, action, action_object,action_desc)
+        values
+            (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc})
+    </insert>
+</mapper>
