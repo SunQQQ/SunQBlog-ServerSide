@@ -24,4 +24,22 @@
         values
             (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc})
     </insert>
+
+    <select id="getTotalIp" resultType="map">
+        select
+            count(distinct ip) as totalIpCount,
+            count(*) as totalPvCount
+        from
+            log
+    </select>
+
+    <select id="getTodayIp" resultType="map">
+        select
+            count(distinct ip) as todayIpCount,
+            count(*) as todayPvCount
+        from
+            log
+        where
+            create_time >= curdate()
+    </select>
 </mapper>

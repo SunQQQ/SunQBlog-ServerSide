@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.sunquanBlog.service.CityNameConverter;
 
@@ -45,6 +47,9 @@ public class LogServiceImpl implements LogService, DisposableBean {
         Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc);
         return result;
     }
+
+    private static Path cachedDbFile = null;
+    private static final Object lock = new Object();
 
     // 获取客户端真实IP地址
     private String getClientIpAddress(HttpServletRequest request) {
@@ -77,9 +82,6 @@ public class LogServiceImpl implements LogService, DisposableBean {
                 || userAgent.contains("ipad")
                 || userAgent.contains("windows phone");
     }
-
-    private static Path cachedDbFile = null;
-    private static final Object lock = new Object();
 
     public String getCityByIp2(String ip) {
         if (ip == null || ip.isEmpty() || ip.equals("127.0.0.1")) {
@@ -131,5 +133,19 @@ public class LogServiceImpl implements LogService, DisposableBean {
     @Override
     public void destroy() throws Exception {
         cleanup(); // 在 Spring 容器关闭时自动调用
+    }
+
+    @Override
+    public ApiResponse<Map> getLogIp() {
+        Map<String,Long> today = logMapper.getTodayIp();
+        Map<String,Long> total = logMapper.getTotalIp();
+
+        Map<String, Long> merged = new HashMap<>();
+        merged.put("totalIpCount", total.get("totalIpCount"));
+        merged.put("totalPvCount", total.get("totalPvCount"));
+        merged.put("todayIpCount", today.get("todayIpCount"));
+        merged.put("todayPvCount", today.get("todayPvCount"));
+
+        return ApiResponse.success(merged);
     }
 }
