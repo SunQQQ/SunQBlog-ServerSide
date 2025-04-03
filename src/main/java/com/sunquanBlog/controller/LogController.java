@@ -18,4 +18,10 @@ public class LogController {
         // 记录日志
         return logService.getLogIp();
     }
+
+    @PostMapping("/getUserAction")
+    public ApiResponse getUserAction(HttpServletRequest request) {
+        // 记录日志
+        return logService.getUserAction();
+    }
 }

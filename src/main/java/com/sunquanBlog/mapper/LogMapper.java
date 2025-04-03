@@ -1,9 +1,11 @@
 package com.sunquanBlog.mapper;
 
 import com.sunquanBlog.model.Log;
+import com.sunquanBlog.model.LogDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -13,4 +15,6 @@ public interface LogMapper {
     Log getTodayIp();
 
     Log getTotalIp();
+
+    List<LogDTO> getUserAciton();
 }

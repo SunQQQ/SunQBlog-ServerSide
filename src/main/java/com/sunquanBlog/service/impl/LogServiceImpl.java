@@ -3,6 +3,7 @@ package com.sunquanBlog.service.impl;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.model.Log;
+import com.sunquanBlog.model.LogDTO;
 import com.sunquanBlog.service.LogService;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.sunquanBlog.service.CityNameConverter;
@@ -148,5 +150,11 @@ public class LogServiceImpl implements LogService, DisposableBean {
         merged.put("todayPvCount", today.getTodayPvCount());
 
         return ApiResponse.success(merged);
+    }
+
+    @Override
+    public ApiResponse<List<LogDTO>> getUserAction() {
+        List<LogDTO> logDTOs = logMapper.getUserAciton();
+        return ApiResponse.success(logDTOs);
     }
 }

@@ -46,4 +46,22 @@
         from
             log
     </select>
+
+    <select id="getUserAciton" resultType="com.sunquanBlog.model.LogDTO">
+        SELECT
+            ip AS ip,
+            GROUP_CONCAT(
+                    concat(action,action_object,action_desc)
+                        ORDER BY create_time
+		            SEPARATOR '+'
+            ) actions,
+            MAX(ip_city) ipCity,
+            MAX(browser) browser,
+            MAX(create_time) leaveTime,
+            MIN(create_time) entryTime
+        FROM
+            log
+        GROUP BY
+            ip
+    </select>
 </mapper>
