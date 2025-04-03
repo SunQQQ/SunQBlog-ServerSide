@@ -15,6 +15,14 @@ public class Log {
     private String actionDesc;
 
     private String platformType;
+
+    private Long todayIpCount;
+
+    private Long totalIpCount;
+
+    private Long todayPvCount;
+
+    private Long totalPvCount;
     public Log() {
     }
 
@@ -96,5 +104,37 @@ public class Log {
 
     public void setPlatformType(String platformType) {
         this.platformType = platformType;
+    }
+
+    public Long getTodayIpCount() {
+        return todayIpCount;
+    }
+
+    public void setTodayIpCount(Long todayIpCount) {
+        this.todayIpCount = todayIpCount;
+    }
+
+    public Long getTotalIpCount(){
+        return totalIpCount;
+    }
+
+    public void setTotalIpCount(Long totalIpCount) {
+        this.totalIpCount = totalIpCount;
+    }
+
+    public Long getTodayPvCount() {
+        return todayPvCount;
+    }
+
+    public void setTodayPvCount(Long todayPvCount) {
+        this.todayPvCount = todayPvCount;
+    }
+
+    public Long getTotalPvCount() {
+        return totalPvCount;
+    }
+
+    public void setTotalPvCount(Long totalPvCount) {
+        this.totalPvCount = totalPvCount;
     }
 }

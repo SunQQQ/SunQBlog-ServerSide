@@ -2,6 +2,7 @@ package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LogMapper;
+import com.sunquanBlog.model.Log;
 import com.sunquanBlog.service.LogService;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,14 +138,14 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
     @Override
     public ApiResponse<Map> getLogIp() {
-        Map<String,Long> today = logMapper.getTodayIp();
-        Map<String,Long> total = logMapper.getTotalIp();
+        Log total = logMapper.getTotalIp();
+        Log today = logMapper.getTodayIp();
 
         Map<String, Long> merged = new HashMap<>();
-        merged.put("totalIpCount", total.get("totalIpCount"));
-        merged.put("totalPvCount", total.get("totalPvCount"));
-        merged.put("todayIpCount", today.get("todayIpCount"));
-        merged.put("todayPvCount", today.get("todayPvCount"));
+        merged.put("totalIpCount", total.getTotalIpCount());
+        merged.put("totalPvCount", total.getTotalPvCount());
+        merged.put("todayIpCount", today.getTodayIpCount());
+        merged.put("todayPvCount", today.getTodayPvCount());
 
         return ApiResponse.success(merged);
     }

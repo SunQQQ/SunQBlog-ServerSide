@@ -16,6 +16,10 @@
         <result column="action_object" property="actionObject"/>
         <result column="action_desc" property="actionDesc"/>
         <result column="platform_type" property="platformType"/>
+        <result column="todayIpCount" property="todayIpCount"/>
+        <result column="todayPvCount" property="todayPvCount"/>
+        <result column="totalIpCount" property="totalIpCount"/>
+        <result column="totalPvCount" property="totalPvCount"/>
     </resultMap>
 
     <insert id="insertLog" parameterType="com.sunquanBlog.model.Log">
@@ -25,15 +29,7 @@
             (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc})
     </insert>
 
-    <select id="getTotalIp" resultType="map">
-        select
-            count(distinct ip) as totalIpCount,
-            count(*) as totalPvCount
-        from
-            log
-    </select>
-
-    <select id="getTodayIp" resultType="map">
+    <select id="getTodayIp" resultMap="Log">
         select
             count(distinct ip) as todayIpCount,
             count(*) as todayPvCount
@@ -41,5 +37,13 @@
             log
         where
             create_time >= curdate()
+    </select>
+
+    <select id="getTotalIp" resultMap="Log">
+        select
+            count(distinct ip) as totalIpCount,
+            count(*) as totalPvCount
+        from
+            log
     </select>
 </mapper>
