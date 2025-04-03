@@ -62,6 +62,8 @@
         FROM
             log
         GROUP BY
-            ip
+            ip,DATE(create_time)
+        ORDER BY
+            entryTime desc
     </select>
 </mapper>
