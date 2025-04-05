@@ -190,7 +190,7 @@
   "Nanchong": "南充",
   "Neijiang": "内江",
   "Suining": "遂宁",
-  "Guangan": "广安",
+  "Guang'an": "广安",
   "Luzhou": "泸州",
   "Dazhou": "达州",
   "Meishan": "眉山",
@@ -250,7 +250,7 @@
   "Yuncheng": "运城",
   "Linfen": "临汾",
   "Lvliang": "吕梁",
-  "Xian": "西安",
+  "Xi'an": "西安",
   "Xianyang": "咸阳",
   "Tongchuan": "铜川",
   "Yanan": "延安",
@@ -283,5 +283,8 @@
   "Jingdezhen": "景德镇",
   "Xinyu": "新余",
   "Yichun": "宜春",
-  "Fuzhou": "抚州"
+  "Fuzhou": "抚州",
+  "Gaoping": "高平",
+  "Fuqing": "福清",
+  "Hong Kong": "香港"
 }
