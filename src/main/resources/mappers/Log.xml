@@ -74,5 +74,20 @@
             entryTime desc
         ]]>
     </select>
-
+    
+    <select id="getIpDaily" resultType="com.sunquanBlog.model.LogIpDailyDTO">
+        <![CDATA[
+        SELECT
+            DATE(create_time) day,
+            count(DISTINCT ip) ip,
+            count(1) pv
+        FROM
+            log
+        WHERE
+            create_time >= DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND create_time <= DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+        GROUP BY
+            DATE(create_time)
+        ]]>
+    </select>
 </mapper>

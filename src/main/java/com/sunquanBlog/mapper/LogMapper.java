@@ -2,6 +2,7 @@ package com.sunquanBlog.mapper;
 
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogDTO;
+import com.sunquanBlog.model.LogIpDailyDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,6 @@ public interface LogMapper {
     // 根据时间段查询
     List<LogDTO> getUserAciton(Integer start,Integer end);
 
+    // 根据ip查询
+    List<LogIpDailyDTO> getIpDaily(Integer days);
 }

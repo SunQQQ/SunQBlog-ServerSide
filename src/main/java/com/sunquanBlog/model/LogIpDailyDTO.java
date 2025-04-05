@@ -1,0 +1,42 @@
+package com.sunquanBlog.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
+
+public class LogIpDailyDTO { // DTO类，用于封装查询结果
+    private Long ip;
+    private Long pv;          // GROUP_CONCAT的结果
+
+
+    @JsonFormat(pattern = "YYYYMMdd")
+    private LocalDateTime day;    // 平台类型
+
+    public LogIpDailyDTO() {
+    }
+
+
+    public Long getIp() {
+        return ip;
+    }
+
+    public void setIp(Long ip) {
+        this.ip = ip;
+    }
+
+    public Long getPv() {
+        return pv;
+    }
+
+    public void setPv(Long pv) {
+        this.pv = pv;
+    }
+
+    public LocalDateTime getDay() {
+        return day;
+    }
+
+    public void setDay(LocalDateTime day) {
+        this.day = day;
+    }
+}

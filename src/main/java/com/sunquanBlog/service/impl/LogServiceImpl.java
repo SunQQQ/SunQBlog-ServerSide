@@ -4,6 +4,7 @@ import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogDTO;
+import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.service.LogService;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,12 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
 
 
+        return ApiResponse.success(logDTOs);
+    }
+
+    @Override
+    public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days) {
+        List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days-1);
         return ApiResponse.success(logDTOs);
     }
 }

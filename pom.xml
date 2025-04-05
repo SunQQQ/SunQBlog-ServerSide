@@ -91,6 +91,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>CodingLife</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
