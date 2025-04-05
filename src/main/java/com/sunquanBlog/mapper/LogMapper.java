@@ -16,5 +16,7 @@ public interface LogMapper {
 
     Log getTotalIp();
 
-    List<LogDTO> getUserAciton();
+    // 根据时间段查询
+    List<LogDTO> getUserAciton(Integer start,Integer end);
+
 }

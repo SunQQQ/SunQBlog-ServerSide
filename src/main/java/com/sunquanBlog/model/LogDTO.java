@@ -9,10 +9,13 @@ public class LogDTO { // DTO类，用于封装查询结果
     private String actions;          // GROUP_CONCAT的结果
     private String ipCity;           // MAX(ip_city)
     private String browser;          // MAX(browser)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalDateTime leaveTime; // MAX(create_time)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalDateTime entryTime; // MIN(create_time)
+
+    @JsonFormat(pattern = "YYYY-MM-dd")
+    private LocalDateTime day;    // 平台类型
 
     public Long getStayTime() {
         return stayTime;

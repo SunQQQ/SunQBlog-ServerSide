@@ -153,8 +153,10 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
-    public ApiResponse<List<LogDTO>> getUserAction() {
-        List<LogDTO> logDTOs = logMapper.getUserAciton();
+    public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
+        String ip = getClientIpAddress(request);
+
+        List<LogDTO> logDTOs = logMapper.getUserAciton(day,day-1);
         return ApiResponse.success(logDTOs);
     }
 }

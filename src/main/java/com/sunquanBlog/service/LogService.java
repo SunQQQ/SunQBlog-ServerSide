@@ -12,5 +12,5 @@ public interface LogService{
 
     public ApiResponse<Map> getLogIp();
 
-    public ApiResponse<List<LogDTO>> getUserAction();
+    public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request);
 }
