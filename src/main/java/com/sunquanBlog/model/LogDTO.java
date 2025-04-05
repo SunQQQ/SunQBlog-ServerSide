@@ -14,6 +14,16 @@ public class LogDTO { // DTO类，用于封装查询结果
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime entryTime; // MIN(create_time)
 
+    public Long getStayTime() {
+        return stayTime;
+    }
+
+    public void setStayTime(Long stayTime) {
+        this.stayTime = stayTime;
+    }
+
+    private Long stayTime;
+
     // 构造方法、getter/setter 省略（可用Lombok @Data注解简化）
     public LogDTO() {
     }

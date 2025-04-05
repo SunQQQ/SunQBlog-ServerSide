@@ -58,7 +58,8 @@
             MAX(ip_city) ipCity,
             MAX(browser) browser,
             MAX(create_time) leaveTime,
-            MIN(create_time) entryTime
+            MIN(create_time) entryTime,
+            TIMESTAMPDIFF(SECOND, MIN(create_time),MAX(create_time)) stayTime
         FROM
             log
         GROUP BY
