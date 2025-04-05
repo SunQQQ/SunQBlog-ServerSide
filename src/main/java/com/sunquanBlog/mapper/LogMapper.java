@@ -22,4 +22,6 @@ public interface LogMapper {
 
     // 根据ip查询
     List<LogIpDailyDTO> getIpDaily(Integer days);
+
+    String getCityDaily(Integer days); // 获取IP所在城市的方法
 }

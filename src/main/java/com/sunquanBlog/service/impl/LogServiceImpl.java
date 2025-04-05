@@ -178,4 +178,12 @@ public class LogServiceImpl implements LogService, DisposableBean {
         List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days-1);
         return ApiResponse.success(logDTOs);
     }
+
+    @Override
+    public ApiResponse<String[]> getCityDaily(Integer days) {
+        String citys = logMapper.getCityDaily(days-1);
+
+        String[] cityList = citys.split(",");
+        return ApiResponse.success(cityList);
+    }
 }
