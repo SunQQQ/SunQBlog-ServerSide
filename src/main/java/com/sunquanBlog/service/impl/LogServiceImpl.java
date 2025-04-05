@@ -157,6 +157,18 @@ public class LogServiceImpl implements LogService, DisposableBean {
         String ip = getClientIpAddress(request);
 
         List<LogDTO> logDTOs = logMapper.getUserAciton(day,day-1);
+
+        for(int i=0;i<logDTOs.size();i++){
+
+            if(logDTOs.get(i).getIp().equals(ip)){
+                logDTOs.get(i).setIsCurUser(true);
+            }else {
+                logDTOs.get(i).setIsCurUser(false);
+            }
+        }
+
+
+
         return ApiResponse.success(logDTOs);
     }
 }

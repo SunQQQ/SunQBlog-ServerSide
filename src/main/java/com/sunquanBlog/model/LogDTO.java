@@ -17,13 +17,7 @@ public class LogDTO { // DTO类，用于封装查询结果
     @JsonFormat(pattern = "YYYY-MM-dd")
     private LocalDateTime day;    // 平台类型
 
-    public Long getStayTime() {
-        return stayTime;
-    }
-
-    public void setStayTime(Long stayTime) {
-        this.stayTime = stayTime;
-    }
+    private boolean isCurUser;
 
     private Long stayTime;
 
@@ -38,6 +32,14 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Long getStayTime() {
+        return stayTime;
+    }
+
+    public void setStayTime(Long stayTime) {
+        this.stayTime = stayTime;
     }
 
     public String getActions() {
@@ -78,5 +80,13 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     public void setEntryTime(LocalDateTime entryTime) {
         this.entryTime = entryTime;
+    }
+
+    public boolean getIsCurUser() {
+        return isCurUser;
+    }
+
+    public void setIsCurUser(boolean curUser) {
+        isCurUser = curUser;
     }
 }
