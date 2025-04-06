@@ -16,7 +16,7 @@ public interface LogService{
 
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request);
 
-    public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days);
+    public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days,HttpServletRequest request);
 
     public ApiResponse<String[]> getCityDaily(Integer days); // 获取IP所在城市的方法
 

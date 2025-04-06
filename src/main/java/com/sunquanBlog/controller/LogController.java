@@ -15,9 +15,15 @@ public class LogController {
     @Autowired
     private LogService logService;
 
+    /**
+     * 获取当日和累计访问的ip/pv量
+     * @return
+     */
     @PostMapping("/getLogIp")
     public ApiResponse getTimeLineList(HttpServletRequest request) {
-        // 记录日志
+        // 记录打开访问统计页日志
+        logService.createLog(request,"用户端","访问统计","打开","访问统计页","");
+
         return logService.getLogIp();
     }
 
@@ -32,7 +38,7 @@ public class LogController {
     public ApiResponse getIpDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
         // 距离当天的相差天数
         Integer days  = (Integer) requestBody.get("days");
-        return logService.getIpDaily(days);
+        return logService.getIpDaily(days,request);
     }
 
     @PostMapping("/city-daily")

@@ -175,8 +175,14 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
-    public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days) {
-        List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days-1);
+    public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days,HttpServletRequest request) {
+        List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days);
+
+        if(!days.equals(7)){
+            // 记录打开访问统计页日志
+            createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天");
+        }
+
         return ApiResponse.success(logDTOs);
     }
 
