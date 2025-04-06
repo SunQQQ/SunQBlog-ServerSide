@@ -41,4 +41,11 @@ public class LogController {
         Integer days  = (Integer) requestBody.get("days");
         return logService.getCityDaily(days);
     }
+
+    @PostMapping("/getTerminal")
+    public ApiResponse getTerminal(@RequestBody Map<String,Object> requestBody) {
+        // 距离当天的相差天数
+        Integer days  = (Integer) requestBody.get("days");
+        return logService.getTerminal(days);
+    }
 }

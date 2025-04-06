@@ -5,6 +5,7 @@ import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogDTO;
 import com.sunquanBlog.model.LogIpDailyDTO;
+import com.sunquanBlog.model.LogTerminalDTO;
 import com.sunquanBlog.service.LogService;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -185,5 +186,11 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         String[] cityList = citys.split(",");
         return ApiResponse.success(cityList);
+    }
+
+    @Override
+    public ApiResponse<LogTerminalDTO> getTerminal(Integer days) {
+        LogTerminalDTO logTerminalDTO = logMapper.getTerminal(days);
+        return ApiResponse.success(logTerminalDTO);
     }
 }
