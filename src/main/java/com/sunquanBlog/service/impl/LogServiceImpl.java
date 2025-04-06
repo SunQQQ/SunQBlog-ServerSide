@@ -193,4 +193,10 @@ public class LogServiceImpl implements LogService, DisposableBean {
         LogTerminalDTO logTerminalDTO = logMapper.getTerminal(days);
         return ApiResponse.success(logTerminalDTO);
     }
+
+    @Override
+    public ApiResponse<Map> getPageDaily(Integer days) {
+        Map page = logMapper.getPageDaily(days);
+        return ApiResponse.success(page);
+    }
 }

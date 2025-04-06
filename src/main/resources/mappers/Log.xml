@@ -122,4 +122,22 @@
             ) a
         ]]>
     </select>
+
+    <select id="getPageDaily" resultType="Map">
+        <![CDATA[
+        SELECT
+            COUNT(case when page="首页" then 1 end) 博文,
+            COUNT(case when page="文章详情页" then 1 end) 文章详情页,
+            COUNT(case when page="留言页" then 1 end) 留言,
+            COUNT(case when page="时间轴" then 1 end) 时间轴,
+            COUNT(case when page="关于" then 1 end) 关于,
+            COUNT(case when page="访问统计" then 1 end) 访问统计,
+            COUNT(case when page="开放式后台" then 1 end) 开放式后台
+        FROM
+            log
+        WHERE
+            create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+        ]]>
+    </select>
 </mapper>
