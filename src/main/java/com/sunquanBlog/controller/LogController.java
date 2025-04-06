@@ -61,4 +61,20 @@ public class LogController {
         Integer days  = (Integer) requestBody.get("days");
         return logService.getPageDaily(days);
     }
+
+    @PostMapping("/createLog")
+    public ApiResponse createLog(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
+        String platformType = (String) requestBody.get("platformType");
+        String page = (String) requestBody.get("page");
+        String action = (String) requestBody.get("action");
+        String actionObject = (String) requestBody.get("actionObject");
+        String actionDesc = (String) requestBody.get("actionDesc");
+
+        Integer status = logService.createLog(request,platformType,page,action,actionObject,actionDesc);
+        if(status == 1) {
+            return ApiResponse.success("日志记录成功");
+        }else {
+            return ApiResponse.error(400,"日志记录失败");
+        }
+    }
 }

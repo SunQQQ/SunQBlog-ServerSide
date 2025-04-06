@@ -22,7 +22,8 @@ public class WebConfig implements WebMvcConfigurer {
                 "/regist","/UploadImg","/uploads/**","/getCommentList",
                         "/getTimeLineList","/getCommentCount","/getLmCount",
                         "/getTodayUser","/getUserData","/getLogIp","/getUserAction",
-                        "/ip-daily","/city-daily","/getTerminal","/getPageDaily");  // 排除登录和注册接口
+                        "/ip-daily","/city-daily","/getTerminal","/getPageDaily",
+                        "/createLog");  // 排除登录和注册接口
     }
 
     @Value("${file.upload-dir}")
