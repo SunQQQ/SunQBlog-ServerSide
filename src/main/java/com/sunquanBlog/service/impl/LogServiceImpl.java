@@ -169,7 +169,10 @@ public class LogServiceImpl implements LogService, DisposableBean {
             }
         }
 
-
+        if(!day.equals(0)){
+            // 记录打开访问统计页日志
+            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
+        }
 
         return ApiResponse.success(logDTOs);
     }
@@ -187,16 +190,27 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
-    public ApiResponse<String[]> getCityDaily(Integer days) {
+    public ApiResponse<String[]> getCityDaily(Integer days,HttpServletRequest request) {
         String citys = logMapper.getCityDaily(days);
+
+        if(!days.equals(0)){
+            // 记录打开访问统计页日志
+            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
+        }
 
         String[] cityList = citys.split(",");
         return ApiResponse.success(cityList);
     }
 
     @Override
-    public ApiResponse<LogTerminalDTO> getTerminal(Integer days) {
+    public ApiResponse<LogTerminalDTO> getTerminal(Integer days,HttpServletRequest request) {
         LogTerminalDTO logTerminalDTO = logMapper.getTerminal(days);
+
+        if(!days.equals(0)){
+            // 记录打开访问统计页日志
+            createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天");
+        }
+
         return ApiResponse.success(logTerminalDTO);
     }
 
