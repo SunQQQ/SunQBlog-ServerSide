@@ -56,10 +56,20 @@ public class BlogController {
 
         // 记录日志
         Integer curPage = (start / size) + 1;
-        if(curPage == 1) {
-            logService.createLog(request, "用户端","首页", "打开", "首页","");
-        }else {
-            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
+
+        // 如果初次进入首页，tagId为0，curPage为1
+        if(tagId != null && tagId != 0){
+            if(curPage == 1) {
+                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
+            }else {
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页");
+            }
+        }else{
+            if(curPage == 1) {
+                logService.createLog(request, "用户端","首页", "打开", "首页","");
+            }else {
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
+            }
         }
 
         return blogService.getUserBlogList(tagId,start,size);
