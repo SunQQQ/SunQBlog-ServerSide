@@ -59,6 +59,7 @@ public class BlogController {
 
         // 如果初次进入首页，tagId为0，curPage为1
         if(tagId != null && tagId != 0){
+            // 如果有分页且不是第一页，则记录筛选加翻页
             if(curPage == 1) {
                 logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
             }else {
