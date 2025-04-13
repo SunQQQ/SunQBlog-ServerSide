@@ -8,7 +8,9 @@ import com.sunquanBlog.model.User;
 import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.sunquanBlog.service.LogService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,8 @@ public class LeaveMessageImpl implements LeaveMessageService {
     private LeaveMessageMapper leaveMessageMapper;
     @Autowired
     private LoginMapper loginMapper;
+    @Autowired
+    private LogService logService;
     @Override
     public ApiResponse updateLeaveMessage(Map<String,Object> map) {
         int updateNum = leaveMessageMapper.updateLeaveMessage(map);
@@ -41,11 +45,13 @@ public class LeaveMessageImpl implements LeaveMessageService {
     }
 
     @Override
-    public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId) {
+    public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId, HttpServletRequest request) {
         // 留言时需为已登录状态，故无需再填入留言人信息，直接从token中id获取name即可
         String userName = loginMapper.getUserById(accountId).getName();
         int createNum = leaveMessageMapper.createLeaveMessage(map,accountId,userName);
         if(createNum == 1){
+            // 记录日志
+            logService.createLog(request,"用户端", "留言页", "创建" , "留言", "："+map.get("messageContent"));
             return ApiResponse.success("创建成功");
         }else {
             return ApiResponse.error(500,"创建失败，请留言");

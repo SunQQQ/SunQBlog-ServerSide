@@ -3,6 +3,7 @@ package com.sunquanBlog.service;
 import com.sunquanBlog.common.util.ApiResponse;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Service
@@ -11,7 +12,7 @@ public interface LeaveMessageService {
 
     public ApiResponse updateLeaveMessage(Integer id,String messageContent,String city,String avator,Integer parentId,String leaveName);
 
-    public ApiResponse createLeaveMessage(Map<String,Object> map,Integer accountId);
+    public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId, HttpServletRequest request);
 
     public ApiResponse deleteLeaveMessage(int id);
 

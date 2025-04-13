@@ -56,7 +56,7 @@ public class LeaveMessageController {
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-        return leaveMessageService.createLeaveMessage(requestBody,userId);
+        return leaveMessageService.createLeaveMessage(requestBody,userId,request);
     }
 
     @PostMapping("/deleteLeaveMessage")
