@@ -91,6 +91,21 @@
         ]]>
     </select>
 
+    <select id="getRegisterDaily" resultType="com.sunquanBlog.model.LogIpDailyDTO">
+        <![CDATA[
+        SELECT
+            DATE(created_at) day,
+            count(1) register
+        FROM
+            user
+        WHERE
+            created_at > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND created_at < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+        GROUP BY
+            DATE(created_at)
+        ]]>
+    </select>
+
     <select id="getCityDaily" resultType="String">
         <![CDATA[
         SELECT

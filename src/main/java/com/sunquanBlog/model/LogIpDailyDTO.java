@@ -8,6 +8,7 @@ public class LogIpDailyDTO { // DTO类，用于封装查询结果
     private Long ip;
     private Long pv;          // GROUP_CONCAT的结果
 
+    private Long register;     // 城市名称
 
     @JsonFormat(pattern = "YYYYMMdd")
     private LocalDateTime day;    // 平台类型
@@ -38,5 +39,13 @@ public class LogIpDailyDTO { // DTO类，用于封装查询结果
 
     public void setDay(LocalDateTime day) {
         this.day = day;
+    }
+
+    public Long getRegister() {
+        return register;
+    }
+
+    public void setRegister(Long register) {
+        this.register = register;
     }
 }

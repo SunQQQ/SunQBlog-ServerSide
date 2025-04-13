@@ -24,6 +24,8 @@ public interface LogMapper {
     // 根据ip查询
     List<LogIpDailyDTO> getIpDaily(Integer days);
 
+    List<LogIpDailyDTO> getRegisterDaily(Integer days);
+
     String getCityDaily(Integer days); // 获取IP所在城市的方法
 
     LogTerminalDTO getTerminal(Integer days); // 获取终端类型的方法
