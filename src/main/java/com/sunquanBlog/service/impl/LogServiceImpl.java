@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sunquanBlog.service.CityNameConverter;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LogServiceImpl implements LogService, DisposableBean {
@@ -155,9 +156,11 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
+    @Transactional // 保证两次调用在同一个数据库会话中
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
         String ip = getClientIpAddress(request);
 
+        logMapper.setGroupConcatMaxLen(); // 上调group、concat函数的长度限制
         List<LogDTO> logDTOs = logMapper.getUserAciton(day,day-1);
 
         for(int i=0;i<logDTOs.size();i++){

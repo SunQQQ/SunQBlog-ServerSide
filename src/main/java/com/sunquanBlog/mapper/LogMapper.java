@@ -6,6 +6,7 @@ import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.model.LogTerminalDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,10 @@ public interface LogMapper {
     Log getTodayIp();
 
     Log getTotalIp();
+
+    // 设置 group_concat_max_len
+    @Update("SET SESSION group_concat_max_len = 1000000")
+    void setGroupConcatMaxLen();
 
     // 根据时间段查询
     List<LogDTO> getUserAciton(Integer start,Integer end);
