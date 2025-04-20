@@ -54,6 +54,17 @@ public class LogServiceImpl implements LogService, DisposableBean {
         return result;
     }
 
+    @Override
+    public String getLocation(HttpServletRequest request) {
+        // 获取客户端真实IP地址
+        String ip = getClientIpAddress(request);
+        // 获取IP所在城市（需要调用第三方服务或本地IP库）
+        String city = getCityByIp2(ip);
+
+        // 插入日志
+        return city;
+    }
+
     private static Path cachedDbFile = null;
     private static final Object lock = new Object();
 

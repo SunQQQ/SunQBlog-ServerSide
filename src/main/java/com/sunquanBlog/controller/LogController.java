@@ -81,4 +81,11 @@ public class LogController {
             return ApiResponse.error(400,"日志记录失败");
         }
     }
+
+    // 获取当前IP的所在城市
+    @PostMapping("/getLocation")
+    public ApiResponse getLocation(HttpServletRequest request) {
+        String location = logService.getLocation(request);
+        return ApiResponse.success(location);
+    }
 }
