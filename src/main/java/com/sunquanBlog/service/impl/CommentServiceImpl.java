@@ -27,6 +27,10 @@ public class CommentServiceImpl implements CommentService {
             comment1Id.add(comment.getId());
         }
 
+        if(comment1Id.size() == 0){
+            return ApiResponse.success(comment1);
+        }
+
         // 用一级评论的id获取二级评论数据
         List<Comment> comment2 = commentMapper.getCommentList2(comment1Id);
 
