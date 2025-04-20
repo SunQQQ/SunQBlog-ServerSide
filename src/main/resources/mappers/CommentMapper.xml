@@ -24,7 +24,8 @@
             b.name as creater_name,
             b.avator as creater_avator,
             a.comment_content,
-            a.create_time
+            a.create_time,
+            a.city
         from
             comment a
         left join user b
@@ -43,7 +44,8 @@
             b.avator as creater_avator,
             a.comment_content,
             a.comment_parent_id as comment_parent_id,
-            a.create_time
+            a.create_time,
+            a.city
         from
             comment a
                 left join user b

@@ -1,5 +1,7 @@
 package com.sunquanBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,7 +11,9 @@ public class Comment {
     private Integer createrId;
     private String createrName;
     private String commentContent;
+
     private Integer commentParentId;
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     private List<Comment> child;
