@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sunquanBlog.service.LogService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -17,9 +18,30 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     LogService logService;
     public ApiResponse getCommentList(Integer articleId) {
-        List<Comment> comment = commentMapper.getCommentList(articleId);
+        // 一级评论数据
+        List<Comment> comment1 = commentMapper.getCommentList1(articleId);
 
-        return ApiResponse.success(comment);
+        // 获取一级评论的id
+        List<Integer> comment1Id = new ArrayList<>();
+        for (Comment comment : comment1) {
+            comment1Id.add(comment.getId());
+        }
+
+        // 用一级评论的id获取二级评论数据
+        List<Comment> comment2 = commentMapper.getCommentList2(comment1Id);
+
+        // 将二级评论的父id与一级评论的id进行匹配
+        for (Comment comment1Item : comment1) {
+            List<Comment> child = new ArrayList<>();
+            for (Comment comment2Item : comment2) {
+                if (comment1Item.getId().equals(comment2Item.getCommentParentId())) {
+                    child.add(comment2Item);
+                }
+            }
+            comment1Item.setChild(child);
+        }
+
+        return ApiResponse.success(comment1);
     }
 
     public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, String city, HttpServletRequest request) {

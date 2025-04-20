@@ -7,7 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface CommentMapper {
-    List <Comment> getCommentList(Integer articleId);
+    List <Comment> getCommentList1(Integer articleId);
+
+    List <Comment> getCommentList2(List<Integer> commentIds);
 
     Integer addComment(Integer createrId, Integer articleId, String commentContent, Integer commentParentId,String city);
 

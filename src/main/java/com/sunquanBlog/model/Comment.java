@@ -1,6 +1,7 @@
 package com.sunquanBlog.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Comment {
     private Integer id;
@@ -10,6 +11,8 @@ public class Comment {
     private String commentContent;
     private Integer commentParentId;
     private LocalDateTime createTime;
+
+    private List<Comment> child;
 
     private Integer createrAvator;
 
@@ -88,5 +91,13 @@ public class Comment {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<Comment> getChild() {
+        return child;
+    }
+
+    public void setChild(List<Comment> child) {
+        this.child = child;
     }
 }

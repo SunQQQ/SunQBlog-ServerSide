@@ -17,7 +17,8 @@
         <result column="city" property="city"></result>
     </resultMap>
 
-    <select id="getCommentList" resultMap="indexResultMap">
+
+    <select id="getCommentList1" resultMap="indexResultMap">
         select
             a.id,
             b.name as creater_name,
@@ -32,6 +33,28 @@
             on a.article_id = c.id
         where
             a.article_id = #{articleId}
+            and a.comment_parent_id = 0
+    </select>
+
+    <select id="getCommentList2" resultMap="indexResultMap">
+        select
+            a.id,
+            b.name as creater_name,
+            b.avator as creater_avator,
+            a.comment_content,
+            a.comment_parent_id as comment_parent_id,
+            a.create_time
+        from
+            comment a
+                left join user b
+                          on a.creater_id = b.id
+                left join blog c
+                          on a.article_id = c.id
+        where
+            a.comment_parent_id in
+        <foreach collection="commentIds" item="commentId" open="(" separator="," close=")">
+            #{commentId}
+        </foreach>
     </select>
 
     <insert id="addComment">
