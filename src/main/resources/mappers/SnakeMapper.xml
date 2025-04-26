@@ -24,11 +24,11 @@
             create_time desc
     </select>
 
-    <insert id="createScore">
+    <insert id="createScore" parameterType="com.sunquanBlog.model.Snake">
         insert into snake_score
-        (user_name, score, game_time, create_time, ip, city, user_id)
+        (score, game_time, create_time, ip, city, user_id)
         values
-        (#{userName}, #{score}, #{gameTime}, #{createTime}, #{ip}, #{city}, #{userId})
+        (#{score}, #{gameTime}, now(), #{ip}, #{city}, #{userId})
     </insert>
 </mapper>
 

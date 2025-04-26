@@ -10,5 +10,5 @@ import java.util.List;
 public interface SnakeService {
     List<Snake> getSnakeScoreList();
 
-    ApiResponse createScore(Snake snake);
+    Integer createScore(Snake snake);
 }

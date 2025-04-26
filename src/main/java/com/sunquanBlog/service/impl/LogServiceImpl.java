@@ -69,7 +69,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
     private static final Object lock = new Object();
 
     // 获取客户端真实IP地址
-    private String getClientIpAddress(HttpServletRequest request) {
+    public String getClientIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");

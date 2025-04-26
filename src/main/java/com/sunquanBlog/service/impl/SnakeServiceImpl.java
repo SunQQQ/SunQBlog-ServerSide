@@ -20,12 +20,8 @@ public class SnakeServiceImpl implements SnakeService {
     }
 
     @Override
-    public ApiResponse createScore(Snake snake) {
+    public Integer createScore(Snake snake) {
         Integer result = snakeMapper.createScore(snake);
-        if (result == 1) {
-            return ApiResponse.success("创建成功");
-        }else {
-            return ApiResponse.error(500,"创建失败");
-        }
+        return result;
     }
 }
