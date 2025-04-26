@@ -20,6 +20,16 @@ public class SnakeServiceImpl implements SnakeService {
     }
 
     @Override
+    public List<Snake> getSnakeScoreTopList(Integer topNum) {
+        return snakeMapper.getScoreTopList(topNum);
+    }
+
+    @Override
+    public Long getScoreListCount() {
+        return snakeMapper.getScoreListCount();
+    }
+
+    @Override
     public Integer createScore(Snake snake) {
         Integer result = snakeMapper.createScore(snake);
         return result;

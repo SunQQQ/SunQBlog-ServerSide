@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,12 +30,23 @@ public class SnakeController {
         return ApiResponse.success(snakeScoreList);
     }
 
+    @PostMapping("/getSnakeScoreTopList")
+    public ApiResponse getSnakeScoreTopList() {
+        List<Snake> snakeScoreList = snakeService.getSnakeScoreTopList(5);
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", snakeScoreList);
+        map.put("total",snakeService.getScoreListCount());
+
+        return ApiResponse.success(map);
+    }
+
     @PostMapping("/createScore")
     public ApiResponse createScore(@RequestBody Map<String,Object> requestBody, HttpServletRequest request) {
         Snake snake = new Snake();
-        
+
         snake.setScore((Integer) requestBody.get("score"));
         snake.setGameTime((Integer) requestBody.get("gameTime"));
+        snake.setUserName((String) requestBody.get("userName"));
 
         snake.setIp(logService.getClientIpAddress(request));
         snake.setCity(logService.getLocation(request));

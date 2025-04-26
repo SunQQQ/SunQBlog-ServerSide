@@ -10,5 +10,9 @@ import java.util.List;
 public interface SnakeService {
     List<Snake> getSnakeScoreList();
 
+    List<Snake> getSnakeScoreTopList(Integer topNum);
+
+    Long getScoreListCount();
+
     Integer createScore(Snake snake);
 }

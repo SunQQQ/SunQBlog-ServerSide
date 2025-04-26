@@ -9,5 +9,9 @@ import java.util.List;
 public interface SnakeMapper {
     List<Snake> getScoreList();
 
+    List<Snake> getScoreTopList(Integer topNum);
+
+    Long getScoreListCount();
+
     Integer createScore(Snake snake);
 }

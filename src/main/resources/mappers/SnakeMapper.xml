@@ -24,11 +24,28 @@
             create_time desc
     </select>
 
+    <select id="getScoreTopList" resultMap="indexResultMap">
+        select
+            *
+        from
+            snake_score
+        order by
+            score desc
+        limit #{topNum}
+    </select>
+
+    <select id="getScoreListCount" resultType="java.lang.Long">
+        select
+            count(1)
+        from
+            snake_score
+    </select>
+
     <insert id="createScore" parameterType="com.sunquanBlog.model.Snake">
         insert into snake_score
-        (score, game_time, create_time, ip, city, user_id)
+        (score, game_time, create_time, ip, city, user_id,user_name)
         values
-        (#{score}, #{gameTime}, now(), #{ip}, #{city}, #{userId})
+        (#{score}, #{gameTime}, now(), #{ip}, #{city}, #{userId}, #{userName})
     </insert>
 </mapper>
 
