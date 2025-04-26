@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.SnakeMapper">
+    <resultMap id="indexResultMap" type="com.sunquanBlog.model.Snake">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="score" property="score"/>
+        <result column="game_time" property="gameTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="ip" property="ip"/>
+        <result column="city" property="city"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <select id="getScoreList" resultMap="indexResultMap">
+        select
+            *
+        from
+            snake_score
+        order by
+            create_time desc
+    </select>
+
+    <insert id="createScore">
+        insert into snake_score
+        (user_name, score, game_time, create_time, ip, city, user_id)
+        values
+        (#{userName}, #{score}, #{gameTime}, #{createTime}, #{ip}, #{city}, #{userId})
+    </insert>
+</mapper>
+
+
