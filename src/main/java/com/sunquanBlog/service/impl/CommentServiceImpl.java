@@ -48,7 +48,9 @@ public class CommentServiceImpl implements CommentService {
         return ApiResponse.success(comment1);
     }
 
-    public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, String city, HttpServletRequest request) {
+    public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, HttpServletRequest request) {
+        String city = logService.getLocation(request);
+
         Integer num = commentMapper.addComment(userId, articleId, commentContent, comParentId,city);
         if(num == 1){
             // 记录日志

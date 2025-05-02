@@ -29,9 +29,8 @@ public class CommentController {
         Integer articleId = (Integer)requestBody.get("articleId");
         String commentContent = (String)requestBody.get("commentContent");
         Integer comParentId = (Integer)requestBody.get("comParentId");
-        String city = (String)requestBody.get("city");
 
-        return commentService.addComment(userId,articleId,commentContent,comParentId,city,request);
+        return commentService.addComment(userId,articleId,commentContent,comParentId,request);
     }
 
     @PostMapping("/getCommentCount")

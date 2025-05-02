@@ -11,7 +11,7 @@ import java.util.List;
 public interface CommentService {
     public ApiResponse getCommentList(Integer articleId);
 
-    public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, String city, HttpServletRequest request);
+    public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, HttpServletRequest request);
 
     public ApiResponse getCommentCount();
 }
