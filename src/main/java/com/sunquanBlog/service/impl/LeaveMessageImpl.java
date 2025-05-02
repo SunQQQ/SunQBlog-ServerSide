@@ -48,6 +48,10 @@ public class LeaveMessageImpl implements LeaveMessageService {
     public ApiResponse createLeaveMessage(Map<String,Object> map, Integer accountId, HttpServletRequest request) {
         // 留言时需为已登录状态，故无需再填入留言人信息，直接从token中id获取name即可
         String userName = loginMapper.getUserById(accountId).getName();
+
+        String city = logService.getLocation(request);
+        map.put("city", city);
+
         int createNum = leaveMessageMapper.createLeaveMessage(map,accountId,userName);
         if(createNum == 1){
             // 记录日志
