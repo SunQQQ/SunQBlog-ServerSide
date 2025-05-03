@@ -10,6 +10,7 @@ import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sunquanBlog.service.LogService;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class LeaveMessageImpl implements LeaveMessageService {
     private LogService logService;
     @Autowired
     private CityCodeConverter cityCodeConverter;
+    @Autowired
+    private WebClient webClient; // 注入WebClient
     @Override
     public ApiResponse updateLeaveMessage(Map<String,Object> map) {
         int updateNum = leaveMessageMapper.updateLeaveMessage(map);
@@ -123,14 +126,21 @@ public class LeaveMessageImpl implements LeaveMessageService {
     @Override
     public ApiResponse getWeather(HttpServletRequest request) {
         String city = logService.getLocation(request);
+        System.out.print("城市名称："+city+"\n");
         String cityCode = cityCodeConverter.getCityCode(city);
+        System.out.print("城市代码："+cityCode+"\n");
 
         if (cityCode == null) {
             return ApiResponse.error(500, "城市代码未找到");
         }
 
-        // todo: 调用天气API获取天气信息
+        // 发起异步请求
+        Map<String, Object> weatherData = webClient.get()
+                .uri("https://restapi.amap.com/v3/weather/weatherInfo?key=ba5f9b69f0541123a4dbe142da230b4d&city={city}&extensions=all&output=JSON", cityCode)
+                .retrieve()
+                .bodyToMono(Map.class)
+                .block(); // 阻塞等待结果（如需异步可返回Mono）
 
-        return ApiResponse.success(cityCode);
+        return ApiResponse.success(weatherData);
     }
 }
