@@ -23,7 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
                         "/getTimeLineList","/getCommentCount","/getLmCount",
                         "/getTodayUser","/getUserData","/getLogIp","/getUserAction",
                         "/ip-daily","/city-daily","/getTerminal","/getPageDaily",
-                        "/createLog","/getSnakeScoreList","/createScore","/getSnakeScoreTopList");  // 排除登录和注册接口
+                        "/createLog","/getSnakeScoreList","/createScore","/getSnakeScoreTopList",
+                        "/getWeather");  // 排除登录和注册接口
     }
 
     @Value("${file.upload-dir}")

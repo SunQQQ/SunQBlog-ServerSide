@@ -5,6 +5,7 @@ import com.sunquanBlog.mapper.LeaveMessageMapper;
 import com.sunquanBlog.mapper.LoginMapper;
 import com.sunquanBlog.model.LeaveMessage;
 import com.sunquanBlog.model.User;
+import com.sunquanBlog.service.CityCodeConverter;
 import com.sunquanBlog.service.LeaveMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class LeaveMessageImpl implements LeaveMessageService {
     private LoginMapper loginMapper;
     @Autowired
     private LogService logService;
+    @Autowired
+    private CityCodeConverter cityCodeConverter;
     @Override
     public ApiResponse updateLeaveMessage(Map<String,Object> map) {
         int updateNum = leaveMessageMapper.updateLeaveMessage(map);
@@ -115,5 +118,19 @@ public class LeaveMessageImpl implements LeaveMessageService {
     public ApiResponse getLmCount() {
         int count = leaveMessageMapper.getLmCount();
         return ApiResponse.success(count);
+    }
+
+    @Override
+    public ApiResponse getWeather(HttpServletRequest request) {
+        String city = logService.getLocation(request);
+        String cityCode = cityCodeConverter.getCityCode(city);
+
+        if (cityCode == null) {
+            return ApiResponse.error(500, "城市代码未找到");
+        }
+
+        // todo: 调用天气API获取天气信息
+
+        return ApiResponse.success(cityCode);
     }
 }

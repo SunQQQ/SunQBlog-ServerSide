@@ -23,4 +23,6 @@ public interface LeaveMessageService {
     public ApiResponse getAllLeaveMessage(Integer start,Integer size);
 
     public ApiResponse getLmCount();
+
+    public ApiResponse getWeather(HttpServletRequest request);
 }

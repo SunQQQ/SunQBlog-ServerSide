@@ -81,6 +81,11 @@ public class LeaveMessageController {
     public ApiResponse getLMCount(){
         return leaveMessageService.getLmCount();
     }
+
+    @PostMapping("/getWeather")
+    public ApiResponse getWeather(HttpServletRequest request){
+        return leaveMessageService.getWeather(request);
+    }
 }
 
 
