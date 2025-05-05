@@ -15,8 +15,12 @@
 
     <select id="getAllUser" resultMap="indexResultMap">
         SELECT *
-        FROM user
-        limit #{start}, #{size}
+        FROM
+            user
+        order by
+            created_at desc
+        limit
+            #{start}, #{size}
     </select>
 
     <select id="getPassword" resultMap="indexResultMap">
