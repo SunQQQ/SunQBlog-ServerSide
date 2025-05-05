@@ -16,6 +16,7 @@
     <select id="getAllUser" resultMap="indexResultMap">
         SELECT *
         FROM user
+        limit #{start}, #{size}
     </select>
 
     <select id="getPassword" resultMap="indexResultMap">

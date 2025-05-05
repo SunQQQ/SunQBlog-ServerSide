@@ -64,11 +64,14 @@ public class SysLoginController {
      * @return
      */
     @PostMapping("/userList")
-    public ApiResponse<String> userList(HttpServletRequest request){
+    public ApiResponse<String> userList(HttpServletRequest request,@RequestBody Map<String, Integer> loginRequest){
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-        return sysLoginService.getAllUser(userId);
+        Integer start = loginRequest.get("start");
+        Integer size = loginRequest.get("size");
+
+        return sysLoginService.getAllUser(userId,start, size);
     }
 
     @PostMapping("/updateUser")

@@ -96,17 +96,23 @@ public class SysLoginServiceImpl implements SysLoginService {
     }
 
     @Override
-    public ApiResponse getAllUser(Integer userId) {
+    public ApiResponse getAllUser(Integer userId,Integer start,Integer size) {
         User user = getUserById(userId);
+        Map<String, Object> map = new HashMap<>();
 
         // 无需从body中获取任何信息，直接根据token的id查到该用户的角色
         // 非管理员只返回自己数据，管理员返回所有用户
         if(user.getRole().equals("master")){
-            return ApiResponse.success(loginMapper.getAllUser());
+            map.put("total", loginMapper.getTotalUser());
+            map.put("list", loginMapper.getAllUser(start,size));
+            return ApiResponse.success(map);
         }else{
             List<User> userList = new ArrayList<>();
             userList.add(user);
-            return ApiResponse.success(userList);
+
+            map.put("total", 1);
+            map.put("list", userList);
+            return ApiResponse.success(map);
         }
     }
 

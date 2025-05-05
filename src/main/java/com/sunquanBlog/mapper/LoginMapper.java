@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Mapper
 public interface LoginMapper {
-    List<User> getAllUser();
+    List<User> getAllUser(Integer start,Integer size);
 
     List<User> getPassword(String username);
 
