@@ -44,6 +44,8 @@ public class BlogController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
+        logService.createLog(request,"管理后台", "文章列表页", "查询" , "文章列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页",userId);
+
         return blogService.getBlogList(userId,tagId,start,size);
     }
 

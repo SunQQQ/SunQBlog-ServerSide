@@ -3,6 +3,7 @@ package com.sunquanBlog.controller;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.common.util.UserAuthResponse;
 import com.sunquanBlog.model.User;
+import com.sunquanBlog.service.LogService;
 import com.sunquanBlog.service.SysLoginService;
 
 import io.jsonwebtoken.Claims;
@@ -19,6 +20,8 @@ public class SysLoginController {
 
     @Autowired
     private HttpServletRequest commonRequest;
+    @Autowired
+    private LogService logService;
     /**
      * 登录接口
      * @param loginRequest
@@ -70,6 +73,8 @@ public class SysLoginController {
 
         Integer start = loginRequest.get("start");
         Integer size = loginRequest.get("size");
+
+        logService.createLog(request,"管理后台", "账号管理页", "查询" , "账号列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页",userId);
 
         return sysLoginService.getAllUser(userId,start, size);
     }
