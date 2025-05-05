@@ -41,7 +41,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
     private Resource dbResource;
 
     @Override
-    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc) {
+    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc, Integer userId) {
         // 获取客户端真实IP地址
         String ip = getClientIpAddress(request);
         // 获取浏览器信息
@@ -50,7 +50,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
         String city = getCityByIp2(ip);
 
         // 插入日志
-        Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc);
+        Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc,userId);
         return result;
     }
 
@@ -185,7 +185,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!day.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
+            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天",0);
         }
 
         return ApiResponse.success(logDTOs);
@@ -198,7 +198,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(7)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天");
+            createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天",0);
         }
 
         for(int i=0;i<logDTOs.size();i++){
@@ -218,7 +218,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
+            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天",0);
         }
 
         String[] cityList = citys.split(",");
@@ -231,7 +231,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天");
+            createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天",0);
         }
 
         return ApiResponse.success(logTerminalDTO);

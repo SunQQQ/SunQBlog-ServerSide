@@ -23,7 +23,7 @@ public class TimeLineController {
         List<TimeLine> timeLineList = timeLineService.getAllTimeLine();
 
         // 记录日志
-        logService.createLog(request, "用户端","时间轴", "打开", "时间轴","");
+        logService.createLog(request, "用户端","时间轴", "打开", "时间轴","",0);
 
         return ApiResponse.success(timeLineList);
     }

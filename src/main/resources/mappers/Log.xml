@@ -24,9 +24,9 @@
 
     <insert id="insertLog" parameterType="com.sunquanBlog.model.Log">
         insert into log
-            (ip, platform_type,page, ip_city, create_time, browser, action, action_object,action_desc)
+            (ip, platform_type,page, ip_city, create_time, browser, action, action_object,action_desc,user_id)
         values
-            (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc})
+            (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc},#{userId})
     </insert>
 
     <select id="getTodayIp" resultMap="Log">
@@ -51,25 +51,28 @@
     <select id="getUserAciton" resultType="com.sunquanBlog.model.LogDTO">
         <![CDATA[
         SELECT
-            ip AS ip,
+            log.ip AS ip,
+            Max(user.name) userName,
             GROUP_CONCAT(
-                    concat(action,action_object,action_desc)
-                        ORDER BY create_time
-		            SEPARATOR '+'
-                ) actions,
-            MAX(ip_city) ipCity,
-            MAX(browser) browser,
-            TIMESTAMPDIFF(SECOND, MIN(create_time),MAX(create_time)) stayTime,
-            DATE_SUB(CURDATE(), INTERVAL #{start} DAY) as day,
-            time(MAX(create_time)) leaveTime,
-            time(MIN(create_time)) entryTime
+                concat(log.action,log.action_object,log.action_desc)
+                ORDER BY log.create_time
+                SEPARATOR '+'
+            ) actions,
+            MAX(log.ip_city) ipCity,
+            MAX(log.browser) browser,
+            TIMESTAMPDIFF(SECOND, MIN(log.create_time),MAX(log.create_time)) stayTime,
+            DATE_SUB(CURDATE(), INTERVAL 0 DAY) as day,
+            time(MAX(log.create_time)) leaveTime,
+            time(MIN(log.create_time)) entryTime
         FROM
             log
+        left JOIN
+            user on user.id = log.user_id
         WHERE
-            create_time >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
-            AND create_time < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
+            log.create_time >= DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+            AND log.create_time < DATE_SUB(CURDATE(), INTERVAL -1 DAY)
         GROUP BY
-            ip,DATE(create_time)
+            log.ip,DATE(log.create_time)
         ORDER BY
             entryTime desc
         ]]>

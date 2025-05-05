@@ -61,15 +61,15 @@ public class BlogController {
         if(tagId != null && tagId != 0){
             // 如果有分页且不是第一页，则记录筛选加翻页
             if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
+                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId,0);
             }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页");
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页",0);
             }
         }else{
             if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "打开", "首页","");
+                logService.createLog(request, "用户端","首页", "打开", "首页","",0);
             }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页",0);
             }
         }
 

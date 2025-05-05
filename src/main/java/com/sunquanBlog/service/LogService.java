@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface LogService{
-    public Integer createLog(HttpServletRequest request,String platformType, String page, String action, String actionObject,String actionDesc);
+    public Integer createLog(HttpServletRequest request,String platformType, String page, String action, String actionObject,String actionDesc,Integer userId);
 
     public ApiResponse<Map> getLogIp();
 

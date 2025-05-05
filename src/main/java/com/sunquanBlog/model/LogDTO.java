@@ -9,6 +9,8 @@ public class LogDTO { // DTO类，用于封装查询结果
     private String actions;          // GROUP_CONCAT的结果
     private String ipCity;           // MAX(ip_city)
     private String browser;          // MAX(browser)
+    private String userName;
+
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalDateTime leaveTime; // MAX(create_time)
     @JsonFormat(pattern = "HH:mm:ss")
@@ -88,5 +90,13 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     public void setIsCurUser(boolean curUser) {
         isCurUser = curUser;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

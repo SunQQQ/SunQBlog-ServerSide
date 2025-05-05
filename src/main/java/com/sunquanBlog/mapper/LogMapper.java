@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Mapper
 public interface LogMapper {
-    Integer insertLog(String ip,String platformType,String page,String ipCity,String browser,String action,String actionObject,String actionDesc);
+    Integer insertLog(String ip,String platformType,String page,String ipCity,String browser,String action,String actionObject,String actionDesc,Integer userId);
 
     Log getTodayIp();
 
