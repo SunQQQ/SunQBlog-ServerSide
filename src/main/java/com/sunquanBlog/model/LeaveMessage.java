@@ -1,5 +1,7 @@
 package com.sunquanBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class LeaveMessage {
     private String messageContent;
     private String city;
     private String avator;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
     private LocalDateTime modelTime;
     private Integer parentId;

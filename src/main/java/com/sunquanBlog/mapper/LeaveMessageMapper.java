@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Mapper
 public interface LeaveMessageMapper {
-    List<LeaveMessage> getAllLeaveMessage(Integer id, String role);
+    List<LeaveMessage> getAllLeaveMessage(Integer id, String role,Integer start,Integer size);
 
     List<LeaveMessage> getuserSideLevel1(Integer start,Integer size);
 

@@ -25,12 +25,15 @@ public class LeaveMessageController {
 
     // 留言列表 用于管理员端
     @PostMapping("/leaveMessageList")
-    public ApiResponse leaveMessageList(HttpServletRequest request){
+    public ApiResponse leaveMessageList(HttpServletRequest request,@RequestBody Map<String,Object> requestBody){
         // 从token获取用户Id
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-        return leaveMessageService.getAllLeaveMessage(userId);
+        Integer start = (Integer)requestBody.get("start");
+        Integer size = (Integer)requestBody.get("size");
+
+        return leaveMessageService.getAllLeaveMessage(userId,start,size);
     }
 
     // 用户端留言列表

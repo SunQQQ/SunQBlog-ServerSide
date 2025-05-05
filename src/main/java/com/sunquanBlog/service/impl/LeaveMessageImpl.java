@@ -78,10 +78,15 @@ public class LeaveMessageImpl implements LeaveMessageService {
     }
 
     @Override
-    public ApiResponse getAllLeaveMessage(Integer id) {
+    public ApiResponse getAllLeaveMessage(Integer id,Integer start,Integer size) {
         User user = loginMapper.getUserById(id);
-        List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole());
-        return ApiResponse.success(heartFeltList);
+        List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole(),start,size);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("list",heartFeltList);
+        map.put("total",leaveMessageMapper.getLmCount());
+
+        return ApiResponse.success(map);
     }
 
     // 此方法用于用户端留言列表
