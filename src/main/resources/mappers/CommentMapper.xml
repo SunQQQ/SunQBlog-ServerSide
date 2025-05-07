@@ -108,4 +108,9 @@
         where
             create_time >= curdate()
     </select>
+
+    <delete id="deleteComment">
+        delete from comment
+        where id = #{id}
+    </delete>
 </mapper>

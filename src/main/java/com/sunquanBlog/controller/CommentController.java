@@ -51,4 +51,10 @@ public class CommentController {
     public ApiResponse getCommentCount(){
         return commentService.getCommentCount();
     }
+
+    @PostMapping("/deleteComment")
+    public ApiResponse deleteComment(@RequestBody Map<String,Integer> requestBody){
+        Integer id = requestBody.get("id");
+        return commentService.deleteComment(id);
+    }
 }

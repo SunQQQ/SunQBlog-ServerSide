@@ -20,4 +20,6 @@ public interface CommentMapper {
     Integer getTotalComment();
 
     List<Comment> getAdminList(Integer start,Integer pageSize);
+
+    Integer deleteComment(Integer id);
 }

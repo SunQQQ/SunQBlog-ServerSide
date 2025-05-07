@@ -78,4 +78,13 @@ public class CommentServiceImpl implements CommentService {
 
         return ApiResponse.success(map);
     }
+
+    public ApiResponse deleteComment(Integer id){
+        Integer num = commentMapper.deleteComment(id);
+        if(num == 1){
+            return ApiResponse.success("删除成功");
+        }else {
+            return ApiResponse.error(500,"删除失败");
+        }
+    }
 }
