@@ -41,7 +41,7 @@
         left join user user
             on user.id = ml.leave_id
         where
-            parent_id is null
+            parent_id = 0 or parent_id is null
         order by
             create_time desc
         limit #{start},#{size}
