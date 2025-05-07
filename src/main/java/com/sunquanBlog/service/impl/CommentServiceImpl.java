@@ -87,4 +87,13 @@ public class CommentServiceImpl implements CommentService {
             return ApiResponse.error(500,"删除失败");
         }
     }
+
+    public ApiResponse updateComment(Integer id, String commentContent, String city){
+        Integer num = commentMapper.updateComment(id, commentContent, city);
+        if(num == 1){
+            return ApiResponse.success("更新成功");
+        }else {
+            return ApiResponse.error(500,"更新失败");
+        }
+    }
 }

@@ -18,4 +18,6 @@ public interface CommentService {
     public ApiResponse getAdminList(Integer start, Integer pageSize);
 
     public ApiResponse deleteComment(Integer id);
+
+    public ApiResponse updateComment(Integer id, String commentContent, String city); // 更新评论内容和城市信息
 }

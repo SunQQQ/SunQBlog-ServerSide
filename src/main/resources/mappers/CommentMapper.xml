@@ -113,4 +113,13 @@
         delete from comment
         where id = #{id}
     </delete>
+
+    <update id="updateComment">
+        update comment
+        set
+            comment_content = #{commentContent},
+            city = #{city}
+        where
+            id = #{id}
+    </update>
 </mapper>

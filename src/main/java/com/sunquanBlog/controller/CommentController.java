@@ -57,4 +57,13 @@ public class CommentController {
         Integer id = requestBody.get("id");
         return commentService.deleteComment(id);
     }
+
+    @PostMapping("/updateComment")
+    public ApiResponse updateComment(@RequestBody Map<String,Object> requestBody){
+        Integer id = (Integer) requestBody.get("id");
+        String commentContent = (String) requestBody.get("commentContent");
+        String city = (String) requestBody.get("city");
+
+        return commentService.updateComment(id, commentContent, city);
+    }
 }

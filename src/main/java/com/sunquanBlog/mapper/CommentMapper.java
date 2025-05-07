@@ -22,4 +22,6 @@ public interface CommentMapper {
     List<Comment> getAdminList(Integer start,Integer pageSize);
 
     Integer deleteComment(Integer id);
+
+    Integer updateComment(Integer id, String commentContent, String city);
 }
