@@ -15,6 +15,7 @@
         <result column="create_time" property="createTime"/>
         <result column="creater_avator" property="createrAvator"></result>
         <result column="city" property="city"></result>
+        <result column="blog_title" property="blogTitle"></result>
     </resultMap>
 
 
@@ -57,6 +58,26 @@
         <foreach collection="commentIds" item="commentId" open="(" separator="," close=")">
             #{commentId}
         </foreach>
+    </select>
+
+    <select id="getAdminList" resultMap="indexResultMap">
+        select
+            a.id,
+            b.name as creater_name,
+            b.avator as creater_avator,
+            a.comment_content,
+            a.comment_parent_id as comment_parent_id,
+            a.create_time,
+            a.city,
+            c.title as blog_title
+        from
+            comment a
+                left join user b
+                          on a.creater_id = b.id
+                left join blog c
+                          on a.article_id = c.id
+        limit
+            #{start}, #{pageSize}
     </select>
 
     <insert id="addComment">

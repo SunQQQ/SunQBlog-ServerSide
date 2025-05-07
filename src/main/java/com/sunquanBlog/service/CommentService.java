@@ -14,4 +14,6 @@ public interface CommentService {
     public ApiResponse addComment(Integer userId, Integer articleId, String commentContent, Integer comParentId, HttpServletRequest request);
 
     public ApiResponse getCommentCount();
+
+    public ApiResponse getAdminList(Integer start, Integer pageSize);
 }

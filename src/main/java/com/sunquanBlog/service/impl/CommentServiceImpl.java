@@ -10,7 +10,10 @@ import com.sunquanBlog.service.LogService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class CommentServiceImpl implements CommentService {
     @Autowired
@@ -64,5 +67,15 @@ public class CommentServiceImpl implements CommentService {
     public ApiResponse getCommentCount() {
         Integer count = commentMapper.getCommentCount();
         return ApiResponse.success(count);
+    }
+
+    public ApiResponse getAdminList(Integer start, Integer pageSize){
+        Map<String, Object> map = new HashMap<>();
+        Integer total = commentMapper.getTotalComment();
+        List<Comment> list = commentMapper.getAdminList(start,pageSize);
+        map.put("total",total);
+        map.put("list",list);
+
+        return ApiResponse.success(map);
     }
 }

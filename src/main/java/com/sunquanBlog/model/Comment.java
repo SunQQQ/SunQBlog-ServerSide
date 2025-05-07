@@ -22,6 +22,8 @@ public class Comment {
 
     private String city;
 
+    private String blogTitle;
+
     public Comment() {
     }
 
@@ -103,5 +105,14 @@ public class Comment {
 
     public void setChild(List<Comment> child) {
         this.child = child;
+    }
+
+
+    public String getBlogTitle() {
+        return blogTitle;
+    }
+
+    public void setBlogTitle(String blogTitle) {
+        this.blogTitle = blogTitle;
     }
 }

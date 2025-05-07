@@ -15,10 +15,24 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    /*
+        * @Description: 用户端，根据文章id获取对应评论列表，不分页，二级列表展示
+     */
     @PostMapping("/getCommentList")
     public ApiResponse getCommentList(@RequestBody Map<String,Integer> requestBody){
         Integer articleId = requestBody.get("articleId");
         return commentService.getCommentList(articleId);
+    }
+
+    /*
+        * @Description: 管理端，获取所有文章的评论，分页
+     */
+    @PostMapping("/getAdminList")
+    public ApiResponse getAdminList(@RequestBody Map<String,Integer> requestBody){
+        Integer start = requestBody.get("start");
+        Integer pageSize = requestBody.get("pageSize");
+
+        return commentService.getAdminList(start, pageSize);
     }
 
     @PostMapping("/addComment")

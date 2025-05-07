@@ -18,4 +18,6 @@ public interface CommentMapper {
     Integer getTodayComment();
 
     Integer getTotalComment();
+
+    List<Comment> getAdminList(Integer start,Integer pageSize);
 }
