@@ -76,6 +76,13 @@
                           on a.creater_id = b.id
                 left join blog c
                           on a.article_id = c.id
+        <where>
+            <if test="role != 'master'">
+                creater_id = #{createId}
+            </if>
+        </where>
+        order by
+            a.create_time desc
         limit
             #{start}, #{pageSize}
     </select>
@@ -94,6 +101,19 @@
             comment
     </select>
 
+    <select id="getTotalCommentByUser" resultType="integer">
+        select
+            count(1)
+        from
+            comment a
+                left join user b
+                          on a.creater_id = b.id
+        <where>
+            <if test="role != 'master'">
+                a.creater_id = #{createId}
+            </if>
+        </where>
+    </select>
     <select id="getTotalComment" resultType="integer">
         select
             count(1)

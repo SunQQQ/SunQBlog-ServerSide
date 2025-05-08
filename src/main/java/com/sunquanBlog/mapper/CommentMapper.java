@@ -19,7 +19,9 @@ public interface CommentMapper {
 
     Integer getTotalComment();
 
-    List<Comment> getAdminList(Integer start,Integer pageSize);
+    Integer getTotalCommentByUser(Integer createId, String role);
+
+    List<Comment> getAdminList(Integer start,Integer pageSize,Integer createId,String role);
 
     Integer deleteComment(Integer id);
 

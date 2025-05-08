@@ -4,6 +4,7 @@ import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.CommentMapper;
 import com.sunquanBlog.model.Comment;
 import com.sunquanBlog.service.CommentService;
+import com.sunquanBlog.service.SysLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sunquanBlog.service.LogService;
@@ -20,6 +21,8 @@ public class CommentServiceImpl implements CommentService {
     CommentMapper commentMapper;
     @Autowired
     LogService logService;
+    @Autowired
+    SysLoginService sysLoginService;
     public ApiResponse getCommentList(Integer articleId) {
         // 一级评论数据
         List<Comment> comment1 = commentMapper.getCommentList1(articleId);
@@ -69,10 +72,13 @@ public class CommentServiceImpl implements CommentService {
         return ApiResponse.success(count);
     }
 
-    public ApiResponse getAdminList(Integer start, Integer pageSize){
+    public ApiResponse getAdminList(Integer start, Integer pageSize,Integer createId){
         Map<String, Object> map = new HashMap<>();
-        Integer total = commentMapper.getTotalComment();
-        List<Comment> list = commentMapper.getAdminList(start,pageSize);
+
+        String role = sysLoginService.getUserById(createId).getRole();
+        Integer total = commentMapper.getTotalCommentByUser(createId,role);
+
+        List<Comment> list = commentMapper.getAdminList(start,pageSize,createId,role);
         map.put("total",total);
         map.put("list",list);
 

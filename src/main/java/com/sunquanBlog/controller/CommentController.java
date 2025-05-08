@@ -28,11 +28,15 @@ public class CommentController {
         * @Description: 管理端，获取所有文章的评论，分页
      */
     @PostMapping("/getAdminList")
-    public ApiResponse getAdminList(@RequestBody Map<String,Integer> requestBody){
+    public ApiResponse getAdminList(HttpServletRequest request,@RequestBody Map<String,Integer> requestBody){
+        // 从token获取用户Id
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+
         Integer start = requestBody.get("start");
         Integer pageSize = requestBody.get("pageSize");
 
-        return commentService.getAdminList(start, pageSize);
+        return commentService.getAdminList(start, pageSize,userId);
     }
 
     @PostMapping("/addComment")

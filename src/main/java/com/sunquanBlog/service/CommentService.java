@@ -15,7 +15,7 @@ public interface CommentService {
 
     public ApiResponse getCommentCount();
 
-    public ApiResponse getAdminList(Integer start, Integer pageSize);
+    public ApiResponse getAdminList(Integer start, Integer pageSize,Integer createId);
 
     public ApiResponse deleteComment(Integer id);
 
