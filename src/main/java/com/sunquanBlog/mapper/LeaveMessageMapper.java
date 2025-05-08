@@ -27,6 +27,8 @@ public interface LeaveMessageMapper {
 
     int getLmCount();
 
+    int getCountByRole(Integer id,String role);
+
     Integer getTotalLeaveMess();
 
     Integer getTodayLeaveMess();

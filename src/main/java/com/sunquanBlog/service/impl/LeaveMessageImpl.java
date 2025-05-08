@@ -80,11 +80,12 @@ public class LeaveMessageImpl implements LeaveMessageService {
     @Override
     public ApiResponse getAllLeaveMessage(Integer id,Integer start,Integer size) {
         User user = loginMapper.getUserById(id);
-        List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,user.getRole(),start,size);
+        String role = user.getRole();
+        List<LeaveMessage> heartFeltList = leaveMessageMapper.getAllLeaveMessage(id,role,start,size);
 
         Map<String, Object> map = new HashMap<>();
         map.put("list",heartFeltList);
-        map.put("total",leaveMessageMapper.getLmCount());
+        map.put("total",leaveMessageMapper.getCountByRole(id,role));
 
         return ApiResponse.success(map);
     }

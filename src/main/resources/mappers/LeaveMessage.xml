@@ -95,6 +95,18 @@
             id = #{id}
     </update>
 
+    <select id="getCountByRole" resultType="int">
+        select
+            count(*)
+        from
+            leave_message
+        <where>
+            <if test="role != 'master'">
+                leave_id = #{id}
+            </if>
+        </where>
+    </select>
+
     <select id="getLmCount" resultType="int">
         select
             count(*)
