@@ -74,6 +74,18 @@
         limit #{start}, #{size}
     </select>
 
+    <select id="getBlogNumByRoleId" resultType="java.lang.Integer">
+        select
+            count(*) total
+        from
+            blog blog
+        <where>
+            <if test="role != 'master'">
+                create_id = #{userId}
+            </if>
+        </where>
+    </select>
+
     <select id="getBlogNum" resultType="java.lang.Integer">
         select
             count(*) total

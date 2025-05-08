@@ -12,7 +12,11 @@ public interface BlogMapper {
 
     List<Blog> getUserBlogList(Integer tagId,Integer start,Integer size);
 
+    // 供用户统计当前分类下得文章数量
     Integer getBlogNum(Integer tagId);
+
+    // 供管理端统计当前角色及账号下的文章数量，分页器使用
+    Integer getBlogNumByRoleId(String role,Integer userId);
 
     Blog getBlogDetail(Integer blogId);
 

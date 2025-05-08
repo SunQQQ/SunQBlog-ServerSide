@@ -26,7 +26,7 @@ public class BlogServiceImpl implements BlogService {
         String role = loginMapper.getUserById(userId).getRole();
 
         List<Blog> list = blogMapper.getBlogList(userId,role,tagId,start,size);
-        Integer total = blogMapper.getBlogNum(tagId);
+        Integer total = blogMapper.getBlogNumByRoleId(role,userId);
 
         Map<String,Object> result = new java.util.HashMap<>();
         result.put("list",list);
