@@ -61,7 +61,7 @@
             MAX(log.ip_city) ipCity,
             MAX(log.browser) browser,
             TIMESTAMPDIFF(SECOND, MIN(log.create_time),MAX(log.create_time)) stayTime,
-            DATE_SUB(CURDATE(), INTERVAL 0 DAY) as day,
+            DATE_SUB(CURDATE(), INTERVAL #{start} DAY) as day,
             time(MAX(log.create_time)) leaveTime,
             time(MIN(log.create_time)) entryTime
         FROM
@@ -69,8 +69,8 @@
         left JOIN
             user on user.id = log.user_id
         WHERE
-            log.create_time >= DATE_SUB(CURDATE(), INTERVAL 0 DAY)
-            AND log.create_time < DATE_SUB(CURDATE(), INTERVAL -1 DAY)
+            log.create_time >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
+            AND log.create_time < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
         GROUP BY
             log.ip,DATE(log.create_time)
         ORDER BY
