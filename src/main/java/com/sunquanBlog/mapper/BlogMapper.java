@@ -31,4 +31,6 @@ public interface BlogMapper {
     Integer getTodayArticle();
 
     Integer getTotalArticle();
+
+    List<Blog> getHotList(Integer topNum);
 }

@@ -78,6 +78,17 @@ public class BlogController {
         return blogService.getUserBlogList(tagId,start,size);
     }
 
+    /**
+     * 根据评论数得到热门文章列表
+     * @return
+     */
+    @PostMapping("/getHotList")
+    public ApiResponse getHotList(@RequestBody Map<String,Object> requestBody){
+        Integer topNum = (Integer) requestBody.get("topNum");
+
+        return blogService.getHotList(topNum);
+    }
+
     @PostMapping("/getBlogDetail")
     public ApiResponse getBlogDetail(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
         Integer blogId = (Integer) requestBody.get("id");

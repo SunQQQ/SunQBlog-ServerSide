@@ -74,6 +74,22 @@
         limit #{start}, #{size}
     </select>
 
+    <select id="getHotList" resultMap="indexResultMap">
+        select
+            blog.id id,
+            blog.title title,
+            count(blog.id) comment_num
+        from
+            blog blog
+                left join comment comment
+                          on blog.id = comment.article_id
+        group by
+            blog.id
+        order by
+            comment_num desc
+        limit #{topNum}
+    </select>
+
     <select id="getBlogNumByRoleId" resultType="java.lang.Integer">
         select
             count(*) total

@@ -91,4 +91,10 @@ public class BlogServiceImpl implements BlogService {
             return ApiResponse.error(500,"更新失败");
         }
     }
+
+    public ApiResponse getHotList(Integer topNum){
+        List<Blog> list = blogMapper.getHotList(topNum);
+
+        return ApiResponse.success(list);
+    }
 }
