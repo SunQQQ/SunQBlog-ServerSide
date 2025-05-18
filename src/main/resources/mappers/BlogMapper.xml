@@ -27,13 +27,16 @@
             blog.create_time create_time,
             article_cover, page_view_num,
             user.name create_name,
-            dictionary.name article_tag_name
+            dictionary.name article_tag_name,
+            count(comment.id) comment_num
         from
             blog blog
         left join  user user
             on blog.create_id = user.id
         left join dictionary dictionary
             on blog.article_tag = dictionary.id
+        left join comment comment
+            on blog.id = comment.article_id
         <where>
             <if test="role != 'master'">
                 create_id = #{userId}
@@ -42,6 +45,8 @@
                 article_tag = #{tagId}
             </if>
         </where>
+        group by
+            blog.id
         order by create_time desc
         limit #{start}, #{size}
     </select>
