@@ -10,6 +10,7 @@ public class User {
 
     private LocalDateTime createdAt;
     private String role;
+    private Integer avator;
 
     // 生成 setter 和 getter
     public Integer getId() {
@@ -58,5 +59,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer getAvator() {
+        return avator;
+    }
+
+    public void setAvator(Integer avator) {
+        this.avator = avator;
     }
 }
