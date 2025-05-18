@@ -17,4 +17,9 @@ public class TimeLineServiceImpl implements TimeLineService {
     public List<TimeLine> getAllTimeLine() {
         return timeLineMapper.getAllTimeLine();
     }
+
+    @Override
+    public int deleteTimeLine(Integer id){
+        return timeLineMapper.deleteTimeLine(id);
+    }
 }

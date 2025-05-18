@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface TimeLineMapper {
     List<TimeLine> getAllTimeLine();
+
+    int deleteTimeLine(Integer id);
 }
