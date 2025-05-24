@@ -52,4 +52,23 @@ public class TimeLineController {
             return ApiResponse.error(500,"删除失败");
         }
     }
+
+    @PostMapping("/insertTimeLine")
+    public ApiResponse insertTimeLine(HttpServletRequest request, @RequestBody TimeLine timeline) {
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+        String role = sysLoginService.getUserById(userId).getRole();
+
+        if(!role.equals("master")) {
+            return ApiResponse.error(500,"权限不足");
+        }
+
+        int result = timeLineService.insertTimeLine(timeline);
+
+        if (result > 0) {
+            return ApiResponse.success("添加成功");
+        } else {
+            return ApiResponse.error(500,"添加失败");
+        }
+    }
 }

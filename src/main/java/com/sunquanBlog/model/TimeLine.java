@@ -1,6 +1,7 @@
 package com.sunquanBlog.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,7 +9,9 @@ import java.time.LocalDateTime;
 public class TimeLine {
     private int id;
     private String content;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate contentDate;
+
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
@@ -31,19 +34,19 @@ public class TimeLine {
         this.content = content;
     }
 
-    public LocalDate getContent_date() {
+    public LocalDate getContentDate() {
         return contentDate;
     }
 
-    public void setContent_date(LocalDate contentDate) {
+    public void setContentDate(LocalDate contentDate) {
         this.contentDate = contentDate;
     }
 
-    public LocalDateTime getCreate_time() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreate_time(LocalDateTime createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

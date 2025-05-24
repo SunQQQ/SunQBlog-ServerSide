@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sunquanBlog.mapper.TimeLineMapper;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -21,5 +23,10 @@ public class TimeLineServiceImpl implements TimeLineService {
     @Override
     public int deleteTimeLine(Integer id){
         return timeLineMapper.deleteTimeLine(id);
+    }
+
+    @Override
+    public int insertTimeLine(TimeLine timeLine){
+        return timeLineMapper.insertTimeLine(timeLine.getContent(), timeLine.getContentDate());
     }
 }

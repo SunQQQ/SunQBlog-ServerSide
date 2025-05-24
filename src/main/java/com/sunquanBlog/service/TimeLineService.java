@@ -10,4 +10,6 @@ public interface TimeLineService {
     List<TimeLine> getAllTimeLine();
 
     int deleteTimeLine(Integer id);
+
+    int insertTimeLine(TimeLine timeLine);
 }

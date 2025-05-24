@@ -23,6 +23,11 @@
     <delete id="deleteTimeLine" parameterType="int">
         delete from time_line where id = #{id}
     </delete>
+
+    <insert id="insertTimeLine" parameterType="com.sunquanBlog.model.TimeLine">
+        insert into time_line (content, content_date, create_time)
+        values (#{content}, #{contentDate}, now())
+    </insert>
 </mapper>
 
 
