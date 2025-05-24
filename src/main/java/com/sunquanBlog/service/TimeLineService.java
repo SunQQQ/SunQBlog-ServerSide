@@ -12,4 +12,6 @@ public interface TimeLineService {
     int deleteTimeLine(Integer id);
 
     int insertTimeLine(TimeLine timeLine);
+
+    int updateTimeLine(TimeLine timeLine);
 }

@@ -29,4 +29,9 @@ public class TimeLineServiceImpl implements TimeLineService {
     public int insertTimeLine(TimeLine timeLine){
         return timeLineMapper.insertTimeLine(timeLine.getContent(), timeLine.getContentDate());
     }
+
+    @Override
+    public int updateTimeLine(TimeLine timeLine) {
+        return timeLineMapper.updateTimeLine(timeLine.getId(), timeLine.getContent(), timeLine.getContentDate());
+    }
 }

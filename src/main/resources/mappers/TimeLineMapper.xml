@@ -17,7 +17,7 @@
         from
             time_line time
         order by
-            time.content_date desc
+            time.create_time desc
     </select>
 
     <delete id="deleteTimeLine" parameterType="int">
@@ -28,6 +28,13 @@
         insert into time_line (content, content_date, create_time)
         values (#{content}, #{contentDate}, now())
     </insert>
+
+    <update id="updateTimeLine" parameterType="com.sunquanBlog.model.TimeLine">
+        update time_line
+        set content = #{content},
+            content_date = #{contentDate}
+        where id = #{id}
+    </update>
 </mapper>
 
 

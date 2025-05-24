@@ -13,4 +13,6 @@ public interface TimeLineMapper {
     int deleteTimeLine(Integer id);
 
     int insertTimeLine(String content, LocalDate contentDate);
+
+    int updateTimeLine(Integer id, String content, LocalDate contentDate);
 }
