@@ -17,7 +17,7 @@
         from
             time_line time
         order by
-            time.content_time desc
+            time.content_date desc
     </select>
 
     <delete id="deleteTimeLine" parameterType="int">
