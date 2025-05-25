@@ -59,4 +59,15 @@ public class SnakeController {
             return ApiResponse.error(500, "创建失败");
         }
     }
+
+    @PostMapping("/scoreMulDelete")
+    public ApiResponse scoreMulDelete(@RequestBody Map<String, Object> requestBody) {
+        List ids = (List) requestBody.get("ids");
+        Integer response = snakeService.scoreMulDelete(ids);
+        if (response > 0) {
+            return ApiResponse.success("删除成功");
+        } else {
+            return ApiResponse.error(500, "删除失败");
+        }
+    }
 }

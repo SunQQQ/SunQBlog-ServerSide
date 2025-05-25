@@ -47,6 +47,14 @@
         values
         (#{score}, #{gameTime}, now(), #{ip}, #{city}, #{userId}, #{userName})
     </insert>
+
+    <delete id="scoreMulDelete">
+        delete from snake_score
+        where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
 
 

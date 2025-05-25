@@ -14,4 +14,6 @@ public interface SnakeMapper {
     Long getScoreListCount();
 
     Integer createScore(Snake snake);
+
+    Integer scoreMulDelete(List ids);
 }

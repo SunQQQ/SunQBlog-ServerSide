@@ -34,4 +34,9 @@ public class SnakeServiceImpl implements SnakeService {
         Integer result = snakeMapper.createScore(snake);
         return result;
     }
+
+    @Override
+    public Integer scoreMulDelete(List ids) {
+        return snakeMapper.scoreMulDelete(ids);
+    }
 }
