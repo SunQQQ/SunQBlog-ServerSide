@@ -1,5 +1,7 @@
 package com.sunquanBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Snake {
@@ -7,6 +9,7 @@ public class Snake {
     private Integer id;
     private Integer score;
     private Integer gameTime;
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
     private String ip;
     private String city;
