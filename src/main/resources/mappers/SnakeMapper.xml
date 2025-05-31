@@ -22,6 +22,8 @@
             snake_score
         order by
             create_time desc
+        limit
+            #{start}, #{size}
     </select>
 
     <select id="getScoreTopList" resultMap="indexResultMap">

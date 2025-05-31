@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface SnakeMapper {
-    List<Snake> getScoreList();
+    List<Snake> getScoreList(Integer start,Integer size);
 
     List<Snake> getScoreTopList(Integer topNum);
 

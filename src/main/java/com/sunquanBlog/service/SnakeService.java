@@ -5,10 +5,11 @@ import com.sunquanBlog.model.Snake;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface SnakeService {
-    List<Snake> getSnakeScoreList();
+    Map<String,Object> getSnakeScoreList(Integer start, Integer size);
 
     List<Snake> getSnakeScoreTopList(Integer topNum);
 

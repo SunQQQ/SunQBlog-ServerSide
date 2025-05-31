@@ -24,10 +24,11 @@ public class SnakeController {
     private LogService logService;
 
     @PostMapping("/getSnakeScoreList")
-    public ApiResponse getSnakeScoreList() {
-        List<Snake> snakeScoreList = snakeService.getSnakeScoreList();
+    public ApiResponse getSnakeScoreList(@RequestBody Map<String,Object> requestBody) {
+        Integer start = (Integer) requestBody.get("start");
+        Integer size = (Integer) requestBody.get("size");
 
-        return ApiResponse.success(snakeScoreList);
+        return ApiResponse.success(snakeService.getSnakeScoreList(start,size));
     }
 
     @PostMapping("/getSnakeScoreTopList")
