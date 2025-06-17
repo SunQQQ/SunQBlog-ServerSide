@@ -1,5 +1,7 @@
 package com.sunquanBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class User {
@@ -8,6 +10,7 @@ public class User {
     private String password;
     private String email;
 
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createdAt;
     private String role;
     private Integer avator;
