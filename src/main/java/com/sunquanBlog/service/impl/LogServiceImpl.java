@@ -171,7 +171,8 @@ public class LogServiceImpl implements LogService, DisposableBean {
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
         String ip = getClientIpAddress(request);
 
-        logMapper.setGroupConcatMaxLen(); // 上调group、concat函数的长度限制
+        // 已直接在mysql配置项里设置了group_concat_max_len，后期稳定后代码可删除
+        // logMapper.setGroupConcatMaxLen(); // 上调group、concat函数的长度限制
         List<LogDTO> logDTOs = logMapper.getUserAciton(day,day-1);
 
         for(int i=0;i<logDTOs.size();i++){
