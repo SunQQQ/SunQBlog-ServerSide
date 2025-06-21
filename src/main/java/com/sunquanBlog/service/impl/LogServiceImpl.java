@@ -221,7 +221,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
             createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天",0);
         }
 
-        String[] cityList = citys.split(",");
+        String[] cityList = citys.split("\\|");
         return ApiResponse.success(cityList);
     }
 

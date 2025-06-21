@@ -112,7 +112,7 @@
     <select id="getCityDaily" resultType="String">
         <![CDATA[
         SELECT
-            group_concat(DISTINCT ip_city) citys
+            group_concat(DISTINCT ip_city ORDER BY ip_city SEPARATOR '|') citys
         FROM
             log
         WHERE

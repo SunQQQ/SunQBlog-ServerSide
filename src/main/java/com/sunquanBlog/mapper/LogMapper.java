@@ -19,9 +19,10 @@ public interface LogMapper {
 
     Log getTotalIp();
 
+    // 改为直接写在mysql配置项里了，后期稳定后代码可删除
     // 设置 group_concat_max_len
-    @Update("SET SESSION group_concat_max_len = 1000000")
-    void setGroupConcatMaxLen();
+    // @Update("SET SESSION group_concat_max_len = 1000000")
+    // void setGroupConcatMaxLen();
 
     // 根据时间段查询
     List<LogDTO> getUserAciton(Integer start,Integer end);
