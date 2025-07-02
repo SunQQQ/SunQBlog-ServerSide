@@ -92,6 +92,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
+		<!-- Lombok 注解支持 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version> <!-- 使用最新版本 -->
+			<scope>provided</scope> <!-- 编译时生效，不打包到运行时 -->
+		</dependency>
 	</dependencies>
 
 	<build>
