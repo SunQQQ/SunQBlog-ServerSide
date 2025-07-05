@@ -19,5 +19,6 @@
             *
         from
             friend_url
+        limit #{start}, #{size}
     </select>
 </mapper>

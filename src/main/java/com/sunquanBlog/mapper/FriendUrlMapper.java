@@ -13,7 +13,7 @@ public interface FriendUrlMapper {
 //    int deleteFriendUrl(int id);
 
     // 获取友链列表
-    List<FriendUrl> getSiteList();
+    List<FriendUrl> getSiteList(int start,int size);
 
     // 更新友链
 //    int updateFriendUrl(int id, String url, String description);

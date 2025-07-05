@@ -2,10 +2,12 @@ package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.FriendUrlMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlService{
+    @Autowired
     private FriendUrlMapper friendUrlMapper;
 
     @Override
@@ -19,8 +21,8 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     }
 
     @Override
-    public ApiResponse getFriendUrlList() {
-        return ApiResponse.success(friendUrlMapper.getSiteList());
+    public ApiResponse getFriendUrlList(int start, int size) {
+        return ApiResponse.success(friendUrlMapper.getSiteList(start,size));
     }
 
     @Override
