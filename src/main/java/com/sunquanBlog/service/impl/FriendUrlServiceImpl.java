@@ -58,7 +58,12 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     }
 
     @Override
-    public ApiResponse updateFriendUrl(int id, String url, String description) {
-        return null;
+    public ApiResponse editSite(FriendUrl friendUrl) {
+        int  result = friendUrlMapper.editSite(friendUrl);
+        if(result > 0){
+            return ApiResponse.success("更新成功");
+        }else {
+            return ApiResponse.error(500,"友链更新失败");
+        }
     }
 }

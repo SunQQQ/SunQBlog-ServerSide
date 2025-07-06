@@ -56,4 +56,16 @@
         delete from friend_url
         where id = #{siteId}
     </delete>
+
+    <update id="editSite">
+        update
+            friend_url
+        set
+            site_name = #{siteName},
+            site_url = #{siteUrl},
+            site_desc = #{siteDesc},
+            site_logo = #{siteLogo}
+        where
+            id = #{id}
+    </update>
 </mapper>

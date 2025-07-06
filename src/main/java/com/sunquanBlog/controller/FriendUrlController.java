@@ -52,4 +52,10 @@ public class FriendUrlController {
 
         return friendUrlService.deleteSite(userId,siteId);
     }
+
+    @PostMapping("/editSite")
+    public ApiResponse editSite(@RequestBody FriendUrl friendUrl) {
+
+        return friendUrlService.editSite(friendUrl);
+    }
 }

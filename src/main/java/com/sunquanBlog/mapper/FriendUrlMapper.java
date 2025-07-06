@@ -21,5 +21,5 @@ public interface FriendUrlMapper {
     Integer getAdminListTotal(int userId, String role);
 
     // 更新友链
-//    int updateFriendUrl(int id, String url, String description);
+    Integer editSite(FriendUrl friendUrl);
 }

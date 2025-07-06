@@ -12,5 +12,5 @@ public interface FriendUrlService {
     public ApiResponse deleteSite(Integer userId,Integer siteId);
     public ApiResponse getFriendUrlList(int start, int size);
     public ApiResponse getAdminSiteList(int start, int size,int userId);
-    public ApiResponse updateFriendUrl(int id, String url, String description);
+    public ApiResponse editSite(FriendUrl friendUrl);
 }
