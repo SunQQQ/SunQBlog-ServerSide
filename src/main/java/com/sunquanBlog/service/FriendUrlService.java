@@ -9,7 +9,7 @@ import java.util.Map;
 @Service
 public interface FriendUrlService {
     public ApiResponse addSite(FriendUrl friendUrl,Integer userId);
-    public ApiResponse deleteFriendUrl(int id);
+    public ApiResponse deleteSite(Integer userId,Integer siteId);
     public ApiResponse getFriendUrlList(int start, int size);
     public ApiResponse getAdminSiteList(int start, int size,int userId);
     public ApiResponse updateFriendUrl(int id, String url, String description);

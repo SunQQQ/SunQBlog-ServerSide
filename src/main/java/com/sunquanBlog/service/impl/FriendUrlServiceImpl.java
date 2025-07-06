@@ -30,8 +30,13 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     }
 
     @Override
-    public ApiResponse deleteFriendUrl(int id) {
-        return null;
+    public ApiResponse deleteSite(Integer userId,Integer siteId) {
+        int result = friendUrlMapper.deleteSite(siteId);
+        if (result <= 0) {
+            return ApiResponse.error(500,"友链删除失败");
+        }else {
+            return ApiResponse.success("友链删除成功");
+        }
     }
 
     @Override

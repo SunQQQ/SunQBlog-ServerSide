@@ -42,4 +42,14 @@ public class FriendUrlController {
 
         return friendUrlService.addSite(friendUrl,userId);
     }
+
+    @PostMapping("/deleteSite")
+    public ApiResponse deleteSite(@RequestBody FriendUrl friendUrl, HttpServletRequest request) {
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+
+        Integer siteId = friendUrl.getId();
+
+        return friendUrlService.deleteSite(userId,siteId);
+    }
 }

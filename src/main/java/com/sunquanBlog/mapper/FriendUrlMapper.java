@@ -10,8 +10,8 @@ public interface FriendUrlMapper {
     // 添加友链
     int addSite(FriendUrl friendUrl, Integer userId);
 
-//    // 删除友链
-//    int deleteFriendUrl(int id);
+    // 删除友链
+    int deleteSite(Integer siteId);
 
     // 获取友链列表
     List<FriendUrl> getSiteList(int start,int size);

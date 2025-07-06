@@ -51,4 +51,9 @@
         insert into friend_url (site_name, site_url, site_desc, site_logo, create_time, user_id)
         values (#{friendUrl.siteName}, #{friendUrl.siteUrl}, #{friendUrl.siteDesc}, #{friendUrl.siteLogo}, now(),#{userId})
     </insert>
+
+    <delete id="deleteSite">
+        delete from friend_url
+        where id = #{siteId}
+    </delete>
 </mapper>
