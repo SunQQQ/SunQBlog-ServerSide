@@ -14,14 +14,14 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     private FriendUrlMapper friendUrlMapper;
 
     @Override
-    public ApiResponse addSite(FriendUrl friendUrl) {
+    public ApiResponse addSite(FriendUrl friendUrl, Integer userId) {
 //        if (friendUrl == null || friendUrl.isEmpty()) {
 //            return ApiResponse.error(500,"参数不能为空");
 //        }
 //        if (!params.containsKey("siteName") || !params.containsKey("siteUrl") || !params.containsKey("siteDesc") || !params.containsKey("siteLogo")) {
 //            return ApiResponse.error(500,"缺少必要的参数");
 //        }
-        int result = friendUrlMapper.addSite(friendUrl);
+        int result = friendUrlMapper.addSite(friendUrl,userId);
         if (result > 0) {
             return ApiResponse.success("友链添加成功");
         } else {

@@ -3,11 +3,13 @@ package com.sunquanBlog.controller;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.model.FriendUrl;
 import com.sunquanBlog.service.FriendUrlService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
@@ -24,8 +26,10 @@ public class FriendUrlController {
     }
 
     @PostMapping("/addSite")
-    public ApiResponse addSite(@RequestBody FriendUrl friendUrl) {
+    public ApiResponse addSite(@RequestBody FriendUrl friendUrl, HttpServletRequest request) {
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
 
-        return friendUrlService.addSite(friendUrl);
+        return friendUrlService.addSite(friendUrl,userId);
     }
 }

@@ -22,8 +22,8 @@
         limit #{start}, #{size}
     </select>
 
-    <insert id="addSite" parameterType="com.sunquanBlog.model.FriendUrl">
-        insert into friend_url (site_name, site_url, site_desc, site_logo, create_time)
-        values (#{siteName}, #{siteUrl}, #{siteDesc}, #{siteLogo}, now())
+    <insert id="addSite">
+        insert into friend_url (site_name, site_url, site_desc, site_logo, create_time, user_id)
+        values (#{friendUrl.siteName}, #{friendUrl.siteUrl}, #{friendUrl.siteDesc}, #{friendUrl.siteLogo}, now(),#{userId})
     </insert>
 </mapper>
