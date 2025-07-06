@@ -19,6 +19,8 @@
             *
         from
             friend_url
+        order by
+            create_time desc
         limit #{start}, #{size}
     </select>
 
@@ -32,6 +34,8 @@
                 user_id = #{userId}
             </if>
         </where>
+        order by
+            create_time desc
         limit #{start}, #{size}
     </select>
 
