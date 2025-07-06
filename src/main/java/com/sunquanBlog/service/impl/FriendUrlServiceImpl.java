@@ -2,8 +2,11 @@ package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.FriendUrlMapper;
+import com.sunquanBlog.model.FriendUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlService{
@@ -11,8 +14,19 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     private FriendUrlMapper friendUrlMapper;
 
     @Override
-    public ApiResponse addFriendUrl(String url, String description) {
-        return null;
+    public ApiResponse addSite(FriendUrl friendUrl) {
+//        if (friendUrl == null || friendUrl.isEmpty()) {
+//            return ApiResponse.error(500,"参数不能为空");
+//        }
+//        if (!params.containsKey("siteName") || !params.containsKey("siteUrl") || !params.containsKey("siteDesc") || !params.containsKey("siteLogo")) {
+//            return ApiResponse.error(500,"缺少必要的参数");
+//        }
+        int result = friendUrlMapper.addSite(friendUrl);
+        if (result > 0) {
+            return ApiResponse.success("友链添加成功");
+        } else {
+            return ApiResponse.error(500,"友链添加失败");
+        }
     }
 
     @Override

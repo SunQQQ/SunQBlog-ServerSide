@@ -1,6 +1,7 @@
 package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.model.FriendUrl;
 import com.sunquanBlog.service.FriendUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,5 +21,11 @@ public class FriendUrlController {
         Integer size = (Integer) requestBody.get("size");
 
         return friendUrlService.getFriendUrlList(start, size);
+    }
+
+    @PostMapping("/addSite")
+    public ApiResponse addSite(@RequestBody FriendUrl friendUrl) {
+
+        return friendUrlService.addSite(friendUrl);
     }
 }

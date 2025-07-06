@@ -3,12 +3,13 @@ import com.sunquanBlog.model.FriendUrl;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface FriendUrlMapper {
     // 添加友链
-//    int addFriendUrl(String url, String description);
-//
+    int addSite(FriendUrl friendUrl);
+
 //    // 删除友链
 //    int deleteFriendUrl(int id);
 
