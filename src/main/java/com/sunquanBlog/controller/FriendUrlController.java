@@ -25,6 +25,16 @@ public class FriendUrlController {
         return friendUrlService.getFriendUrlList(start, size);
     }
 
+    @PostMapping("/getAdminSiteList")
+    public ApiResponse getSiteList(@RequestBody Map<String,Object> requestBody, HttpServletRequest request) {
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer userId = claims.get("id", Integer.class);
+        Integer start = (Integer) requestBody.get("start");
+        Integer size = (Integer) requestBody.get("size");
+
+        return friendUrlService.getAdminSiteList(start, size,userId);
+    }
+
     @PostMapping("/addSite")
     public ApiResponse addSite(@RequestBody FriendUrl friendUrl, HttpServletRequest request) {
         Claims claims = (Claims) request.getAttribute("claims");

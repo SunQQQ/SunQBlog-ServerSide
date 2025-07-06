@@ -16,6 +16,10 @@ public interface FriendUrlMapper {
     // 获取友链列表
     List<FriendUrl> getSiteList(int start,int size);
 
+    List<FriendUrl> getAdminSiteList(int start,int size, int userId,String role);
+
+    Integer getAdminListTotal(int userId, String role);
+
     // 更新友链
 //    int updateFriendUrl(int id, String url, String description);
 }

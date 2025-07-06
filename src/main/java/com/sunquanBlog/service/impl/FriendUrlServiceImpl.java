@@ -3,9 +3,12 @@ package com.sunquanBlog.service.impl;
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.FriendUrlMapper;
 import com.sunquanBlog.model.FriendUrl;
+import com.sunquanBlog.service.SysLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -13,14 +16,11 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     @Autowired
     private FriendUrlMapper friendUrlMapper;
 
+    @Autowired
+    private SysLoginService sysLoginService;
+
     @Override
     public ApiResponse addSite(FriendUrl friendUrl, Integer userId) {
-//        if (friendUrl == null || friendUrl.isEmpty()) {
-//            return ApiResponse.error(500,"参数不能为空");
-//        }
-//        if (!params.containsKey("siteName") || !params.containsKey("siteUrl") || !params.containsKey("siteDesc") || !params.containsKey("siteLogo")) {
-//            return ApiResponse.error(500,"缺少必要的参数");
-//        }
         int result = friendUrlMapper.addSite(friendUrl,userId);
         if (result > 0) {
             return ApiResponse.success("友链添加成功");
@@ -37,6 +37,19 @@ public class FriendUrlServiceImpl implements com.sunquanBlog.service.FriendUrlSe
     @Override
     public ApiResponse getFriendUrlList(int start, int size) {
         return ApiResponse.success(friendUrlMapper.getSiteList(start,size));
+    }
+
+    @Override
+    public ApiResponse getAdminSiteList(int start, int size, int userId) {
+        String userRole = sysLoginService.getUserById(userId).getRole();
+        List list = friendUrlMapper.getAdminSiteList(start,size,userId,userRole);
+        Integer total = friendUrlMapper.getAdminListTotal(userId,userRole);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("list",list);
+        result.put("total", total);
+
+        return ApiResponse.success(result);
     }
 
     @Override
