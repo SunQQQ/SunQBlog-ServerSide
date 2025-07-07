@@ -18,6 +18,10 @@
         <result column="create_id" property="createId"/>
         <result column="create_name" property="createName"/>
         <result column="article_tag_name" property="articleTagName"/>
+        <result column="system_review_result" property="systemReviewResult"/>
+        <result column="system_review_time" property="systemReviewTime"/>
+        <result column="system_review_comment" property="systemReviewComment"/>
+        <result column="system_is_review" property="systemIsReview"/>
     </resultMap>
 
     <select id="getBlogList" resultMap="indexResultMap">
@@ -183,4 +187,26 @@
         from
             blog
     </select>
+
+    <select id="getNoCheckList" resultMap="indexResultMap">
+        select
+            title, summary, content,id
+        from
+            blog blog
+        where
+            blog.system_is_review = 0
+        order by
+            create_time desc
+    </select>
+
+    <update id="updateReviewInfo">
+        update blog
+        set
+            system_review_result = #{systemReviewResult},
+            system_review_time = now(),
+            system_review_comment = #{systemReviewComment},
+            system_is_review = 1
+        where
+            id = #{id}
+    </update>
 </mapper>

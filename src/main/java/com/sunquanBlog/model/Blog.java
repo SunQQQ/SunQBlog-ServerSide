@@ -14,11 +14,45 @@ public class Blog {
     private String pageViewNum;
     private Integer createId;
     private String createName;
-
     private String articleTagName;
-    public Blog() {
+    private Integer systemReviewResult;
+    private LocalDateTime systemReviewTime;
+    private String systemReviewComment;
+    private Integer systemIsReview;
+
+    public Integer getSystemIsReview() {
+        return systemIsReview;
     }
 
+    public void setSystemIsReview(Integer systemIsReview) {
+        this.systemIsReview = systemIsReview;
+    }
+
+    public Integer getSystemReviewResult() {
+        return systemReviewResult;
+    }
+
+    public void setSystemReviewResult(Integer systemReviewResult) {
+        this.systemReviewResult = systemReviewResult;
+    }
+
+    public LocalDateTime getSystemReviewTime() {
+        return systemReviewTime;
+    }
+
+    public void setSystemReviewTime(LocalDateTime systemReviewTime) {
+        this.systemReviewTime = systemReviewTime;
+    }
+
+    public String getSystemReviewComment() {
+        return systemReviewComment;
+    }
+
+    public void setSystemReviewComment(String systemReviewComment) {
+        this.systemReviewComment = systemReviewComment;
+    }
+    public Blog() {
+    }
 
     public Integer getId() {
         return id;

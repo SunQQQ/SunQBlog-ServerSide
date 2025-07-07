@@ -33,4 +33,9 @@ public interface BlogMapper {
     Integer getTotalArticle();
 
     List<Blog> getHotList(Integer topNum);
+
+//    获取没有经过审核的文章列表
+    List<Blog> getNoCheckList();
+
+    Integer updateReviewInfo(Blog blog);
 }
