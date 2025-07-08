@@ -32,7 +32,11 @@
             article_cover, page_view_num,
             user.name create_name,
             dictionary.name article_tag_name,
-            count(comment.id) comment_num
+            count(comment.id) comment_num,
+            system_is_review,
+            system_review_result,
+            system_review_comment,
+            system_review_time
         from
             blog blog
         left join  user user
@@ -73,8 +77,9 @@
         left join comment comment
             on blog.id = comment.article_id
         <where>
+            system_review_result = 1
             <if test="tagId != 0">
-                article_tag = #{tagId}
+                and article_tag = #{tagId}
             </if>
         </where>
         group by
@@ -159,7 +164,9 @@
             summary = #{summary},
             content = #{content},
             article_tag = #{articleTag},
-            article_cover = #{articleCover}
+            article_cover = #{articleCover},
+            system_is_review = 0,
+            system_review_result = 1
         where
             id = #{id}
     </update>

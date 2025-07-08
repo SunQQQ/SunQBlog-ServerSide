@@ -33,15 +33,15 @@ public class ArticleReviewJob {
 
         String Comment = "";
 
-        if(!isMeaningful(title)){
+        if(!isMeaningful("title",title)){
             Comment = "标题无意义";
         }
 
-        if(!isMeaningful(summary)){
+        if(!isMeaningful("summary",summary)){
             Comment += "简介无意义";
         }
 
-        if(!isMeaningful(content)){
+        if(!isMeaningful("content",content)){
             Comment += "内容无意义";
         }
 
@@ -63,7 +63,7 @@ public class ArticleReviewJob {
      * @param str 输入字符串
      * @return true=有意义，false=无意义
      */
-    public static boolean isMeaningful(String str) {
+    public static boolean isMeaningful(String type,String str) {
         if (str == null || str.trim().isEmpty()) {
             return false; // 空字符串或null视为无意义
         }
@@ -71,9 +71,16 @@ public class ArticleReviewJob {
         // 检查是否全是数字、全是字母、长度<20
         boolean isAllDigits = str.matches("\\d+");
         boolean isAllLetters = str.matches("[a-zA-Z]+");
-        boolean isTooShort = str.length() < 20;
+        boolean isTooShort = true;
 
-        // 如果满足任意一条，则无意义
+        if(type.equals("title")) {
+            isTooShort = str.length() < 4; //
+        }else if(type.equals("summary")){
+            isTooShort = str.length() < 5;
+        }else if(type.equals("content")) {
+            isTooShort = str.length() < 20; // 内容至少需要20个字符
+        }
+
         return !(isAllDigits || isAllLetters || isTooShort);
     }
 }
