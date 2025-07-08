@@ -13,11 +13,11 @@ public class ArticleReviewJob {
     @Autowired
     private BlogMapper blogMapper;
 
-    @Scheduled(cron = "0 */2 * * * ?") // 每5分钟执行一次
+    @Scheduled(cron = "0 */30 * * * ?") // 每5分钟执行一次
 //    @Scheduled(cron = "0 0/60 * * * ?")  // 每1小时执行一次
 //    @Scheduled(cron = "0 0 1,13 * * ?") // 每天1点和13点各执行一次
     public void ArticleReview() {
-        log.info("开始执行定时任务：文章审核任务");
+//        log.info("开始执行定时任务：文章审核任务");
 
         // 查询文章表中系统审核时间为空的文章id
         blogMapper.getNoCheckList().forEach(blog -> {
