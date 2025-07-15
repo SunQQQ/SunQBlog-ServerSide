@@ -1,5 +1,7 @@
 package com.sunquanBlog.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class FriendUrl{
@@ -8,6 +10,7 @@ public class FriendUrl{
     private String siteUrl;
     private String siteDesc;
     private String siteLogo;
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     public FriendUrl() {
