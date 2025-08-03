@@ -168,8 +168,17 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
     @Override
     public ApiResponse<Map> getLogIp() {
+        List<String> ipList = getWhiteListIP(1,0,-1);
+
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                        .map(item -> "'" + item + "'")
+                        .collect(Collectors.joining(",")) +
+                ")";
+
         Log total = logMapper.getTotalIp();
-        Log today = logMapper.getTodayIp();
+        Log today = logMapper.getTodayIp(excludeIpsSql);
 
         Map<String, Long> merged = new HashMap<>();
         merged.put("totalIpCount", total.getTotalIpCount());

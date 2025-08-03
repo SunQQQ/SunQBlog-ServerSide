@@ -37,6 +37,7 @@
             log
         where
             create_time >= curdate()
+            ${excludeIps}
     </select>
 
     <select id="getTotalIp" resultMap="Log">
