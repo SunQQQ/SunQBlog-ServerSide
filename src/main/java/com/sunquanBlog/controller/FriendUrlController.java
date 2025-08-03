@@ -46,6 +46,8 @@ public class FriendUrlController {
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
+        logService.createLog(request, "用户端","朋友圈", "添加站点", "朋友圈页面","："+ friendUrl.getSiteName());
+
         return friendUrlService.addSite(friendUrl,userId);
     }
 
