@@ -43,7 +43,13 @@ public interface LogMapper {
 
     String getCityDaily(Integer days); // 获取IP所在城市的方法
 
-    LogTerminalDTO getTerminal(Integer days); // 获取终端类型的方法
+    LogTerminalDTO getTerminal(
+            @Param("days") Integer days,
+            @Param("excludeIpsSql") String excludeIpsSql
+    ); // 获取终端类型的方法
 
-    Map<String, Integer> getPageDaily(Integer days);
+    Map<String, Integer> getPageDaily(
+            @Param("days") Integer days,
+            @Param("excludeIpsSql") String excludeIpsSql
+    );
 }

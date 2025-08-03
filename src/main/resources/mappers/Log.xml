@@ -151,7 +151,8 @@
                     log
                 WHERE
                     create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
-                  AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+                    AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+                    ${excludeIpsSql}
                 GROUP BY
                     ip
             ) a
@@ -173,7 +174,8 @@
             log
         WHERE
             create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
-          AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+            AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+            ${excludeIpsSql}
         ]]>
     </select>
 </mapper>

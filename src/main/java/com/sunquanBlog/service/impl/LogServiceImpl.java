@@ -276,7 +276,16 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
     @Override
     public ApiResponse<LogTerminalDTO> getTerminal(Integer days,HttpServletRequest request) {
-        LogTerminalDTO logTerminalDTO = logMapper.getTerminal(days);
+        // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
+        List<String> ipList = getWhiteListIP(1,days,-1);
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                        .map(item -> "'" + item + "'")
+                        .collect(Collectors.joining(",")) +
+                ")";
+
+        LogTerminalDTO logTerminalDTO = logMapper.getTerminal(days,excludeIpsSql);
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
@@ -288,7 +297,16 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
     @Override
     public ApiResponse<Map> getPageDaily(Integer days) {
-        Map page = logMapper.getPageDaily(days);
+        // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
+        List<String> ipList = getWhiteListIP(1,days,-1);
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                        .map(item -> "'" + item + "'")
+                        .collect(Collectors.joining(",")) +
+                ")";
+
+        Map page = logMapper.getPageDaily(days,excludeIpsSql);
         return ApiResponse.success(page);
     }
 }
