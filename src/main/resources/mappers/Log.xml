@@ -47,8 +47,22 @@
             log
     </select>
 
+    <select id="getWhiteListIP" resultType="java.lang.String">
+        <![CDATA[
+        select
+            ip
+        from
+            log
+        where
+            log.create_time >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
+            AND log.create_time < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
+            AND log.user_id = #{userId}
+        group by
+            log.ip
+        ]]>
+    </select>
 
-    <select id="getUserAciton" resultType="com.sunquanBlog.model.LogDTO">
+    <select id="getUserAction" resultType="com.sunquanBlog.model.LogDTO">
         <![CDATA[
         SELECT
             log.ip AS ip,
@@ -71,6 +85,7 @@
         WHERE
             log.create_time >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
             AND log.create_time < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
+            ${excludeIps}
         GROUP BY
             log.ip,DATE(log.create_time)
         ORDER BY

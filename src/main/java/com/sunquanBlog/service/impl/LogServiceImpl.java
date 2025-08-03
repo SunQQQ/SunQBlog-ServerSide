@@ -26,6 +26,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.sunquanBlog.service.CityNameConverter;
 import org.springframework.transaction.annotation.Transactional;
@@ -166,14 +167,30 @@ public class LogServiceImpl implements LogService, DisposableBean {
         return ApiResponse.success(merged);
     }
 
+    public List<String> getWhiteListIP(Integer userId, Integer start, Integer end) {
+        // 查询白名单IP
+        List<String> ips = logMapper.getWhiteListIP(userId, start, end);
+
+        return ips;
+    }
+
     @Override
     @Transactional // 保证两次调用在同一个数据库会话中
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
         String ip = getClientIpAddress(request);
 
-        // 已直接在mysql配置项里设置了group_concat_max_len，后期稳定后代码可删除
-        // logMapper.setGroupConcatMaxLen(); // 上调group、concat函数的长度限制
-        List<LogDTO> logDTOs = logMapper.getUserAciton(day,day-1);
+        // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
+        List<String> ipList = getWhiteListIP(1,day,day-1);
+
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                           .map(item -> "'" + item + "'")
+                           .collect(Collectors.joining(",")) +
+                ")";
+
+        // 查询用户轨迹
+        List<LogDTO> logDTOs = logMapper.getUserAction(day,day-1,excludeIpsSql);
 
         for(int i=0;i<logDTOs.size();i++){
 

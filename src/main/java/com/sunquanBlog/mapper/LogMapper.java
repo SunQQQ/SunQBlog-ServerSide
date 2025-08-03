@@ -6,6 +6,7 @@ import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.model.LogTerminalDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
@@ -23,9 +24,14 @@ public interface LogMapper {
     // 设置 group_concat_max_len
     // @Update("SET SESSION group_concat_max_len = 1000000")
     // void setGroupConcatMaxLen();
+    List<String> getWhiteListIP(Integer userId, Integer start,Integer end);
 
     // 根据时间段查询
-    List<LogDTO> getUserAciton(Integer start,Integer end);
+//    List<LogDTO> getUserAction(Integer start,Integer end,List<String> list);
+    List<LogDTO> getUserAction(
+            @Param("start") Integer start,
+            @Param("end") Integer end,
+            @Param("excludeIps") String excludeIps);
 
     // 根据ip查询
     List<LogIpDailyDTO> getIpDaily(Integer days);
