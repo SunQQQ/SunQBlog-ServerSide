@@ -34,7 +34,10 @@ public interface LogMapper {
             @Param("excludeIps") String excludeIps);
 
     // 根据ip查询
-    List<LogIpDailyDTO> getIpDaily(Integer days);
+    List<LogIpDailyDTO> getIpDaily(
+            @Param("days") Integer days,
+            @Param("excludeIpsSql") String excludeIpsSql
+    );
 
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
 

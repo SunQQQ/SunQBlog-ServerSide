@@ -233,7 +233,16 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
     @Override
     public ApiResponse<List<LogIpDailyDTO>> getIpDaily(Integer days,HttpServletRequest request) {
-        List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days);
+        // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
+        List<String> ipList = getWhiteListIP(1,days,-1);
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                        .map(item -> "'" + item + "'")
+                        .collect(Collectors.joining(",")) +
+                ")";
+
+        List<LogIpDailyDTO> logDTOs = logMapper.getIpDaily(days,excludeIpsSql);
         List<LogIpDailyDTO> regists = logMapper.getRegisterDaily(days);
 
         if(!days.equals(7)){
