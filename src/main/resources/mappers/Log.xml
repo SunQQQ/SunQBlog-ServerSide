@@ -162,14 +162,18 @@
     <select id="getPageDaily" resultType="Map">
         <![CDATA[
         SELECT
-            COUNT(case when (page="首页" && action_desc="") then 1 end) 博文,
+            COUNT(case when (page="首页" or page="博文") then 1 end) 首页,
             COUNT(case when page="文章详情页" then 1 end) 文章详情页,
-            COUNT(case when (page="留言页"  && action_desc="") then 1 end) 留言,
-            COUNT(case when (page="时间轴" && action_desc="") then 1 end) 时间轴,
-            COUNT(case when (page="关于"  && action_desc="") then 1 end) 关于,
-            COUNT(case when (page="访问统计" && action_desc="") then 1 end) 访问统计,
-            COUNT(case when (page="开放式后台" && action_desc="") then 1 end) 开放式后台,
-            COUNT(case when (page="朋友圈" && action_desc="") then 1 end) 朋友圈
+            COUNT(case when (page="留言页") then 1 end) 留言,
+            COUNT(case when (page="时间轴") then 1 end) 时间轴,
+            COUNT(case when (page="关于") then 1 end) 关于,
+            COUNT(case when (page="访问统计") then 1 end) 访问统计,
+            COUNT(case when (page="开放式后台") then 1 end) 开放式后台,
+            COUNT(case when (page="朋友圈") then 1 end) 朋友圈,
+            COUNT(case when (page="文章列表页") then 1 end) 文章管理页,
+            COUNT(case when (page="登录注册页") then 1 end) 登录注册页,
+            COUNT(case when (page="账号管理页") then 1 end) 账号管理页,
+            COUNT(case when (page="贪吃蛇") then 1 end) 贪吃蛇
         FROM
             log
         WHERE
