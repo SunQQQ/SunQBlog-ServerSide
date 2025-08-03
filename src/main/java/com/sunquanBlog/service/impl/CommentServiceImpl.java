@@ -60,7 +60,7 @@ public class CommentServiceImpl implements CommentService {
         Integer num = commentMapper.addComment(userId, articleId, commentContent, comParentId,city);
         if(num == 1){
             // 记录日志
-            logService.createLog(request,"用户端", "文章详情页", "创建" , "评论",  "：" + commentContent,userId);
+            logService.createLog(request,"用户端", "文章详情页", "创建" , "评论",  "：" + commentContent);
             return ApiResponse.success("评论成功");
         }else {
             return ApiResponse.error(500,"评论失败");

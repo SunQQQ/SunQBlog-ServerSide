@@ -61,7 +61,7 @@ public class LeaveMessageImpl implements LeaveMessageService {
         int createNum = leaveMessageMapper.createLeaveMessage(map,accountId,userName);
         if(createNum == 1){
             // 记录日志
-            logService.createLog(request,"用户端", "留言页", "创建" , "留言", "："+map.get("messageContent"),accountId);
+            logService.createLog(request,"用户端", "留言页", "创建" , "留言", "："+map.get("messageContent"));
             return ApiResponse.success("创建成功");
         }else {
             return ApiResponse.error(500,"创建失败，请留言");

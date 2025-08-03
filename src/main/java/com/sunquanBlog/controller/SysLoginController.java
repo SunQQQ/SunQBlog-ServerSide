@@ -74,7 +74,7 @@ public class SysLoginController {
         Integer start = loginRequest.get("start");
         Integer size = loginRequest.get("size");
 
-        logService.createLog(request,"管理后台", "账号管理页", "查询" , "账号列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页",userId);
+        logService.createLog(request,"管理后台", "账号管理页", "查询" , "账号列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页");
 
         return sysLoginService.getAllUser(userId,start, size);
     }

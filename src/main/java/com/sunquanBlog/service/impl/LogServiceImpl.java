@@ -1,12 +1,14 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.common.util.JwtUtil;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogDTO;
 import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.model.LogTerminalDTO;
 import com.sunquanBlog.service.LogService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,13 +44,24 @@ public class LogServiceImpl implements LogService, DisposableBean {
     private Resource dbResource;
 
     @Override
-    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc, Integer userId) {
+    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc) {
         // 获取客户端真实IP地址
         String ip = getClientIpAddress(request);
         // 获取浏览器信息
         String userAgent = isMobileDevice(request) ? "Mobile" : "PC";
         // 获取IP所在城市（需要调用第三方服务或本地IP库）
         String city = getCityByIp2(ip);
+
+        Integer userId = 0; // 默认用户ID为0，表示未登录或匿名用户
+        String token = request.getHeader("Authorization");
+        if (!token.equals("undefined") && token != null && !token.isEmpty()) {
+            try {
+                Claims claims = JwtUtil.validateToken(token);
+                userId = claims.get("id", Integer.class);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         // 插入日志
         Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc,userId);
@@ -203,7 +216,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!day.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天",0);
+            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
         }
 
         return ApiResponse.success(logDTOs);
@@ -216,7 +229,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(7)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天",0);
+            createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天");
         }
 
         for(int i=0;i<logDTOs.size();i++){
@@ -236,7 +249,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天",0);
+            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
         }
 
         String[] cityList = citys.split("\\|");
@@ -249,7 +262,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天",0);
+            createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天");
         }
 
         return ApiResponse.success(logTerminalDTO);

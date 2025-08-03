@@ -50,7 +50,7 @@ public class BlogServiceImpl implements BlogService {
     public ApiResponse getBlogDetail(Integer blogId, HttpServletRequest request){
         Blog blog = blogMapper.getBlogDetail(blogId);
 
-        logService.createLog(request,"用户端", "文章详情页", "阅读", "文章","："+blog.getTitle(),0);
+        logService.createLog(request,"用户端", "文章详情页", "阅读", "文章","："+blog.getTitle());
 
         if(blog != null){
             blogMapper.addBlogViewNum(blogId);

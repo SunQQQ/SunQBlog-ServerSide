@@ -44,7 +44,7 @@ public class BlogController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
-        logService.createLog(request,"管理后台", "文章列表页", "查询" , "文章列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页",userId);
+        logService.createLog(request,"管理后台", "文章列表页", "查询" , "文章列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页");
 
         return blogService.getBlogList(userId,tagId,start,size);
     }
@@ -63,15 +63,15 @@ public class BlogController {
         if(tagId != null && tagId != 0){
             // 如果有分页且不是第一页，则记录筛选加翻页
             if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId,0);
+                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
             }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页",0);
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页");
             }
         }else{
             if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "打开", "首页","",0);
+                logService.createLog(request, "用户端","首页", "打开", "首页","");
             }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页",0);
+                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
             }
         }
 

@@ -22,7 +22,7 @@ public class LogController {
     @PostMapping("/getLogIp")
     public ApiResponse getTimeLineList(HttpServletRequest request) {
         // 记录打开访问统计页日志
-        logService.createLog(request,"用户端","访问统计","打开","访问统计页","",0);
+        logService.createLog(request,"用户端","访问统计","打开","访问统计页","");
 
         return logService.getLogIp();
     }
@@ -73,9 +73,8 @@ public class LogController {
         String action = (String) requestBody.get("action");
         String actionObject = (String) requestBody.get("actionObject");
         String actionDesc = (String) requestBody.get("actionDesc");
-        Integer userId = (Integer) requestBody.get("userId");
 
-        Integer status = logService.createLog(request,platformType,page,action,actionObject,actionDesc,userId);
+        Integer status = logService.createLog(request,platformType,page,action,actionObject,actionDesc);
         if(status == 1) {
             return ApiResponse.success("日志记录成功");
         }else {
