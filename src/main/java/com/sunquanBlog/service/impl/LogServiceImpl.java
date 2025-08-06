@@ -59,7 +59,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
                 Claims claims = JwtUtil.validateToken(token);
                 userId = claims.get("id", Integer.class);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                // 日志记录中，并不做token验证。如果有token但已过期，走到这里时放行。
             }
         }
 
