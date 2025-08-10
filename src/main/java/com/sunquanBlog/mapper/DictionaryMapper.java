@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface DictionaryMapper {
-    List<Dictionary> getDictionaryList(Integer parentId);
+    List<Dictionary> getDictionaryList(List<Integer> parentId);
 }

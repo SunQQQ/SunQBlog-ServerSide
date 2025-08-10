@@ -25,7 +25,10 @@
             on d1.parent_id = d2.id
         <where>
             <if test="parentId != null">
-                d1.parent_id = #{parentId}
+                d1.parent_id in
+                <foreach collection="parentId" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
             </if>
         </where>
     </select>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class DictionaryController {
     private DictionaryService dictionaryService;
 
     @PostMapping("/getDictionaryList")
-    public ApiResponse getDictionaryList(@RequestBody Map<String, Integer> requestBody){
+    public ApiResponse getDictionaryList(@RequestBody Map<String, List<Integer>> requestBody){
         return dictionaryService.getDictionaryList(requestBody.get("parentId"));
     }
 }
