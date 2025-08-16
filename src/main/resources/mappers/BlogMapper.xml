@@ -78,9 +78,10 @@
             on blog.id = comment.article_id
         <where>
             system_review_result = 1
-            <if test="tagId != 0">
-                and article_tag = #{tagId}
-            </if>
+            and article_tag in
+            <foreach collection="tagId" item="id" open="(" separator="," close=")">
+                #{id, jdbcType=INTEGER, javaType=java.lang.Integer}
+            </foreach>
         </where>
         group by
             blog.id
@@ -122,9 +123,10 @@
         from
             blog blog
         <where>
-            <if test="tagId != 0">
-                article_tag = #{tagId}
-            </if>
+            and article_tag in
+            <foreach collection="tagId" item="id" open="(" separator="," close=")">
+                #{id, jdbcType=INTEGER, javaType=java.lang.Integer}
+            </foreach>
         </where>
     </select>
 

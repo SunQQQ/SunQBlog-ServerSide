@@ -20,8 +20,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 public class BlogController {
@@ -52,7 +55,8 @@ public class BlogController {
     // 给用户端使用，无需登录
     @PostMapping("/getUserBlogList")
     public ApiResponse getUserBlogList(@RequestBody Map<String,Object> requestBody,HttpServletRequest request){
-        Integer tagId = (Integer) requestBody.get("tag");
+        List<Integer> tagList = (List<Integer>) requestBody.get("tag");
+        Integer[] tagId = tagList.toArray(new Integer[0]);
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
@@ -60,7 +64,7 @@ public class BlogController {
         Integer curPage = (start / size) + 1;
 
         // 如果初次进入首页，tagId为0，curPage为1
-        if(tagId != null && tagId != 0){
+        if(tagId.length > 1){
             // 如果有分页且不是第一页，则记录筛选加翻页
             if(curPage == 1) {
                 logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
