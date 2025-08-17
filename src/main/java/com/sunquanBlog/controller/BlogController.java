@@ -70,7 +70,7 @@ public class BlogController {
         if(curPage == 1) {
             logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "分类为" + tagNames);
         }else {
-            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "分类为" + tagNames + ",到第" + curPage + "页");
+            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页,分类为:" + tagNames);
         }
 
         return blogService.getUserBlogList(tagId,start,size);
