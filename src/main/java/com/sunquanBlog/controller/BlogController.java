@@ -1,7 +1,10 @@
 package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.mapper.DictionaryMapper;
+import com.sunquanBlog.model.Dictionary;
 import com.sunquanBlog.service.BlogService;
+import com.sunquanBlog.service.DictionaryService;
 import com.sunquanBlog.service.LogService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,6 +36,9 @@ public class BlogController {
 
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private DictionaryMapper dictionaryMapper;
 
     @PostMapping("/getBlogList")
     public ApiResponse getBlogList(HttpServletRequest request,@RequestBody Map<String,Object> requestBody){
@@ -62,24 +65,46 @@ public class BlogController {
 
         // 记录日志
         Integer curPage = (start / size) + 1;
+        String tagNames = getTagName(Arrays.asList(1),tagList);
 
-        // 如果初次进入首页，tagId为0，curPage为1
-        if(tagId.length > 1){
-            // 如果有分页且不是第一页，则记录筛选加翻页
-            if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "标签id为" + tagId);
-            }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "标签id为" + tagId + ",到第" + curPage + "页");
-            }
-        }else{
-            if(curPage == 1) {
-                logService.createLog(request, "用户端","首页", "打开", "首页","");
-            }else {
-                logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页");
-            }
+        if(curPage == 1) {
+            logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "分类为" + tagNames);
+        }else {
+            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "分类为" + tagNames + ",到第" + curPage + "页");
         }
 
         return blogService.getUserBlogList(tagId,start,size);
+    }
+
+    /**
+     * 获取标签名称
+     * @param parentTag 父标签id，用于获取所有子标签
+     * @param tagArr 需要转换的子标签id数组
+     * @return 标签名称拼接字符串
+     */
+    public String getTagName(List<Integer> parentTag,List<Integer> tagArr){
+        List<Dictionary> allTags = dictionaryMapper.getDictionaryList(parentTag);
+
+        // 提取allTags中的所有ID
+        Set<Integer> allTagIds = allTags.stream()
+                .map(Dictionary::getId)
+                .collect(Collectors.toSet());
+        // 如果子标签全部都在allTags中，且长度相同，则直接返回“全部”
+        if (tagArr.size() == allTags.size() && allTagIds.containsAll(tagArr)) {
+            return "全部";
+        }
+
+        String result = "";
+        for (Integer tagId : tagArr) {
+            for (Dictionary tag : allTags) {
+                if (tag.getId().equals(tagId)) {
+                    result += tag.getName() + " ";
+                    break;  // 找到第一个匹配项后跳出内层循环
+                }
+            }
+        }
+
+        return result.trim();
     }
 
     /**
