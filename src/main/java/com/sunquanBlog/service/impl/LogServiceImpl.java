@@ -1,6 +1,7 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.common.util.IpMasker;
 import com.sunquanBlog.common.util.JwtUtil;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.model.Log;
@@ -215,7 +216,11 @@ public class LogServiceImpl implements LogService, DisposableBean {
         List<LogDTO> logDTOs = logMapper.getUserAction(day,day-1,excludeIpsSql);
 
         for(int i=0;i<logDTOs.size();i++){
+            // 脱敏IP地址
+            String curIp = logDTOs.get(i).getIp();
+            logDTOs.get(i).setIp(IpMasker.mask(curIp));
 
+            // 标记当前用户
             if(logDTOs.get(i).getIp().equals(ip)){
                 logDTOs.get(i).setIsCurUser(true);
             }else {
