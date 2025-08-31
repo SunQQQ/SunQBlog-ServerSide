@@ -2,6 +2,7 @@ package com.sunquanBlog.controller;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.service.LogService;
+import com.sunquanBlog.job.LogSummaryJob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,8 @@ import java.util.Map;
 public class LogController {
     @Autowired
     private LogService logService;
+    @Autowired
+    private LogSummaryJob logSummaryJob;
 
     /**
      * 获取当日和累计访问的ip/pv量
@@ -87,5 +90,10 @@ public class LogController {
     public ApiResponse getLocation(HttpServletRequest request) {
         String location = logService.getLocation(request);
         return ApiResponse.success(location);
+    }
+
+    @PostMapping("/getClientIpAddress")
+    public void getClientIpAddress() {
+        logSummaryJob.manualProcessDate("2025-08-27");
     }
 }
