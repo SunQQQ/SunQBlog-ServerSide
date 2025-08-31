@@ -28,30 +28,30 @@ public class LogSummaryJob {
     /**
      * 应用启动后自动回填历史数据（只会执行一次）
      */
-//    @PostConstruct
-//    public void backfillHistoryData() {
-//        if (historyDataBackfilled) {
-//            return;
-//        }
-//
-//        // 定义需要回填的日期范围：2025年2月1日到2月28日
-//        LocalDate startDate = LocalDate.of(2025, 2, 1);
-//        LocalDate endDate = LocalDate.of(2025, 2, 28);
-//
-//        List<LocalDate> datesToProcess = new ArrayList<>();
-//        LocalDate currentDate = startDate;
-//
-//        while (!currentDate.isAfter(endDate)) {
-//            datesToProcess.add(currentDate);
-//            currentDate = currentDate.plusDays(1);
-//        }
-//
-//        // 并行处理以提高速度（如果数据量大）
-//        datesToProcess.parallelStream().forEach(this::processDate);
-//
-//        historyDataBackfilled = true;
-//        System.out.println("历史数据回填完成！");
-//    }
+    @PostConstruct
+    public void backfillHistoryData() {
+        if (historyDataBackfilled) {
+            return;
+        }
+
+        // 定义需要回填的日期范围：2025年2月1日到2月28日
+        LocalDate startDate = LocalDate.of(2025, 5, 1);
+        LocalDate endDate = LocalDate.of(2025, 8, 31);
+
+        List<LocalDate> datesToProcess = new ArrayList<>();
+        LocalDate currentDate = startDate;
+
+        while (!currentDate.isAfter(endDate)) {
+            datesToProcess.add(currentDate);
+            currentDate = currentDate.plusDays(1);
+        }
+
+        // 并行处理以提高速度（如果数据量大）
+        datesToProcess.parallelStream().forEach(this::processDate);
+
+        historyDataBackfilled = true;
+        System.out.println("历史数据回填完成！");
+    }
 
     /**
      * 每日定时任务：处理前一天的数据

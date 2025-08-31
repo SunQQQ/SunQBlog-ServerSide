@@ -92,7 +92,10 @@ public class LogController {
         return ApiResponse.success(location);
     }
 
-    @PostMapping("/getClientIpAddress")
+    /**
+     * 手工归集某一天的ip访问数据
+     */
+    @PostMapping("/manualProcessDate")
     public void getClientIpAddress() {
         logSummaryJob.manualProcessDate("2025-08-27");
     }

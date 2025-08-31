@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunquanBlog.mapper.LogSummaryMapper">
+    <resultMap id="Log" type="com.sunquanBlog.model.LogSummary">
+        <id column="id" property="id"/>
+        <result column="ip" property="ip"/>
+        <result column="page" property="page"/>
+        <result column="city" property="city"/>
+        <result column="create_time" property="createTime"/>
+        <result column="browser" property="browser"/>
+        <result column="platform" property="platform"/>
+        <result column="user_id" property="userId"/>
+        <result column="entry_time" property="entryTime"/>
+        <result column="leave_time" property="leaveTime"/>
+        <result column="visit_day" property="visitDay"/>
+        <result column="pv" property="pv"/>
+    </resultMap>
+
+    <select id="getOldUser" resultType="Map">
+        <![CDATA[
+        SELECT
+            distinct a.ip,
+            CASE
+                WHEN NOT EXISTS (
+                    SELECT 1
+                    FROM log_daily_ip_summary b
+                    WHERE
+                        b.ip = a.ip
+                        AND b.visit_day < DATE(a.create_time) -- 关键修改：按日期比较
+                )
+                THEN '新用户'
+                ELSE '老用户' END AS user_type
+        FROM log a
+        WHERE DATE(a.create_time) = '2025-08-30'
+        ]]>
+    </select>
+</mapper>
