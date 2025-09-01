@@ -20,22 +20,50 @@
         <result column="pv" property="pv"/>
     </resultMap>
 
+    <!-- 获取'当天'的访问IP及用户类型（新用户/老用户) -->
+    <select id="getTodayOldUser" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+        SELECT
+            a.ip,
+            CASE
+                WHEN EXISTS (
+                        SELECT 1
+                        FROM log_daily_ip_summary b
+                        WHERE
+                            b.ip = a.ip
+                          AND b.visit_day < CURDATE()
+                    )
+                    THEN '老用户'
+                ELSE '新用户' END AS user_type
+        FROM (
+                 SELECT DISTINCT ip FROM log
+                 WHERE create_time >= CURDATE()
+                   AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+             ) a
+        ]]>
+    </select>
+
+    <!-- 获取一段时间内的访问IP及用户类型（新用户/老用户）,即day>0
+    比如10号的近3天，包含10、9、8号，不包含7号当天，所以应该是10-2 -->
     <select id="getOldUser" resultType="java.util.LinkedHashMap">
         <![CDATA[
         SELECT
-            distinct a.ip,
+            a.ip,
             CASE
-                WHEN NOT EXISTS (
-                    SELECT 1
-                    FROM log_daily_ip_summary b
-                    WHERE
-                        b.ip = a.ip
-                        AND b.visit_day < DATE(a.create_time) -- 关键修改：按日期比较
-                )
-                THEN '新用户'
-                ELSE '老用户' END AS user_type
-        FROM log a
-        WHERE DATE(a.create_time) = '2025-08-30'
+                WHEN EXISTS (
+                        SELECT 1
+                        FROM log_daily_ip_summary b
+                        WHERE
+                            b.ip = a.ip
+                          AND b.visit_day < DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
+                    )
+                    THEN '老用户'
+                ELSE '新用户' END AS user_type
+        FROM (
+                 SELECT DISTINCT ip FROM log
+                 WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
+                   AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+             ) a
         ]]>
     </select>
 </mapper>

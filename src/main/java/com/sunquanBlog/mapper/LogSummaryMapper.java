@@ -8,5 +8,7 @@ import java.util.Map;
 @Mapper
 public interface LogSummaryMapper {
     @MapKey("ip")
-    List<Map> getOldUser();
+    List<Map> getTodayOldUser(Integer day);
+    @MapKey("ip")
+    List<Map> getOldUser(Integer day);
 }
