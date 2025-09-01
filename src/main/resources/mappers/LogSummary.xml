@@ -20,7 +20,7 @@
         <result column="pv" property="pv"/>
     </resultMap>
 
-    <select id="getOldUser" resultType="Map">
+    <select id="getOldUser" resultType="java.util.LinkedHashMap">
         <![CDATA[
         SELECT
             distinct a.ip,
