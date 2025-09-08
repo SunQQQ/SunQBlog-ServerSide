@@ -38,7 +38,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         Map<String,Number> result = new HashMap<>();
         result.put("oldUser", oldUser);
         result.put("newUser", newUser);
-        result.put("total", oldUser + newUser);
+//        result.put("total", oldUser + newUser);
 
         return ApiResponse.success(result);
     }
