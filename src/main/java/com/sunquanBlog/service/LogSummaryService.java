@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface LogSummaryService {
 
-    public ApiResponse<List<Map>> getOldUser(Integer days);
+    public ApiResponse<Map> getOldUser(Integer days);
 }
