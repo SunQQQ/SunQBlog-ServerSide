@@ -61,7 +61,7 @@
                 ELSE '新用户' END AS user_type
         FROM (
                  SELECT DISTINCT ip FROM log
-                 WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
+                 WHERE create_time > DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
                    AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
              ) a
         ]]>
