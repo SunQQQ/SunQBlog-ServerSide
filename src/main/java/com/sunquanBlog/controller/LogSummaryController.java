@@ -16,7 +16,7 @@ public class LogSummaryController {
 
     @PostMapping("/old-users")
     public ApiResponse getOldUser(@RequestBody Map<String,Object> requestBody){
-        Integer day  = (Integer) requestBody.get("day");
-        return logSummaryService.getOldUser(day);
+        Integer days  = (Integer) requestBody.get("days");
+        return logSummaryService.getOldUser(days);
     }
 }

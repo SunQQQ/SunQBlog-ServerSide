@@ -13,13 +13,13 @@ public class LogSummaryServiceImpl implements LogSummaryService {
     @Autowired
     LogSummaryMapper logSummaryMapper;
     @Override
-    public ApiResponse<List<Map>> getOldUser(Integer day){
+    public ApiResponse<List<Map>> getOldUser(Integer days){
         List<Map> oldUser;
 
-        if(day == 0){
-            oldUser = logSummaryMapper.getTodayOldUser(day);
+        if(days == 0){
+            oldUser = logSummaryMapper.getTodayOldUser(days);
         }else {
-            oldUser = logSummaryMapper.getOldUser(day);
+            oldUser = logSummaryMapper.getOldUser(days);
         }
 
         return ApiResponse.success(oldUser);
