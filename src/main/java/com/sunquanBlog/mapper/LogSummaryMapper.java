@@ -11,4 +11,10 @@ public interface LogSummaryMapper {
     List<Map> getTodayOldUser(Integer days);
     @MapKey("ip")
     List<Map> getOldUser(Integer day);
+
+    @MapKey("platformType")
+    List<Map> getTodayPlatformRatio(Integer days);
+
+    @MapKey("platformType")
+    List<Map> getPlatformRatio(Integer days);
 }

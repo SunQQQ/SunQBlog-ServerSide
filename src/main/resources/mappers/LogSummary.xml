@@ -66,4 +66,34 @@
              ) a
         ]]>
     </select>
+
+    <select id="getTodayPlatformRatio" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+        SELECT
+            platform,
+            count(1) total
+        FROM
+            log_daily_ip_summary
+        WHERE
+            create_time >= CURDATE()
+            AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY
+            platform
+        ]]>
+    </select>
+
+    <select id="getPlatformRatio" resultType="java.util.LinkedHashMap">
+        <![CDATA[
+        SELECT
+            platform,
+            count(1) total
+        FROM
+            log_daily_ip_summary
+        WHERE
+            create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+            AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY
+            platform
+        ]]>
+    </select>
 </mapper>

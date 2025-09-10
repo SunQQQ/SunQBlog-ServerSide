@@ -42,4 +42,21 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         return ApiResponse.success(result);
     }
+
+    /**
+     * 获取平台访问比例
+     * @param days
+     * @return
+     */
+    @Override
+    public ApiResponse<List<Map>> getPlatFormRatio(Integer days) {
+        List<Map> platformData;
+        if (days == 0) {
+            platformData = logSummaryMapper.getTodayPlatformRatio(days);
+        } else {
+            platformData = logSummaryMapper.getPlatformRatio(days);
+        }
+
+        return ApiResponse.success(platformData);
+    }
 }

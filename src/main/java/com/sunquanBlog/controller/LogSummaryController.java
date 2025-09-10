@@ -14,9 +14,25 @@ public class LogSummaryController {
     @Autowired
     private LogSummaryService logSummaryService;
 
+    /**
+     * 某段时间内老用户访问比例
+     * @param requestBody
+     * @return
+     */
     @PostMapping("/old-users")
     public ApiResponse getOldUser(@RequestBody Map<String,Object> requestBody){
         Integer days  = (Integer) requestBody.get("days");
         return logSummaryService.getOldUser(days);
+    }
+
+    /**
+     * 平台访问比例
+     * @param requestBody
+     * @return
+     */
+    @PostMapping("/platform-ratio")
+    public ApiResponse platformRatio(@RequestBody Map<String,Object> requestBody){
+        Integer days  = (Integer) requestBody.get("days");
+        return logSummaryService.getPlatFormRatio(days);
     }
 }
