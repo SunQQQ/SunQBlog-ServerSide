@@ -36,9 +36,9 @@
                     THEN '老用户'
                 ELSE '新用户' END AS user_type
         FROM (
-                 SELECT DISTINCT ip FROM log
-                 WHERE create_time >= CURDATE()
-                   AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                 SELECT DISTINCT ip FROM log_daily_ip_summary
+                 WHERE visit_day >= CURDATE()
+                   AND visit_day < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
              ) a
         ]]>
     </select>
@@ -60,9 +60,9 @@
                     THEN '老用户'
                 ELSE '新用户' END AS user_type
         FROM (
-                 SELECT DISTINCT ip FROM log
-                 WHERE create_time > DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
-                   AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                 SELECT DISTINCT ip FROM log_daily_ip_summary
+                 WHERE visit_day >= DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
+                   AND visit_day < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
              ) a
         ]]>
     </select>
@@ -75,8 +75,8 @@
         FROM
             log_daily_ip_summary
         WHERE
-            create_time >= CURDATE()
-            AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+            visit_day >= CURDATE()
+            AND visit_day < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
         GROUP BY
             platform
         ]]>
@@ -90,8 +90,8 @@
         FROM
             log_daily_ip_summary
         WHERE
-            create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
-            AND create_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+            visit_day >= DATE_SUB(CURDATE(), INTERVAL (#{days}-1) DAY)
+            AND visit_day < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
         GROUP BY
             platform
         ]]>
