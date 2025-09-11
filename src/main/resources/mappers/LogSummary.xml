@@ -96,4 +96,9 @@
             platform
         ]]>
     </select>
+
+    <delete id="deleteAll">
+        DELETE FROM log_daily_ip_summary
+        where visit_day = CURDATE()
+    </delete>
 </mapper>

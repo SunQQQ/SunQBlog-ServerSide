@@ -17,4 +17,6 @@ public interface LogSummaryMapper {
 
     @MapKey("platformType")
     List<Map> getPlatformRatio(Integer days);
+
+    int deleteAll();
 }

@@ -1,5 +1,6 @@
 package com.sunquanBlog.job;
 
+import com.sunquanBlog.mapper.LogSummaryMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import java.util.Scanner;
 public class LogSummaryJob {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private LogSummaryMapper logSummaryMapper;
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     // 是否已经回填过历史数据的标志
@@ -58,12 +62,21 @@ public class LogSummaryJob {
      * 每日定时任务：处理前一天的数据
      * 每天凌晨2点30分执行
      */
-    @Scheduled(cron = "0 30 2 * * ?") // 秒 分 时 日 月 周
+    /*@Scheduled(cron = "0 30 2 * * ?") // 秒 分 时 日 月 周
     public void dailySummaryTask() {
         LocalDate yesterday = LocalDate.now().minusDays(1);
         processDate(yesterday);
         log.info("每日数据汇总完成，处理日期：" + yesterday);
         System.out.println("每日数据汇总完成，处理日期：" + yesterday);
+    }*/
+
+    @Scheduled(cron = "0 */10 * * * ?") // 每10分钟执行一次（秒 分 时 日 月 周）
+    public void periodicSummaryTask() {
+        logSummaryMapper.deleteAll();
+
+        LocalDate today = LocalDate.now();
+        processDate(today);
+        System.out.println("每日数据汇总完成，处理日期：" + today.format(dateFormatter));
     }
 
     /**
