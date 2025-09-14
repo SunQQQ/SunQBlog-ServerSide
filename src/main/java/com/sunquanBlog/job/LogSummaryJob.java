@@ -1,5 +1,6 @@
 package com.sunquanBlog.job;
 
+import com.sunquanBlog.common.util.DateUtils;
 import com.sunquanBlog.mapper.LogSummaryMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -34,17 +35,19 @@ public class LogSummaryJob {
      * 应用启动后自动回填历史数据（只会执行一次）
      */
     public String backfillHistoryData() {
-        if (historyDataBackfilled) {
-            return "历史数据已回填，无需重复操作。";
-        }
+        // 先清空数据
+        logSummaryMapper.cleanAll();
 
-        // 定义需要回填的日期范围：2025年2月1日到2月28日
+        // 定义需要回填的日期范围
+        // 网站从4月1日上线，批量回填数据到当日
+        // 配合10分钟定时任务，该任务不停的汇总当日数据，即可覆盖所有时间日志数据
         LocalDate startDate = LocalDate.of(2025, 4, 1);
-        LocalDate endDate = LocalDate.of(2025, 9, 9);
+        LocalDate endDate = LocalDate.now();
 
         List<LocalDate> datesToProcess = new ArrayList<>();
         LocalDate currentDate = startDate;
 
+        // 填充日期数组
         while (!currentDate.isAfter(endDate)) {
             datesToProcess.add(currentDate);
             currentDate = currentDate.plusDays(1);
@@ -53,9 +56,8 @@ public class LogSummaryJob {
         // 并行处理以提高速度（如果数据量大）
         datesToProcess.parallelStream().forEach(this::processDate);
 
-        historyDataBackfilled = true;
-        System.out.println("历史数据回填完成！");
-        return "历史数据回填完成！";
+        System.out.println(DateUtils.getCurrentDateTime() + ": 所有数据回填完成！");
+        return DateUtils.getCurrentDateTime() + ": 所有数据回填完成！";
     }
 
     /**
@@ -70,20 +72,32 @@ public class LogSummaryJob {
         System.out.println("每日数据汇总完成，处理日期：" + yesterday);
     }*/
 
-    @Scheduled(cron = "0 */10 * * * ?") // 每10分钟执行一次（秒 分 时 日 月 周）
+
+    /**
+     * 每10分钟汇总log表中的数据到中间表
+     */
+    @Scheduled(cron = "0 */2 * * * ?") // 每10分钟执行一次（秒 分 时 日 月 周）
     public void periodicSummaryTask() {
+        // 每次汇总数据，先清空中间表中当天的汇总数据
         logSummaryMapper.deleteAll();
 
         LocalDate today = LocalDate.now();
         processDate(today);
-        System.out.println("每日数据汇总完成，处理日期：" + today.format(dateFormatter));
+        System.out.println("当日日志数据汇总完成，处理日期：" + DateUtils.getCurrentDateTime());
+    }
+
+    private void processDate(LocalDate date){
+        String dateStr = date.format(dateFormatter);
+        String nextDateStr = date.plusDays(1).format(dateFormatter);
+
+        logSummaryMapper.insertDailyIpSummary(dateStr, dateStr + " 00:00:00", nextDateStr + " 00:00:00");
     }
 
     /**
      * 处理指定日期的数据汇总
      * @param date 要处理的日期
      */
-    private void processDate(LocalDate date) {
+    private void processDateOld(LocalDate date) {
         String dateStr = date.format(dateFormatter);
         String nextDateStr = date.plusDays(1).format(dateFormatter);
 

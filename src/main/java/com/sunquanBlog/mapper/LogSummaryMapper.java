@@ -2,7 +2,9 @@ package com.sunquanBlog.mapper;
 
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 @Mapper
@@ -19,4 +21,12 @@ public interface LogSummaryMapper {
     List<Map> getPlatformRatio(Integer days);
 
     int deleteAll();
+
+    void insertDailyIpSummary(
+            @Param("visitDay") String visitDay,
+            @Param("startTime") String startTime,
+            @Param("endTime") String endTime
+    );
+
+    int cleanAll();
 }
