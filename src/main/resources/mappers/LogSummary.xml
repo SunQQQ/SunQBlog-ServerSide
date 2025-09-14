@@ -97,7 +97,7 @@
         ]]>
     </select>
 
-    <delete id="deleteAll">
+    <delete id="deleteToday">
         DELETE FROM log_daily_ip_summary
         where visit_day = CURDATE()
     </delete>
@@ -129,6 +129,7 @@
         WHERE
             create_time >= #{startTime}
             AND create_time < #{endTime}
+            ${excludeIpsSql}
         GROUP BY ip
         ON DUPLICATE KEY UPDATE
             page = VALUES(page),

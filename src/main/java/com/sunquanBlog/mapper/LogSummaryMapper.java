@@ -20,12 +20,13 @@ public interface LogSummaryMapper {
     @MapKey("platformType")
     List<Map> getPlatformRatio(Integer days);
 
-    int deleteAll();
+    int deleteToday();
 
     void insertDailyIpSummary(
             @Param("visitDay") String visitDay,
             @Param("startTime") String startTime,
-            @Param("endTime") String endTime
+            @Param("endTime") String endTime,
+            @Param("excludeIpsSql") String excludeIpsSql
     );
 
     int cleanAll();

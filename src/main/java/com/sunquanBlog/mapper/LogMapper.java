@@ -26,6 +26,8 @@ public interface LogMapper {
     // void setGroupConcatMaxLen();
     List<String> getWhiteListIP(Integer userId, Integer start,Integer end);
 
+    List<String> getWhiteListIPByTime(Integer userId, String start,String end);
+
     // 根据时间段查询
 //    List<LogDTO> getUserAction(Integer start,Integer end,List<String> list);
     List<LogDTO> getUserAction(

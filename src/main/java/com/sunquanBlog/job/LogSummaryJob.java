@@ -1,7 +1,9 @@
 package com.sunquanBlog.job;
 
 import com.sunquanBlog.common.util.DateUtils;
+import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.mapper.LogSummaryMapper;
+import com.sunquanBlog.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,9 @@ public class LogSummaryJob {
 
     @Autowired
     private LogSummaryMapper logSummaryMapper;
+    @Autowired
+    private LogService logService;
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    // 是否已经回填过历史数据的标志
-    private boolean historyDataBackfilled = false;
 
     /**
      * 应用启动后自动回填历史数据（只会执行一次）
@@ -76,21 +77,24 @@ public class LogSummaryJob {
     /**
      * 每10分钟汇总log表中的数据到中间表
      */
-    @Scheduled(cron = "0 */2 * * * ?") // 每10分钟执行一次（秒 分 时 日 月 周）
+    @Scheduled(cron = "0 */10 * * * ?") // 每10分钟执行一次（秒 分 时 日 月 周）
     public void periodicSummaryTask() {
         // 每次汇总数据，先清空中间表中当天的汇总数据
-        logSummaryMapper.deleteAll();
+        logSummaryMapper.deleteToday();
 
         LocalDate today = LocalDate.now();
         processDate(today);
         System.out.println("当日日志数据汇总完成，处理日期：" + DateUtils.getCurrentDateTime());
     }
 
+    // 汇总某一条函数
     private void processDate(LocalDate date){
         String dateStr = date.format(dateFormatter);
         String nextDateStr = date.plusDays(1).format(dateFormatter);
+        // 获取需要排除IP的SQL字符串（sunq的访问ip要剔除掉）
+        String excludeSunqSql = logService.excludeSunqSql(dateStr + " 00:00:00",nextDateStr + " 00:00:00");
 
-        logSummaryMapper.insertDailyIpSummary(dateStr, dateStr + " 00:00:00", nextDateStr + " 00:00:00");
+        logSummaryMapper.insertDailyIpSummary(dateStr, dateStr + " 00:00:00", nextDateStr + " 00:00:00", excludeSunqSql);
     }
 
     /**

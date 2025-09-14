@@ -190,11 +190,32 @@ public class LogServiceImpl implements LogService, DisposableBean {
         return ApiResponse.success(merged);
     }
 
+    // 获取最近几天sunq的ip
     public List<String> getWhiteListIP(Integer userId, Integer start, Integer end) {
         // 查询白名单IP
         List<String> ips = logMapper.getWhiteListIP(userId, start, end);
 
         return ips;
+    }
+
+    // 获取某个时间段sunq的ip
+    public List<String> getWhiteListIPByTime(Integer userId, String start, String end) {
+        // 查询白名单IP
+        List<String> ips = logMapper.getWhiteListIPByTime(userId, start, end);
+
+        return ips;
+    }
+
+    public String excludeSunqSql(String start,String end){
+        List<String> ipList = getWhiteListIPByTime(1,start,end);
+
+        String excludeIpsSql = "";
+        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
+                ipList.stream()
+                        .map(item -> "'" + item + "'")
+                        .collect(Collectors.joining(",")) +
+                ")";
+        return excludeIpsSql;
     }
 
     @Override

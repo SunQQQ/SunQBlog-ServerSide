@@ -63,6 +63,21 @@
         ]]>
     </select>
 
+    <select id="getWhiteListIPByTime" resultType="java.lang.String">
+        <![CDATA[
+        select
+            ip
+        from
+            log
+        where
+            log.create_time >= #{start}
+          AND log.create_time < #{end}
+          AND log.user_id = #{userId}
+        group by
+            log.ip
+        ]]>
+    </select>
+
     <select id="getUserAction" resultType="com.sunquanBlog.model.LogDTO">
         <![CDATA[
         SELECT
