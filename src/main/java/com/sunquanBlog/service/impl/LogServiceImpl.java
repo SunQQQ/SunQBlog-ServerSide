@@ -206,6 +206,13 @@ public class LogServiceImpl implements LogService, DisposableBean {
         return ips;
     }
 
+    /**
+     * 获取某个时间段需要排除的ip的sql语句
+     * log日志表中，历史所有只要sunquan这个账号使用过的ip，在往log_summary表汇总时全部过滤掉。
+     * @param start
+     * @param end
+     * @return
+     */
     public String excludeSunqSql(String start,String end){
         List<String> ipList = getWhiteListIPByTime(1,start,end);
 

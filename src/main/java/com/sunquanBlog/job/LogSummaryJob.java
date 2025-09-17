@@ -98,6 +98,7 @@ public class LogSummaryJob {
     }
 
     /**
+     * 已用更高效的新方法替代，可删除
      * 处理指定日期的数据汇总
      * @param date 要处理的日期
      */
