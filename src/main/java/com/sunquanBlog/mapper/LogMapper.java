@@ -16,10 +16,6 @@ import java.util.Map;
 public interface LogMapper {
     Integer insertLog(String ip,String platformType,String page,String ipCity,String browser,String action,String actionObject,String actionDesc,Integer userId);
 
-    Log getTodayIp(String excludeIpsSql);
-
-    Log getTotalIp();
-
     // 改为直接写在mysql配置项里了，后期稳定后代码可删除
     // 设置 group_concat_max_len
     // @Update("SET SESSION group_concat_max_len = 1000000")

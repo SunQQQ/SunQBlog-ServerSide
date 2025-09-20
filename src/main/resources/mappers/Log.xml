@@ -29,25 +29,6 @@
             (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc},#{userId})
     </insert>
 
-    <select id="getTodayIp" resultMap="Log">
-        select
-            count(distinct ip) as todayIpCount,
-            count(*) as todayPvCount
-        from
-            log
-        where
-            create_time >= curdate()
-            ${excludeIps}
-    </select>
-
-    <select id="getTotalIp" resultMap="Log">
-        select
-            count(distinct ip) as totalIpCount,
-            count(*) as totalPvCount
-        from
-            log
-    </select>
-
     <select id="getWhiteListIP" resultType="java.lang.String">
         <![CDATA[
         select

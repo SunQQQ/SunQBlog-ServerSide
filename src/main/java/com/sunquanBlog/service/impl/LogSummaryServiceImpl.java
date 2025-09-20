@@ -2,6 +2,7 @@ package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
 import com.sunquanBlog.mapper.LogSummaryMapper;
+import com.sunquanBlog.model.Log;
 import com.sunquanBlog.service.LogSummaryService;
 import io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 public class LogSummaryServiceImpl implements LogSummaryService {
     @Autowired
@@ -58,5 +61,25 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         }
 
         return ApiResponse.success(platformData);
+    }
+
+    /**
+     * 获取总访问ip和pv
+     * 从日志汇总表里查，该表为每天的ip访问汇总。同一ip跨天访问多次，算多次pv，也算多次ip，视为老用户行为。
+     * @return
+     */
+    @Override
+    public ApiResponse<Map> getLogIp() {
+        Map<String,Object> total = logSummaryMapper.getTotalIp();
+        Map<String,Object> today = logSummaryMapper.getTodayIp();
+
+        Map<String,Long> result = new HashMap<>();
+
+        result.put("totalIpCount",((Number)total.get("totalIpCount")).longValue());
+        result.put("totalPvCount",((Number)total.get("totalPvCount")).longValue());
+        result.put("todayIpCount",((Number)today.get("todayIpCount")).longValue());
+        result.put("todayPvCount",((Number)today.get("todayPvCount")).longValue());
+
+        return ApiResponse.success(result);
     }
 }

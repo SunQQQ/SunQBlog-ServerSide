@@ -9,4 +9,6 @@ public interface LogSummaryService {
 
     public ApiResponse<Map> getOldUser(Integer days);
     public ApiResponse<List<Map>> getPlatFormRatio(Integer days);
+
+    public ApiResponse<Map> getLogIp();
 }

@@ -167,29 +167,6 @@ public class LogServiceImpl implements LogService, DisposableBean {
         cleanup(); // 在 Spring 容器关闭时自动调用
     }
 
-    @Override
-    public ApiResponse<Map> getLogIp() {
-        List<String> ipList = getWhiteListIP(1,0,-1);
-
-        String excludeIpsSql = "";
-        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
-                ipList.stream()
-                        .map(item -> "'" + item + "'")
-                        .collect(Collectors.joining(",")) +
-                ")";
-
-        Log total = logMapper.getTotalIp();
-        Log today = logMapper.getTodayIp(excludeIpsSql);
-
-        Map<String, Long> merged = new HashMap<>();
-        merged.put("totalIpCount", total.getTotalIpCount());
-        merged.put("totalPvCount", total.getTotalPvCount());
-        merged.put("todayIpCount", today.getTodayIpCount());
-        merged.put("todayPvCount", today.getTodayPvCount());
-
-        return ApiResponse.success(merged);
-    }
-
     // 获取最近几天sunq的ip
     public List<String> getWhiteListIP(Integer userId, Integer start, Integer end) {
         // 查询白名单IP

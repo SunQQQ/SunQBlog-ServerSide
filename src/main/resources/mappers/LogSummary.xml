@@ -147,4 +147,22 @@
     <delete id="cleanAll">
         TRUNCATE TABLE log_daily_ip_summary
     </delete>
+
+    <select id="getTodayIp" resultType="java.util.Map">
+        select
+            count(*) as todayIpCount,
+            coalesce(sum(pv),0) as todayPvCount
+        from
+            log_daily_ip_summary
+        where
+            create_time >= curdate()
+    </select>
+
+    <select id="getTotalIp" resultType="java.util.Map">
+        select
+            count(*) as totalIpCount,
+            coalesce(sum(pv),0) as totalPvCount
+        from
+            log_daily_ip_summary
+    </select>
 </mapper>

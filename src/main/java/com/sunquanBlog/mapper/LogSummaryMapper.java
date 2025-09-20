@@ -1,5 +1,6 @@
 package com.sunquanBlog.mapper;
 
+import com.sunquanBlog.model.Log;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +31,8 @@ public interface LogSummaryMapper {
     );
 
     int cleanAll();
+
+    Map<String,Object> getTodayIp();
+
+    Map<String,Object> getTotalIp();
 }
