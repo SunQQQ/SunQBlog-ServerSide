@@ -24,9 +24,6 @@ import java.util.Scanner;
 @Service
 public class LogSummaryJob {
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private LogSummaryMapper logSummaryMapper;
     @Autowired
     private LogService logService;
@@ -95,35 +92,6 @@ public class LogSummaryJob {
         String excludeSunqSql = logService.excludeSunqSql(dateStr + " 00:00:00",nextDateStr + " 00:00:00");
 
         logSummaryMapper.insertDailyIpSummary(dateStr, dateStr + " 00:00:00", nextDateStr + " 00:00:00", excludeSunqSql);
-    }
-
-    /**
-     * 已用更高效的新方法替代，可删除
-     * 处理指定日期的数据汇总
-     * @param date 要处理的日期
-     */
-    private void processDateOld(LocalDate date) {
-        String dateStr = date.format(dateFormatter);
-        String nextDateStr = date.plusDays(1).format(dateFormatter);
-
-        // 读取 SQL 文件内容
-        String sql;
-        try (InputStream inputStream = getClass().getResourceAsStream("/sql/log_daily_ip_summary.sql");
-             Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name())) {
-
-            sql = scanner.useDelimiter("\\A").next();
-
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load SQL file", e);
-        }
-
-        try {
-            jdbcTemplate.update(sql, dateStr, dateStr + " 00:00:00", nextDateStr + " 00:00:00");
-            System.out.println("成功处理日期: " + dateStr);
-        } catch (Exception e) {
-            System.err.println("处理日期 " + dateStr + " 时出错: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     /**
