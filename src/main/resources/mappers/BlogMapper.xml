@@ -47,10 +47,10 @@
             on blog.id = comment.article_id
         <where>
             <if test="role != 'master'">
-                create_id = #{userId}
+                and create_id = #{userId}
             </if>
             <if test="tagId != 0">
-                article_tag = #{tagId}
+                and article_tag = #{tagId}
             </if>
         </where>
         group by
