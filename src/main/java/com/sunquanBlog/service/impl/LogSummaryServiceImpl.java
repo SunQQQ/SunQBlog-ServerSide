@@ -1,13 +1,18 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.mapper.LogSummaryMapper;
 import com.sunquanBlog.model.Log;
+import com.sunquanBlog.model.LogIpDailyDTO;
+import com.sunquanBlog.model.LogSummary;
+import com.sunquanBlog.service.LogService;
 import com.sunquanBlog.service.LogSummaryService;
 import io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +22,10 @@ import java.util.stream.Collectors;
 public class LogSummaryServiceImpl implements LogSummaryService {
     @Autowired
     LogSummaryMapper logSummaryMapper;
+    @Autowired
+    LogMapper logMapper;
+    @Autowired
+    LogService logService;
     @Override
     public ApiResponse<Map> getOldUser(Integer days){
         Integer oldUser = 0;
@@ -81,5 +90,26 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         result.put("todayPvCount",((Number)today.get("todayPvCount")).longValue());
 
         return ApiResponse.success(result);
+    }
+
+    @Override
+    public ApiResponse<List<LogSummary>> getIpDaily(Integer days, HttpServletRequest request) {
+        List<LogSummary> logDTOs = logSummaryMapper.getIpDaily(days);
+        List<LogIpDailyDTO> regists = logMapper.getRegisterDaily(days);
+
+        if(!days.equals(8)){
+            // 记录打开访问统计页日志
+            logService.createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天");
+        }
+
+        for(int i=0;i<logDTOs.size();i++){
+            for(int j=0;j<regists.size();j++){
+                if(logDTOs.get(i).getVisitDay().equals(regists.get(j).getDay())){
+                    logDTOs.get(i).setRegister(regists.get(j).getRegister());
+                }
+            }
+        }
+
+        return ApiResponse.success(logDTOs);
     }
 }

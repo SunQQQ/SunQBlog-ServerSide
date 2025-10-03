@@ -1,6 +1,8 @@
 package com.sunquanBlog.mapper;
 
 import com.sunquanBlog.model.Log;
+import com.sunquanBlog.model.LogIpDailyDTO;
+import com.sunquanBlog.model.LogSummary;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -35,4 +37,9 @@ public interface LogSummaryMapper {
     Map<String,Object> getTodayIp();
 
     Map<String,Object> getTotalIp();
+
+    // 根据ip查询
+    List<LogSummary> getIpDaily(
+            @Param("days") Integer days
+    );
 }

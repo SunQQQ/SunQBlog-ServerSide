@@ -2,6 +2,7 @@ package com.sunquanBlog.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LogIpDailyDTO { // DTO类，用于封装查询结果
@@ -11,7 +12,7 @@ public class LogIpDailyDTO { // DTO类，用于封装查询结果
     private Long register;     // 城市名称
 
     @JsonFormat(pattern = "YYYYMMdd")
-    private LocalDateTime day;    // 平台类型
+    private LocalDate day;    // 平台类型
 
     public LogIpDailyDTO() {
     }
@@ -33,11 +34,11 @@ public class LogIpDailyDTO { // DTO类，用于封装查询结果
         this.pv = pv;
     }
 
-    public LocalDateTime getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(LocalDateTime day) {
+    public void setDay(LocalDate day) {
         this.day = day;
     }
 

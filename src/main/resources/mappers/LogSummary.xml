@@ -165,4 +165,20 @@
         from
             log_daily_ip_summary
     </select>
+
+    <select id="getIpDaily" resultType="com.sunquanBlog.model.LogSummary">
+        <![CDATA[
+        SELECT
+            visit_day visitDay,
+            count(ip) ip,
+            sum(pv) pv
+        FROM
+            log_daily_ip_summary
+        WHERE
+            visit_day > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND visit_day < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+        GROUP BY
+            visit_day
+        ]]>
+    </select>
 </mapper>

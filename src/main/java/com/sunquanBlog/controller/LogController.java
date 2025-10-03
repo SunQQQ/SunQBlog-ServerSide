@@ -25,13 +25,6 @@ public class LogController {
         return logService.getUserAction(day,request);
     }
 
-    @PostMapping("/ip-daily")
-    public ApiResponse getIpDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
-        // 距离当天的相差天数
-        Integer days  = (Integer) requestBody.get("days");
-        return logService.getIpDaily(days,request);
-    }
-
     @PostMapping("/city-daily")
     public ApiResponse getCityDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
         // 距离当天的相差天数

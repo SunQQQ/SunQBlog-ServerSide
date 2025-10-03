@@ -62,4 +62,11 @@ public class LogSummaryController {
 
         return logSummaryService.getLogIp();
     }
+
+    @PostMapping("/ip-daily")
+    public ApiResponse getIpDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
+        // 距离当天的相差天数
+        Integer days  = (Integer) requestBody.get("days");
+        return logSummaryService.getIpDaily(days,request);
+    }
 }

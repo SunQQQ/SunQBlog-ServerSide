@@ -31,12 +31,6 @@ public interface LogMapper {
             @Param("end") Integer end,
             @Param("excludeIps") String excludeIps);
 
-    // 根据ip查询
-    List<LogIpDailyDTO> getIpDaily(
-            @Param("days") Integer days,
-            @Param("excludeIpsSql") String excludeIpsSql
-    );
-
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
 
     String getCityDaily(Integer days); // 获取IP所在城市的方法

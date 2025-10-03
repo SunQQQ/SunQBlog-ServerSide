@@ -17,6 +17,7 @@ public class LogSummary {
     private LocalDateTime leaveTime;
     private LocalDate visitDay;
     private Integer pv;
+    private Long register;
 
     public Integer getId() {
         return id;
@@ -120,5 +121,13 @@ public class LogSummary {
 
     public void setPv(Integer pv) {
         this.pv = pv;
+    }
+
+    public Long getRegister() {
+        return register;
+    }
+
+    public void setRegister(Long register) {
+        this.register = register;
     }
 }
