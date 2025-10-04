@@ -59,37 +59,6 @@
         ]]>
     </select>
 
-    <select id="getUserAction" resultType="com.sunquanBlog.model.LogDTO">
-        <![CDATA[
-        SELECT
-            log.ip AS ip,
-            Max(user.name) userName,
-            GROUP_CONCAT(
-                concat(log.action,log.action_object,log.action_desc)
-                ORDER BY log.create_time
-                SEPARATOR '+'
-            ) actions,
-            MAX(log.ip_city) ipCity,
-            MAX(log.browser) browser,
-            TIMESTAMPDIFF(SECOND, MIN(log.create_time),MAX(log.create_time)) stayTime,
-            DATE_SUB(CURDATE(), INTERVAL #{start} DAY) as day,
-            time(MAX(log.create_time)) leaveTime,
-            time(MIN(log.create_time)) entryTime
-        FROM
-            log
-        left JOIN
-            user on user.id = log.user_id
-        WHERE
-            log.create_time >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
-            AND log.create_time < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
-            ${excludeIps}
-        GROUP BY
-            log.ip,DATE(log.create_time)
-        ORDER BY
-            entryTime desc
-        ]]>
-    </select>
-
     <select id="getRegisterDaily" resultType="com.sunquanBlog.model.LogIpDailyDTO">
         <![CDATA[
         SELECT

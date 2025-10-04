@@ -203,45 +203,6 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
-    @Transactional // 保证两次调用在同一个数据库会话中
-    public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
-        String ip = getClientIpAddress(request);
-
-        // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
-        List<String> ipList = getWhiteListIP(1,day,day-1);
-
-        String excludeIpsSql = "";
-        excludeIpsSql = ipList.isEmpty() ? "" : "AND log.ip NOT IN (" +
-                ipList.stream()
-                           .map(item -> "'" + item + "'")
-                           .collect(Collectors.joining(",")) +
-                ")";
-
-        // 查询用户轨迹
-        List<LogDTO> logDTOs = logMapper.getUserAction(day,day-1,excludeIpsSql);
-
-        for(int i=0;i<logDTOs.size();i++){
-            // 脱敏IP地址
-            String curIp = logDTOs.get(i).getIp();
-            logDTOs.get(i).setIp(IpMasker.mask(curIp));
-
-            // 标记当前用户
-            if(logDTOs.get(i).getIp().equals(ip)){
-                logDTOs.get(i).setIsCurUser(true);
-            }else {
-                logDTOs.get(i).setIsCurUser(false);
-            }
-        }
-
-        if(!day.equals(0)){
-            // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
-        }
-
-        return ApiResponse.success(logDTOs);
-    }
-
-    @Override
     public ApiResponse<Map> getPageDaily(Integer days) {
         // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
         List<String> ipList = getWhiteListIP(1,days,-1);

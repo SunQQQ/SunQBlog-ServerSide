@@ -1,17 +1,16 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.common.util.IpMasker;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.mapper.LogSummaryMapper;
-import com.sunquanBlog.model.Log;
-import com.sunquanBlog.model.LogIpDailyDTO;
-import com.sunquanBlog.model.LogSummary;
-import com.sunquanBlog.model.LogTerminalDTO;
+import com.sunquanBlog.model.*;
 import com.sunquanBlog.service.LogService;
 import com.sunquanBlog.service.LogSummaryService;
 import io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -137,5 +136,34 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         }
 
         return ApiResponse.success(logTerminalDTO);
+    }
+
+    @Override
+    @Transactional // 保证两次调用在同一个数据库会话中
+    public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request) {
+        String ip = logService.getClientIpAddress(request);
+
+        // 查询用户轨迹
+        List<LogDTO> logDTOs = logSummaryMapper.getUserAction(day,day-1);
+
+        for(int i=0;i<logDTOs.size();i++){
+            // 脱敏IP地址
+            String curIp = logDTOs.get(i).getIp();
+            logDTOs.get(i).setIp(IpMasker.mask(curIp));
+
+            // 标记当前用户
+            if(logDTOs.get(i).getIp().equals(ip)){
+                logDTOs.get(i).setIsCurUser(true);
+            }else {
+                logDTOs.get(i).setIsCurUser(false);
+            }
+        }
+
+        if(!day.equals(0)){
+            // 记录打开访问统计页日志
+            logService.createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
+        }
+
+        return ApiResponse.success(logDTOs);
     }
 }

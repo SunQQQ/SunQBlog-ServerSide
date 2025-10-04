@@ -26,10 +26,6 @@ public interface LogMapper {
 
     // 根据时间段查询
 //    List<LogDTO> getUserAction(Integer start,Integer end,List<String> list);
-    List<LogDTO> getUserAction(
-            @Param("start") Integer start,
-            @Param("end") Integer end,
-            @Param("excludeIps") String excludeIps);
 
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
 

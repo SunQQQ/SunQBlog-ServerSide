@@ -207,4 +207,28 @@
           AND visit_day < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
         ]]>
     </select>
+
+    <select id="getUserAction" resultType="com.sunquanBlog.model.LogDTO">
+    <![CDATA[
+        SELECT
+            log.ip AS ip,
+            user.name userName,
+            user_action actions,
+            city ipCity,
+            browser browser,
+            TIMESTAMPDIFF(SECOND, log.entry_time,log.leave_time) stayTime,
+            DATE_SUB(CURDATE(), INTERVAL #{start} DAY) as day,
+            leave_time leaveTime,
+            entry_time entryTime
+        FROM
+            log_daily_ip_summary log
+            left JOIN
+            user on user.id = log.user_id
+        WHERE
+            log.visit_day >= DATE_SUB(CURDATE(), INTERVAL #{start} DAY)
+          AND log.visit_day < DATE_SUB(CURDATE(), INTERVAL #{end} DAY)
+        ORDER BY
+            entry_time desc
+    ]]>
+    </select>
 </mapper>

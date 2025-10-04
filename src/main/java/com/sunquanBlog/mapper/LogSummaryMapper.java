@@ -1,9 +1,6 @@
 package com.sunquanBlog.mapper;
 
-import com.sunquanBlog.model.Log;
-import com.sunquanBlog.model.LogIpDailyDTO;
-import com.sunquanBlog.model.LogSummary;
-import com.sunquanBlog.model.LogTerminalDTO;
+import com.sunquanBlog.model.*;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -49,4 +46,8 @@ public interface LogSummaryMapper {
     LogTerminalDTO getTerminal(
             @Param("days") Integer days
     ); // 获取终端类型的方法
+
+    List<LogDTO> getUserAction(
+            @Param("start") Integer start,
+            @Param("end") Integer end);
 }
