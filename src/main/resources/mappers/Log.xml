@@ -105,18 +105,6 @@
         ]]>
     </select>
 
-    <select id="getCityDaily" resultType="String">
-        <![CDATA[
-        SELECT
-            group_concat(DISTINCT ip_city ORDER BY ip_city SEPARATOR '|') citys
-        FROM
-            log
-        WHERE
-            create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
-            AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
-        ]]>
-    </select>
-
     <select id="getTerminal" resultType="com.sunquanBlog.model.LogTerminalDTO">
         <![CDATA[
         select

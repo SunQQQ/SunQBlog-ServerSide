@@ -42,4 +42,6 @@ public interface LogSummaryMapper {
     List<LogSummary> getIpDaily(
             @Param("days") Integer days
     );
+
+    String getCityDaily(Integer days); // 获取IP所在城市的方法
 }

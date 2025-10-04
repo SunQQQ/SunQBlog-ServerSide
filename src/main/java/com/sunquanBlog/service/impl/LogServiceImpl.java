@@ -242,19 +242,6 @@ public class LogServiceImpl implements LogService, DisposableBean {
     }
 
     @Override
-    public ApiResponse<String[]> getCityDaily(Integer days,HttpServletRequest request) {
-        String citys = logMapper.getCityDaily(days);
-
-        if(!days.equals(0)){
-            // 记录打开访问统计页日志
-            createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
-        }
-
-        String[] cityList = citys.split("\\|");
-        return ApiResponse.success(cityList);
-    }
-
-    @Override
     public ApiResponse<LogTerminalDTO> getTerminal(Integer days,HttpServletRequest request) {
         // 查询该时间段下，某用户名用过的所有ip。下面过滤掉这些ip（主要过滤sunq的账号）
         List<String> ipList = getWhiteListIP(1,days,-1);

@@ -15,4 +15,6 @@ public interface LogSummaryService {
     public ApiResponse<Map> getLogIp();
 
     public ApiResponse<List<LogSummary>> getIpDaily(Integer days, HttpServletRequest request);
+
+    public ApiResponse<String[]> getCityDaily(Integer days,HttpServletRequest request); // 获取IP所在城市的方法
 }

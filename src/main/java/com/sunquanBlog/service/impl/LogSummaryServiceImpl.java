@@ -112,4 +112,17 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         return ApiResponse.success(logDTOs);
     }
+
+    @Override
+    public ApiResponse<String[]> getCityDaily(Integer days,HttpServletRequest request) {
+        String citys = logSummaryMapper.getCityDaily(days);
+
+        if(!days.equals(0)){
+            // 记录打开访问统计页日志
+            logService.createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
+        }
+
+        String[] cityList = citys.split("\\|");
+        return ApiResponse.success(cityList);
+    }
 }

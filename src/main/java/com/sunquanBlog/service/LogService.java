@@ -14,8 +14,6 @@ public interface LogService{
 
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request);
 
-    public ApiResponse<String[]> getCityDaily(Integer days,HttpServletRequest request); // 获取IP所在城市的方法
-
     public ApiResponse<LogTerminalDTO> getTerminal(Integer days,HttpServletRequest request); // 获取终端类型的方法
 
     public ApiResponse<Map> getPageDaily(Integer days) ;

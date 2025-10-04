@@ -33,8 +33,6 @@ public interface LogMapper {
 
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
 
-    String getCityDaily(Integer days); // 获取IP所在城市的方法
-
     LogTerminalDTO getTerminal(
             @Param("days") Integer days,
             @Param("excludeIpsSql") String excludeIpsSql

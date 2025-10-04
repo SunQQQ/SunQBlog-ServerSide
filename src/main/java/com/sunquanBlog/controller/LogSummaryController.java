@@ -63,10 +63,25 @@ public class LogSummaryController {
         return logSummaryService.getLogIp();
     }
 
+    /**
+     * 折线图接口
+     */
     @PostMapping("/ip-daily")
     public ApiResponse getIpDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
         // 距离当天的相差天数
         Integer days  = (Integer) requestBody.get("days");
         return logSummaryService.getIpDaily(days,request);
+    }
+
+    /**
+     * 地图接口
+     * @param requestBody
+     * @return
+     */
+    @PostMapping("/city-daily")
+    public ApiResponse getCityDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
+        // 距离当天的相差天数
+        Integer days  = (Integer) requestBody.get("days");
+        return logSummaryService.getCityDaily(days,request);
     }
 }

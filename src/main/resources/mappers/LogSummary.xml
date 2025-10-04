@@ -181,4 +181,16 @@
             visit_day
         ]]>
     </select>
+
+    <select id="getCityDaily" resultType="String">
+        <![CDATA[
+        SELECT
+            group_concat(DISTINCT city ORDER BY ip SEPARATOR '|') citys
+        FROM
+            log_daily_ip_summary
+        WHERE
+            visit_day > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND visit_day < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
+        ]]>
+    </select>
 </mapper>
