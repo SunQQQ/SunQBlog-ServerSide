@@ -33,11 +33,6 @@ public interface LogMapper {
 
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
 
-    LogTerminalDTO getTerminal(
-            @Param("days") Integer days,
-            @Param("excludeIpsSql") String excludeIpsSql
-    ); // 获取终端类型的方法
-
     Map<String, Integer> getPageDaily(
             @Param("days") Integer days,
             @Param("excludeIpsSql") String excludeIpsSql

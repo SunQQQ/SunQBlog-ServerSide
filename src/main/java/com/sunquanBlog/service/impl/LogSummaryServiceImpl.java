@@ -6,6 +6,7 @@ import com.sunquanBlog.mapper.LogSummaryMapper;
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.model.LogSummary;
+import com.sunquanBlog.model.LogTerminalDTO;
 import com.sunquanBlog.service.LogService;
 import com.sunquanBlog.service.LogSummaryService;
 import io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue;
@@ -32,7 +33,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         Integer newUser = 0;
         List<Map> ipData;
 
-        if(days == 0){
+        if(days == 1){
             ipData = logSummaryMapper.getTodayOldUser(days);
         }else {
             ipData = logSummaryMapper.getOldUser(days);
@@ -63,7 +64,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
     @Override
     public ApiResponse<List<Map>> getPlatFormRatio(Integer days) {
         List<Map> platformData;
-        if (days == 0) {
+        if (days == 1) {
             platformData = logSummaryMapper.getTodayPlatformRatio(days);
         } else {
             platformData = logSummaryMapper.getPlatformRatio(days);
@@ -124,5 +125,17 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         String[] cityList = citys.split("\\|");
         return ApiResponse.success(cityList);
+    }
+
+    @Override
+    public ApiResponse<LogTerminalDTO> getTerminal(Integer days, HttpServletRequest request) {
+        LogTerminalDTO logTerminalDTO = logSummaryMapper.getTerminal(days);
+
+        if(!days.equals(1)){
+            // 记录打开访问统计页日志
+            logService.createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天");
+        }
+
+        return ApiResponse.success(logTerminalDTO);
     }
 }

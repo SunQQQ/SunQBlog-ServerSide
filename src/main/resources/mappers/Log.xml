@@ -105,27 +105,6 @@
         ]]>
     </select>
 
-    <select id="getTerminal" resultType="com.sunquanBlog.model.LogTerminalDTO">
-        <![CDATA[
-        select
-            COUNT(case when browser="PC" then 1 END) pcNum,
-            COUNT(case when browser="Mobile" then 1 END) mobileNum
-        FROM(
-                SELECT
-                    ip,
-                    Max(browser) browser
-                FROM
-                    log
-                WHERE
-                    create_time > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
-                    AND create_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY)
-                    ${excludeIpsSql}
-                GROUP BY
-                    ip
-            ) a
-        ]]>
-    </select>
-
     <select id="getPageDaily" resultType="Map">
         <![CDATA[
         SELECT

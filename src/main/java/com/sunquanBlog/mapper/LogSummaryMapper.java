@@ -3,6 +3,7 @@ package com.sunquanBlog.mapper;
 import com.sunquanBlog.model.Log;
 import com.sunquanBlog.model.LogIpDailyDTO;
 import com.sunquanBlog.model.LogSummary;
+import com.sunquanBlog.model.LogTerminalDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -44,4 +45,8 @@ public interface LogSummaryMapper {
     );
 
     String getCityDaily(Integer days); // 获取IP所在城市的方法
+
+    LogTerminalDTO getTerminal(
+            @Param("days") Integer days
+    ); // 获取终端类型的方法
 }
