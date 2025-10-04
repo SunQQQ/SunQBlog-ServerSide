@@ -30,8 +30,10 @@ public class LogSummaryJob {
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
-     * 应用启动后自动回填历史数据（只会执行一次）
+     * 历史数据回填任务
+     * 每天凌晨2点33分执行一次，避开高峰期
      */
+    @Scheduled(cron = "0 33 2 * * ?") // 每天凌晨2点33分执行一次
     public String backfillHistoryData() {
         // 先清空数据
         logSummaryMapper.cleanAll();
