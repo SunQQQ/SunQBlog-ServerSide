@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,4 +55,6 @@ public interface LogSummaryMapper {
     Map<String, Integer> getPageDaily(
             @Param("days") Integer days
     );
+
+    Map<String, LocalDateTime> latestCutoffTime();
 }

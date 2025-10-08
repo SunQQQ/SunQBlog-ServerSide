@@ -24,5 +24,7 @@ public interface LogSummaryService {
 
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request);
 
-    public ApiResponse<Map> getPageDaily(Integer days) ;
+    public ApiResponse<Map> getPageDaily(Integer days);
+
+    public ApiResponse<Map> getLatestCutoffTime();
 }

@@ -39,4 +39,8 @@ public class DateUtils {
     public static String getCurrentTime(String pattern) {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
     }
+
+    public static String formatDateTime(LocalDateTime dateTime) {
+        return dateTime.format(DATETIME_FORMATTER);
+    }
 }

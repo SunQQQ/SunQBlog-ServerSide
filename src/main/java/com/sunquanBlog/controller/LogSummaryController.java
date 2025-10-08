@@ -109,4 +109,13 @@ public class LogSummaryController {
         Integer days  = (Integer) requestBody.get("days");
         return logSummaryService.getPageDaily(days);
     }
+
+    /**
+     * 获取最新的汇总数据的截止时间
+     * @return
+     */
+    @PostMapping("/getLatestCutoffTime")
+    public ApiResponse getLatestCutoffTime() {
+        return logSummaryService.getLatestCutoffTime();
+    }
 }

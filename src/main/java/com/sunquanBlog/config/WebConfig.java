@@ -24,7 +24,8 @@ public class WebConfig implements WebMvcConfigurer {
                         "/getTodayUser","/getUserData","/getLogIp","/getUserAction",
                         "/ip-daily","/city-daily","/getTerminal","/getPageDaily",
                         "/createLog","/getSnakeScoreList","/createScore","/getSnakeScoreTopList",
-                        "/getWeather","/getHotList","/getSiteList","/old-users","/platform-ratio");  // 排除登录和注册接口
+                        "/getWeather","/getHotList","/getSiteList","/old-users","/platform-ratio",
+                        "/getLatestCutoffTime");  // 排除登录和注册接口
     }
 
     @Value("${file.upload-dir}")

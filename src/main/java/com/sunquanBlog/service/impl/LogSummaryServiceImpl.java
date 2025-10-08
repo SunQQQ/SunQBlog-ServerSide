@@ -1,6 +1,7 @@
 package com.sunquanBlog.service.impl;
 
 import com.sunquanBlog.common.util.ApiResponse;
+import com.sunquanBlog.common.util.DateUtils;
 import com.sunquanBlog.common.util.IpMasker;
 import com.sunquanBlog.mapper.LogMapper;
 import com.sunquanBlog.mapper.LogSummaryMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -173,5 +175,15 @@ public class LogSummaryServiceImpl implements LogSummaryService {
     public ApiResponse<Map> getPageDaily(Integer days) {
         Map page = logSummaryMapper.getPageDaily(days);
         return ApiResponse.success(page);
+    }
+
+    @Override
+    public ApiResponse<Map> getLatestCutoffTime() {
+        Map<String, LocalDateTime> lastTime = logSummaryMapper.latestCutoffTime();
+        String dateTime = DateUtils.formatDateTime(lastTime.get("latestCutoffTime"));
+
+        Map<String,String> result = new HashMap<>();
+        result.put("latestCutoffTime", dateTime);
+        return ApiResponse.success(result);
     }
 }
