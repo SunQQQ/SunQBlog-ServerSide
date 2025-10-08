@@ -231,4 +231,27 @@
             entry_time desc
     ]]>
     </select>
+
+    <select id="getPageDaily" resultType="Map">
+        <![CDATA[
+        SELECT
+            COUNT(CASE WHEN FIND_IN_SET('首页', page) > 0 OR FIND_IN_SET('博文', page) > 0 THEN 1 END) AS 首页,
+            COUNT(CASE WHEN FIND_IN_SET('文章详情页', page) > 0 THEN 1 END) AS 文章详情页,
+            COUNT(CASE WHEN FIND_IN_SET('留言页', page) > 0 THEN 1 END) AS 留言,
+            COUNT(CASE WHEN FIND_IN_SET('时间轴', page) > 0 THEN 1 END) AS 时间轴,
+            COUNT(CASE WHEN FIND_IN_SET('关于', page) > 0 THEN 1 END) AS 关于,
+            COUNT(CASE WHEN FIND_IN_SET('访问统计', page) > 0 THEN 1 END) AS 访问统计,
+            COUNT(CASE WHEN FIND_IN_SET('开放式后台', page) > 0 THEN 1 END) AS 开放式后台,
+            COUNT(CASE WHEN FIND_IN_SET('朋友圈', page) > 0 THEN 1 END) AS 朋友圈,
+            COUNT(CASE WHEN FIND_IN_SET('文章列表页', page) > 0 THEN 1 END) AS 文章管理页,
+            COUNT(CASE WHEN FIND_IN_SET('登录注册页', page) > 0 THEN 1 END) AS 登录注册页,
+            COUNT(CASE WHEN FIND_IN_SET('账号管理页', page) > 0 THEN 1 END) AS 账号管理页,
+            COUNT(CASE WHEN FIND_IN_SET('贪吃蛇', page) > 0 THEN 1 END) AS 贪吃蛇
+        FROM
+            log_daily_ip_summary
+        WHERE
+            visit_day > DATE_SUB(CURDATE(), INTERVAL #{days} DAY)
+          AND visit_day < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        ]]>
+    </select>
 </mapper>

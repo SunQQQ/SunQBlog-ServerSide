@@ -28,9 +28,4 @@ public interface LogMapper {
 //    List<LogDTO> getUserAction(Integer start,Integer end,List<String> list);
 
     List<LogIpDailyDTO> getRegisterDaily(Integer days);
-
-    Map<String, Integer> getPageDaily(
-            @Param("days") Integer days,
-            @Param("excludeIpsSql") String excludeIpsSql
-    );
 }

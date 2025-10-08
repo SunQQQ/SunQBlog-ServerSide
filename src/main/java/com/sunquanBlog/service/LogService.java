@@ -12,8 +12,6 @@ import java.util.Map;
 public interface LogService{
     public Integer createLog(HttpServletRequest request,String platformType, String page, String action, String actionObject,String actionDesc);
 
-    public ApiResponse<Map> getPageDaily(Integer days) ;
-
     public String getLocation(HttpServletRequest request); // 获取IP所在城市的方法
 
     public String getClientIpAddress(HttpServletRequest request); // 获取客户端真实IP地址的方法

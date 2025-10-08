@@ -102,4 +102,11 @@ public class LogSummaryController {
         Integer day  = (Integer) requestBody.get("day");
         return logSummaryService.getUserAction(day,request);
     }
+
+    @PostMapping("/getPageDaily")
+    public ApiResponse getPageDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
+        // 距离当天的相差天数
+        Integer days  = (Integer) requestBody.get("days");
+        return logSummaryService.getPageDaily(days);
+    }
 }

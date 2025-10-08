@@ -23,4 +23,6 @@ public interface LogSummaryService {
     public ApiResponse<LogTerminalDTO> getTerminal(Integer days, HttpServletRequest request); // 获取终端类型的方法
 
     public ApiResponse<List<LogDTO>> getUserAction(Integer day, HttpServletRequest request);
+
+    public ApiResponse<Map> getPageDaily(Integer days) ;
 }

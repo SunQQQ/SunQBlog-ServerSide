@@ -18,13 +18,6 @@ public class LogController {
     @Autowired
     private LogSummaryJob logSummaryJob;
 
-    @PostMapping("/getPageDaily")
-    public ApiResponse getPageDaily(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
-        // 距离当天的相差天数
-        Integer days  = (Integer) requestBody.get("days");
-        return logService.getPageDaily(days);
-    }
-
     @PostMapping("/createLog")
     public ApiResponse createLog(@RequestBody Map<String,Object> requestBody,HttpServletRequest request) {
         String platformType = (String) requestBody.get("platformType");

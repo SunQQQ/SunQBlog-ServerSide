@@ -50,4 +50,8 @@ public interface LogSummaryMapper {
     List<LogDTO> getUserAction(
             @Param("start") Integer start,
             @Param("end") Integer end);
+
+    Map<String, Integer> getPageDaily(
+            @Param("days") Integer days
+    );
 }
