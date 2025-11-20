@@ -24,9 +24,9 @@
 
     <insert id="insertLog" parameterType="com.sunquanBlog.model.Log">
         insert into log
-            (ip, platform_type,page, ip_city, create_time, browser, action, action_object,action_desc,user_id)
+            (ip, platform_type,page, ip_city, create_time, browser, action, action_object,action_desc,user_id,from_url)
         values
-            (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc},#{userId})
+            (#{ip},#{platformType}, #{page}, #{ipCity}, now(), #{browser}, #{action}, #{actionObject},#{actionDesc},#{userId},#{from_url})
     </insert>
 
     <select id="getWhiteListIP" resultType="java.lang.String">

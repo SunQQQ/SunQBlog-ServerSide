@@ -23,6 +23,7 @@ import org.springframework.core.io.Resource; // 正确导入
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -64,9 +65,30 @@ public class LogServiceImpl implements LogService, DisposableBean {
             }
         }
 
+        // 获取来源网站地址
+        String referer = request.getHeader("Referer");
+        String from_url = "";
+        if (referer != null) {
+            // 解析域名
+            from_url = extractDomain(referer);
+        } else {
+            from_url = "直接访问";
+        }
+
         // 插入日志
-        Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc,userId);
+        Integer result = logMapper.insertLog(ip, platformType, page, city, userAgent, action, actionObject, actionDesc,userId,from_url);
         return result;
+    }
+
+    // 提取域名工具方法
+    private String extractDomain(String url) {
+        try {
+            URI uri = new URI(url);
+            String domain = uri.getHost();
+            return domain.startsWith("www.") ? domain.substring(4) : domain;
+        } catch (Exception e) {
+            return "未知来源";
+        }
     }
 
     @Override

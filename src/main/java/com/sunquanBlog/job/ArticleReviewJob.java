@@ -48,11 +48,11 @@ public class ArticleReviewJob {
         if(Comment != null && !Comment.isEmpty()){
             blog.setSystemReviewResult(0);
             blog.setSystemReviewComment(Comment);
-            log.info("审核文章：{},{}", blog.getTitle(), Comment);
+//            log.info("审核文章：{},{}", blog.getTitle(), Comment);
         }else {
             blog.setSystemReviewResult(1);
             blog.setSystemReviewComment("审核通过");
-            log.info("审核文章：{},{}", blog.getTitle(), "审核通过");
+//            log.info("审核文章：{},{}", blog.getTitle(), "审核通过");
         }
 
         blogMapper.updateReviewInfo(blog); // 假设toMap()方法将Blog对象转换为Map

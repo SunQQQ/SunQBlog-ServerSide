@@ -11,6 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class SunqBlogApplication {
     public static void main(String[] args) {
         SpringApplication.run(SunqBlogApplication.class, args);
-        log.info("项目已启动成功");
+//        log.info("项目已启动成功");
     }
 }

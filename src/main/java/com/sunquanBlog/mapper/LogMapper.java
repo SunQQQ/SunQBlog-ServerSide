@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Mapper
 public interface LogMapper {
-    Integer insertLog(String ip,String platformType,String page,String ipCity,String browser,String action,String actionObject,String actionDesc,Integer userId);
+    Integer insertLog(String ip,String platformType,String page,String ipCity,String browser,String action,String actionObject,String actionDesc,Integer userId,String from_url);
 
     // 改为直接写在mysql配置项里了，后期稳定后代码可删除
     // 设置 group_concat_max_len
