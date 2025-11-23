@@ -46,7 +46,7 @@ public class LogServiceImpl implements LogService, DisposableBean {
     private Resource dbResource;
 
     @Override
-    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc) {
+    public Integer createLog(HttpServletRequest request, String platformType, String page, String action, String actionObject, String actionDesc,String from_url) {
         // 获取客户端真实IP地址
         String ip = getClientIpAddress(request);
         // 获取浏览器信息
@@ -63,16 +63,6 @@ public class LogServiceImpl implements LogService, DisposableBean {
             } catch (Exception e) {
                 // 日志记录中，并不做token验证。如果有token但已过期，走到这里时放行。
             }
-        }
-
-        // 获取来源网站地址
-        String referer = request.getHeader("Referer");
-        String from_url = "";
-        if (referer != null) {
-            // 解析域名
-            from_url = extractDomain(referer);
-        } else {
-            from_url = "直接访问";
         }
 
         // 插入日志

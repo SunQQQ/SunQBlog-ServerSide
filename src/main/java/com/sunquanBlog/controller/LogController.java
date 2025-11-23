@@ -25,8 +25,9 @@ public class LogController {
         String action = (String) requestBody.get("action");
         String actionObject = (String) requestBody.get("actionObject");
         String actionDesc = (String) requestBody.get("actionDesc");
+        String from_url = (String) requestBody.get("fromUrl");
 
-        Integer status = logService.createLog(request,platformType,page,action,actionObject,actionDesc);
+        Integer status = logService.createLog(request,platformType,page,action,actionObject,actionDesc,from_url);
         if(status == 1) {
             return ApiResponse.success("日志记录成功");
         }else {

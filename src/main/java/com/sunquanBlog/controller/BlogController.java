@@ -50,7 +50,7 @@ public class BlogController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
-        logService.createLog(request,"管理后台", "文章列表页", "查询" , "文章列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页");
+        logService.createLog(request,"管理后台", "文章列表页", "查询" , "文章列表", "：第"+ (Integer.parseInt(start.toString())+1) + "页","");
 
         return blogService.getBlogList(userId,tagId,start,size);
     }
@@ -68,9 +68,9 @@ public class BlogController {
         String tagNames = getTagName(Arrays.asList(1),tagList);
 
         if(curPage == 1) {
-            logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "分类为" + tagNames);
+            logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "分类为" + tagNames,"");
         }else {
-            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页,分类为:" + tagNames);
+            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页,分类为:" + tagNames,"");
         }
 
         return blogService.getUserBlogList(tagId,start,size);

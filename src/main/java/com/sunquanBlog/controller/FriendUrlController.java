@@ -26,7 +26,7 @@ public class FriendUrlController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
-        logService.createLog(request, "用户端","朋友圈", "打开", "朋友圈页面","");
+        logService.createLog(request, "用户端","朋友圈", "打开", "朋友圈页面","","");
 
         return friendUrlService.getFriendUrlList(start, size);
     }
@@ -46,7 +46,7 @@ public class FriendUrlController {
         Claims claims = (Claims) request.getAttribute("claims");
         Integer userId = claims.get("id", Integer.class);
 
-        logService.createLog(request, "用户端","朋友圈", "添加站点", "朋友圈页面","："+ friendUrl.getSiteName());
+        logService.createLog(request, "用户端","朋友圈", "添加站点", "朋友圈页面","："+ friendUrl.getSiteName(),"");
 
         return friendUrlService.addSite(friendUrl,userId);
     }

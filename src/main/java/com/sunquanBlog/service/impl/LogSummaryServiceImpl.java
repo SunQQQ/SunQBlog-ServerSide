@@ -101,7 +101,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         if(!days.equals(8)){
             // 记录打开访问统计页日志
-            logService.createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天");
+            logService.createLog(request,"用户端","访问统计","切换","流量趋势","：最近"+days+"天","");
         }
 
         for(int i=0;i<logDTOs.size();i++){
@@ -121,7 +121,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         if(!days.equals(0)){
             // 记录打开访问统计页日志
-            logService.createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天");
+            logService.createLog(request,"用户端","访问统计","切换","访客来源","：最近"+days+"天","");
         }
 
         String[] cityList = (citys == null || citys.isEmpty()) ?
@@ -136,7 +136,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         if(!days.equals(1)){
             // 记录打开访问统计页日志
-            logService.createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天");
+            logService.createLog(request,"用户端","访问统计","切换","数据占比","：最近"+days+"天","");
         }
 
         return ApiResponse.success(logTerminalDTO);
@@ -165,7 +165,7 @@ public class LogSummaryServiceImpl implements LogSummaryService {
 
         if(!day.equals(0)){
             // 记录打开访问统计页日志
-            logService.createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天");
+            logService.createLog(request,"用户端","访问统计","切换","用户轨迹","：最近"+day+"天","");
         }
 
         return ApiResponse.success(logDTOs);
