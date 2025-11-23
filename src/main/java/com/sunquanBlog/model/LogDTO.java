@@ -11,6 +11,8 @@ public class LogDTO { // DTO类，用于封装查询结果
     private String browser;          // MAX(browser)
     private String userName;
 
+    private String fromUrl;
+
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalDateTime leaveTime; // MAX(create_time)
     @JsonFormat(pattern = "HH:mm:ss")
@@ -98,5 +100,13 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFromUrl() {
+        return fromUrl;
+    }
+
+    public void setFromUrl(String fromUrl) {
+        this.fromUrl = fromUrl;
     }
 }

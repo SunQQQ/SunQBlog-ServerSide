@@ -106,7 +106,7 @@
         <![CDATA[
         INSERT INTO log_daily_ip_summary (
             visit_day, ip, page, city, browser, user_action,
-            platform, user_id, entry_time, leave_time, pv, create_time
+            platform, user_id, entry_time, leave_time, pv, from_url,create_time
         )
         SELECT
             #{visitDay} AS visit_day,
@@ -124,6 +124,7 @@
             MIN(create_time) AS entry_time,
             MAX(create_time) AS leave_time,
             COUNT(*) AS pv,
+            max(from_url) from_url,
             now() create_time
         FROM `log`
         WHERE
@@ -218,6 +219,7 @@
             browser browser,
             TIMESTAMPDIFF(SECOND, log.entry_time,log.leave_time) stayTime,
             DATE_SUB(CURDATE(), INTERVAL #{start} DAY) as day,
+            from_url fromUrl,
             leave_time leaveTime,
             entry_time entryTime
         FROM
