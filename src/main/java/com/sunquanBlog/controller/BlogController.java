@@ -63,16 +63,6 @@ public class BlogController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
-        // 记录日志
-        Integer curPage = (start / size) + 1;
-        String tagNames = getTagName(Arrays.asList(1),tagList);
-
-        if(curPage == 1) {
-            logService.createLog(request, "用户端","首页", "筛选" , "博客列表", "分类为" + tagNames,"");
-        }else {
-            logService.createLog(request, "用户端","首页", "下拉" , "博客列表", "到第" + curPage + "页,分类为:" + tagNames,"");
-        }
-
         return blogService.getUserBlogList(tagId,start,size);
     }
 

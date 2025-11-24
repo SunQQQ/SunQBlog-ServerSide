@@ -26,8 +26,6 @@ public class FriendUrlController {
         Integer start = (Integer) requestBody.get("start");
         Integer size = (Integer) requestBody.get("size");
 
-        logService.createLog(request, "用户端","朋友圈", "打开", "朋友圈页面","","");
-
         return friendUrlService.getFriendUrlList(start, size);
     }
 

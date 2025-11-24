@@ -57,9 +57,6 @@ public class LogSummaryController {
      */
     @PostMapping("/getLogIp")
     public ApiResponse getTimeLineList(HttpServletRequest request) {
-        // 记录打开访问统计页日志
-        log.createLog(request,"用户端","访问统计","打开","访问统计页","","");
-
         return logSummaryService.getLogIp();
     }
 

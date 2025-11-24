@@ -42,14 +42,6 @@ public class LeaveMessageController {
         Integer start = (Integer)requestBody.get("start");
         Integer size = (Integer)requestBody.get("size");
 
-        // 记录日志
-        Integer curPage = (start / size) + 1;
-        if(curPage == 1) {
-            logService.createLog(request,"用户端", "留言页", "打开", "留言页","","");
-        }else {
-            logService.createLog(request,"用户端", "留言页", "下拉" , "留言页", "到第" + curPage + "页","");
-        }
-
         return leaveMessageService.getAllLeaveMessage(start,size);
     }
 
