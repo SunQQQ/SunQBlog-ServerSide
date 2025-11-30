@@ -11,7 +11,7 @@ public interface LoginMapper {
 
     List<User> getPassword(String username);
 
-    int regist(String username,String password,String email);
+    int regist(String username,String password,String email,Integer avator);
 
     int deleteByUsername(String username);
 

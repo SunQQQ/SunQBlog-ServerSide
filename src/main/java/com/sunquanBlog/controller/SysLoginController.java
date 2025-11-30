@@ -41,12 +41,13 @@ public class SysLoginController {
      * @return
      */
     @PostMapping("/regist")
-    public ApiResponse regist(@RequestBody Map<String, String> loginRequest) {
-        String username = loginRequest.get("username");
-        String password = loginRequest.get("password");
+    public ApiResponse regist(@RequestBody Map<String, Object> loginRequest) {
+        String username = (String) loginRequest.get("username");
+        String password = (String)loginRequest.get("password");
+        Integer avator = (Integer)loginRequest.get("avator");
         String email = "test";
 
-        return sysLoginService.regist(username, password,email);
+        return sysLoginService.regist(username, password,email,avator);
     }
 
     /**

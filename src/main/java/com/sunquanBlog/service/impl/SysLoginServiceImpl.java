@@ -58,7 +58,7 @@ public class SysLoginServiceImpl implements SysLoginService {
      * @param email
      * @return
      */
-    public ApiResponse<UserAuthResponse> regist(String username, String password,String email){
+    public ApiResponse<UserAuthResponse> regist(String username, String password,String email,Integer avator){
         // 检查账号是否重复
         List<User> list = loginMapper.getPassword(username);
         boolean haveAccount = list.size() > 0;
@@ -66,7 +66,7 @@ public class SysLoginServiceImpl implements SysLoginService {
         if (haveAccount) {
             return ApiResponse.error(500, "账号已存在，请修改账号");
         } else {
-            int insertNum = loginMapper.regist(username, password,email);
+            int insertNum = loginMapper.regist(username, password,email,avator);
             if (insertNum > 0) {
 //                return ApiResponse.success("注册成功");
                 List<User> listNow = loginMapper.getPassword(username);

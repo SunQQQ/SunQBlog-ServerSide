@@ -32,7 +32,7 @@
     <insert id="regist">
         INSERT INTO user
             (name, password, email, created_at, role,modify_time,avator)
-        VALUES (#{username}, #{password}, #{email}, now(), 'user',now(),FLOOR(RAND() * 5));
+        VALUES (#{username}, #{password}, #{email}, now(), 'user',now(),#{avator});
     </insert>
 
     <!-- 添加根据账号名称删除数据的 SQL 语句 -->
