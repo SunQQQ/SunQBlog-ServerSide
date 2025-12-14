@@ -258,13 +258,14 @@
     </select>
 
     <select id="latestCutoffTime" resultType="Map">
-        select
-            create_time latestCutoffTime
-        from
-            log_daily_ip_summary
-        where
-            visit_day = CURDATE()
-        group by
-            latestCutoffTime
+        SELECT
+            COALESCE(
+                MAX(create_time),
+                FROM_UNIXTIME(
+                    FLOOR(UNIX_TIMESTAMP(NOW()) / 600) * 600
+                )
+            ) as latestCutoffTime
+        FROM log_daily_ip_summary
+        WHERE visit_day = CURDATE();
     </select>
 </mapper>
