@@ -155,6 +155,10 @@ public class LogSummaryServiceImpl implements LogSummaryService {
             String curIp = logDTOs.get(i).getIp();
             logDTOs.get(i).setIp(IpMasker.mask(curIp));
 
+            // 格式化停留时间
+            Long stayTime = logDTOs.get(i).getStayTime();
+            logDTOs.get(i).setFormatStayTime(formatSecond(stayTime));
+
             // 标记当前用户
             if(logDTOs.get(i).getIp().equals(ip)){
                 logDTOs.get(i).setIsCurUser(true);
@@ -169,6 +173,32 @@ public class LogSummaryServiceImpl implements LogSummaryService {
         }
 
         return ApiResponse.success(logDTOs);
+    }
+
+    public String formatSecond(Long second){
+        if (second == null || second < 0) {
+            return "0秒";
+        }
+
+        if (second < 60) {
+            return second + "秒";
+        } else if (second < 3600) {
+            long minutes = second / 60;
+            long seconds = second % 60;
+            if (seconds == 0) {
+                return minutes + "分钟";
+            } else {
+                return minutes + "分钟" + seconds + "秒";
+            }
+        } else {
+            long hours = second / 3600;
+            long minutes = (second % 3600) / 60;
+            if (minutes == 0) {
+                return hours + "小时";
+            } else {
+                return hours + "小时" + minutes + "分钟";
+            }
+        }
     }
 
     @Override

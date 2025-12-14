@@ -25,6 +25,8 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     private Long stayTime;
 
+    private String formatStayTime;
+
     // 构造方法、getter/setter 省略（可用Lombok @Data注解简化）
     public LogDTO() {
     }
@@ -108,5 +110,13 @@ public class LogDTO { // DTO类，用于封装查询结果
 
     public void setFromUrl(String fromUrl) {
         this.fromUrl = fromUrl;
+    }
+
+    public String getFormatStayTime() {
+        return formatStayTime;
+    }
+
+    public void setFormatStayTime(String formatStayTime) {
+        this.formatStayTime = formatStayTime;
     }
 }
